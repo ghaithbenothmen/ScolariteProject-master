@@ -13,6 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormGroup, FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { EtablissementComponent } from './etablissement/etablissement.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,12 @@ import { EtablissementComponent } from './etablissement/etablissement.component'
     EtablissementComponent
   ],
   imports: [
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,

@@ -1,15 +1,24 @@
 <app-navbar></app-navbar>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
-  <!-- Brand -->
-  <a class="navbar-brand" href="#">Gestion Scolarite[Logo]</a>
-  <!-- Links -->
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+  Brand
+  <a class="navbar-brand" href="#">Nom etablissement [Logo]</a>
+  Links
 
 
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="#">Accueil</a>
     </li>
-    <!-- Dropdown -->
+
+    <li class="nav-item">
+      <a class="nav-link" href="#">Accueil</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact</a>
+    </li>
+
+    Dropdown
     <li ngbDropdown class="nav-item dropdown">
       <a ngbDropdownToggle class="nav-link dropdown-toggle" type="button" id="navbardrop" data-toggle="dropdown">
         Apprenant
@@ -35,14 +44,9 @@
     </li>
   </ul>
 
-</nav>
+</nav> -->
 <!--<app-home></app-home> routage statique -->
 <!--<app-login></app-login>routage statique--><!--il affiche toujours les composants on change par routage dynamique pour afficher chaque 
 composant dans son url kima login -->
-<app-side-nav></app-side-nav>
+<app-side-nav *ngIf="authService.isloggedIn==true"></app-side-nav>
 <router-outlet></router-outlet><!--routage dynamique-->
-<!-- <button (click)="openModal(modalTemplate)">Open Modal</button>
-
-<ng-template #modalTemplate>
-  <app-modal-comp [dataFromParent]="modalRef"></app-modal-comp>
-</ng-template> -->

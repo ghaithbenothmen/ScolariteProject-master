@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
   public apiURL: string = 'http://localhost:8080/apprenant/api';
   public token!: string;
-  public isloggedIn: boolean = false;
+  public isloggedIn!: boolean ;
   public roles!: string[];
   loggedUser!: string;
   private helper = new JwtHelperService();
@@ -81,4 +81,9 @@ export class AuthService {
     return (this.roles.indexOf('ADMIN') >-1) ;
     ;
   }   */
+
+  isLoggedIn(): boolean {
+    // Check if there is a user token in local storage or session storage
+    return !!localStorage.getItem('token') || !!sessionStorage.getItem('token');
+  }
 }

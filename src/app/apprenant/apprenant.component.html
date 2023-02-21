@@ -78,7 +78,7 @@
 			<div class="modal-content">
 				<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)"  >
 					<div class="modal-header">
-						<h4 class="modal-title">Add Apprenant</h4>
+						<h4 class="modal-title">Ajout Apprenant</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
 							(click)="modalRef.hide()">&times;</button>
 					</div>
@@ -137,8 +137,8 @@
 
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
-						<input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
+						<input type="button" class="btn btn-default" value="Fermer" (click)="modalRef.hide()">
+						<input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajout">
 					</div>
 				</form>
 			</div>
@@ -215,8 +215,8 @@
 
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
-							value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save" (click)="onSave()">
+							value="Fermer">
+						<input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
 					</div>
 				</div>	
 				</form>
@@ -241,9 +241,9 @@
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
 					<form class="modal-footer" [formGroup]="editForm2" >
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
 							(click)="modalRef.hide()">
-						<input type="submit" class="btn btn-danger"  value="Delete" (click)="onPatch()">
+						<input type="submit" class="btn btn-danger"  value="Supprimer" (click)="onPatch()">
 						
 					</form>
 				</div>

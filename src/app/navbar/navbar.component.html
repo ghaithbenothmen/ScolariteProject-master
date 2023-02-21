@@ -1,0 +1,46 @@
+<div id="page-content-wrapper">
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+        <h2 class="fs-2 m-0"><div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+            class="fas fa-user-secret me-2"></i>[logo]Nome</div></h2>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Accueil</a>
+              </li>
+          
+              <li class="nav-item">
+                <a class="nav-link" href="#">Presentation</a>
+              </li>
+          
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+
+              
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle second-text fw-bold"  
+                type="button"   ngbDropdownToggle>
+                    <i class="fas fa-user me-2" ></i>{{authService.loggedUser}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" ngbDropdownMenu>
+                    <!-- <li><a class="dropdown-item" href="#" ngbDropdownItem>Profile</a></li>
+                    <li><a class="dropdown-item" href="#" ngbDropdownItem>Settings</a></li> -->
+                    <li><a type="button" *ngIf="!(authService.isloggedIn)" class="dropdown-item" href="login" ngbDropdownItem (click)="onLogout()" >Login</a></li>
+                    <li><a type="button" *ngIf="authService.isloggedIn" class="dropdown-item" href="login" ngbDropdownItem (click)="onLogout()" >Logout</a></li>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+</div>

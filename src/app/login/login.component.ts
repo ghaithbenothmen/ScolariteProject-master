@@ -1,19 +1,23 @@
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../entities/user.model';
 import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements CanActivate{
   user = new User();
   err:number = 0;
 
 
   constructor(private router:Router,private authService : AuthService) { }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
   }
@@ -32,4 +36,6 @@ export class LoginComponent {
       );
     }
       //si on a erreur on ajout 1 a err
+
+      
 }
