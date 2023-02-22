@@ -9,17 +9,17 @@ import { Observable } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements CanActivate{
+export class LoginComponent {
   user = new User();
   err:number = 0;
 
 
   constructor(private router:Router,private authService : AuthService) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    throw new Error('Method not implemented.');
-  }
+ 
+  
 
   ngOnInit(): void {
+    
   }
   onLoggedin() {
    

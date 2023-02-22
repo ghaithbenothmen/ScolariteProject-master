@@ -2,9 +2,14 @@ import { Apprenant } from './../apprenant/apprenant.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from '../entities/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+
+
+interface AuthResponse {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +21,12 @@ export class AuthService {
   public roles!: string[];
   loggedUser!: string;
   private helper = new JwtHelperService();
+ 
 
   constructor(private router: Router, private http: HttpClient) { }
 
   login(user: User) {
-    return this.http.post<User>(this.apiURL + '/v1/auth/authenticate', user);
+    return this.http.post<User>(this.apiURL + '/v1/auth/authenticate', user)
   }
 
   /*  getApprenants() {
@@ -46,7 +52,7 @@ export class AuthService {
   }
   loadToken() {
     this.token = localStorage.getItem('token')!;
-    //this.decodeJWT();
+    this.decodeJWT();
   }
 
   getToken(): string {
@@ -61,6 +67,7 @@ export class AuthService {
     this.isloggedIn = false;
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   isTokenExpired(): Boolean {
@@ -86,4 +93,6 @@ export class AuthService {
     // Check if there is a user token in local storage or session storage
     return !!localStorage.getItem('token') || !!sessionStorage.getItem('token');
   }
+
+ 
 }

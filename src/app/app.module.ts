@@ -19,6 +19,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { PresentationComponent } from './presentation/presentation.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { MatListModule } from '@angular/material/list';
     ApprenantComponent,
     ModalCompComponent,
     SideNavComponent,
-    EtablissementComponent
+    EtablissementComponent,
+    PresentationComponent,
+    NavbarComponent
   ],
   imports: [
     MatSidenavModule,

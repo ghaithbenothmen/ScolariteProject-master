@@ -48,5 +48,9 @@
 <!--<app-home></app-home> routage statique -->
 <!--<app-login></app-login>routage statique--><!--il affiche toujours les composants on change par routage dynamique pour afficher chaque 
 composant dans son url kima login -->
-<app-side-nav *ngIf="authService.isloggedIn==true"></app-side-nav>
+
+<div *ngIf="authService.isLoggedIn()">
+  <app-side-nav></app-side-nav>
+</div>
+<!--routage dynamique-->
 <router-outlet></router-outlet><!--routage dynamique-->
