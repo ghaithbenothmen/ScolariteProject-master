@@ -1,3 +1,4 @@
+import { DepartementComponent } from './../../pages/departement/departement.component';
 import { EtablissementComponent } from './../../pages/etablissement/etablissement.component';
 import { ApprenantComponent } from '../../pages/apprenant/apprenant.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ const routes: Routes = [
   
   { path: 'apprenant',         component: ApprenantComponent },
   { path: 'etablissement',  component: EtablissementComponent },
+  { path: 'departement',  component: DepartementComponent },
  
 ];
 
