@@ -542,3 +542,6 @@ body {
     min-width: 420px;
   }
 }
+td img {
+  border-radius: 50px
+}

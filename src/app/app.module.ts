@@ -26,6 +26,7 @@ import { PresentationComponent } from './pages/presentation/presentation.compone
 
 
 import { ApprenantComponent } from './pages/apprenant/apprenant.component';
+import { DepartementComponent } from './pages/departement/departement.component';
 
 
 
@@ -41,7 +42,8 @@ import { ApprenantComponent } from './pages/apprenant/apprenant.component';
         NavbarComponent,
        
         AdminLayoutComponent,
-       AuthLayoutComponent
+       AuthLayoutComponent,
+       DepartementComponent
 
         
         

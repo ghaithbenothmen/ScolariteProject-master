@@ -5,17 +5,17 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { AuthService } from 'src/app/services/auth.service';
-import { EtablissementService } from 'src/app/services/etablissement.service';
+import { DepartementService } from 'src/app/services/departement.service';
 
-export class Etablissement {
+export class Departement {
     constructor(
       
-      public codeEtablissement: number,
-      public nomEtablissement: string,
-      public abreviationEtablissement: string,
-      public telEtablissement: number,
-      public emailEtablissement: string,
-      public remarqueEtablissement: string,
+      public codeDepartement: number,
+      public nomDepartement: string,
+      public abreviationDepartement: string,
+      public telDepartement: number,
+      public emailDepartement: string,
+      public remarqueDepartement: string,
       public data: Blob,
       public file: File,
       public fileType :string,
@@ -25,15 +25,15 @@ export class Etablissement {
     }
   }
 @Component({
-  selector: 'app-etablissement',
-  templateUrl: './etablissement.component.html',
-  styleUrls: ['./etablissement.component.css']
+  selector: 'app-Departement',
+  templateUrl: './departement.component.html',
+  styleUrls: ['./departement.component.css']
 })
   
-export class EtablissementComponent {
+export class DepartementComponent {
   public modalRef!: BsModalRef;
-  public etablissements!: Etablissement[];
-  public etablissement!: Etablissement;
+  public Departements!: Departement[];
+  public Departement!: Departement;
   public editForm!: FormGroup;
  // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -46,13 +46,13 @@ export class EtablissementComponent {
   
   
 
-  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public etabService : EtablissementService,private authService:AuthService,) { }
+  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public departementService  : DepartementService,private authService:AuthService,) { }
  
-  getEtablissement() {
-    this.etabService.getEtablissements().subscribe(response => {
+  getDepartement() {
+    this.departementService.getDepartement().subscribe(response => {
       console.log(response);
      
-      this.etablissements = response;
+      this.Departements = response;
    
 
 
@@ -62,7 +62,7 @@ export class EtablissementComponent {
 
 
 //  onFileChange(event) {
-//     this.etablissement.file = event.target.files[0];
+//     this.Departement.file = event.target.files[0];
 //   }
   public onFileChanged(event:any) {
   
@@ -74,7 +74,7 @@ export class EtablissementComponent {
   onSubmit (f: NgForm) {
   
     
-  this.etabService.addEtablissement( this.selectedFile , f.value ).subscribe(response => {
+  this.departementService .addDepartement( this.selectedFile , f.value ).subscribe(response => {
     console.log(response);
     this.ngOnInit();  })
  
@@ -82,24 +82,24 @@ export class EtablissementComponent {
 }
 
   // onSubmits() {
-  //   this.etabService.addEtablissement(
-  //     this.etablissement
+  //   this.departementService .addDepartement(
+  //     this.Departement
   //   )
   // }
 
   ngOnInit(): void {
-    this.getEtablissement()
+    this.getDepartement()
     console.log(this.authService.getToken())
     
     this.editForm = this.fb.group({
     
-      codeEtablissement: [''],
-      nomEtablissement: [''],
-      abreviationEtablissement: [''],
-      remarqueEtablissement: [''],
+      codeDepartement: [''],
+      nomDepartement: [''],
+      abreviationDepartement: [''],
+      remarqueDepartement: [''],
    
-      emailEtablissement: [''],
-      telEtablissement: [''],
+      emailDepartement: [''],
+      telDepartement: [''],
      // adresseApprenant: [''],
       file: [''],
 
@@ -110,7 +110,7 @@ export class EtablissementComponent {
 
 
 /************************ pop up****************** */
-  openDetails(modalTemplate: TemplateRef<any>, etablissement: Etablissement) {
+  openDetails(modalTemplate: TemplateRef<any>, Departement: Departement) {
     this.modalRef = this.modalService.show(modalTemplate,
       {
 
@@ -121,14 +121,14 @@ export class EtablissementComponent {
     );
 
     this.editForm.patchValue({
-      codeEtablissement: etablissement.codeEtablissement,
-      nomEtablissement: etablissement.nomEtablissement,
-      abreviationEtablissement: etablissement.abreviationEtablissement,
-      remarqueEtablissement: etablissement.remarqueEtablissement,
+      codeDepartement: Departement.codeDepartement,
+      nomDepartement: Departement.nomDepartement,
+      abreviationDepartement: Departement.abreviationDepartement,
+      remarqueDepartement: Departement.remarqueDepartement,
   
-      emailEtablissement: etablissement.emailEtablissement,
-      telEtablissement: etablissement.telEtablissement,
-      adresseApprenant: etablissement.abreviationEtablissement,
+      emailDepartement: Departement.emailDepartement,
+      telDepartement: Departement.telDepartement,
+      adresseApprenant: Departement.abreviationDepartement,
  
      
       
@@ -151,9 +151,9 @@ openModal(modalTemplate: TemplateRef<any>) {
   );
 }
 onSave() {
-   
+  
     
-  this.etabService.updateetab(this.selectedFile ,this.editForm.value).subscribe(response => {
+  this.departementService.updatedepart(this.selectedFile ,this.editForm.value).subscribe(response => {
       console.log(response);
    
       this.ngOnInit();})
