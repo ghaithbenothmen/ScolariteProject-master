@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import { Etablissement } from '../pages/etablissement/etablissement.component';
+import { Etablissement } from '../entities/etablissement.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,13 @@ export class EtablissementService {
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 
 
+  getInfo() {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
+    return this.httpClient.get<Etablissement[]>(this.apiURL+"etab");
+  }
   
   getEtablissements() {
     let jwt = this.authService.getToken();

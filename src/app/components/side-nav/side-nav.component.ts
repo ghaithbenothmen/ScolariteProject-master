@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Etablissement } from 'src/app/entities/etablissement.model';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { EtablissementService } from 'src/app/services/etablissement.service';
 
 
 declare interface RouteInfo {
@@ -24,8 +26,11 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SideNavComponent implements OnInit{
 
+
+ 
+
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-  constructor(public authService: AuthService,private router: Router) { }
+  constructor(public authService: AuthService,private router: Router,public etabService : EtablissementService) { }
 
   ngOnInit(): void {
     this.authService.loadToken();

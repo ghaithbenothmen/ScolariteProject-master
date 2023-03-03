@@ -4,7 +4,9 @@
 </div>
 <div class="main-content">
   <!-- Top navbar -->
- 
+  <div *ngFor="let etablissement of etablissements">
+    <img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px"
+                    height="200px" /></div>
   <!-- Pages -->
   
   <div class="container-fluid">

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import { Departement } from 'src/app/pages/departement/departement.component';
+import { Departement } from '../entities/departement.model';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +88,17 @@ export class DepartementService {
       return this.httpClient.put<Departement>(url, formData, {headers:httpHeaders});
       }
 
-}
+
+      deleteDepartement(code : number) {
+      //const urlDelete ='${this.apiURL}/${id}';  
+        let jwt = this.authService.getToken();
+        jwt = "Bearer "+jwt;
+        let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+
+         return this.httpClient.delete(this.apiURL+code,{headers:httpHeaders});}
+      } 
+    
+
 
 

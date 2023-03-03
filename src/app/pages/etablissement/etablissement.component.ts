@@ -3,27 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Etablissement } from 'src/app/entities/etablissement.model';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { EtablissementService } from 'src/app/services/etablissement.service';
 
-export class Etablissement {
-    constructor(
-      
-      public codeEtablissement: number,
-      public nomEtablissement: string,
-      public abreviationEtablissement: string,
-      public telEtablissement: number,
-      public emailEtablissement: string,
-      public remarqueEtablissement: string,
-      public data: Blob,
-      public file: File,
-      public fileType :string,
-      
-    
-    ) {
-    }
-  }
+
+  
 @Component({
   selector: 'app-etablissement',
   templateUrl: './etablissement.component.html',
@@ -53,9 +39,14 @@ export class EtablissementComponent {
       console.log(response);
      
       this.etablissements = response;
-   
+      });
+  }
 
-
+  getInfo() {
+    this.etabService.getInfo().subscribe(response => {
+      console.log(response);
+     
+      this.etablissements = response;
       });
   }
   

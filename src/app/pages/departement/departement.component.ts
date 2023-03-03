@@ -1,29 +1,17 @@
+import { EtablissementService } from 'src/app/services/etablissement.service';
+
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Departement } from 'src/app/entities/departement.model';
+import { Etablissement } from 'src/app/entities/etablissement.model';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { DepartementService } from 'src/app/services/departement.service';
 
-export class Departement {
-    constructor(
-      
-      public codeDepartement: number,
-      public nomDepartement: string,
-      public abreviationDepartement: string,
-      public telDepartement: number,
-      public emailDepartement: string,
-      public remarqueDepartement: string,
-      public data: Blob,
-      public file: File,
-      public fileType :string,
-      
-    
-    ) {
-    }
-  }
+
 @Component({
   selector: 'app-Departement',
   templateUrl: './departement.component.html',
@@ -33,7 +21,7 @@ export class Departement {
 export class DepartementComponent {
   public modalRef!: BsModalRef;
   public Departements!: Departement[];
-  public Departement!: Departement;
+  public departement!: Departement;
   public editForm!: FormGroup;
  // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -42,11 +30,12 @@ export class DepartementComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
-
+    public etablissement!: Etablissement;
+    public etablissements!: Etablissement[];
   
   
 
-  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public departementService  : DepartementService,private authService:AuthService,) { }
+  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public departementService  : DepartementService,private authService:AuthService,public etabService:EtablissementService) { }
  
   getDepartement() {
     this.departementService.getDepartement().subscribe(response => {
@@ -88,7 +77,8 @@ export class DepartementComponent {
   // }
 
   ngOnInit(): void {
-    this.getDepartement()
+    this.getInfo();
+    this.getDepartement();
     console.log(this.authService.getToken())
     
     this.editForm = this.fb.group({
@@ -170,4 +160,35 @@ onControl(f: NgForm) {
     this.message = 'Apprenant non ajoué ! Verifier votre formulaire !';
   }
 }
+
+
+/**********************Template delete ******************* */
+openDelete(modalTemplate: TemplateRef<any>, departement: Departement) {
+  this.deleteId=departement.codeDepartement;
+      this.modalRef = this.modalService.show(modalTemplate,
+        {
+          class: 'modal-dialogue-centered modal-md',
+          backdrop: 'static',
+          keyboard: true
+        }
+      );
+}
+ onDelete(departement : Departement) {
+   this.departementService.deleteDepartement(this.deleteId).subscribe(response => {
+    console.log(response);
+    this.ngOnInit();})
+ 
+  this.modalService.hide(); //dismiss the modal
+  } 
+  
+
+
+
+  getInfo() {
+    this.etabService.getInfo().subscribe(response => {
+      console.log(response);
+     
+      this.etablissements = response;
+      });
+  }
 }

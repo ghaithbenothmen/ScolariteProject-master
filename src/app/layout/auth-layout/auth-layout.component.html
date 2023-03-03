@@ -7,7 +7,13 @@
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1>[Logo]<span>Etablissement</span></h1>
+               <!-- <div *ngFor="let etablissement of etablissements">
+                <img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px"
+                                height="200px" /></div> -->
             </a>
+
+           
+
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a routerLink="accueil">Accueil</a></li>
@@ -16,7 +22,8 @@
                     <li class="dropdown"><a href="#"><span>Connexion</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a routerLink="login">Login</a></li>
+                            <li> 
+<a routerLink="login">Login</a></li>
                             
                             
                             <li><a routerLink="#">S'Identifier</a></li>
