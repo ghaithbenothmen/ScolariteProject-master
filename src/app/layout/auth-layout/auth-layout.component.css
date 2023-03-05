@@ -1,0 +1,12 @@
+header .wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+header .logo img {
+    height: 50px;
+    display: block;
+}

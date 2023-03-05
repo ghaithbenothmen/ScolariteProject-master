@@ -77,7 +77,7 @@ export class DepartementComponent {
   // }
 
   ngOnInit(): void {
-    this.getInfo();
+    
     this.getDepartement();
     console.log(this.authService.getToken())
     
@@ -144,8 +144,8 @@ onSave() {
   
     
   this.departementService.updatedepart(this.selectedFile ,this.editForm.value).subscribe(response => {
-      console.log(response);
-   
+      //console.log(response);
+      window.location.reload();
       this.ngOnInit();})
    
     this.modalService.hide(); //dismiss the modal
@@ -183,12 +183,4 @@ openDelete(modalTemplate: TemplateRef<any>, departement: Departement) {
   
 
 
-
-  getInfo() {
-    this.etabService.getInfo().subscribe(response => {
-      console.log(response);
-     
-      this.etablissements = response;
-      });
-  }
 }

@@ -18,7 +18,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.loadToken();
-  
+  if(this.authService.isTokenExpired()){
+    localStorage.removeItem('token');
+    
+  }
     
     /* this.authService.isloggedIn=true; */
 /********************* afficher que la page login pour utilisateur tant qu'il n'est pas connecter**************** */

@@ -1,3 +1,4 @@
+import { ImageService } from './../../services/image.service';
 import { Etablissement } from './../../entities/etablissement.model';
 import { EtablissementService } from 'src/app/services/etablissement.service';
 import { Component } from '@angular/core';
@@ -13,14 +14,20 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class AdminLayoutComponent {
   public etablissements!: Etablissement[];
-  constructor(public authService: AuthService,private router: Router, public etabService : EtablissementService) { }
+  imageData!:any;
+  constructor(public authService: AuthService,private router: Router, public etabService : EtablissementService,private imageService: ImageService) { }
 
 
-  getInfo() {
+/*   getInfo() {
     this.etabService.getInfo().subscribe(response => {
       console.log(response);
      
       this.etablissements = response;
       });
-  }
+  } */
+alert(){
+  alert("Hello world!");
 }
+}
+  
+

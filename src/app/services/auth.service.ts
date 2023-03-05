@@ -71,7 +71,9 @@ export class AuthService {
   }
 
   isTokenExpired(): Boolean {
+    
     return this.helper.isTokenExpired(this.token);
+   
   }
 
   decodeJWT()

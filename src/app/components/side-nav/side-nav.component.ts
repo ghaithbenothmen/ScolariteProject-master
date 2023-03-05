@@ -1,9 +1,11 @@
+
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Etablissement } from 'src/app/entities/etablissement.model';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { EtablissementService } from 'src/app/services/etablissement.service';
+import { ImageService } from 'src/app/services/image.service';
 
 
 declare interface RouteInfo {
@@ -25,12 +27,13 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit{
-
-
+  public imageData:any;
+  public nomEtablissement!:string;
+  public etablissements!:Etablissement[];
  
 
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-  constructor(public authService: AuthService,private router: Router,public etabService : EtablissementService) { }
+  constructor(public authService: AuthService,private router: Router,public etabService : EtablissementService,private imageService: ImageService) { }
 
   ngOnInit(): void {
     this.authService.loadToken();
@@ -38,6 +41,13 @@ export class SideNavComponent implements OnInit{
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
+/****************Logo ******************* */
+      this.imageService.getImage().subscribe(response => {
+        console.log(response);
+       
+        this.etablissements = response;
+        });
+    
    });
   }
   toggleSidebar() {

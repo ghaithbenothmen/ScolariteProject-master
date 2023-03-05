@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/services/image.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Etablissement } from 'src/app/entities/etablissement.model';
@@ -17,10 +18,19 @@ export class AuthLayoutComponent {
     this.status = !this.status;       
   }
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-  constructor(public authService: AuthService,private router: Router,public etabService : EtablissementService) { }
+  constructor(public authService: AuthService,private router: Router,public etabService : EtablissementService,private imageService:ImageService) { }
 
   ngOnInit(): void {
     this.authService.loadToken();
+    
+/****************Logo ******************* */
+this.imageService.getImage().subscribe(response => {
+  console.log(response);
+ 
+  this.etablissements = response;
+  });
+
+    
   }
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
@@ -31,12 +41,14 @@ export class AuthLayoutComponent {
  
 }
 
-  getInfo() {
+/*   getInfo() {
     this.etabService.getInfo().subscribe(response => {
       console.log(response);
      
       this.etablissements = response;
       });
-  }
-  
+  } */
+ 
+
+
 }

@@ -31,7 +31,7 @@
                 <tr>
 
                     <th>Code Etabliseement</th>
-                    <th>image</th>
+                    <th>Logo</th>
                     <th>Nom </th>
                     <th>Abreviation </th>
                     <th>Tel</th>
@@ -45,7 +45,7 @@
 					
 						
 						<td>{{etablissement.codeEtablissement}}</td>
-	<td><img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px" height="200px"  /></td>
+	                    <td><img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px" height="200px"  /></td>
 						<td>{{etablissement.nomEtablissement}}</td>
 						<td>{{etablissement.abreviationEtablissement}}</td>
 						<td>{{etablissement.telEtablissement}}</td>
@@ -63,7 +63,7 @@
 
 				</tbody>
 			</table>
-     <div *ngFor="let etablissement of etablissements">
+     <div *ngFor="let etablissement of etablissements">Logo Etablissement:
     <img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px"
                     height="200px" /></div>
        

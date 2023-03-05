@@ -61,7 +61,7 @@ export class DepartementService {
     const formData = new FormData();
     formData.append('file',file);
     formData.append('NomDepartement', depart.nomDepartement);
-    // formData.append('telDepartement',depart.telDepartement);
+    formData.append('telDepartement',depart.telDepartement.toString());
     formData.append('AbreviationDepartement', depart.abreviationDepartement);
     
     formData.append('EmailDepartement', depart.emailDepartement);
@@ -80,12 +80,13 @@ export class DepartementService {
  const formData = new FormData();
     formData.append('file',file);
     formData.append('NomDepartement', depart.nomDepartement);
-    // formData.append('telDepartement',depart.telDepartement);
+     formData.append('telDepartement',depart.telDepartement.toString());
     formData.append('AbreviationDepartement', depart.abreviationDepartement);
     
     formData.append('EmailDepartement', depart.emailDepartement);
     formData.append('RemarqueDepartement', depart.remarqueDepartement);
       return this.httpClient.put<Departement>(url, formData, {headers:httpHeaders});
+      
       }
 
 

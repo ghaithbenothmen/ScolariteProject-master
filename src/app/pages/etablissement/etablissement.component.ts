@@ -42,13 +42,7 @@ export class EtablissementComponent {
       });
   }
 
-  getInfo() {
-    this.etabService.getInfo().subscribe(response => {
-      console.log(response);
-     
-      this.etablissements = response;
-      });
-  }
+ 
   
 
 
@@ -146,7 +140,7 @@ onSave() {
     
   this.etabService.updateetab(this.selectedFile ,this.editForm.value).subscribe(response => {
       console.log(response);
-   
+      window.location.reload();
       this.ngOnInit();})
    
     this.modalService.hide(); //dismiss the modal

@@ -16,20 +16,15 @@ export class EtablissementService {
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 
 
-  getInfo() {
-    let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
-
-    return this.httpClient.get<Etablissement[]>(this.apiURL+"etab");
-  }
+  
   
   getEtablissements() {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
     
-    return this.httpClient.get<Etablissement[]>(this.apiURL+"all",{headers:httpHeaders});}
+    return this.httpClient.get<Etablissement[]>(this.apiURL+"all",{headers:httpHeaders});
+  }
 
     ajoutEtab(etab: Etablissement) : Observable <Etablissement> {
       let jwt = this.authService.getToken();
@@ -68,7 +63,7 @@ export class EtablissementService {
     const formData = new FormData();
     formData.append('file',file);
     formData.append('NomEtablissement', etab.nomEtablissement);
-    // formData.append('telEtablissement',etab.telEtablissement);
+    formData.append('telEtablissement',etab.telEtablissement.toString());
     formData.append('AbreviationEtablissement', etab.abreviationEtablissement);
     
     formData.append('EmailEtablissement', etab.emailEtablissement);
@@ -87,12 +82,13 @@ export class EtablissementService {
  const formData = new FormData();
     formData.append('file',file);
     formData.append('NomEtablissement', etab.nomEtablissement);
-    // formData.append('telEtablissement',etab.telEtablissement);
+    formData.append('telEtablissement',etab.telEtablissement.toString());
     formData.append('AbreviationEtablissement', etab.abreviationEtablissement);
     
     formData.append('EmailEtablissement', etab.emailEtablissement);
     formData.append('RemarqueEtablissement', etab.remarqueEtablissement);
       return this.httpClient.put<Etablissement>(url, formData, {headers:httpHeaders});
+      
       }
 
 }

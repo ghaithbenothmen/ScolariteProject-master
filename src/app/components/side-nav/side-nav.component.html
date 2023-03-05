@@ -1,8 +1,12 @@
 <section id="sidebar" [ngClass]="status ? 'hide' : ''">
           
         <a href="#" class="brand">
-                <i class='bx bxs-smile'></i>
-                <span class="text">Etablissement</span>
+                <ng-container  *ngFor="let etablissement of etablissements">
+                        <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="50px"
+                                        height="50px" />
+                                        <span class="text">{{etablissement.nomEtablissement}}</span>
+                                </ng-container>
+                        
         </a>
         <ul class="side-menu top">
                 <li (click)="setActiveItem(1)" [ngClass]="{'active': activeItem === 1}">
@@ -60,6 +64,7 @@
 <section id="content">
         <!-- NAVBAR -->
         <nav>
+               
                 <i (click)="addToggle()" class='bx bx-menu'></i>
 
                 <form action="#">
