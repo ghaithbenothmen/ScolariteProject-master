@@ -222,3 +222,7 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+
+.nav-tabs .nav-item{
+	width: 50%;
+}
