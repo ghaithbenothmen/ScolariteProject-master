@@ -27,6 +27,7 @@ import { PresentationComponent } from './pages/presentation/presentation.compone
 
 import { ApprenantComponent } from './pages/apprenant/apprenant.component';
 import { DepartementComponent } from './pages/departement/departement.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 
 
@@ -64,7 +65,7 @@ import { DepartementComponent } from './pages/departement/departement.component'
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        
+        CollapseModule.forRoot()
     ]
 })
 export class AppModule { }

@@ -47,12 +47,15 @@
 							<td>{{apprenant.emailApprenant}}</td>
 							<td>{{apprenant.telApprenant}}</td>
 							<td>
+								<a type="button" (click)="openDetails(ajoutCompte, apprenant)"  data-toggle="modal"><i
+									class="material-icons">&#xE147;</i></a>
 								<a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
 									data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
 										title="Edit">&#xE254;</i></a>
 								<a type="button" (click)="openDelete(contentDelete, apprenant)" class="delete"
 									data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
 										title="Delete">&#xE872;</i></a>
+								
 							</td>
 						</ng-container>
 					</tr>
@@ -79,16 +82,16 @@
 				<div class="modal-body">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item">
-							<a href="" class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
-								aria-controls="home" aria-selected="true">Données</a>
+							<button data-target="#home" class="nav-link"  data-toggle="collapse" type="button"
+							aria-controls="home"  aria-selected="true" aria-expanded="true"  >info</button>
 						</li>
 						<li class="nav-item">
-							<a href="#compte" class="nav-link" id="profile-tab" data-toggle="tab" role="tab"
-								aria-controls="profile" aria-selected="false">Compte</a>
+							<button data-target="#compte" class="nav-link"  data-toggle="collapse" type="button"
+							aria-controls="compte" aria-selected="false" aria-expanded="false">Compte</button>
 						</li>
 					</ul>
 					<div class="tab-content signin_tab" id="myTabContenet">
-						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						<div class="collapse fade show"  id="home" role="tabpanel" aria-labelledby="home-tab">
 							<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
 								<div class="form-group">
 									<label>Code Apprenant</label>
@@ -171,12 +174,12 @@
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default" value="Fermer"
 										(click)="modalRef.hide()">
-									<input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajout">
+									<input type="submit" class="btn btn-success"  data-dismiss="modal" value="Ajout">
 								</div>
 							</form>
 						</div>
 
-						<div class="tab-pane fade" id="compte" role="tabpanel" aria-labelledby="profile-tab">
+						<div class=" fade collapse" id="compte" role="tabpanel" aria-labelledby="profile-tab" >
 
 							<form>
 								<div class="form-group">
@@ -308,6 +311,53 @@
 
 					</form>
 				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>
+
+
+<!--Ajout compte-->
+
+<ng-template #ajoutCompte>
+	<div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form [formGroup]="editForm">
+					<div class="modal-header">
+						<h4 class="modal-title">Compte Apprenant</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+							(click)="modalRef.hide()">&times;</button>
+
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Email</label>
+							<input type="email" formControlName="emailApprenant" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Username</label>
+							<input type="email" formControlName="userame" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Mot de passe :</label>
+							<input type="text" formControlName="password" class="form-control" required>
+						</div>
+					
+					<!-- 	<div class="form-group">
+							<label>Retapper Mot de passe :</label>
+							<input type="text" formControlName="dateNaissanceApprenant" class="form-control" required>
+						</div> -->
+						
+
+
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
+								value="Fermer">
+							<input type="submit" class="btn btn-info" value="Enregistrer" (click)="onLogin()">
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

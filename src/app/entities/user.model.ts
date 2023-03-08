@@ -1,9 +1,9 @@
+import { Role } from './role.model';
 export class User {
+    userame!: string; 
     email!: string;
-    firstname!: string;
-    lastname!: string;
     password!:string;
-   role!:string;
-  headers: any;
+    role!:Role[];
+  
 
   }

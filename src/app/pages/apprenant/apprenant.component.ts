@@ -5,7 +5,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Apprenant } from 'src/app/entities/apprenant.model';
 import { ApprenantService } from 'src/app/services/apprenant.service';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-apprenant',
@@ -26,8 +27,8 @@ export class ApprenantComponent {
   public apiURL:string="http://localhost:8080/apprenant/api";
 
 
-  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,private appService : ApprenantService,private authService:AuthService) { }
-
+  constructor(private userSer:UserService ,private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,private appService : ApprenantService,private authService:AuthService) { }
+  isCollapsed = false;
   ngOnInit(): void {
     apprenant: Apprenant
     this.getApprenants();
@@ -43,8 +44,11 @@ export class ApprenantComponent {
       emailApprenant: [''],
       telApprenant: [''],
       adresseApprenant: [''],
-      archiveApprenant: ['']
-
+      archiveApprenant: [''],
+      
+      userame:[''],
+      password:[''],
+      email:['']
 
     })
 
@@ -138,9 +142,10 @@ export class ApprenantComponent {
       emailApprenant: apprenant.emailApprenant,
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
-      archiveApprenant: apprenant.archiveApprenant
-
-
+      archiveApprenant: apprenant.archiveApprenant,
+      userame: apprenant.nomApprenant+"."+apprenant.prenomApprenant,
+      password:apprenant.dateNaissanceApprenant,
+      email:apprenant.emailApprenant
     });
 
 
@@ -208,7 +213,23 @@ this.deleteId=apprenant.idApprenant;
 
 
   }
-
+  onLogin() {
+    /*  const editURL = 'http://localhost:8080/apprenant/api/' + this.editForm.value.idApprenant ;
+     console.log(this.editForm.value);
+     this.httpClient.put(editURL, this.editForm.value)
+       .subscribe((results) => {
+         this.ngOnInit();
+ 
+       });
+     this.modalService.hide(); */
+     
+     this.userSer.addUser(this.editForm.value).subscribe(response => {
+       console.log(response);
+    
+       this.ngOnInit();})
+    
+     this.modalService.hide(); //dismiss the modal
+   }
   /* onDelete() {
     const deleteURL = 'http://localhost:8080/apprenant/api/' + this.deleteId + '/delete';
     this.httpClient.delete(deleteURL)
