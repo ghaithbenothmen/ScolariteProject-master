@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 
 const routes: Routes = [
-  
+ 
   { path: 'apprenant',         component: ApprenantComponent },
   { path: 'etablissement',  component: EtablissementComponent },
   { path: 'departement',  component: DepartementComponent },

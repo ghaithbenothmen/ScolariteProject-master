@@ -1,8 +1,9 @@
+import { Role } from './../entities/role.model';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { User } from '../entities/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -15,10 +16,12 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
+  
   public apiURL: string = 'http://localhost:8080/apprenant/api';
   public token!: string;
+  public role!: any;
   public isloggedIn!: boolean ;
-  public roles!: string[];
+  public roles!: Role;
   loggedUser!: string;
   private helper = new JwtHelperService();
  
@@ -29,43 +32,35 @@ export class AuthService {
     return this.http.post<User>(this.apiURL + '/v1/auth/authenticate', user)
   }
 
-  /*  getApprenants() {
-     debugger
-     return this.http.get<Apprenant>(this.apiURL); */
-
-  /* this.http.get('http://localhost:8080/apprenant/api').subscribe(
-    response => {
-      console.log(response);
-      this.apprenants = response;
-    } 
-  ); */
 
 
-  /*  } */
-
-
-  saveToken(jwt: string) {
+  saveToken(jwt: string,role:any) {
     localStorage.setItem('token', jwt);
+    localStorage.setItem('role', role as Role);
+
     this.token = jwt;
     this.isloggedIn = true;
     this.decodeJWT();
   }
   loadToken() {
+    this.role = localStorage.getItem('role')!;
     this.token = localStorage.getItem('token')!;
     this.decodeJWT();
   }
 
   getToken(): string {
     return this.token;
+  
 
   }
 
   logout() {
     this.loggedUser = undefined!;
-    this.roles = undefined!;
+    this.role = undefined!;
     this.token = undefined!;
     this.isloggedIn = false;
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigate(['/login']);
     window.location.reload();
   }
@@ -96,5 +91,12 @@ export class AuthService {
     return !!localStorage.getItem('token') || !!sessionStorage.getItem('token');
   }
 
- 
+  isAdmin() {
+    const role = localStorage.getItem('role');
+    return role === Role.Admin.toString(); // Convert to string for comparison
+  }
+
+  getUserByEmail(email: string): Observable<User>{
+    return this.http.get<User>(this.apiURL + '/v1/auth/email/' +email)
+  }
 }

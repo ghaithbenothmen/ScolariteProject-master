@@ -25,9 +25,7 @@ export class AdminLayoutComponent {
       this.etablissements = response;
       });
   } */
-alert(){
-  alert("Hello world!");
-}
+
 }
   
 

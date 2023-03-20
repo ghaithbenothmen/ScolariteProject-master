@@ -52,8 +52,7 @@ export class EtablissementComponent {
   public onFileChanged(event:any) {
   
    this.selectedFile = event.target.files[0];
-   
-  
+
 }
 
   onSubmit (f: NgForm) {

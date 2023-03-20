@@ -30,7 +30,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('src/app/layout/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
-        
+
       }
     ]
   }, {

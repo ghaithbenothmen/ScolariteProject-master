@@ -154,10 +154,10 @@ onSave() {
 
 onControl(f: NgForm) {
   if (f.valid) {
-    this.message = 'Apprenant bien ajouté !';
+    this.message = 'Departement bien ajouté !';
   }
   if (f.invalid) {
-    this.message = 'Apprenant non ajoué ! Verifier votre formulaire !';
+    this.message = 'Departement non ajoué ! Verifier votre formulaire !';
   }
 }
 

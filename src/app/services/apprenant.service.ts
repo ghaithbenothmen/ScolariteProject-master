@@ -3,7 +3,7 @@ import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpR
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -29,7 +29,14 @@ export class ApprenantService  {
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt});
 
-    return this.httpClient.post<Apprenant>(this.apiURL,app,{headers:httpHeaders})
+    return this.httpClient.post<Apprenant>(this.apiURL,app,{headers:httpHeaders}).pipe(
+      catchError((error) => {
+        if (error.error && error.error.message === 'Email already in use') {
+          // Display alert message using ngx-toastr or Angular's built-in Alert service
+        }
+        return throwError(error);
+      })
+    );
   }
       
     updateApp(app : Apprenant)  {

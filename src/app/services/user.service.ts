@@ -22,10 +22,13 @@ export class UserService {
     return this.httpClient.post<User>(`${this.apiURL}`, user);
   }
 
-  /* getRoles(): Observable<Role[]> {
-    return this.httpClient.get<Role[]>(`${this.apiURL}/roles`);
-  } */
+ 
+  getUser() {
+   
+    return this.httpClient.get<User[]>("http://localhost:8080/apprenant/api/v1/auth/get");}
 
-
+    getOneUser(email:String) {
+   const api="http://localhost:8080/apprenant/api/v1/auth/getEmail/";
+      return this.httpClient.get<User[]>(`${api}/${email}`);}
 
 }

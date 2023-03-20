@@ -20,6 +20,9 @@
 	<div class="alert alert-success" role="alert" *ngIf="message">
 		{{message}}
 	</div>
+	<div class="alert alert-danger" role="alert" *ngIf="message2">
+		{{message2}}
+	</div>
 	<div class="table-data">
 		<div class="order">
 			<div class="head">
@@ -50,7 +53,7 @@
 								<a type="button" (click)="openDetails(ajoutCompte, apprenant)"  data-toggle="modal"><i
 									class="material-icons">&#xE147;</i></a>
 								<a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
-									data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+									data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
 										title="Edit">&#xE254;</i></a>
 								<a type="button" (click)="openDelete(contentDelete, apprenant)" class="delete"
 									data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
@@ -80,19 +83,19 @@
 						(click)="modalRef.hide()">&times;</button>
 				</div>
 				<div class="modal-body">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item">
-							<button data-target="#home" class="nav-link"  data-toggle="collapse" type="button"
-							aria-controls="home"  aria-selected="true" aria-expanded="true"  >info</button>
+							<button  type="button"  class="nav-link" (click)="switchForms()">info</button>
 						</li>
 						<li class="nav-item">
-							<button data-target="#compte" class="nav-link"  data-toggle="collapse" type="button"
-							aria-controls="compte" aria-selected="false" aria-expanded="false">Compte</button>
+							<button  class="nav-link"  (click)="switchForms()" type="button"
+							 >Compte</button>
 						</li>
-					</ul>
+					</ul> -->
+					
 					<div class="tab-content signin_tab" id="myTabContenet">
-						<div class="collapse fade show"  id="home" role="tabpanel" aria-labelledby="home-tab">
-							<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+						<div class="collapse fade show "  id="home" role="tabpanel" aria-labelledby="home-tab">
+							<form  #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)" id="form1"><!-- *ngIf="showForm1" -->
 								<div class="form-group">
 									<label>Code Apprenant</label>
 									<input type="text" name="codeApprenant" #codeApprenant="ngModel"
@@ -102,7 +105,7 @@
 										entrer
 										le code de l'apprenant</span>
 								</div>
-								<div class="form-group">
+								<div class="form-group" >
 									<label>Nom</label>
 									<input type="text" name="nomApprenant" #nomApprenant="ngModel" class="form-control"
 										required ngModel>
@@ -178,30 +181,30 @@
 								</div>
 							</form>
 						</div>
-
-						<div class=" fade collapse" id="compte" role="tabpanel" aria-labelledby="profile-tab" >
-
-							<form>
+						<!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!showForm1" bngNativeValidate (ngSubmit)="onControl(f)" id="form2">
+							
 								<div class="form-group">
-									<label for="exampleInputEmail1">Email address</label>
-									<input type="email" class="form-control" id="exampleInputEmail1"
-										aria-describedby="emailHelp" placeholder="Enter email">
-									<small id="emailHelp" class="form-text text-muted">We'll never share your email with
-										anyone
-										else.</small>
+									<label>Email</label>
+									<input type="email" formControlName="emailApprenant" class="form-control" required>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputPassword1">Password</label>
-									<input type="password" class="form-control" id="exampleInputPassword1"
-										placeholder="Password">
+									<label>Username</label>
+									<input type="email" formControlName="userame" class="form-control" required>
 								</div>
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="exampleCheck1">
-									<label class="form-check-label" for="exampleCheck1">Check me out</label>
+								<div class="form-group">
+									<label>Mot de passe :</label>
+									<input type="password" formControlName="password" class="form-control" required>
 								</div>
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</form>
-						</div>
+
+
+
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default" value="Fermer"
+									(click)="modalRef.hide()">
+								<input type="submit" class="btn btn-success"  data-dismiss="modal" value="Ajout">
+							</div>
+						</form>
+						 -->
 					</div>
 				</div>
 
@@ -341,7 +344,7 @@
 						</div>
 						<div class="form-group">
 							<label>Mot de passe :</label>
-							<input type="text" formControlName="password" class="form-control" required>
+							<input type="password" formControlName="password" class="form-control" required>
 						</div>
 					
 					<!-- 	<div class="form-group">

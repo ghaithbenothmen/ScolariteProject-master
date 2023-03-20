@@ -14,6 +14,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./apprenant.component.css']
 })
 export class ApprenantComponent {
+  public showForm1:boolean = false;
+  public form1!: FormGroup;
+  public form2!: FormGroup;
+
 
   [x: string]: any;
   public modalRef!: BsModalRef;
@@ -23,17 +27,19 @@ export class ApprenantComponent {
   public editForm2!: FormGroup;
   private deleteId !: number;
   public message!: string;
+  public message2!: string;
   public ajoutForm!:FormGroup ;  //variable peut etre null on ajoute 
   public apiURL:string="http://localhost:8080/apprenant/api";
 
 
-  constructor(private userSer:UserService ,private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,private appService : ApprenantService,private authService:AuthService) { }
+  constructor(private userSer:UserService ,private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,
+    private appService : ApprenantService,private authService:AuthService) { }
   isCollapsed = false;
   ngOnInit(): void {
     apprenant: Apprenant
     this.getApprenants();
     console.log( this.authService.getToken())
-
+    
     this.editForm = this.fb.group({
       idApprenant: [''],
       codeApprenant: [''],
@@ -67,30 +73,12 @@ export class ApprenantComponent {
 
     })
   }
-  /*  patchApprenants(apprenant:Apprenant){
-    this.httpClient.patch('http://localhost:8080/apprenant/rest/'+this.deleteId ,apprenant);
-   this.modalService.hide();
-   this.ngOnInit();
- 
-   } */
-
-/* loadApprenant(){
-  this.appService.getApprenants().subscribe((res:any)=>{
-    debugger})
-} */
 
   getApprenants() {
     this.appService.getApprenants().subscribe(response => {
       console.log(response);
       this.apprenants = response;
       });
-
-    /* this.httpClient.get<any>('http://localhost:8080/apprenant/api').subscribe(
-      response => {
-        console.log(response);
-        this.apprenants = response;
-      }
-    ); */
   }
 
   openModal(modalTemplate: TemplateRef<any>) {
@@ -152,15 +140,7 @@ export class ApprenantComponent {
   }
 
   onSave() {
-   /*  const editURL = 'http://localhost:8080/apprenant/api/' + this.editForm.value.idApprenant ;
-    console.log(this.editForm.value);
-    this.httpClient.put(editURL, this.editForm.value)
-      .subscribe((results) => {
-        this.ngOnInit();
-
-      });
-    this.modalService.hide(); */
-    
+   
     this.appService.updateApp(this.editForm.value).subscribe(response => {
       console.log(response);
    
@@ -174,14 +154,6 @@ export class ApprenantComponent {
       //console.log(this.editForm2.value.idApprenant);
     console.log("produit supprimé");
     this.ngOnInit(); });
-  
-   /*  const editURL = 'http://localhost:8080/apprenant/api/' + this.editForm2.value.idApprenant + '/patch';
-    console.log(this.editForm2.value);
-    this.httpClient.put(editURL, this.editForm2.value)
-      .subscribe((results) => {
-        this.ngOnInit();
-
-      }); */
     this.modalService.hide();
   }
 
@@ -213,16 +185,7 @@ this.deleteId=apprenant.idApprenant;
 
 
   }
-  onLogin() {
-    /*  const editURL = 'http://localhost:8080/apprenant/api/' + this.editForm.value.idApprenant ;
-     console.log(this.editForm.value);
-     this.httpClient.put(editURL, this.editForm.value)
-       .subscribe((results) => {
-         this.ngOnInit();
- 
-       });
-     this.modalService.hide(); */
-     
+  onLogin() { 
      this.userSer.addUser(this.editForm.value).subscribe(response => {
        console.log(response);
     
@@ -230,24 +193,30 @@ this.deleteId=apprenant.idApprenant;
     
      this.modalService.hide(); //dismiss the modal
    }
-  /* onDelete() {
-    const deleteURL = 'http://localhost:8080/apprenant/api/' + this.deleteId + '/delete';
-    this.httpClient.delete(deleteURL)
-      .subscribe((results) => {
-        this.ngOnInit();
-        
-      });
-      this.modalService.hide();
-  } */
 
   /************************************ les controllers **************************************************/
 
   onControl(f: NgForm) {
-    if (f.valid) {
+    if (!f.errors) {
       this.message = 'Apprenant bien ajouté !';
     }
-    if (f.invalid) {
-      this.message = 'Apprenant non ajoué ! Verifier votre formulaire !';
+    if (f.errors) {
+      this.message2 = 'Apprenant non ajoué ! Verifier votre formulaire !';
+    }
+  }
+
+  switchForms() {
+    this.showForm1 = !this.showForm1;
+    if (this.showForm1) {
+      // Enable controls for form 1
+      this.form1.enable();
+      // Disable controls for form 2
+      this.form2.disable();
+    } else {
+      // Enable controls for form 2
+      this.form2.enable();
+      // Disable controls for form 1
+      this.form1.disable();
     }
   }
 }
