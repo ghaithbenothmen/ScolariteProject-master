@@ -1,4 +1,4 @@
-import { DepartementComponent } from './../../pages/departement/departement.component';
+import { DepartementComponent } from '../../pages/formateur/formateur.component';
 import { EtablissementComponent } from './../../pages/etablissement/etablissement.component';
 import { ApprenantComponent } from '../../pages/apprenant/apprenant.component';
 import { NgModule } from '@angular/core';
