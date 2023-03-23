@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Departement } from 'src/app/entities/departement.model';
+
 
 import { AuthService } from 'src/app/services/auth.service';
 
