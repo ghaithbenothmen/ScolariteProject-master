@@ -32,6 +32,7 @@
                     <tr>
 
                         <th>Code Act</th>
+                        <th>image</th>
                         <th>Titre</th>
                         <th>Description </th>
                         <th>Date </th>
@@ -100,13 +101,14 @@
                         </div>
                         <div class="form-group">
                             <label>Date :</label>
-                            <input type="date" name="emailDepartement" #dateActualite="ngModel"
+                            <input type="date" name="dateActualite" #dateActualite="ngModel"
                                 class="form-control" required ngModel>
                             <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
                                 devez
                                 entrer l'date de l'Actualite</span>
                         </div>
                        
+                        
                         <div class="form-group">
                             <label>Image :</label>
                             <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
@@ -135,7 +137,7 @@
             <div class="modal-content">
                 <form [formGroup]="editForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Departement </h4>
+                        <h4 class="modal-title">Edit Actualite </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
 
@@ -143,31 +145,25 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>code </label>
-                            <input readonly type="text" formControlName="codeDepartement" class="form-control"
+                            <input readonly type="text" formControlName="codeActualite" class="form-control"
                                 required>
 
                         </div>
                         <div class="form-group">
-                            <label>nom </label>
-                            <input type="text" formControlName="nomDepartement" class="form-control" required>
+                            <label>Titre : </label>
+                            <input type="text" formControlName="titreActualite" class="form-control" required>
 
                         </div>
                         <div class="form-group">
-                            <label>abreviation </label>
-                            <input type="text" formControlName="abreviationDepartement" class="form-control" required>
+                            <label>Description </label>
+                            <input type="text" formControlName="descriptionActualite" class="form-control" required>
                         </div>
+
                         <div class="form-group">
-                            <label>tel</label>
-                            <input type="tel" formControlName="telDepartement" class="form-control" required>
+                            <label>Date actualite: </label>
+                            <input type="date" formControlName="dateActualite" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label>email </label>
-                            <input type="email" formControlName="emailDepartement" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>remarque </label>
-                            <input type="email" formControlName="remarqueDepartement" class="form-control" required>
-                        </div>
+                      
                         <div class="form-group">
                             <label>image</label>
                             <input type="file" formControlName="file" class="form-control"

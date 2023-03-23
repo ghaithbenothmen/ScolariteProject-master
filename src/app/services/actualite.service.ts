@@ -60,7 +60,7 @@ export class ActualiteService {
     formData.append('titreActualite', actu.titreActualite);
     formData.append('descriptionActualite', actu.descriptionActualite);
 
-    formData.append('dateActualite', actu.dateActualite);
+    formData.append('dateActualite', actu.dateActualite.toString());
 
     return this.httpClient.post<Actualite>(this.apiURL + 'add', formData, { headers: httpHeaders });
   }
