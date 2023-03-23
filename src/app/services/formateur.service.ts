@@ -4,25 +4,25 @@ import { Injectable } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import { Departement } from '../entities/departement.model';
+import { formateur } from '../entities/formateur.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DepartementService {
-  apiURL: string = "http://localhost:8080/apprenant/api/Departement/";
+export class formateurService  {
+  apiURL: string = "http://localhost:8080/apprenant/api/Formateur/";
 
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 
 
 
   
-  getDepartement() {
+  getFormateur() {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
     
-    return this.httpClient.get<Departement[]>(this.apiURL+"all",{headers:httpHeaders});}
+    return this.httpClient.get<formateur[]>(this.apiURL+"all",{headers:httpHeaders});}
 
     // ajoutdepart(depart: Departement) : Observable <Departement> {
     //   let jwt = this.authService.getToken();
@@ -51,46 +51,49 @@ export class DepartementService {
       //   }
 
   
-  addDepartement (file :File,
-    depart:Departement
-  ) : Observable <Departement> {
+  addformateur(file :File,
+     Formateur:formateur
+  ) : Observable <formateur> {
     let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt });
     
     const formData = new FormData();
     formData.append('file',file);
-    formData.append('NomDepartement', depart.nomDepartement);
-    formData.append('telDepartement',depart.telDepartement.toString());
-    formData.append('AbreviationDepartement', depart.abreviationDepartement);
-    
-    formData.append('EmailDepartement', depart.emailDepartement);
-    formData.append('RemarqueDepartement', depart.remarqueDepartement);
+     formData.append('NomFormateur', Formateur.nomFormateur);
+      formData.append('PrenonFormateur', Formateur.prenonFormateur);
+     formData.append('telFormateur', Formateur.telFormateur.toString());
 
-    return this.httpClient.post<Departement>(this.apiURL+'add', formData,{headers:httpHeaders});
+    formData.append('Specialite', Formateur.specialite);
+    
+    formData.append('EmailFormateur', Formateur.emailFormateur);
+    formData.append('AdresseFormateur', Formateur.adresseFormateur);
+    return this.httpClient.post<formateur>(this.apiURL+'add', formData,{headers:httpHeaders});
   }
 
 
 
-   updatedepart( file :File,depart:Departement) :Observable <Departement>  {
-      const url = `${this.apiURL}${depart.codeDepartement}`;
+   updateFormateur( file :File,Formateur:formateur) :Observable <formateur>  {
+      const url = `${this.apiURL}${Formateur.codeFormateur}`;
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt})
  const formData = new FormData();
     formData.append('file',file);
-    formData.append('NomDepartement', depart.nomDepartement);
-     formData.append('telDepartement',depart.telDepartement.toString());
-    formData.append('AbreviationDepartement', depart.abreviationDepartement);
+     formData.append('NomFormateur', Formateur.nomFormateur);
+      formData.append('PrenonFormateur', Formateur.prenonFormateur);
+     formData.append('telFormateur', Formateur.telFormateur.toString());
+
+    formData.append('Specialite', Formateur.specialite);
     
-    formData.append('EmailDepartement', depart.emailDepartement);
-    formData.append('RemarqueDepartement', depart.remarqueDepartement);
-      return this.httpClient.put<Departement>(url, formData, {headers:httpHeaders});
+    formData.append('EmailFormateur', Formateur.emailFormateur);
+    formData.append('AdresseFormateur', Formateur.adresseFormateur);
+      return this.httpClient.put<formateur>(url, formData, {headers:httpHeaders});
       
       }
 
 
-      deleteDepartement(code : number) {
+      deleteFormateur(code : number) {
       //const urlDelete ='${this.apiURL}/${id}';  
         let jwt = this.authService.getToken();
         jwt = "Bearer "+jwt;
