@@ -14,10 +14,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./apprenant.component.css']
 })
 export class ApprenantComponent {
-  public showForm1:boolean = false;
+  public showForm1: boolean = false;
   public form1!: FormGroup;
   public form2!: FormGroup;
+  public items = ['Eleve', 'Etudiant', "Derecteur d'emploie", 'Profissionel'];
 
+  public selectedItem!: number;
 
   [x: string]: any;
   public modalRef!: BsModalRef;
@@ -28,18 +30,18 @@ export class ApprenantComponent {
   private deleteId !: number;
   public message!: string;
   public message2!: string;
-  public ajoutForm!:FormGroup ;  //variable peut etre null on ajoute 
-  public apiURL:string="http://localhost:8080/apprenant/api";
+  public ajoutForm!: FormGroup;  //variable peut etre null on ajoute 
+  public apiURL: string = "http://localhost:8080/apprenant/api";
 
 
-  constructor(private userSer:UserService ,private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,
-    private appService : ApprenantService,private authService:AuthService) { }
+  constructor(private userSer: UserService, private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,
+    private appService: ApprenantService, private authService: AuthService) { }
   isCollapsed = false;
   ngOnInit(): void {
     apprenant: Apprenant
     this.getApprenants();
-    console.log( this.authService.getToken())
-    
+    console.log(this.authService.getToken())
+
     this.editForm = this.fb.group({
       idApprenant: [''],
       codeApprenant: [''],
@@ -51,10 +53,10 @@ export class ApprenantComponent {
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
-      
-      userame:[''],
-      password:[''],
-      email:['']
+
+      userame: [''],
+      password: [''],
+      email: ['']
 
     })
 
@@ -78,7 +80,7 @@ export class ApprenantComponent {
     this.appService.getApprenants().subscribe(response => {
       console.log(response);
       this.apprenants = response;
-      });
+    });
   }
 
   openModal(modalTemplate: TemplateRef<any>) {
@@ -91,11 +93,12 @@ export class ApprenantComponent {
     );
   }
   onSubmit(f: NgForm) {
-    
+
     this.appService.ajoutApp(f.value).subscribe(response => {
       console.log(response);
-      this.ngOnInit();})
-   
+      this.ngOnInit();
+    })
+
     this.modalService.hide(); //dismiss the modal
   }
 
@@ -131,35 +134,37 @@ export class ApprenantComponent {
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
-      userame: apprenant.nomApprenant+"."+apprenant.prenomApprenant,
-      password:apprenant.dateNaissanceApprenant,
-      email:apprenant.emailApprenant
+      userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
+      password: apprenant.dateNaissanceApprenant,
+      email: apprenant.emailApprenant
     });
 
 
   }
 
   onSave() {
-   
+
     this.appService.updateApp(this.editForm.value).subscribe(response => {
       console.log(response);
-   
-      this.ngOnInit();})
-   
+
+      this.ngOnInit();
+    })
+
     this.modalService.hide(); //dismiss the modal
   }
 
-  onPatch() { 
+  onPatch() {
     this.appService.supprimerApp(this.editForm2.value).subscribe(() => {
       //console.log(this.editForm2.value.idApprenant);
-    console.log("produit supprimé");
-    this.ngOnInit(); });
+      console.log("produit supprimé");
+      this.ngOnInit();
+    });
     this.modalService.hide();
   }
 
 
   openDelete(modalTemplate: TemplateRef<any>, apprenant: Apprenant) {
-this.deleteId=apprenant.idApprenant;
+    this.deleteId = apprenant.idApprenant;
     this.modalRef = this.modalService.show(modalTemplate,
       {
         class: 'modal-dialogue-centered modal-md',
@@ -185,14 +190,15 @@ this.deleteId=apprenant.idApprenant;
 
 
   }
-  onLogin() { 
-     this.userSer.addUser(this.editForm.value).subscribe(response => {
-       console.log(response);
-    
-       this.ngOnInit();})
-    
-     this.modalService.hide(); //dismiss the modal
-   }
+  onLogin() {
+    this.userSer.addUser(this.editForm.value).subscribe(response => {
+      console.log(response);
+
+      this.ngOnInit();
+    })
+
+    this.modalService.hide(); //dismiss the modal
+  }
 
   /************************************ les controllers **************************************************/
 

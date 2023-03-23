@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 export class LoginComponent {
   //user = new User();
   user:User = {
-    userame: '',
     email:'',
     password: '',
     role: Role.User // Set default role value to empty string
@@ -45,7 +44,7 @@ export class LoginComponent {
 
       this.authService.getUserByEmail(this.user.email).subscribe((user: User) => {
        this.user.role =user.role;
-       this.user.userame=user.userame;
+       
        
       console.log('User object:', this.user);
       this.authService.saveToken(token,this.user.role);

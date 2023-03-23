@@ -14,8 +14,10 @@
 			</ul>
 		</div>
 
+		<button (click)="openModal(ajoutCompte)" class="btn btn-secondary" data-toggle="modal"><i
+				class="material-icons">&#xE147;</i> <span>Ajouter Compte</span></button>
 		<button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
-				class="material-icons">&#xE147;</i> <span>Ajouter Apprenant</span></button>
+					class="material-icons">&#xE147;</i> <span>Ajouter Apprenant</span></button>
 	</div>
 	<div class="alert alert-success" role="alert" *ngIf="message">
 		{{message}}
@@ -172,7 +174,26 @@
 										entrer l'Adresse de l'apprenant</span>
 								</div>
 
+								<div class="form-group">
+									<label>Qualité :</label>
+									<select class="form-select" name="qualiteApprenant" #qualiteApprenant="ngModel" ngModel required>
+										<option *ngFor="let item of items" [value]="item" >{{ item }}</option>
+									  </select>
+									<span *ngIf="qualiteApprenant.invalid && qualiteApprenant.touched"
+										class="error">Vous
+										devez
+										entrer qualité de l'apprenant</span>
+								</div>
 
+								<div class="form-group">
+									<label>Niveau d'etude:</label>
+									<input type="text" name="niveauApprenant" #niveauApprenant="ngModel"
+										class="form-control" required ngModel>
+									<span *ngIf="niveauApprenant.invalid && niveauApprenant.touched"
+										class="error">Vous
+										devez
+										entrer l'Niveau de l'apprenant</span>
+								</div>
 
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default" value="Fermer"
@@ -337,10 +358,6 @@
 						<div class="form-group">
 							<label>Email</label>
 							<input type="email" formControlName="emailApprenant" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Username</label>
-							<input type="email" formControlName="userame" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Mot de passe :</label>

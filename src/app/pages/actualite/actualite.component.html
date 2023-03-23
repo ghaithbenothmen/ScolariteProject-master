@@ -1,0 +1,215 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a class="disabled" href="#">Actualite</a>
+                </li>
+            </ul>
+        </div>
+        <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
+            class="material-icons">&#xE147;</i> <span>Ajouter Actualite</span></button>
+
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Tableau Departement</h3>
+                <i class='bx bx-search'></i>
+                <i class='bx bx-filter'></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>Code Act</th>
+                        <th>Titre</th>
+                        <th>Description </th>
+                        <th>Date </th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let actualite of Actualites">
+                        <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
+
+
+                        <td>{{actualite.codeActualite}}</td>
+                        <td><img src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}" width="200px"
+                                height="200px" /></td>
+                        <td>{{actualite.titreActualite}}</td>
+                        <td>{{actualite.descriptionActualite}}</td>
+                        <td>{{actualite.dateActualite}}</td>
+             
+                        <td>
+                            <a type="button" (click)="openDetails(contentDetails, actualite)" class="edit"
+                                data-toggle="modal">
+                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a type="button" (click)="openDelete(contentDelete, actualite)" class="delete" data-toggle="modal"><i
+									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                        <!-- </ng-container> -->
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</main>
+
+<ng-template #modalTemplate>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Ajouter Actualite</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="form-group">
+							<label>Code </label>
+							<input type="text" name="codeEtablissement" #codeEtablissement="ngModel" class="form-control" required ngModel>
+							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
+						</div> -->
+                        <div class="form-group">
+                            <label>Titre Actualite :</label>
+                            <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
+                                entrer le titre de l'actualite </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Description Actualite:</label>
+                            <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
+                                class="form-control" required ngModel>
+                            <span *ngIf="descriptionActualite.invalid && descriptionActualite.touched"
+                                class="error">Vous devez entrer le description de l'Actualite</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Date :</label>
+                            <input type="date" name="emailDepartement" #dateActualite="ngModel"
+                                class="form-control" required ngModel>
+                            <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
+                                devez
+                                entrer l'date de l'Actualite</span>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label>Image :</label>
+                            <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
+                                (change)="onFileChanged($event)">
+                            <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
+                            Actualite</span>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- detail Modal HTML -->
+
+<!-- detail Modal HTML -->
+<ng-template #contentDetails>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form [formGroup]="editForm">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Departement </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>code </label>
+                            <input readonly type="text" formControlName="codeDepartement" class="form-control"
+                                required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>nom </label>
+                            <input type="text" formControlName="nomDepartement" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>abreviation </label>
+                            <input type="text" formControlName="abreviationDepartement" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>tel</label>
+                            <input type="tel" formControlName="telDepartement" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>email </label>
+                            <input type="email" formControlName="emailDepartement" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>remarque </label>
+                            <input type="email" formControlName="remarqueDepartement" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>image</label>
+                            <input type="file" formControlName="file" class="form-control"
+                                (change)="onFileChanged($event)" required>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
+                                value="Fermer">
+                            <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- Delete Modal HTML -->
+<!-- Delete Modal HTML -->
+
+<ng-template #contentDelete>
+	<div >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div>
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Apprenant</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+							(click)="modalRef.hide()">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure you want to delete these Records?</p>
+						<p class="text-warning"><small>This action cannot be undone.</small></p>
+					</div>
+					<form class="modal-footer" >
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+							(click)="modalRef.hide()">
+						<input type="submit" class="btn btn-danger"  value="Supprimer" (click)="onDelete(actualite)">
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

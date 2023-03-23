@@ -12,23 +12,25 @@ import { AuthService } from './auth.service';
 export class UserService {
   apiURL: string = "http://localhost:8080/apprenant/api/v1/auth/registerApprenant";
 
-  constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 
   addUser(user: User): Observable<User> {
     let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
+    jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
     return this.httpClient.post<User>(`${this.apiURL}`, user);
   }
 
- 
-  getUser() {
-   
-    return this.httpClient.get<User[]>("http://localhost:8080/apprenant/api/v1/auth/get");}
 
-    getOneUser(email:String) {
-   const api="http://localhost:8080/apprenant/api/v1/auth/getEmail/";
-      return this.httpClient.get<User[]>(`${api}/${email}`);}
+  getUser() {
+
+    return this.httpClient.get<User[]>("http://localhost:8080/apprenant/api/v1/auth/get");
+  }
+
+  getOneUser(email: String) {
+    const api = "http://localhost:8080/apprenant/api/v1/auth/getEmail/";
+    return this.httpClient.get<User[]>(`${api}/${email}`);
+  }
 
 }

@@ -9,7 +9,10 @@ export class Apprenant {
       public emailApprenant: string,
       public telApprenant: number,
       public adresseApprenant: string,
+      public qualiteApprenant: string,
+      public niveauApprenant: string,
       public archiveApprenant: boolean,
+     
     ) {
     }
   }

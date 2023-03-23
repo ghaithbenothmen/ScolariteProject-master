@@ -1,3 +1,4 @@
+import { ActualiteComponent } from './../../pages/actualite/actualite.component';
 import { AccueilComponent } from '../../pages/accueil/accueil.component';
 import { PresentationComponent } from '../../pages/presentation/presentation.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: 'login',          component: LoginComponent },
   { path: 'presentation',          component: PresentationComponent },
   { path: 'accueil',          component: AccueilComponent },
+  
 ];
 
 @NgModule({
