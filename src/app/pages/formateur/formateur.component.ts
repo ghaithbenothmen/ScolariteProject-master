@@ -18,7 +18,7 @@ import { formateurService } from 'src/app/services/formateur.service';
   styleUrls: ['./formateur.component.css']
 })
   
-export class DepartementComponent {
+export class FormateurComponent {
   public modalRef!: BsModalRef;
   public formateur!:  formateur [];
   public Formateur!:  formateur ;

@@ -1,4 +1,4 @@
-import { DepartementComponent } from '../../pages/formateur/formateur.component';
+import {  FormateurComponent } from '../../pages/formateur/formateur.component';
 import { EtablissementComponent } from './../../pages/etablissement/etablissement.component';
 import { ApprenantComponent } from '../../pages/apprenant/apprenant.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +11,7 @@ const routes: Routes = [
  
   { path: 'apprenant',         component: ApprenantComponent },
   { path: 'etablissement',  component: EtablissementComponent },
-  { path: 'departement',  component: DepartementComponent },
+  { path: 'formateur',  component: FormateurComponent },
   { path: 'actualiteDash',          component: ActualiteComponent },
 ];
 

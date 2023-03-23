@@ -1,3 +1,4 @@
+import { FormateurComponent } from './pages/formateur/formateur.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 
@@ -26,7 +27,7 @@ import { PresentationComponent } from './pages/presentation/presentation.compone
 
 
 import { ApprenantComponent } from './pages/apprenant/apprenant.component';
-import { DepartementComponent } from './pages/formateur/formateur.component';
+
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ActualiteComponent } from './pages/actualite/actualite.component';
 
@@ -45,7 +46,7 @@ import { ActualiteComponent } from './pages/actualite/actualite.component';
        
         AdminLayoutComponent,
        AuthLayoutComponent,
-       DepartementComponent,
+       FormateurComponent,
        ActualiteComponent
 
         
