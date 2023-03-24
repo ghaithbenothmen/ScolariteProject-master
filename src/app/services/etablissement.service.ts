@@ -19,11 +19,9 @@ export class EtablissementService {
   
   
   getEtablissements() {
-    let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+   
     
-    return this.httpClient.get<Etablissement[]>(this.apiURL+"all",{headers:httpHeaders});
+    return this.httpClient.get<Etablissement[]>(this.apiURL+"all");
   }
 
     ajoutEtab(etab: Etablissement) : Observable <Etablissement> {
