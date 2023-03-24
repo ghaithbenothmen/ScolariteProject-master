@@ -16,25 +16,32 @@
                         </a>
                 </li>
                 <li (click)="setActiveItem(2)" [ngClass]="{'active': activeItem === 2}">
+                        <a routerLink="formateur">
+                                <i class='bx bxs-shopping-bag-alt'></i>
+                                <span class="text">Formateur</span>
+                        </a>
+                </li>
+                <li (click)="setActiveItem(3)" [ngClass]="{'active': activeItem === 3}">
+                        <a routerLink="themeDeFormation">
+                                <i class='bx bx-notepad'></i>
+                                <span class="text">theme De Formation</span>
+                        </a>
+                </li>
+                <li (click)="setActiveItem(4)" [ngClass]="{'active': activeItem === 4}">
                         <a routerLink="etablissement">
                                 <i class='bx bxs-dashboard'></i>
                                 <span class="text">Etablissement</span>
                         </a>
                 </li>
 
-                <li (click)="setActiveItem(3)" [ngClass]="{'active': activeItem === 3}">
-                        <a routerLink="formateur">
-                                <i class='bx bxs-shopping-bag-alt'></i>
-                                <span class="text">Formateur</span>
-                        </a>
-                </li>
-                <li (click)="setActiveItem(4)" [ngClass]="{'active': activeItem === 4}">
+              
+                <li (click)="setActiveItem(5)" [ngClass]="{'active': activeItem === 5}">
                         <a routerLink="actualiteDash">
                                 <i class='bx bxs-doughnut-chart'></i>
                                 <span class="text">Actualite</span>
                         </a>
                 </li>
-                <li (click)="setActiveItem(5)" [ngClass]="{'active': activeItem === 5 }">
+                <li (click)="setActiveItem(6)" [ngClass]="{'active': activeItem === 6}">
                         <a href="#">
                                 <i class='bx bxs-message-dots'></i>
                                 <span class="text">Message</span>

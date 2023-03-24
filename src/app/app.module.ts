@@ -32,6 +32,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ActualiteComponent } from './pages/actualite/actualite.component';
 import { ActuPageComponent } from './pages/actu-page/actu-page.component';
 import { FooterComponent } from './footer/footer.component';
+import { ThemeDeFormationComponent } from './pages/theme-de-formation/theme-de-formation.component';
 
 
 
@@ -51,7 +52,8 @@ import { FooterComponent } from './footer/footer.component';
        FormateurComponent,
        ActualiteComponent,
        ActuPageComponent,
-       FooterComponent
+       FooterComponent,
+       ThemeDeFormationComponent
 
         
         

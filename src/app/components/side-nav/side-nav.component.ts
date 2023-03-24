@@ -18,7 +18,9 @@ export const ROUTES: RouteInfo[] = [
   { path: '/apprenant', title: 'apprenant',  icon: 'ni-tv-2 text-primary', class: '' },
   { path: '/etablissement', title: 'etablissement',  icon: 'ni-tv-2 text-primary', class: '' },
   { path: '/login', title: 'login', icon: 'ni-tv-2 text-primary', class: '' },
-   { path: '/departement', title: 'departement',  icon: 'ni-tv-2 text-primary', class: '' },
+  { path: '/departement', title: 'departement', icon: 'ni-tv-2 text-primary', class: '' },
+    { path: '/ThemeDeFormation', title: 'ThemeDeFormation', icon: 'ni-tv-2 text-primary', class: '' },
+   
 ];
 
 @Component({
