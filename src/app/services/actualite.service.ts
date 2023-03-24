@@ -14,11 +14,8 @@ export class ActualiteService {
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 
   getActualite() {
-    let jwt = this.authService.getToken();
-    jwt = "Bearer " + jwt;
-    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
-
-    return this.httpClient.get<Actualite[]>(this.apiURL + "all", { headers: httpHeaders });
+  
+    return this.httpClient.get<Actualite[]>(this.apiURL + "all");
   }
 
   // ajoutdepart(depart: Departement) : Observable <Departement> {
@@ -78,7 +75,7 @@ export class ActualiteService {
     formData.append('titreActualite', actu.titreActualite);
     formData.append('descriptionActualite', actu.descriptionActualite);
 
-    formData.append('dateActualite', actu.dateActualite);
+    formData.append('dateActualite', actu.dateActualite.toString());
     return this.httpClient.put<Actualite>(url, formData, { headers: httpHeaders });
 
   }

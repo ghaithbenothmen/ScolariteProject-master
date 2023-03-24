@@ -30,6 +30,7 @@ import { ApprenantComponent } from './pages/apprenant/apprenant.component';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ActualiteComponent } from './pages/actualite/actualite.component';
+import { ActuPageComponent } from './pages/actu-page/actu-page.component';
 
 
 
@@ -47,7 +48,8 @@ import { ActualiteComponent } from './pages/actualite/actualite.component';
         AdminLayoutComponent,
        AuthLayoutComponent,
        FormateurComponent,
-       ActualiteComponent
+       ActualiteComponent,
+       ActuPageComponent
 
         
         

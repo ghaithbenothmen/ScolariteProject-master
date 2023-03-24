@@ -5,7 +5,7 @@ export class Actualite {
       public codeActualite: number,
       public titreActualite: string,
       public descriptionActualite: string,
-      public dateActualite: string,
+      public dateActualite: Date,
      
       public data :Blob,
       public file: File,
