@@ -10,7 +10,7 @@ import { ThemeDeFormation} from '../entities/ThemeDeFormation.model';
 })
 export class ThemeDeFormationService {
 
-   apiURL: string = "http://localhost:8080/apprenant/api/ThemeDeFormation/";
+   apiURL: string = "http://localhost:8080/apprenant/api/themeDeFormation/";
 
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 
