@@ -27,14 +27,14 @@ export class ThemeDeFormationService {
    
 
 
-    addThemeDeFormation(ThemeDeFormation:ThemeDeFormation) : Observable <ThemeDeFormation> {
+    addThemeDeFormation(ThemeDeF:ThemeDeFormation) : Observable <ThemeDeFormation> {
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt});
-
-    return this.httpClient.post<ThemeDeFormation>(this.apiURL,ThemeDeFormation,{headers:httpHeaders}).pipe(
+     console.log(ThemeDeFormation);
+    return this.httpClient.post<ThemeDeFormation>(this.apiURL+"add",ThemeDeF,{headers:httpHeaders}).pipe(
       catchError((error) => {
-        if (error.error && error.error.message === 'Email already in use') {
+        if (error.error && error.error.message === 'formation existe deja ') {
           // Display alert message using ngx-toastr or Angular's built-in Alert service
         }
         return throwError(error);
@@ -43,7 +43,7 @@ export class ThemeDeFormationService {
   }
       
     updateThemeDeFormation(ThemeDeFormation :ThemeDeFormation)  {
-      const url = `${this.apiURL}/${ThemeDeFormation.idFormation}`;
+      const url = `${this.apiURL}${ThemeDeFormation.idFormation}`;
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt})

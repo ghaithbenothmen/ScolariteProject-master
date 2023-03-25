@@ -55,7 +55,7 @@ export class ThemeDeFormationComponent {
   onSubmit (f: NgForm) {
   
     
-  this.themeDeFormationService.addThemeDeFormation(  f.value ).subscribe(response => {
+  this.themeDeFormationService.addThemeDeFormation(f.value).subscribe(response => {
     console.log(response);
     this.ngOnInit();  })
  
@@ -76,7 +76,7 @@ export class ThemeDeFormationComponent {
     this.editForm = this.fb.group({
     
        idFormation: [''],
-       abrevation: [''],
+      abrevation: [''],
       description: [''],
         nomFormation: [''],
    

@@ -34,8 +34,8 @@
                         <th>Code formation </th>
                         <th>nom de fomration </th>
                         <th>abrivation de formation </th>
-                        <th>Descrip </th>
-                        <th>Date </th>
+                        <th>Description de formation  </th>
+                       
 
                     </tr>
                 </thead>
@@ -49,6 +49,7 @@
                         
                         <td>{{ThemeDeFormation.nomFormation}}</td>
                         <td>{{ThemeDeFormation.abrevation}}</td>
+
                         <td>{{ThemeDeFormation.description}}</td>
 
                         <td>
@@ -76,7 +77,7 @@
             <div class="modal-content">
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
                     <div class="modal-header">
-                        <h4 class="modal-title">Ajouter Actualite</h4>
+                        <h4 class="modal-title">Ajouter un theme de formation </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
                     </div>
@@ -87,27 +88,27 @@
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
                         <div class="form-group">
-                            <label>Titre Actualite :</label>
-                            <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
+                            <label>nom de formation :</label>
+                            <input type="text" name="nomFormation" #nomFormation="ngModel" class="form-control"
                                 required ngModel>
-                            <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
-                                entrer le titre de l'actualite </span>
+                            <span *ngIf="nomFormation.invalid && nomFormation.touched" class="error">Vous devez
+                                entrer le om de formation </span>
                         </div>
                         <div class="form-group">
-                            <label>Description Actualite:</label>
-                            <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
-                                class="form-control" required ngModel>
-                            <span *ngIf="descriptionActualite.invalid && descriptionActualite.touched"
-                                class="error">Vous devez entrer le description de l'Actualite</span>
-                        </div>
-                        <div class="form-group">
-                            <label>Date :</label>
-                            <input type="date" name="dateActualite" #dateActualite="ngModel" class="form-control"
-                                required ngModel>
-                            <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
+                            <label> abrivation :</label>
+                            <input type="text" name="abrevation" #abrevation="ngModel" class="form-control" required ngModel>
+                            <span *ngIf="abrevation.invalid &&  abrevation.touched" class="error">Vous
                                 devez
-                                entrer l'date de l'Actualite</span>
+                                entrer l'abrivation de formation </span>
                         </div>
+                        <div class="form-group">
+                            <label>Description de formation :</label>
+                            <input type="text" name="description" #description="ngModel"
+                                class="form-control" required ngModel>
+                            <span *ngIf="description.invalid &&description.touched"
+                                class="error">Vous devez entrer le description de formation </span>
+                        </div>
+                     
 
 
                        
@@ -132,31 +133,33 @@
             <div class="modal-content">
                 <form [formGroup]="editForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Actualite </h4>
+                        <h4 class="modal-title">Edit theme de formation </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
 
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>code </label>
-                            <input readonly type="text" formControlName="codeActualite" class="form-control" required>
+                            <label>id formation </label>
+                            <input readonly type="text" formControlName="idFormation" class="form-control" required>
 
                         </div>
                         <div class="form-group">
-                            <label>Titre : </label>
-                            <input type="text" formControlName="titreActualite" class="form-control" required>
+                            <label>nom de Formation : </label>
+                            <input type="text" formControlName="nomFormation" class="form-control" required>
 
                         </div>
-                        <div class="form-group">
-                            <label>Description </label>
-                            <input type="text" formControlName="descriptionActualite" class="form-control" required>
+                            <div class="form-group">
+                            <label>abrivation de formation </label>
+                            <input type="text" formControlName="abrevation" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Date actualite: </label>
-                            <input type="date" formControlName="dateActualite" class="form-control" required>
+                            <label>Description de formation  </label>
+                            <input type="text" formControlName="description" class="form-control" required>
                         </div>
+
+                        
 
                      
 
