@@ -2,7 +2,7 @@ import { FormateurComponent } from './pages/formateur/formateur.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,19 +27,24 @@ import { PresentationComponent } from './pages/presentation/presentation.compone
 
 
 import { ApprenantComponent } from './pages/apprenant/apprenant.component';
-
+import localeFr from '@angular/common/locales/fr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ActualiteComponent } from './pages/actualite/actualite.component';
 import { ActuPageComponent } from './pages/actu-page/actu-page.component';
 import { FooterComponent } from './footer/footer.component';
+<<<<<<< HEAD
 import { ThemeDeFormationComponent } from './pages/theme-de-formation/theme-de-formation.component';
 
+=======
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
+registerLocaleData(localeFr);
+>>>>>>> 4e227e60f5906f1d0de598aefb87c733e104fd1d
 
 
 @NgModule({
     declarations: [
         AppComponent,
-       
+        
         NavbarComponent,
        
         SideNavComponent,
@@ -58,9 +63,10 @@ import { ThemeDeFormationComponent } from './pages/theme-de-formation/theme-de-f
         
         
     ],
-    providers: [BsModalService],
+    providers: [BsModalService,DatePipe,{ provide: LOCALE_ID, useValue: 'fr' }],
     bootstrap: [AppComponent],
     imports: [
+        CommonModule,
         MatSidenavModule,
         MatToolbarModule,
         MatMenuModule,
