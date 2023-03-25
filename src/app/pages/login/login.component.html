@@ -1,45 +1,45 @@
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-	<section class="ftco-section">
-		<div class="container">
-		
-			<div class="row justify-content-center">
-				<div class="col-md-6 col-lg-5">
-					<div class="login-wrap p-4 p-md-5">
-		      	<div class="icon d-flex align-items-center justify-content-center">
-		      		<span class="fa fa-user-o " ></span>
-		      	</div>
-		      	<h3 class="text-center mb-4">Se connecter</h3>
-						<form action="#" class="login-form">
-		      		<div class="form-group">
-		      			<input type="text" class="form-control rounded-left" placeholder="email" name="email" required [(ngModel)]="user.email">
-		      		</div>
-	            <div class="form-group d-flex">
-	              <input type="password" class="form-control rounded-left" placeholder="Password" name="password" [(ngModel)]="user.password" required>
-	            </div>
-	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-	            		<label class="checkbox-wrap checkbox-primary">Se Souvenir
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="#">mot de passe oublié ?</a>
-								</div>
-	            </div>
 
-				<div class="alert alert-danger" *ngIf="err==1">
+	
+	  <!-- login section -->
+	
+	  <section class="login_section layout_padding">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-6">
+			  <div class="detail-box">
+				<h3>
+				  GET ONLINE COURSES FOR FREE
+				</h3>
+				<p>
+				  Create your free account now and get immediate access to 100s of
+				  online courses
+				</p>
+				<a href="">
+				  REGISTER NOW
+				</a>
+			  </div>
+			</div>
+			<div class="col-md-6">
+			  <div class="login_form">
+				<h5>
+				  Login Now
+				</h5>
+				<form action="">
+				  <div>
+					<input type="email" placeholder="Email " name="email" required [(ngModel)]="user.email"/>
+				  </div>
+				  <div>
+					<input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" required/>
+				  </div>
+				  <div class="alert alert-danger" *ngIf="err==1">
 					<strong>login ou mot de passe erronés..</strong>
 					</div>
-
-	            <div class="form-group">
-	            	<button type="submit" class="btn btn-primary rounded submit p-3 px-5"  (click)="onLoggedin()">Login</button>
-	            </div>
-	          </form>
-	        </div>
-				</div>
+				  <button type="submit" (click)="onLoggedin()">Login</button>
+				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
-	</section>
-
+	  </section>
+	
 
