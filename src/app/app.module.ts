@@ -2,7 +2,7 @@ import { FormateurComponent } from './pages/formateur/formateur.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,18 +27,19 @@ import { PresentationComponent } from './pages/presentation/presentation.compone
 
 
 import { ApprenantComponent } from './pages/apprenant/apprenant.component';
-
+import localeFr from '@angular/common/locales/fr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ActualiteComponent } from './pages/actualite/actualite.component';
 import { ActuPageComponent } from './pages/actu-page/actu-page.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
+registerLocaleData(localeFr);
 
 
 @NgModule({
     declarations: [
         AppComponent,
-       
+        
         NavbarComponent,
        
         SideNavComponent,
@@ -56,9 +57,10 @@ import { FooterComponent } from './footer/footer.component';
         
         
     ],
-    providers: [BsModalService],
+    providers: [BsModalService,DatePipe,{ provide: LOCALE_ID, useValue: 'fr' }],
     bootstrap: [AppComponent],
     imports: [
+        CommonModule,
         MatSidenavModule,
         MatToolbarModule,
         MatMenuModule,
