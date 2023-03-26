@@ -19,14 +19,16 @@ public dateActualite !: string;
   constructor( private datePipe: DatePipe,  private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService) { }
  
   getActualite() {
-    this.actualiteService.getActualite().subscribe(response => {
+    this.actualiteService.getActualite().subscribe((response:any[]) => {
       console.log(response);
-     
-      this.Actualites = response;
+      
       response.forEach((item) => {
-        this.dateActualite = this.datePipe.transform(item.dateActualite, 'dd MMMM yyyy')??"";
+        const date=new Date(item.dateActualite)
+        item.dateActualite = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
       });
       
+      this.Actualites = response;
+     
       });
   }
   

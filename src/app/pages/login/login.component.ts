@@ -63,7 +63,7 @@ export class LoginComponent {
     }, (erreur) => { this.err = 1; } );
 
   },(erreur) => {
-    console.log('Error:', erreur);
+    { this.err = 1; };
   });
 
   //si on a erreur on ajout 1 a err
