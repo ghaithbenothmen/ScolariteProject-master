@@ -19,7 +19,8 @@ export class SessionFormationService {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({"Authorization":jwt})
-    return this.httpClient.get<SessionFormation>(this.apiURL+"/all",{headers:httpHeaders});}
+
+    return this.httpClient.get<SessionFormation[]>(this.apiURL+"/all",{headers:httpHeaders});}
 
 addimage (file :File
 

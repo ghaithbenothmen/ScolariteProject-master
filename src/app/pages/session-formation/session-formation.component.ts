@@ -17,7 +17,7 @@ import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 export class SessionFormationComponent {
 
   public modalRef!: BsModalRef;
-  public SessionFormation!: SessionFormation[];
+  public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
   public editForm!: FormGroup;
  // public editForm2!: FormGroup;
@@ -44,7 +44,7 @@ export class SessionFormationComponent {
     this.SessionFormationService.getSessionFormation().subscribe(response => {
       console.log(response);
      
-      this.sessionFormation= response;
+      this.sessionFormations= response;
    
       });
   }
