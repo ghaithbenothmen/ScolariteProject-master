@@ -1,0 +1,219 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a class="disabled" href="#">Session de formation</a>
+                </li>
+            </ul>
+        </div>
+        <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
+                class="material-icons">&#xE147;</i> <span>Ajouter Session de formation</span></button>
+
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Tableau de Session de formation</h3>
+                <i class='bx bx-search'></i>
+                <i class='bx bx-filter'></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>Code Session</th>
+                        <th>img </th>
+                        <th>theme de formation </th>
+                        <th>formateur  </th>
+                        <th>Date debut </th>
+                        <th> nmbr dheure  </th>
+                            <th> locale </th>
+                            <th>type formation</th>
+                            <th>description </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let SessionFormation of SessionFormation">
+                        <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
+                       <td>{{SessionFormation.idSessionFormation}}</td>
+
+                        <!-- <td>{{SessionFormation.ThemeDeFormation}}</td> -->
+                        <td><img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}" width="200px"
+                                height="200px" /></td>
+                     
+                        <!-- <td>{{SessionFormation.Formateur}}</td> -->
+                        <td>{{SessionFormation.dateDebut}}</td>
+                        <td>{{SessionFormation.nbrHeures}}</td>
+                        <td>{{SessionFormation.localFormation}}</td>
+                        <td>{{SessionFormation.typeFormation}}</td>
+                        <td>{{SessionFormation.description}}</td>
+                        <td>
+                            <a type="button" (click)="openDetails(contentDetails, SessionFormation)" class="edit"
+                                data-toggle="modal">
+                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a type="button" (click)="openDelete(contentDelete, SessionFormation)" class="delete"
+                                data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                    title="Delete">&#xE872;</i></a>
+                        </td>
+                        <!-- </ng-container> -->
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</main>
+
+<ng-template #modalTemplate>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Ajouter </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="form-group">
+							<label>Code </label>
+							<input type="text" name="codeEtablissement" #codeEtablissement="ngModel" class="form-control" required ngModel>
+							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
+						</div> -->
+                        <div class="form-group">
+                            <label> theme de formation  :</label>
+                            <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
+                                entrer le titre de l'actualite </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Description Actualite:</label>
+                            <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
+                                class="form-control" required ngModel>
+                            <span *ngIf="descriptionActualite.invalid && descriptionActualite.touched"
+                                class="error">Vous devez entrer le description de l'Actualite</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Date :</label>
+                            <input type="date" name="dateActualite" #dateActualite="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
+                                devez
+                                entrer l'date de l'Actualite</span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Image :</label>
+                            <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
+                                (change)="onFileChanged($event)">
+                            <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
+                                Actualite</span>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- detail Modal HTML -->
+
+<!-- detail Modal HTML -->
+<ng-template #contentDetails>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form [formGroup]="editForm">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Actualite </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>code </label>
+                            <input readonly type="text" formControlName="codeActualite" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Titre : </label>
+                            <input type="text" formControlName="titreActualite" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Description </label>
+                            <input type="text" formControlName="descriptionActualite" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date actualite: </label>
+                            <input type="date" formControlName="dateActualite" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>image</label>
+                            <input type="file" formControlName="file" class="form-control"
+                                (change)="onFileChanged($event)" required>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
+                                value="Fermer">
+                            <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- Delete Modal HTML -->
+<!-- Delete Modal HTML -->
+
+<ng-template #contentDelete>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Apprenant</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete these Records?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+                    <form class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                            (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(sessionFormation)">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

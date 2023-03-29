@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ThemeDeFormationComponent } from '../../pages/theme-de-formation/theme-de-formation.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { ActualiteComponent } from 'src/app/pages/actualite/actualite.component';
+import { SessionFormation } from 'src/app/entities/SessionFormation.model';
+import { SessionFormationComponent } from '../../pages/session-formation/session-formation.component';
 
 const routes: Routes = [
  
@@ -13,7 +15,8 @@ const routes: Routes = [
   { path: 'etablissement',  component: EtablissementComponent },
   { path: 'formateur',  component: FormateurComponent },
   { path: 'actualiteDash', component: ActualiteComponent },
-  {path:'themeDeFormation',component:ThemeDeFormationComponent},
+  { path: 'themeDeFormation', component: ThemeDeFormationComponent },
+   {path:'sessionDeFormation',component:SessionFormationComponent},
 ];
 
 @NgModule({
