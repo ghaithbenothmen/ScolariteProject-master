@@ -146,11 +146,11 @@ export class SessionFormationComponent {
       typeFormation:SessionFormation.typeFormation,
      localFormation:SessionFormation.localFormation,
       description: SessionFormation.description,
-      formateur: SessionFormation.formateur,
+      formateur: SessionFormation.formateur.nomFormateur,
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
      
-      themeFormation:SessionFormation.themeDeFormation
+      themeFormation:SessionFormation.themeDeFormation.nomFormation,
 
     });
 
