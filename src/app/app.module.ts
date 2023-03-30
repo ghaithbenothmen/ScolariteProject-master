@@ -38,6 +38,7 @@ import { ThemeDeFormationComponent } from './pages/theme-de-formation/theme-de-f
 
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { SessionFormationComponent } from './pages/session-formation/session-formation.component';
+import { RegisterComponent } from './pages/register/register.component';
 registerLocaleData(localeFr);
 
 
@@ -60,7 +61,8 @@ registerLocaleData(localeFr);
        ActuPageComponent,
        FooterComponent,
        ThemeDeFormationComponent,
-       SessionFormationComponent
+       SessionFormationComponent,
+       RegisterComponent
 
         
         

@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserService {
-  apiURL: string = "http://localhost:8080/apprenant/api/v1/auth/registerApprenant";
+  apiURL: string = "http://localhost:8080/apprenant/api/v1/auth";
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 
@@ -19,9 +19,12 @@ export class UserService {
     jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
-    return this.httpClient.post<User>(`${this.apiURL}`, user);
+    return this.httpClient.post<User>(this.apiURL + '/registerApprenant', user);
   }
 
+  register(user: User) {
+    return this.httpClient.post<User>(this.apiURL + '/registerUser', user)
+  }
 
   getUser() {
 
