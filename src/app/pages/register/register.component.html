@@ -1,0 +1,55 @@
+
+	
+	  <!-- login section -->
+	
+	  <section class="login_section layout_padding">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-6">
+			  <div class="detail-box">
+				<h3>
+				   avez-Vous un compte ?
+				</h3>
+				<p>
+				  Connectez-vous et rejoingnez notre centre !
+				</p>
+				<a href="/login">
+				  Connexion
+				</a>
+			  </div>
+			</div>
+			<div class="col-md-6">
+			  <div class="login_form">
+				<h5>
+				  S'inscrire maintenant
+				</h5>
+				<form action="" [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+				  <div>
+					<input class="form-control" type="email" placeholder="Email " name="email" required [(ngModel)]="user.email" formControlName="email" />
+                    <div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier syntax de votre email</div>
+                    <!-- <div *ngIf="registerForm.controls['email']?.errors?.['required']" class="error">email obligatoire</div> -->
+				  </div>
+				  <div class="form-group">
+					<input class="form-control" type="password" placeholder="Mot de passe" name="password" [(ngModel)]="user.password" required formControlName="password"/>
+				  </div>
+                  <div *ngIf="registerForm.controls['password'].errors">
+                    <!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+                    <div *ngIf="registerForm.controls['password']?.errors?.['minlength']" class="error">mot de passe doit avoir minimum 8 caracters</div>
+                    <div *ngIf="registerForm.controls['password']?.errors?.['maxlength']" class="error">mot de passe doit avoir maximum 20 caracters</div>
+                  </div>
+                  <div>
+					<input class="form-control" type="password" placeholder="Retappez mot de passe" name="confirmPassword" formControlName="confirmPassword" formControlName="confirmPassword" required/>
+				  </div>
+                  <div class="error" *ngIf="registerForm.hasError('passwordsMismatch') && ((registerForm.controls['confirmPassword']?.dirty) || registerForm.controls['confirmPassword']?.touched)">
+                    Les mots de passe ne correspondent pas.
+                  </div>
+				  
+				  <button type="submit" >S'inscrire</button>
+				</form>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	
+
