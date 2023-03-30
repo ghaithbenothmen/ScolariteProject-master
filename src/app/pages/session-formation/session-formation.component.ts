@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import {SessionFormationService} from 'src/app/services/session-formation.service';
 import { SessionFormation } from 'src/app/entities/SessionFormation.model';
+import { formateurService } from 'src/app/services/formateur.service';
+import { formateur} from 'src/app/entities/formateur.model';
 @Component({
   selector: 'app-session-formation',
   templateUrl: './session-formation.component.html',
@@ -19,6 +21,14 @@ export class SessionFormationComponent {
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
+  public themeFormations!: ThemeDeFormation[];
+  public themeFormation!: ThemeDeFormation;
+  public formateurs!: formateur[];
+  public formateur!: formateur;
+  
+  public idFormation!: number;
+  public codeFormateur!: number;
+
   public editForm!: FormGroup;
  // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -32,7 +42,7 @@ export class SessionFormationComponent {
   
   
 
-  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public SessionFormationService : SessionFormationService,private authService:AuthService) { }
+  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService :formateurService ,public SessionFormationService : SessionFormationService,public ThemeDeFormationService:ThemeDeFormationService,private authService:AuthService) { }
  public onFileChanged(event:any) {
   
    this.selectedFile = event.target.files[0];
@@ -44,11 +54,24 @@ export class SessionFormationComponent {
     this.SessionFormationService.getSessionFormation().subscribe(response => {
       console.log(response);
      
-      this.sessionFormations= response;
+      this.sessionFormations = response;
    
-      });
+    });
+    this.formateurService.getFormateur().subscribe(response => {
+      console.log(response);
+     
+      this.formateurs = response;
+   
+    });
+    this.ThemeDeFormationService.getThemeDeFormation().subscribe(response => {
+      console.log(response);
+     
+      this.themeFormations = response;
+   
+    });
+
+
   }
-  
 
 
 //  onFileChange(event) {
@@ -61,16 +84,17 @@ export class SessionFormationComponent {
   
 // }
 
-  onSubmit (f: NgForm) {
+  onSubmit (f:NgForm) {
   
-    this.SessionFormationService.addimage(this.selectedFile).subscribe(response => {
-    console.log(response);
-    this.ngOnInit();  })
- 
+  //   this.SessionFormationService.addimage(this.selectedFile).subscribe(response => {
+  //  console.log(response);
+  //    this.ngOnInit();  })
 
-  this.SessionFormationService.addSessionFormation(f.value).subscribe(response => {
+    this.SessionFormationService.addSessionFormation(f.value).subscribe(response => {
+    console.log(f);
     console.log(response);
-    this.ngOnInit();  })
+      this.ngOnInit();
+        })
  
   this.modalService.hide(); //dismiss the modal
 }
@@ -93,7 +117,7 @@ export class SessionFormationComponent {
    localFormation: [''],
       description: [''],
       formateur: [''],
-      fateDebut: [''],
+      dateDebut: [''],
       nbrHeures: [''],
       themeFormation: [''],
           
