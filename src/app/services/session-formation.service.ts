@@ -50,11 +50,11 @@ export class SessionFormationService {
    formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
     formData.append('Description',SessionFormation.description);
     
-    formData.append('formateur', JSON.stringify(SessionFormation.formateur));
+    formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
     // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
     formData.append('LocalFormation', SessionFormation.localFormation);
     formData.append('typeFormation', SessionFormation.typeFormation);
-      formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation));
+      formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
     
     
     return this.httpClient.post<SessionFormation>(this.apiURL + '/add',  formData, { headers: httpHeaders });//.pipe(

@@ -91,13 +91,13 @@ export class SessionFormationComponent {
   //   this.SessionFormationService.addimage(this.selectedFile).subscribe(response => {
   //  console.log(response);
   //    this.ngOnInit();  })
- 
+  this.ngOnInit();
    f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
    f.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
   
     
     this.SessionFormationService.addSessionFormation(f.value , this.selectedFile).subscribe(response => {
-    console.log(f);
+    
     console.log(response);
       this.ngOnInit();
         })
