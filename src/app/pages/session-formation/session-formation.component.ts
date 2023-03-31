@@ -96,7 +96,7 @@ export class SessionFormationComponent {
    f.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
   
     
-    this.SessionFormationService.addSessionFormation(f.value).subscribe(response => {
+    this.SessionFormationService.addSessionFormation(f.value , this.selectedFile).subscribe(response => {
     console.log(f);
     console.log(response);
       this.ngOnInit();

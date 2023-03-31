@@ -37,20 +37,34 @@ export class SessionFormationService {
   }
 
 
-  addSessionFormation(SessionFormation: SessionFormation): Observable<SessionFormation> {
+  addSessionFormation( SessionFormation: SessionFormation, file :File ): Observable<SessionFormation> {
    
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt});
 
-    return this.httpClient.post<SessionFormation>(this.apiURL+'/add',SessionFormation,{headers:httpHeaders}).pipe(
-      catchError((error) => {
-        if (error.error && error.error.message === 'verifie ') {
-          // Display alert message using ngx-toastr or Angular's built-in Alert service
-        }
-        return throwError(error);
-      })
-    );
+    const formData = new FormData();
+    
+   formData.append('file',file);
+    formData.append('DateDebut', SessionFormation.dateDebut.toString());
+    formData.append('NbrHeures',SessionFormation.nbrHeures.toString());
+    formData.append('Description',SessionFormation.description);
+    
+    formData.append('Formateur', JSON.stringify(SessionFormation.formateur));
+    // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
+    formData.append('LocalFormation', SessionFormation.localFormation);
+    formData.append('TypeFormation', SessionFormation.typeFormation);
+      formData.append('ThemeDeFormation', JSON.stringify(SessionFormation.themeDeFormation));
+    
+    
+    return this.httpClient.post<SessionFormation>(this.apiURL + '/add', formData, { headers: httpHeaders });//.pipe(
+    //   catchError((error) => {
+    //     if (error.error && error.error.message === 'verifie ') {
+    //       // Display alert message using ngx-toastr or Angular's built-in Alert service
+    //     }
+    //     return throwError(error);
+    //   })
+    // );
   }
       
     updateSessionFormation(SessionFormation : SessionFormation)  {
