@@ -47,17 +47,17 @@ export class SessionFormationService {
     
    formData.append('file',file);
     formData.append('DateDebut', SessionFormation.dateDebut.toString());
-    formData.append('NbrHeures',SessionFormation.nbrHeures.toString());
+   formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
     formData.append('Description',SessionFormation.description);
     
-    formData.append('Formateur', JSON.stringify(SessionFormation.formateur));
+    formData.append('formateur', JSON.stringify(SessionFormation.formateur));
     // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
     formData.append('LocalFormation', SessionFormation.localFormation);
-    formData.append('TypeFormation', SessionFormation.typeFormation);
-      formData.append('ThemeDeFormation', JSON.stringify(SessionFormation.themeDeFormation));
+    formData.append('typeFormation', SessionFormation.typeFormation);
+      formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation));
     
     
-    return this.httpClient.post<SessionFormation>(this.apiURL + '/add', formData, { headers: httpHeaders });//.pipe(
+    return this.httpClient.post<SessionFormation>(this.apiURL + '/add',  formData, { headers: httpHeaders });//.pipe(
     //   catchError((error) => {
     //     if (error.error && error.error.message === 'verifie ') {
     //       // Display alert message using ngx-toastr or Angular's built-in Alert service
