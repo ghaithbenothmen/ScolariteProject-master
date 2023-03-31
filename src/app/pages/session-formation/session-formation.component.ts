@@ -21,8 +21,8 @@ export class SessionFormationComponent {
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
-  public themeFormations!: ThemeDeFormation[];
-  public themeFormation!: ThemeDeFormation;
+  public themeDeFormations!: ThemeDeFormation[];
+  public themeDeFormation!: ThemeDeFormation;
   public formateurs!: formateur[];
   public formateur!: formateur;
   
@@ -37,6 +37,8 @@ export class SessionFormationComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
+  idFormateur: any;
+  idTh: any;
   //SessionFormationService: any;
   
   
@@ -66,7 +68,7 @@ export class SessionFormationComponent {
     this.ThemeDeFormationService.getThemeDeFormation().subscribe(response => {
       console.log(response);
      
-      this.themeFormations = response;
+      this.themeDeFormations = response;
    
     });
 
@@ -89,7 +91,11 @@ export class SessionFormationComponent {
   //   this.SessionFormationService.addimage(this.selectedFile).subscribe(response => {
   //  console.log(response);
   //    this.ngOnInit();  })
-
+ 
+   f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
+   f.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
+  
+    
     this.SessionFormationService.addSessionFormation(f.value).subscribe(response => {
     console.log(f);
     console.log(response);

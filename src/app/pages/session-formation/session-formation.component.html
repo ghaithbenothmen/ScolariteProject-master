@@ -96,9 +96,9 @@
 						</div> -->
                         <div class="form-group">
                             <label> theme de formation  :</label>
-                            <select class="form-control  "id="idFormation" name="idFormation"  #idFormation="ngModel"  required ngModel >
-                                <option *ngFor="let theme of themeFormations " [value]="theme.idFormation"> 
-                             {{theme.nomFormation}}
+                            <select class="form-control  "id="idFormation" name="idFormation"  #idFormation="ngModel" [(ngModel)]="idTh" required ngModel >
+                                <option *ngFor="let themeDeFormation of themeDeFormations " [value]="themeDeFormation.idFormation"> 
+                             {{themeDeFormation.nomFormation}}
                                 </option>
 
                             </select>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="form-group">
                             <label>formateur :</label>
-                            <select class="form-control  " id="codeFormateur" name="codeFormateur" #codeFormateur="ngModel" required ngModel>
+                            <select class="form-control  " id="codeFormateur" name="codeFormateur" #codeFormateur="ngModel" [(ngModel)]="idFormateur" required ngModel>
                                 <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
                                     {{formateur.nomFormateur}}
                                 </option>
