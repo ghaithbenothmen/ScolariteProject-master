@@ -37,8 +37,8 @@ export class SessionFormationComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
-  idFormateur: any;
-  idTh: any;
+  idFormateur: any='';
+  idTh: any='';
   //SessionFormationService: any;
   
   
@@ -98,8 +98,10 @@ export class SessionFormationComponent {
     
     this.SessionFormationService.addSessionFormation(f.value , this.selectedFile).subscribe(response => {
     
-    console.log(response);
+      console.log(response);
+       window.location.reload();
       this.ngOnInit();
+
         })
  
   this.modalService.hide(); //dismiss the modal
@@ -122,11 +124,11 @@ export class SessionFormationComponent {
      typeFormation: [''],
    localFormation: [''],
       description: [''],
-      formateur: [''],
+      nomformateur: [''],
       dateDebut: [''],
       nbrHeures: [''],
-      themeFormation: [''],
-          
+      nomthemeFormation: [''],
+      file: [''],
    
 
 
@@ -148,15 +150,15 @@ export class SessionFormationComponent {
     );
 
     this.editForm.patchValue({
-      idFormation: SessionFormation.idSessionFormation,
+      idFormation: SessionFormation.themeDeFormation.nomFormation,
       typeFormation:SessionFormation.typeFormation,
      localFormation:SessionFormation.localFormation,
       description: SessionFormation.description,
-      formateur: SessionFormation.formateur.nomFormateur,
+      nomformateur: SessionFormation.formateur.nomFormateur,
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
-     
-      themeFormation:SessionFormation.themeDeFormation.nomFormation,
+     file:SessionFormation.data,
+     nomthemeFormation:SessionFormation.themeDeFormation.nomFormation,
 
     });
 
@@ -173,13 +175,15 @@ openModal(modalTemplate: TemplateRef<any>) {
   );
 }
 onSave() {
+   
+     this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
+  this.editForm.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
   
-    
-  this.SessionFormationService.updateSessionFormation(this.editForm.value).subscribe(response => {
+  this.SessionFormationService.updateSessionFormation(this.editForm.value ,this.selectedFile ).subscribe(response => {
       //console.log(response);
       window.location.reload();
       this.ngOnInit();})
-   
+    
     this.modalService.hide(); //dismiss the modal
   }
 /***************************contoller ************** */

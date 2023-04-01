@@ -10,7 +10,7 @@ import { SessionFormation } from '../entities/SessionFormation.model';
 })
 export class SessionFormationService {
 
-  apiURL: string = "http://localhost:8080/apprenant/api/SesionDeFormation";
+  apiURL: string = "http://localhost:8080/apprenant/api/SesionDeFormation/";
 
  
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
@@ -21,7 +21,7 @@ export class SessionFormationService {
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({"Authorization":jwt})
 
-    return this.httpClient.get<SessionFormation[]>(this.apiURL+"/all",{headers:httpHeaders});}
+    return this.httpClient.get<SessionFormation[]>(this.apiURL+"all",{headers:httpHeaders});}
 
    addimage (file :File
 
@@ -57,7 +57,7 @@ export class SessionFormationService {
       formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
     
     
-    return this.httpClient.post<SessionFormation>(this.apiURL + '/add',  formData, { headers: httpHeaders });//.pipe(
+    return this.httpClient.post<SessionFormation>(this.apiURL + 'add',  formData, { headers: httpHeaders });//.pipe(
     //   catchError((error) => {
     //     if (error.error && error.error.message === 'verifie ') {
     //       // Display alert message using ngx-toastr or Angular's built-in Alert service
@@ -67,12 +67,24 @@ export class SessionFormationService {
     // );
   }
       
-    updateSessionFormation(SessionFormation : SessionFormation)  {
-      const url = `${this.apiURL}/${SessionFormation.idSessionFormation}`;
+    updateSessionFormation(SessionFormation : SessionFormation,file:File) :Observable<SessionFormation> {
+      const url = `${this.apiURL}${SessionFormation.idSessionFormation}`;
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt})
-
+     const formData = new FormData();
+    
+   formData.append('file',file);
+    formData.append('DateDebut', SessionFormation.dateDebut.toString());
+   formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
+    formData.append('Description',SessionFormation.description);
+    
+    formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
+    // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
+    formData.append('LocalFormation', SessionFormation.localFormation);
+    formData.append('typeFormation', SessionFormation.typeFormation);
+     // formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
+    
       return this.httpClient.put<SessionFormation>(url,SessionFormation, {headers:httpHeaders});
       }
 
@@ -83,6 +95,6 @@ export class SessionFormationService {
         let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
 
-         return this.httpClient.delete(this.apiURL+"/"+code,{headers:httpHeaders});}
+         return this.httpClient.delete(this.apiURL+code,{headers:httpHeaders});}
       } 
 

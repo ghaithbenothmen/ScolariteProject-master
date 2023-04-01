@@ -190,24 +190,47 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>code </label>
-                            <input readonly type="text" formControlName="codeActualite" class="form-control" required>
+                       <label> theme de formation :</label>
+                        <select class="form-control  "   formControlName="nomthemeDeFormation"  id="idFormation" name="idFormation"   [(ngModel)]="idTh" required
+                            ngModel>
+                            <option *ngFor="let themeDeFormation of themeDeFormations " formControlName="nomthemeDeFormation"  [value]="themeDeFormation.idFormation">
+                                {{themeDeFormation.nomFormation}}
+                            </option>
+                        
+                        </select>
+                        </div>
+                        <div class="form-group">
+                            <label>formateur :</label>
+                            <select class="form-control  "  formControlName="nomformateur" id="codeFormateur" name="codeFormateur" 
+                                [(ngModel)]="idFormateur" required ngModel>
+                                <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
+                                    {{formateur.nomFormateur}}
+                                </option>
+                            
+                            </select>
 
                         </div>
                         <div class="form-group">
-                            <label>Titre : </label>
-                            <input type="text" formControlName="titreActualite" class="form-control" required>
-
-                        </div>
-                        <div class="form-group">
-                            <label>Description </label>
-                            <input type="text" formControlName="descriptionActualite" class="form-control" required>
+                            <label>Date debut</label>
+                            <input type="date" formControlName="dateDebut" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Date actualite: </label>
-                            <input type="date" formControlName="dateActualite" class="form-control" required>
+                            <label>nbrHeures: </label>
+                            <input type="number" formControlName="nbrHeures" class="form-control" required>
                         </div>
+<div class="form-group">
+    <label>type de formation :</label>
+    <input type="text" formControlName="typeFormation" class="form-control" required>
+</div>
+<div class="form-group">
+    <label>locale :</label>
+    <input type="text" formControlName="localFormation" class="form-control" required>
+</div>
+<div class="form-group">
+    <label>description</label>
+    <input type="text" formControlName="description" class="form-control" required>
+</div>
 
                         <div class="form-group">
                             <label>image</label>
