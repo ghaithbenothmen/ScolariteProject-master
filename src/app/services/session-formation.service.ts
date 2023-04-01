@@ -53,7 +53,7 @@ export class SessionFormationService {
     formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
     // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
     formData.append('LocalFormation', SessionFormation.localFormation);
-    formData.append('typeFormation', SessionFormation.typeFormation);
+    formData.append('TypeFormation', SessionFormation.typeFormation);
       formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
     
     
