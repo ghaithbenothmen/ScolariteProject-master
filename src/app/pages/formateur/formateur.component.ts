@@ -148,7 +148,7 @@ onSave() {
     
   this.formateurService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(response => {
       //console.log(response);
-      window.location.reload();
+     
       this.ngOnInit();})
    
     this.modalService.hide(); //dismiss the modal
