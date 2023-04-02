@@ -23,7 +23,7 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.httpClient.post<User>(this.apiURL + '/registerUser', user)
+    return this.httpClient.post<User>(this.apiURL + '/registerApprenant', user)
   }
 
   getUser() {
