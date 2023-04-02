@@ -37,8 +37,8 @@ export class SessionFormationComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
-  idFormateur: any='';
-  idTh: any='';
+  idFormateur: any;
+  idTh: any;
   //SessionFormationService: any;
   
   
@@ -157,7 +157,7 @@ export class SessionFormationComponent {
       nomformateur: SessionFormation.formateur.nomFormateur,
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
-     file:SessionFormation.data,
+     //file:SessionFormation.data,
      nomthemeFormation:SessionFormation.themeDeFormation.nomFormation,
 
     });

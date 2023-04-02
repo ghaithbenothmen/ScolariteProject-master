@@ -53,7 +53,10 @@ export class ApprenantComponent {
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
-
+      sexeApprenant: [''],  
+  
+      niveauApprenant:[''],
+      qualiteApprenant:[''],
       userame: [''],
       password: [''],
       email: ['']
@@ -71,7 +74,8 @@ export class ApprenantComponent {
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
-
+   
+   
 
     })
   }
@@ -136,7 +140,11 @@ export class ApprenantComponent {
       archiveApprenant: apprenant.archiveApprenant,
       userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
       password: apprenant.dateNaissanceApprenant,
-      email: apprenant.emailApprenant
+      email: apprenant.emailApprenant,
+      qualiteApprenant: apprenant.qualiteApprenant,
+      niveauApprenant: apprenant.niveauApprenant,
+
+  
     });
 
 
@@ -183,8 +191,8 @@ export class ApprenantComponent {
       emailApprenant: apprenant.emailApprenant,
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
-      archiveApprenant: apprenant.archiveApprenant
-
+      archiveApprenant: apprenant.archiveApprenant,
+ 
 
     });
 
