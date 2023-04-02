@@ -124,7 +124,7 @@
                             <input type="tel" name="telFormateur" #telFormateur="ngModel" class="form-control"
                                 required ngModel>
                             <span *ngIf="telFormateur.invalid && telFormateur.touched" class="error">Vous devez
-                                entrer le telephone de Departement</span>
+                                entrer le telephone de Formateur</span>
                         </div>
 
 
@@ -140,8 +140,8 @@
                             <label>cv  </label>
                             <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
                                 (change)="onFileChanged($event)">
-                            <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
-                            Departement</span>
+                            <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer cv de
+                                Formateur</span>
                         </div>
 
 
