@@ -32,14 +32,14 @@
                     <tr>
 
                         
-                        <th>img </th>
-                        <th>theme de formation </th>
-                        <th>formateur  </th>
+                        <th> Img </th>
+                        <th>Theme de formation </th>
+                        <th>Formateur  </th>
                         <th>Date debut </th>
-                        <th> nmbr dheure  </th>
-                            <th> locale </th>
-                            <th>type formation</th>
-                            <th>description </th>
+                        <th> Nombre d'heur </th>
+                            <th> Locale/Lien </th>
+                            <th>Type formation</th>
+                            <th>Description </th>
 
 
                     </tr>
@@ -47,13 +47,13 @@
                 <tbody>
                     <tr *ngFor="let SessionFormation of sessionFormations">
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
-                     
+      
 <td><img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}" width="200px" height="200px" />
 </td>
                         <td>{{SessionFormation.themeDeFormation.nomFormation}}</td> 
                         
                      
-               <td>{{SessionFormation.formateur.nomFormateur}}</td> 
+                   <td>{{SessionFormation.formateur.nomFormateur}}</td> 
                         <td>{{SessionFormation.dateDebut}}</td>
                         <td>{{SessionFormation.nbrHeures}}H</td>
                         <td>{{SessionFormation.localFormation}}</td>
@@ -94,8 +94,9 @@
 							<input type="text" name="codeEtablissement" #codeEtablissement="ngModel" class="form-control" required ngModel>
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
+                       
                         <div class="form-group">
-                            <label> theme de formation  :</label>
+                            <label> Theme de formation  :</label>
                             <select class="form-control  "id="idFormation" name="idFormation"  #idFormation="ngModel" [(ngModel)]="idTh" required ngModel >
                                 <option *ngFor="let themeDeFormation of themeDeFormations " [value]="themeDeFormation.idFormation"> 
                              {{themeDeFormation.nomFormation}}
@@ -107,7 +108,7 @@
                                 Vous devez entrer le  theme de formation </span>
                         </div>
                         <div class="form-group">
-                            <label>formateur :</label>
+                            <label>Formateur :</label>
                             <select class="form-control  " id="codeFormateur" name="codeFormateur" #codeFormateur="ngModel" [(ngModel)]="idFormateur" required ngModel>
                                 <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
                                     {{formateur.nomFormateur}}
@@ -126,37 +127,50 @@
                                 entrer l'date de l'Actualite</span>
                         </div>
 <div class="form-group">
-    <label>nbrHeures :</label>
+    <label>Nombre d'heur:</label>
     <input type="number" name="nbrHeures" #nbrHeures="ngModel" class="form-control" required ngModel>
     <span *ngIf="nbrHeures.invalid && nbrHeures.touched" class="error">Vous
         devez
-        entrer nbrHeures de formation</span>
+        entrer nombre d'heur de formation</span>
 </div>
 
 <div class="form-group">
-    <label>type de formation :</label>
-    <input type="text" name="typeFormation" #typeFormation="ngModel" class="form-control" required ngModel>
+    <label>Type de formation :</label>
+    <select  name="typeFormation" #typeFormation="ngModel" class="form-select" required ngModel>
+        <option *ngFor="let item of items" [value]="item">
+    
+    
+    
+            {{ item }}
+    
+    
+        </option>
+    </select>
+    <!-- <input type="text" name="typeFormation" #typeFormation="ngModel" class="form-control" required ngModel> -->
     <span *ngIf="typeFormation.invalid && typeFormation.touched" class="error">Vous
         devez
         entrer typeFormationde formation</span>
 </div>
 <div class="form-group">
-    <label>locale :</label>
+    <label>Locale / Lien :</label>
+    
     <input type="text" name="localFormation" #localFormation="ngModel" class="form-control" required ngModel>
     <span *ngIf="localFormation.invalid &&localFormation.touched" class="error">Vous
         devez
-        entrer locale de formation</span>
+        entrer locale de formation
+    </span>
 </div>
 <div class="form-group">
     <label>description  :</label>
-    <input type="text" name="description" #description="ngModel" class="form-control" required ngModel>
+    <textarea name="description" #description="ngModel" class="form-control" required ngModel > Description :</textarea>
+    <!-- <input type="text" name="description" #description="ngModel" class="form-control" required ngModel> -->
     <span *ngIf="description.invalid && description.touched" class="error">Vous
         devez
         entrer description de formation</span>
 </div>
 
                         <div class="form-group">
-                            <label>affiche :</label>
+                            <label>Affiche :</label>
                             <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
                                 (change)="onFileChanged($event)">
                             <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
@@ -190,28 +204,26 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                       <label> theme de formation :</label>
-                        <select class="form-control  "   formControlName="nomthemeDeFormation"  id="idFormation" name="idFormation"   [(ngModel)]="idTh" required
-                            ngModel>
+                       <label> Theme de formation :</label>
+                        <select class="form-select"  formControlName="idFormation" required >
                             
-                            <option *ngFor="let themeDeFormation of themeDeFormations " formControlName="nomthemeDeFormation"  [value]="themeDeFormation.idFormation">
+                            <option *ngFor="let themeDeFormation of themeDeFormations " [value]="themeDeFormation.idFormation">
                             <!-- <ng-container *ngIf="themeDeFormation.nomFormation== "></ng-container> -->
                                 {{themeDeFormation.nomFormation}}
                             </option>
                         
                         </select>
+                        <p>Selected gender: {{editForm.value.idFormation}}</p>
                         </div>
                         <div class="form-group">
-                            <label>formateur :</label>
-                            <select class="form-control"
-                              
-                                [(ngModel)]="idFormateur" required ngModel>
-                                <option *ngFor="let formateur  of formateurs " formControlName="nomformateur" [value]="formateur.codeFormateur">
+                            <label>Formateur :</label>
+                            <select class="form-control"  formControlName="codeFormateur" required >
+                                <option *ngFor="let formateur  of formateurs"  [value]="formateur.codeFormateur">
                                     {{formateur.nomFormateur}}
                                 </option>
                             
                             </select>
-
+<p>Selected gender: {{editForm.value.codeFormateur}}</p>
                         </div>
                         <div class="form-group">
                             <label>Date debut</label>
@@ -219,24 +231,34 @@
                         </div>
 
                         <div class="form-group">
-                            <label>nbrHeures: </label>
+                            <label>Nombre d'heur: </label>
                             <input type="number" formControlName="nbrHeures" class="form-control" required>
                         </div>
 <div class="form-group">
-    <label>type de formation :</label>
-    <input type="text" formControlName="typeFormation" class="form-control" required>
+    <label>Type de formation :</label>
+    <select formControlName="typeFormation" class="form-select" required >
+        <option *ngFor="let item of items" [value]="item">
+    
+    
+    
+            {{ item }}
+    
+    
+        </option></select>
+    <!-- <input type="text" formControlName="typeFormation" class="form-control" required> -->
 </div>
 <div class="form-group">
-    <label>locale :</label>
+    <label>Locale /Lien:</label>
     <input type="text" formControlName="localFormation" class="form-control" required>
 </div>
 <div class="form-group">
-    <label>description</label>
-    <input type="text" formControlName="description" class="form-control" required>
+    <!-- <label>description</label> -->
+    <!-- <input type="text" formControlName="description" class="form-control" required> -->
+    <textarea formControlName="description" class="form-control" required > Description :</textarea>
 </div>
 
                         <div class="form-group">
-                            <label>image</label>
+                            <label>Image</label>
                             <input type="file" formControlName="file" class="form-control"
                                 (change)="onFileChanged($event)" required>
                         </div>

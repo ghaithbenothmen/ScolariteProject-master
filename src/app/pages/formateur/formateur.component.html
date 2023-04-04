@@ -32,14 +32,14 @@
                     <tr>
 
                         <th>Code fo</th>
-                        <th>nom</th>
-                        <th>prenon </th>
+                        <th>Nom</th>
+                        <th>Prenon </th>
                         <th>Specialite </th>
                         <th>Email</th>
                         <th>Tel</th>
-                        <th>adresse</th>
-                        <th>cv</th>
-                        <th>action</th>
+                        <th>Adresse</th>
+                        <th>Cv</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,7 +129,7 @@
 
 
                         <div class="form-group">
-                            <label>adresse </label>
+                            <label>Adresse </label>
                             <input type="text" name="adresseFormateur" #adresseFormateur="ngModel"
                                 class="form-control" required ngModel>
                             <span *ngIf="adresseFormateur.invalid && adresseFormateur.touched"
@@ -137,7 +137,7 @@
                                 devez entrer l'adresse de Formateur</span>
                         </div>
                         <div class="form-group">
-                            <label>cv  </label>
+                            <label>Cv  </label>
                             <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
                                 (change)="onFileChanged($event)">
                             <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer cv de
@@ -171,13 +171,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>code </label>
+                            <label>Code </label>
                             <input readonly type="text" formControlName="codeFormateur" class="form-control"
                                 required>
 
                         </div>
                         <div class="form-group">
-                            <label>nom </label>
+                            <label>Nom </label>
                             <input type="text" formControlName="nomFormateur" class="form-control" required>
 
                         </div>
@@ -186,11 +186,11 @@
                             <input type="text" formControlName="prenonFormateur" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>tel</label>
+                            <label>Tel</label>
                             <input type="tel" formControlName="telFormateur" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>email </label>
+                            <label>Email </label>
                             <input type="email" formControlName="emailFormateur" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -198,7 +198,7 @@
                             <input type="text" formControlName="specialite" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>CV</label>
+                            <label>Cv</label>
                             <input type="file" formControlName="file" class="form-control"
                                 (change)="onFileChanged($event)" required>
                         </div>

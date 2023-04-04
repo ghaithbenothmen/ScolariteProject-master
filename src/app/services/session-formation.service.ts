@@ -69,22 +69,26 @@ export class SessionFormationService {
       
     updateSessionFormation(SessionFormation : SessionFormation,file:File) :Observable<SessionFormation> {
       const url = `${this.apiURL}${SessionFormation.idSessionFormation}`;
+           //const url = `${this.apiURL}${Formateur.codeFormateur}`;
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt})
-     const formData = new FormData();
+   
+    const formData = new FormData();
+    
+   
     
    formData.append('file',file);
-    formData.append('DateDebut', SessionFormation.dateDebut.toString());
-   formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
+  //formData.append('DateDebut', SessionFormation.dateDebut.toString());
+//formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
     formData.append('Description',SessionFormation.description);
     
-    formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
+    
     // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
     formData.append('LocalFormation', SessionFormation.localFormation);
-    formData.append('typeFormation', SessionFormation.typeFormation);
-     // formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
-    
+    formData.append('TypeFormation', SessionFormation.typeFormation);
+      formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
+    formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
       return this.httpClient.put<SessionFormation>(url,SessionFormation, {headers:httpHeaders});
       }
 

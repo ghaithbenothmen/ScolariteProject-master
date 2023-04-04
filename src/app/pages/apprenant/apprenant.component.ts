@@ -17,7 +17,7 @@ export class ApprenantComponent {
   public showForm1: boolean = false;
   public form1!: FormGroup;
   public form2!: FormGroup;
-  public items = ['Eleve', 'Etudiant', "Derecteur d'emploie", 'Profissionel'];
+  public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
 
   public selectedItem!: number;
 
