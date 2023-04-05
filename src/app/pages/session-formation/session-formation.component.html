@@ -207,7 +207,7 @@
                        <label> Theme de formation :</label>
                         <select class="form-select"  formControlName="idFormation" required >
                             
-                            <option *ngFor="let themeDeFormation of themeDeFormations " [value]="themeDeFormation.idFormation">
+                            <option *ngFor="let themeDeFormation of themeDeFormations "  [value]="themeDeFormation.idFormation">
                             <!-- <ng-container *ngIf="themeDeFormation.nomFormation== "></ng-container> -->
                                 {{themeDeFormation.nomFormation}}
                             </option>

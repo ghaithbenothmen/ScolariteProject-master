@@ -176,8 +176,8 @@ openModal(modalTemplate: TemplateRef<any>) {
 }
 onSave() {
    
-  this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.editForm.value.idFormation);
- this.editForm.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.editForm.value.codeFormateur);
+ this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.editForm.value.idFormation);
+this.editForm.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.editForm.value.codeFormateur);
   
   this.SessionFormationService.updateSessionFormation(this.editForm.value ,this.selectedFile ).subscribe(response => {
     console.log(this.editForm.value);

@@ -79,8 +79,8 @@ export class SessionFormationService {
    
     
    formData.append('file',file);
-  //formData.append('DateDebut', SessionFormation.dateDebut.toString());
-//formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
+  formData.append('DateDebut', SessionFormation.dateDebut.toString());
+formData.append('nbrHeures',SessionFormation.nbrHeures.toString());
     formData.append('Description',SessionFormation.description);
     
     
@@ -88,7 +88,7 @@ export class SessionFormationService {
     formData.append('LocalFormation', SessionFormation.localFormation);
     formData.append('TypeFormation', SessionFormation.typeFormation);
       formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
-    formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
+   formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
       return this.httpClient.put<SessionFormation>(url,SessionFormation, {headers:httpHeaders});
       }
 
