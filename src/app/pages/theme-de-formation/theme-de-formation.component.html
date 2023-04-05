@@ -32,8 +32,8 @@
                     <tr>
 
                         <th>Code formation </th>
-                        <th>nom de fomration </th>
-                        <th>abrivation de formation </th>
+                        <th>Nom de fomration </th>
+                        <th>Abrivation de formation </th>
                         <th>Description de formation  </th>
                        
 
@@ -88,23 +88,25 @@
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
                         <div class="form-group">
-                            <label>nom de formation :</label>
+                            <label>Nom de formation :</label>
                             <input type="text" name="nomFormation" #nomFormation="ngModel" class="form-control"
                                 required ngModel>
                             <span *ngIf="nomFormation.invalid && nomFormation.touched" class="error">Vous devez
                                 entrer le om de formation </span>
                         </div>
                         <div class="form-group">
-                            <label> abrivation :</label>
+                            <label> Abrivation :</label>
                             <input type="text" name="abrevation" #abrevation="ngModel" class="form-control" required ngModel>
                             <span *ngIf="abrevation.invalid &&  abrevation.touched" class="error">Vous
                                 devez
                                 entrer l'abrivation de formation </span>
                         </div>
                         <div class="form-group">
-                            <label>Description de formation :</label>
-                            <input type="text" name="description" #description="ngModel"
-                                class="form-control" required ngModel>
+                            <!-- <label>Description de formation :</label> -->
+                            <textarea name="description" #description="ngModel"
+                                class="form-control" required ngModel>Description de formation :</textarea>
+                            <!-- <input type="text" name="description" #description="ngModel"
+                                class="form-control" required ngModel> -->
                             <span *ngIf="description.invalid &&description.touched"
                                 class="error">Vous devez entrer le description de formation </span>
                         </div>
@@ -140,23 +142,24 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>id formation </label>
+                            <label>Id formation </label>
                             <input readonly type="text" formControlName="idFormation" class="form-control" required>
 
                         </div>
                         <div class="form-group">
-                            <label>nom de Formation : </label>
+                            <label>Nom de Formation : </label>
                             <input type="text" formControlName="nomFormation" class="form-control" required>
 
                         </div>
                             <div class="form-group">
-                            <label>abrivation de formation </label>
+                            <label>Abrivation de formation </label>
                             <input type="text" formControlName="abrevation" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label>Description de formation  </label>
-                            <input type="text" formControlName="description" class="form-control" required>
+                            <!-- <input type="text" formControlName="description" class="form-control" required> -->
+                            <textarea class="form-control"   formControlName="description"    required    >Description de formation :</textarea>
                         </div>
 
                         

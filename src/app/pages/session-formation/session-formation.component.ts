@@ -19,7 +19,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./session-formation.component.css']
 })
 export class SessionFormationComponent {
-
+ public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
@@ -39,8 +39,8 @@ export class SessionFormationComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
-  idFormateur: any='';
-  idTh: any='';
+  idFormateur: any;
+  idTh: any;
   //SessionFormationService: any;
   
   
@@ -134,9 +134,14 @@ export class SessionFormationComponent {
       codeFormateur: [],
       dateDebut: [''],
       nbrHeures: [''],
+
       
       file: [''],
    
+
+
+
+
     })
 
     this.SessionFormationService.getSessionFormation().subscribe(sessionFormations => {
@@ -169,21 +174,29 @@ export class SessionFormationComponent {
     );
 
     this.editForm.patchValue({
+
       idSessionFormation:SessionFormation.idSessionFormation,
       /* idFormation: SessionFormation.themeDeFormation.nomFormation, */
+
+      //idFormation: SessionFormation.themeDeFormation.nomFormation,
+
       typeFormation:SessionFormation.typeFormation,
 
      localFormation:SessionFormation.localFormation,
       description: SessionFormation.description,
 
+
       nomFormateur: SessionFormation.formateur.nomFormateur,
       codeFormateur : SessionFormation.formateur.codeFormateur,
 
+
+
+
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
-     file:SessionFormation.data,
-     nomthemeFormation:SessionFormation.themeDeFormation.nomFormation,
-
+     //file:SessionFormation.data,
+    idFormation:SessionFormation.themeDeFormation.idFormation,
+   
     });
 
   }
@@ -200,6 +213,7 @@ openModal(modalTemplate: TemplateRef<any>) {
 }
 onSave() {
    
+
  /*  this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh); */
   //this.editForm.value.codeFormateur = this.formateurs.find(formateur => formateur.codeFormateur == this.codeFormateur); 
 console.log(this.editForm.value.codeFormateur)
@@ -212,6 +226,8 @@ console.log(this.editForm.value.codeFormateur)
  
       
       /* this.ngOnInit(); */})
+
+
     
     this.modalService.hide(); //dismiss the modal
   }

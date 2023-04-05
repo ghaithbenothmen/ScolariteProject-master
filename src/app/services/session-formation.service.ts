@@ -78,6 +78,7 @@ export class SessionFormationService {
     // );
   }
 
+
   updateSessionFormation(formateurs: Formateur[], sessionFormation: SessionFormation, file: File, selectedForeignKeyId: number): Observable<SessionFormation> {
     const url = `${this.apiURL}${sessionFormation.idSessionFormation}`;
     let jwt = this.authService.getToken();
@@ -114,6 +115,9 @@ export class SessionFormationService {
     formData.append('LocalFormation', sessionFormation.localFormation);
     formData.append('TypeFormation', sessionFormation.typeFormation);
     //formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
+
+      
+    
 
     return this.httpClient.put<SessionFormation>(url, formData, { headers: httpHeaders });
   }

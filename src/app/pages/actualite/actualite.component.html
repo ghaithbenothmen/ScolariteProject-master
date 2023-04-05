@@ -94,8 +94,10 @@
                         </div>
                         <div class="form-group">
                             <label>Description Actualite:</label>
-                            <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
-                                class="form-control" required ngModel>
+                            <!-- <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
+                                class="form-control" required ngModel> -->
+                                <textarea name="descriptionActualite" #descriptionActualite="ngModel"
+                                class="form-control" required ngModel>Description  :</textarea>
                             <span *ngIf="descriptionActualite.invalid && descriptionActualite.touched"
                                 class="error">Vous devez entrer le description de l'Actualite</span>
                         </div>
@@ -144,7 +146,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>code </label>
+                            <label>Code </label>
                             <input readonly type="text" formControlName="codeActualite" class="form-control"
                                 required>
 
@@ -155,8 +157,9 @@
 
                         </div>
                         <div class="form-group">
-                            <label>Description </label>
-                            <input type="text" formControlName="descriptionActualite" class="form-control" required>
+                            <label>Description Actualite: </label>
+                            <textarea formControlName="descriptionActualite" class="form-control" required>Description  :</textarea>
+                            <!-- <input type="text" formControlName="descriptionActualite" class="form-control" required> -->
                         </div>
 
                         <div class="form-group">
@@ -165,7 +168,7 @@
                         </div>
                       
                         <div class="form-group">
-                            <label>image</label>
+                            <label>Image</label>
                             <input type="file" formControlName="file" class="form-control"
                                 (change)="onFileChanged($event)" required>
                         </div>
