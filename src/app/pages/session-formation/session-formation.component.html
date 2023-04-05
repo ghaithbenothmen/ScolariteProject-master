@@ -31,15 +31,15 @@
                 <thead>
                     <tr>
 
-                        
+
                         <th>img </th>
                         <th>theme de formation </th>
-                        <th>formateur  </th>
+                        <th>formateur </th>
                         <th>Date debut </th>
-                        <th> nmbr dheure  </th>
-                            <th> locale </th>
-                            <th>type formation</th>
-                            <th>description </th>
+                        <th> nmbr dheure </th>
+                        <th> locale </th>
+                        <th>type formation</th>
+                        <th>description </th>
 
 
                     </tr>
@@ -47,13 +47,14 @@
                 <tbody>
                     <tr *ngFor="let SessionFormation of sessionFormations">
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
-                     
-<td><img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}" width="200px" height="200px" />
-</td>
-                        <td>{{SessionFormation.themeDeFormation.nomFormation}}</td> 
-                        
-                     
-               <td>{{SessionFormation.formateur.nomFormateur}}</td> 
+
+                        <td><img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}"
+                                width="200px" height="200px" />
+                        </td>
+                        <td>{{SessionFormation.themeDeFormation.nomFormation}}</td>
+
+
+                        <td>{{SessionFormation.formateur.nomFormateur}}</td>
                         <td>{{SessionFormation.dateDebut}}</td>
                         <td>{{SessionFormation.nbrHeures}}H</td>
                         <td>{{SessionFormation.localFormation}}</td>
@@ -95,65 +96,72 @@
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
                         <div class="form-group">
-                            <label> theme de formation  :</label>
-                            <select class="form-control  "id="idFormation" name="idFormation"  #idFormation="ngModel" [(ngModel)]="idTh" required ngModel >
-                                <option *ngFor="let themeDeFormation of themeDeFormations " [value]="themeDeFormation.idFormation"> 
-                             {{themeDeFormation.nomFormation}}
+                            <label> theme de formation :</label>
+                            <select class="form-control  " id="idFormation" name="idFormation" #idFormation="ngModel"
+                                [(ngModel)]="idTh" required ngModel>
+                                <option *ngFor="let themeDeFormation of themeDeFormations "
+                                    [value]="themeDeFormation.idFormation">
+                                    {{themeDeFormation.nomFormation}}
                                 </option>
 
                             </select>
-                           
+
                             <span *ngIf="idFormation.invalid && idFormation.touched" class="error">
-                                Vous devez entrer le  theme de formation </span>
+                                Vous devez entrer le theme de formation </span>
                         </div>
                         <div class="form-group">
                             <label>formateur :</label>
-                            <select class="form-control  " id="codeFormateur" name="codeFormateur" #codeFormateur="ngModel" [(ngModel)]="idFormateur" required ngModel>
+                            <select class="form-control  " id="codeFormateur" name="codeFormateur"
+                                #codeFormateur="ngModel" [(ngModel)]="idFormateur" required ngModel>
                                 <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
                                     {{formateur.nomFormateur}}
                                 </option>
-                            
+
                             </select>
-                            <span *ngIf="codeFormateur.invalid && codeFormateur.touched"
-                                class="error">Vous devez entrer le formateur de la formation</span>
+                            <span *ngIf="codeFormateur.invalid && codeFormateur.touched" class="error">Vous devez entrer
+                                le formateur de la formation</span>
                         </div>
                         <div class="form-group">
                             <label>Date debut :</label>
-                            <input type="date" name="dateDebut" #dateDebut="ngModel" class="form-control"
-                                required ngModel>
+                            <input type="date" name="dateDebut" #dateDebut="ngModel" class="form-control" required
+                                ngModel>
                             <span *ngIf="dateDebut.invalid && dateDebut.touched" class="error">Vous
                                 devez
                                 entrer l'date de l'Actualite</span>
                         </div>
-<div class="form-group">
-    <label>nbrHeures :</label>
-    <input type="number" name="nbrHeures" #nbrHeures="ngModel" class="form-control" required ngModel>
-    <span *ngIf="nbrHeures.invalid && nbrHeures.touched" class="error">Vous
-        devez
-        entrer nbrHeures de formation</span>
-</div>
+                        <div class="form-group">
+                            <label>nbrHeures :</label>
+                            <input type="number" name="nbrHeures" #nbrHeures="ngModel" class="form-control" required
+                                ngModel>
+                            <span *ngIf="nbrHeures.invalid && nbrHeures.touched" class="error">Vous
+                                devez
+                                entrer nbrHeures de formation</span>
+                        </div>
 
-<div class="form-group">
-    <label>type de formation :</label>
-    <input type="text" name="typeFormation" #typeFormation="ngModel" class="form-control" required ngModel>
-    <span *ngIf="typeFormation.invalid && typeFormation.touched" class="error">Vous
-        devez
-        entrer typeFormationde formation</span>
-</div>
-<div class="form-group">
-    <label>locale :</label>
-    <input type="text" name="localFormation" #localFormation="ngModel" class="form-control" required ngModel>
-    <span *ngIf="localFormation.invalid &&localFormation.touched" class="error">Vous
-        devez
-        entrer locale de formation</span>
-</div>
-<div class="form-group">
-    <label>description  :</label>
-    <input type="text" name="description" #description="ngModel" class="form-control" required ngModel>
-    <span *ngIf="description.invalid && description.touched" class="error">Vous
-        devez
-        entrer description de formation</span>
-</div>
+                        <div class="form-group">
+                            <label>type de formation :</label>
+                            <input type="text" name="typeFormation" #typeFormation="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="typeFormation.invalid && typeFormation.touched" class="error">Vous
+                                devez
+                                entrer typeFormationde formation</span>
+                        </div>
+                        <div class="form-group">
+                            <label>locale :</label>
+                            <input type="text" name="localFormation" #localFormation="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="localFormation.invalid &&localFormation.touched" class="error">Vous
+                                devez
+                                entrer locale de formation</span>
+                        </div>
+                        <div class="form-group">
+                            <label>description :</label>
+                            <input type="text" name="description" #description="ngModel" class="form-control" required
+                                ngModel>
+                            <span *ngIf="description.invalid && description.touched" class="error">Vous
+                                devez
+                                entrer description de formation</span>
+                        </div>
 
                         <div class="form-group">
                             <label>affiche :</label>
@@ -181,32 +189,31 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <form [formGroup]="editForm">
+                <form [formGroup]="editForm" >
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Actualite </h4>
+                        <h4 class="modal-title">Edit Session </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
 
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
+                        <!--  <div class="form-group">
                        <label> theme de formation :</label>
-                        <select class="form-control  "   formControlName="nomthemeDeFormation"  id="idFormation" name="idFormation"   [(ngModel)]="idTh" required
-                            ngModel>
-                            
-                            <option *ngFor="let themeDeFormation of themeDeFormations " formControlName="nomthemeDeFormation"  [value]="themeDeFormation.idFormation">
-                            <!-- <ng-container *ngIf="themeDeFormation.nomFormation== "></ng-container> -->
+                        <select class="form-control  "     name="sessionFormation"   [(ngModel)]="idFormation" required
+                            >
+                            <option >Selectionner une session de formation</option>
+                            <option *ngFor="let themeDeFormation of themeDeFormations "  [value]="themeDeFormation.idFormation">
+                           
                                 {{themeDeFormation.nomFormation}}
                             </option>
                         
                         </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label>formateur :</label>
-                            <select class="form-control"
-                              
-                                [(ngModel)]="idFormateur" required ngModel>
-                                <option *ngFor="let formateur  of formateurs " formControlName="nomformateur" [value]="formateur.codeFormateur">
+                            <select class="form-control"  formControlName="codeFormateur" required >
+                                <option [value]="null">Selectionner un formateur</option>
+                                <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur" >
                                     {{formateur.nomFormateur}}
                                 </option>
                             
@@ -222,22 +229,22 @@
                             <label>nbrHeures: </label>
                             <input type="number" formControlName="nbrHeures" class="form-control" required>
                         </div>
-<div class="form-group">
-    <label>type de formation :</label>
-    <input type="text" formControlName="typeFormation" class="form-control" required>
-</div>
-<div class="form-group">
-    <label>locale :</label>
-    <input type="text" formControlName="localFormation" class="form-control" required>
-</div>
-<div class="form-group">
-    <label>description</label>
-    <input type="text" formControlName="description" class="form-control" required>
-</div>
+                        <div class="form-group">
+                            <label>type de formation :</label>
+                            <input type="text" formControlName="typeFormation" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>locale :</label>
+                            <input type="text" formControlName="localFormation" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>description</label>
+                            <input type="text" formControlName="description" class="form-control" required>
+                        </div>
 
                         <div class="form-group">
                             <label>image</label>
-                            <input type="file" formControlName="file" class="form-control"
+                            <input type="file"  class="form-control"
                                 (change)="onFileChanged($event)" required>
                         </div>
 
@@ -272,7 +279,8 @@
                     <form class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
                             (click)="modalRef.hide()">
-                        <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(sessionFormation)">
+                        <input type="submit" class="btn btn-danger" value="Supprimer"
+                            (click)="onDelete(sessionFormation)">
 
                     </form>
                 </div>

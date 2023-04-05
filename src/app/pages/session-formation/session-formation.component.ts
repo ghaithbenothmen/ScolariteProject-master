@@ -10,7 +10,9 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import {SessionFormationService} from 'src/app/services/session-formation.service';
 import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 import { formateurService } from 'src/app/services/formateur.service';
-import { formateur} from 'src/app/entities/formateur.model';
+import { Formateur} from 'src/app/entities/formateur.model';
+import { Action } from 'rxjs/internal/scheduler/Action';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-session-formation',
   templateUrl: './session-formation.component.html',
@@ -23,8 +25,8 @@ export class SessionFormationComponent {
   public sessionFormation!: SessionFormation;
   public themeDeFormations!: ThemeDeFormation[];
   public themeDeFormation!: ThemeDeFormation;
-  public formateurs!: formateur[];
-  public formateur!: formateur;
+  public formateurs!: Formateur[];
+  public formateur!: Formateur;
   
   public idFormation!: number;
   public codeFormateur!: number;
@@ -44,7 +46,7 @@ export class SessionFormationComponent {
   
   
 
-  constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService :formateurService ,public SessionFormationService : SessionFormationService,public ThemeDeFormationService:ThemeDeFormationService,private authService:AuthService) { }
+  constructor(private activateRoute :ActivatedRoute ,private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService :formateurService ,public SessionFormationService : SessionFormationService,public ThemeDeFormationService:ThemeDeFormationService,private authService:AuthService) { }
  public onFileChanged(event:any) {
   
    this.selectedFile = event.target.files[0];
@@ -55,7 +57,7 @@ export class SessionFormationComponent {
 
     this.SessionFormationService.getSessionFormation().subscribe(response => {
       console.log(response);
-     
+      
       this.sessionFormations = response;
    
     });
@@ -75,22 +77,28 @@ export class SessionFormationComponent {
 
   }
 
+ /*  getSessionFormation() {
 
-//  onFileChange(event) {
-//     this.Departement.file = event.target.files[0];
-//   }
-//   public onFileChanged(event:any) {
-  
-//    this.selectedFile = event.target.files[0];
-   
-  
-// }
+    this.SessionFormationService.getSessionFormation().subscribe(response => {
+
+      this.formateurService.getFormateur().subscribe(foreignKeys => {
+        this.sessionFormations = response.map(example => {
+          const foreignKey = foreignKeys.find(fk => fk.codeFormateur === example.codeFormateur);
+          return { ...example, foreignKey };
+       
+        
+     
+      });
+      
+    });
+  });
+} */
+
+
+
 
   onSubmit (f:NgForm) {
   
-  //   this.SessionFormationService.addimage(this.selectedFile).subscribe(response => {
-  //  console.log(response);
-  //    this.ngOnInit();  })
   this.ngOnInit();
    f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
    f.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
@@ -107,34 +115,45 @@ export class SessionFormationComponent {
   this.modalService.hide(); //dismiss the modal
 }
 
-  // onSubmits() {
-  //   this.departementService .addDepartement(
-  //     this.Departement
-  //   )
-  // }
+
 
   ngOnInit(): void {
-    
+  
     this.getSessionFormation();
-    console.log(this.authService.getToken())
+    console.log(this.authService.getToken());
     
     this.editForm = this.fb.group({
-    
-        idFormation: [''],
-     typeFormation: [''],
-   localFormation: [''],
+
+      idSessionFormation:[''],
+      nomthemeFormation: [''],
+      idFormation: [''],
+      typeFormation: [''],
+      localFormation: [''],
       description: [''],
-      nomformateur: [''],
+
+      codeFormateur: [],
       dateDebut: [''],
       nbrHeures: [''],
-      nomthemeFormation: [''],
+      
       file: [''],
    
-
-
-
     })
 
+    this.SessionFormationService.getSessionFormation().subscribe(sessionFormations => {
+
+      this.formateurService.getFormateur().subscribe(foreignKeys => {
+        this.sessionFormations = sessionFormations.map(example => {
+          const foreignKey = foreignKeys.find(fk => fk.codeFormateur === example.codeFormateur);
+          
+          return { ...example, foreignKey };
+       
+          
+     
+      });
+      
+    });
+  });
+  
 }
 
 
@@ -150,11 +169,16 @@ export class SessionFormationComponent {
     );
 
     this.editForm.patchValue({
-      idFormation: SessionFormation.themeDeFormation.nomFormation,
+      idSessionFormation:SessionFormation.idSessionFormation,
+      /* idFormation: SessionFormation.themeDeFormation.nomFormation, */
       typeFormation:SessionFormation.typeFormation,
+
      localFormation:SessionFormation.localFormation,
       description: SessionFormation.description,
-      nomformateur: SessionFormation.formateur.nomFormateur,
+
+      nomFormateur: SessionFormation.formateur.nomFormateur,
+      codeFormateur : SessionFormation.formateur.codeFormateur,
+
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
      file:SessionFormation.data,
@@ -176,13 +200,18 @@ openModal(modalTemplate: TemplateRef<any>) {
 }
 onSave() {
    
-     this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
-  this.editForm.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
+ /*  this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh); */
+  //this.editForm.value.codeFormateur = this.formateurs.find(formateur => formateur.codeFormateur == this.codeFormateur); 
+console.log(this.editForm.value.codeFormateur)
   
-  this.SessionFormationService.updateSessionFormation(this.editForm.value ,this.selectedFile ).subscribe(response => {
+  /* console.log('formateurs:', this.formateurs); */
+  this.SessionFormationService.updateSessionFormation(this.formateurs , this.editForm.value ,this.selectedFile,this.editForm.value.codeFormateur ).subscribe(response => {
       //console.log(response);
+      
       window.location.reload();
-      this.ngOnInit();})
+ 
+      
+      /* this.ngOnInit(); */})
     
     this.modalService.hide(); //dismiss the modal
   }

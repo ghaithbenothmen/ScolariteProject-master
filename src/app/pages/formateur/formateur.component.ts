@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { formateur } from 'src/app/entities/formateur.model';
+import { Formateur } from 'src/app/entities/formateur.model';
 import { Etablissement } from 'src/app/entities/etablissement.model';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -20,8 +20,8 @@ import { formateurService } from 'src/app/services/formateur.service';
   
 export class FormateurComponent {
   public modalRef!: BsModalRef;
-  public formateur!:  formateur [];
-  public Formateur!:  formateur ;
+  public formateur!:  Formateur [];
+  public Formateur!:  Formateur ;
   public editForm!: FormGroup;
  // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -103,7 +103,7 @@ export class FormateurComponent {
 
 
 /************************ pop up****************** */
-  openDetails(modalTemplate: TemplateRef<any>,  formateur :  formateur ) {
+  openDetails(modalTemplate: TemplateRef<any>,  formateur :  Formateur ) {
     this.modalRef = this.modalService.show(modalTemplate,
       {
 
@@ -166,7 +166,7 @@ onControl(f: NgForm) {
 
 
 /**********************Template delete ******************* */
-openDelete(modalTemplate: TemplateRef<any>, formateur:formateur) {
+openDelete(modalTemplate: TemplateRef<any>, formateur:Formateur) {
   this.deleteId = formateur.codeFormateur
       this.modalRef = this.modalService.show(modalTemplate,
         {
@@ -176,7 +176,7 @@ openDelete(modalTemplate: TemplateRef<any>, formateur:formateur) {
         }
       );
 }
- onDelete(Formateur: formateur) {
+ onDelete(Formateur: Formateur) {
    this.formateurService.deleteFormateur(this.deleteId).subscribe(response => {
     console.log(response);
     this.ngOnInit();})

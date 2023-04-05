@@ -1,5 +1,5 @@
 
-import {formateur } from "./formateur.model";
+import {Formateur } from "./formateur.model";
 import {ThemeDeFormation } from "./ThemeDeFormation.model";
 export class SessionFormation {
 
@@ -18,7 +18,9 @@ export class SessionFormation {
       public file: File,
       public fileType: string,
 
-      public formateur: formateur,
+      public formateur: Formateur,
+      public codeFormateur:number,
+      
       public themeDeFormation:ThemeDeFormation
       
     ) {

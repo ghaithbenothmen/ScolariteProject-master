@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import { formateur } from '../entities/formateur.model';
+import { Formateur } from '../entities/formateur.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class formateurService  {
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
     
-    return this.httpClient.get<formateur[]>(this.apiURL+"all",{headers:httpHeaders});}
+    return this.httpClient.get<Formateur[]>(this.apiURL+"all",{headers:httpHeaders});}
 
     // ajoutdepart(depart: Departement) : Observable <Departement> {
     //   let jwt = this.authService.getToken();
@@ -52,8 +52,8 @@ export class formateurService  {
 
   
   addformateur(file :File,
-     Formateur:formateur
-  ) : Observable <formateur> {
+     Formateur:Formateur
+  ) : Observable <Formateur> {
     let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt });
@@ -68,12 +68,12 @@ export class formateurService  {
     
     formData.append('EmailFormateur', Formateur.emailFormateur);
     formData.append('AdresseFormateur', Formateur.adresseFormateur);
-    return this.httpClient.post<formateur>(this.apiURL+'add', formData,{headers:httpHeaders});
+    return this.httpClient.post<Formateur>(this.apiURL+'add', formData,{headers:httpHeaders});
   }
 
 
 
-   updateFormateur( file :File,Formateur:formateur) :Observable <formateur>  {
+   updateFormateur( file :File,Formateur:Formateur) :Observable <Formateur>  {
       const url = `${this.apiURL}${Formateur.codeFormateur}`;
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
@@ -88,7 +88,7 @@ export class formateurService  {
     
     formData.append('EmailFormateur', Formateur.emailFormateur);
     formData.append('AdresseFormateur', Formateur.adresseFormateur);
-      return this.httpClient.put<formateur>(url, formData, {headers:httpHeaders});
+      return this.httpClient.put<Formateur>(url, formData, {headers:httpHeaders});
       
       }
 

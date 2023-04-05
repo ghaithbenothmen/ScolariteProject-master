@@ -1,4 +1,4 @@
-export class formateur {
+export class Formateur {
     constructor(
       
       
