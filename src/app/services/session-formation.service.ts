@@ -1,3 +1,4 @@
+import { ThemeDeFormation } from './../entities/ThemeDeFormation.model';
 import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 
 
@@ -79,7 +80,7 @@ export class SessionFormationService {
   }
 
 
-  updateSessionFormation(formateurs: Formateur[], sessionFormation: SessionFormation, file: File, selectedForeignKeyId: number): Observable<SessionFormation> {
+  updateSessionFormation(themeDeFormations:ThemeDeFormation[],formateurs: Formateur[], sessionFormation: SessionFormation, file: File, selectedForeignKeyId: number,selectedForeignKeyId2: number): Observable<SessionFormation> {
     const url = `${this.apiURL}${sessionFormation.idSessionFormation}`;
     let jwt = this.authService.getToken();
     jwt = "Bearer " + jwt;
@@ -91,12 +92,21 @@ export class SessionFormationService {
     formData.append('nbrHeures', sessionFormation.nbrHeures.toString());
     formData.append('Description', sessionFormation.description);
 
-    console.log(formateurs);
+    console.log('theme:',themeDeFormations);
     
-    const foreignKeyObject = formateurs.find(formateur => formateur.codeFormateur == selectedForeignKeyId);
-    if (foreignKeyObject) {
-      formData.append('formateur', JSON.stringify(foreignKeyObject.codeFormateur));
-      console.log(foreignKeyObject);
+    const foreignKeyFormateur = formateurs.find(formateur => formateur.codeFormateur == selectedForeignKeyId);
+    if (foreignKeyFormateur) {
+      formData.append('formateur', JSON.stringify(foreignKeyFormateur.codeFormateur));
+      console.log(foreignKeyFormateur);
+    } else {
+      console.log('Foreign key object not found.');
+
+    }
+
+    const foreignKeyTheme = themeDeFormations.find(themeDeFormation => themeDeFormation.idFormation == selectedForeignKeyId2);
+    if (foreignKeyTheme) {
+      formData.append('themeDeFormation', JSON.stringify(foreignKeyTheme.idFormation));
+      console.log('heloo',foreignKeyTheme);
     } else {
       console.log('Foreign key object not found.');
 

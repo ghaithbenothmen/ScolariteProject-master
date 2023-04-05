@@ -22,7 +22,8 @@ export class ThemeDeFormationService {
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
     
-    return this.httpClient.get<ThemeDeFormation[]>(this.apiURL+"all",{headers:httpHeaders});}
+    return this.httpClient.get<ThemeDeFormation[]>(this.apiURL+"all",{headers:httpHeaders});
+  }
 
    
 

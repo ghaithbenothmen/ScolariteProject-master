@@ -21,7 +21,8 @@ export class SessionFormation {
       public formateur: Formateur,
       public codeFormateur:number,
       
-      public themeDeFormation:ThemeDeFormation
+      public themeDeFormation:ThemeDeFormation,
+      public idFormation:number
       
     ) {
     }

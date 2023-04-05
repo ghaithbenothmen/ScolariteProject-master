@@ -197,9 +197,9 @@
 
                     </div>
                     <div class="modal-body">
-                        <!--  <div class="form-group">
+                         <div class="form-group">
                        <label> theme de formation :</label>
-                        <select class="form-control  "     name="sessionFormation"   [(ngModel)]="idFormation" required
+                        <select class="form-control  "     formControlName="idFormation"    required
                             >
                             <option >Selectionner une session de formation</option>
                             <option *ngFor="let themeDeFormation of themeDeFormations "  [value]="themeDeFormation.idFormation">
@@ -208,7 +208,7 @@
                             </option>
                         
                         </select>
-                        </div> -->
+                        </div>
                         <div class="form-group">
                             <label>formateur :</label>
                             <select class="form-control"  formControlName="codeFormateur" required >
