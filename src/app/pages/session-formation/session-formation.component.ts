@@ -236,7 +236,7 @@ export class SessionFormationComponent {
     this.SessionFormationService.updateSessionFormation(this.themeDeFormations, this.formateurs, this.editForm.value, this.selectedFile, this.editForm.value.codeFormateur,this.editForm.value.idFormation).subscribe(response => {
       //console.log(response);
 
-      /* window.location.reload(); */
+      window.location.reload();
 
 
       /* this.ngOnInit(); */
