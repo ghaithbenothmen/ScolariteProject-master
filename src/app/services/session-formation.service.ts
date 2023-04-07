@@ -123,7 +123,7 @@ export class SessionFormationService {
 
     // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
     formData.append('LocalFormation', sessionFormation.localFormation);
-    formData.append('TypeFormation', sessionFormation.typeFormation);
+    formData.append('typeFormation', sessionFormation.typeFormation);
     //formData.append('themeDeFormation', JSON.stringify(SessionFormation.themeDeFormation.idFormation));
 
       
