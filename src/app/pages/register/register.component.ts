@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from 'src/app/entities/role.model';
 import { User } from 'src/app/entities/user.model';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,14 @@ export class RegisterComponent {
   public registerForm!: FormGroup;
   
   public errorMessage!: String;
-  
+
+  //message register
+  private registrationSuccessSubject = new Subject<string>();
+
+  registrationSuccess$ = this.registrationSuccessSubject.asObservable();
+  message!: string; // Add message variable
+/////////////////////////////////////////
+
 
   constructor(private router: Router,private fb: FormBuilder,private userSer:UserService) { }
 

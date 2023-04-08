@@ -1,12 +1,12 @@
-import { PresentationComponent } from './pages/presentation/presentation.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { EtablissementComponent } from './pages/etablissement/etablissement.component';
+
 import { AuthGuard } from './guard/auth.guard';
-import { ApprenantComponent } from './pages/apprenant/apprenant.component';
+
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { ApprenantLayoutComponent } from './layout/apprenant-layout/apprenant-layout.component';
 
 const routes: Routes = [
   {
@@ -23,7 +23,19 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
-  }, {
+  },
+  {
+    canActivate: [AuthGuard],
+    path: '',
+    component: ApprenantLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/layout/apprenant-layout/apprenant-layout.module').then(m => m.ApprenantLayoutModule)
+      }
+    ]
+  },
+   {
     path: '',
     component: AuthLayoutComponent,
     children: [

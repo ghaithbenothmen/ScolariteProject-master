@@ -1,13 +1,13 @@
-import {  FormateurComponent } from '../../pages/formateur/formateur.component';
-import { EtablissementComponent } from './../../pages/etablissement/etablissement.component';
-import { ApprenantComponent } from '../../pages/apprenant/apprenant.component';
+import {  FormateurComponent } from '../../pages/admin-pages/formateur/formateur.component';
+import { EtablissementComponent } from '../../pages/admin-pages/etablissement/etablissement.component';
+import { ApprenantComponent } from '../../pages/admin-pages/apprenant/apprenant.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ThemeDeFormationComponent } from '../../pages/theme-de-formation/theme-de-formation.component';
+import { ThemeDeFormationComponent } from '../../pages/admin-pages/theme-de-formation/theme-de-formation.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
-import { ActualiteComponent } from 'src/app/pages/actualite/actualite.component';
+import { ActualiteComponent } from 'src/app/pages/admin-pages/actualite/actualite.component';
 import { SessionFormation } from 'src/app/entities/SessionFormation.model';
-import { SessionFormationComponent } from '../../pages/session-formation/session-formation.component';
+import { SessionFormationComponent } from '../../pages/admin-pages/session-formation/session-formation.component';
 
 const routes: Routes = [
  

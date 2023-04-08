@@ -56,7 +56,7 @@ export class LoginComponent {
         
         this.router.navigate(['/apprenant']);
       } else {
-        this.router.navigate(['/etablissement']);
+        this.router.navigate(['/inscri']);
       }
 
 

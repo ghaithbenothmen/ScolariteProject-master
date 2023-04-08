@@ -1,11 +1,11 @@
 
-import { ActualiteComponent } from './../../pages/actualite/actualite.component';
-import { AccueilComponent } from '../../pages/accueil/accueil.component';
-import { PresentationComponent } from '../../pages/presentation/presentation.component';
+import { ActualiteComponent } from './../../pages/admin-pages/actualite/actualite.component';
+import { AccueilComponent } from '../../pages/auth-pages/accueil/accueil.component';
+import { PresentationComponent } from '../../pages/auth-pages/presentation/presentation.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/app/pages/login/login.component';
-import { ActuPageComponent } from 'src/app/pages/actu-page/actu-page.component';
+import { ActuPageComponent } from 'src/app/pages/auth-pages/actu-page/actu-page.component';
 import { RegisterComponent } from 'src/app/pages/register/register.component';
 
 const routes: Routes = [

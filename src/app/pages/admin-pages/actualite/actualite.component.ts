@@ -1,5 +1,5 @@
-import { Actualite } from './../../entities/actualite.model';
-import { ActualiteService } from './../../services/actualite.service';
+import { Actualite } from './../../../entities/actualite.model';
+import { ActualiteService } from './../../../services/actualite.service';
 import { EtablissementService } from 'src/app/services/etablissement.service';
 
 
