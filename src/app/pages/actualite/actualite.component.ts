@@ -87,8 +87,8 @@ export class ActualiteComponent {
       dateActualite: [''],
    
       file: [''],
-
-
+    fileType: [''],
+   dataa:[''],
     })
 
 }
@@ -110,7 +110,9 @@ export class ActualiteComponent {
       titreActualite: Actualite.titreActualite,
       descriptionActualite: Actualite.descriptionActualite,
       dateActualite: Actualite.dateActualite,
+      dataa: Actualite.data,
 
+      fileType: Actualite.fileType,
     });
 
   }

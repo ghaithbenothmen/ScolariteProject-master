@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Actualite } from 'src/app/entities/actualite.model';
 import { ActualiteService } from 'src/app/services/actualite.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,10 +13,15 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./actu-page.component.css']
 })
 export class ActuPageComponent {
+    public modalRef!: BsModalRef;
   public Actualites!: Actualite[];
   public actualite!: Actualite;
 public dateActualite !: string;
-  constructor( private datePipe: DatePipe,  private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService) { }
+  editForm: any;
+  
+public isCollapsed = true;
+
+  constructor(private modalService: BsModalService, private datePipe: DatePipe,  private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService) { }
  
   getActualite() {
     this.actualiteService.getActualite().subscribe((response:any[]) => {
@@ -37,6 +42,36 @@ public dateActualite !: string;
     this.getActualite();
     
     console.log(this.authService.getToken())
+    this.editForm = this.fb.group({
+    
+      codeActualite: [''],
+      titreActualite: [''],
+      descriptionActualite: [''],
+      dateActualite: [''],
+   
+      file: [''],
+
+
+    })
   
-}
+  }
+   openDetails(modalTemplate: TemplateRef<any>, Actualite: Actualite) {
+    this.modalRef = this.modalService.show(modalTemplate,
+      {
+
+        class: 'modal-dialogue-centered modal-md',
+        backdrop: 'static',
+        keyboard: true
+      }
+    );
+
+    this.editForm.patchValue({
+      codeActualite: Actualite.codeActualite,
+      titreActualite: Actualite.titreActualite,
+      descriptionActualite: Actualite.descriptionActualite,
+      dateActualite: Actualite.dateActualite,
+
+    });
+
+  }
 }
