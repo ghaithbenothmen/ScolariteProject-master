@@ -42,6 +42,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SideAppComponent } from './components/side-app/side-app.component';
 import { ApprenantLayoutComponent } from './layout/apprenant-layout/apprenant-layout.component';
 import { InscriptionComponent } from './pages/apprenant-pages/inscription/inscription.component';
+import { RegisterInfoComponent } from './pages/register-info/register-info.component';
 registerLocaleData(localeFr);
 
 
@@ -68,6 +69,7 @@ registerLocaleData(localeFr);
        SessionFormationComponent,
        RegisterComponent,
        SideAppComponent,
+       RegisterInfoComponent,
        
 
         

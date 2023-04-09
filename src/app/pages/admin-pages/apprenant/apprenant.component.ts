@@ -38,13 +38,13 @@ export class ApprenantComponent {
     private appService: ApprenantService, private authService: AuthService) { }
   isCollapsed = false;
   ngOnInit(): void {
-    apprenant: Apprenant
+
     this.getApprenants();
     console.log(this.authService.getToken())
 
     this.editForm = this.fb.group({
       idApprenant: [''],
-      codeApprenant: [''],
+
       nomApprenant: [''],
       prenomApprenant: [''],
       /* sexeApprenant: [''], */
@@ -53,10 +53,10 @@ export class ApprenantComponent {
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
-      sexeApprenant: [''],  
-  
-      niveauApprenant:[''],
-      qualiteApprenant:[''],
+      sexeApprenant: [''],
+
+      niveauApprenant: [''],
+      qualiteApprenant: [''],
       userame: [''],
       password: [''],
       email: ['']
@@ -65,7 +65,7 @@ export class ApprenantComponent {
 
     this.editForm2 = this.fb.group({
       idApprenant: [''],
-      codeApprenant: [''],
+
       nomApprenant: [''],
       prenomApprenant: [''],
       /* sexeApprenant: [''], */
@@ -74,8 +74,8 @@ export class ApprenantComponent {
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
-   
-   
+
+
 
     })
   }
@@ -129,7 +129,7 @@ export class ApprenantComponent {
 
     this.editForm.patchValue({
       idApprenant: apprenant.idApprenant,
-      codeApprenant: apprenant.codeApprenant,
+
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,
@@ -144,7 +144,7 @@ export class ApprenantComponent {
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,
 
-  
+
     });
 
 
@@ -183,7 +183,7 @@ export class ApprenantComponent {
 
     this.editForm2.patchValue({
       idApprenant: apprenant.idApprenant,
-      codeApprenant: apprenant.codeApprenant,
+
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,
@@ -192,7 +192,7 @@ export class ApprenantComponent {
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
- 
+
 
     });
 

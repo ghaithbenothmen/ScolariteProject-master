@@ -11,25 +11,24 @@ import { AuthService } from './auth.service';
 })
 
 
-export class ApprenantService  {
-  apiURL: string = "http://localhost:8080/apprenant/api";
- 
-  constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
+export class ApprenantService {
+  apiURL: string = "http://localhost:8080/apprenant/api/apprenant";
+
+  constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 
 
   getApprenants() {
     let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt})
-    return this.httpClient.get<Apprenant[]>(this.apiURL,{headers:httpHeaders});}
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.httpClient.get<Apprenant[]>(this.apiURL, { headers: httpHeaders });
+  }
 
 
-    ajoutApp(app: Apprenant) : Observable <Apprenant> {
-      let jwt = this.authService.getToken();
-      jwt = "Bearer "+jwt;
-      let httpHeaders = new HttpHeaders({"Authorization":jwt});
+  ajoutApp(app: Apprenant): Observable<Apprenant> {
 
-    return this.httpClient.post<Apprenant>(this.apiURL,app,{headers:httpHeaders}).pipe(
+
+    return this.httpClient.post<Apprenant>(this.apiURL + "/add", app).pipe(
       catchError((error) => {
         if (error.error && error.error.message === 'Email already in use') {
           // Display alert message using ngx-toastr or Angular's built-in Alert service
@@ -38,34 +37,34 @@ export class ApprenantService  {
       })
     );
   }
-      
-    updateApp(app : Apprenant)  {
-      const url = `${this.apiURL}/${app.idApprenant}`;
-      let jwt = this.authService.getToken();
-      jwt = "Bearer "+jwt;
-      let httpHeaders = new HttpHeaders({"Authorization":jwt})
 
-      return this.httpClient.put<Apprenant>(url,app, {headers:httpHeaders});
-      }
+  updateApp(app: Apprenant) {
+    const url = `${this.apiURL}/${app.idApprenant}`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
-      supprimerApp(app : Apprenant) {
-        const url = `${this.apiURL}/${app.idApprenant}/patch`;
-        let jwt = this.authService.getToken();
-        jwt = "Bearer "+jwt;
-        let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.httpClient.put<Apprenant>(url, app, { headers: httpHeaders });
+  }
 
-          return this.httpClient.put<Apprenant>(url,app,  {headers:httpHeaders});
-        }
+  supprimerApp(app: Apprenant) {
+    const url = `${this.apiURL}/${app.idApprenant}/patch`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+    return this.httpClient.put<Apprenant>(url, app, { headers: httpHeaders });
+  }
 
 
- 
 
-    
- /*  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-debugger
-    const localToken = localStorage.getItem('token');
-    request = request.clone({ headers: request.headers.set('Authorization', 'bearer ' + localToken)});
-    return next.handle(request);
-  } */
+
+
+  /*  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+ debugger
+     const localToken = localStorage.getItem('token');
+     request = request.clone({ headers: request.headers.set('Authorization', 'bearer ' + localToken)});
+     return next.handle(request);
+   } */
 
 }

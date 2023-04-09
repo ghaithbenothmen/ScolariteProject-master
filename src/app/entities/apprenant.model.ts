@@ -1,7 +1,7 @@
 export class Apprenant {
     constructor(
       public idApprenant: number,
-      public codeApprenant: number,
+      
       public nomApprenant: string,
       public prenomApprenant: string,
       public sexeApprenant: string,
