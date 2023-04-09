@@ -26,7 +26,7 @@
 
 						<!------------------------------------------------------------------------------------->
 						<div>
-							<input class="form-control" type="email" placeholder="Email " name="email" required
+							<input class="form-control" type="email" placeholder="Email " name="email" required 
 								[(ngModel)]="user.email" formControlName="email" />
 							<div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier syntax
 								de votre email</div>
@@ -93,6 +93,15 @@
 									devez
 									entrer qualité de l'apprenant</span>
 							</div>
+							<div class="btn-group">
+								<input type="radio" class="btn-check" value="homme"  id="option1" autocomplete="off"  name="sexeApprenant" #sexeApprenant="ngModel" ngModel/>
+								<label class="btn btn-primary rounded " for="option1">Homme</label>
+							  
+								<input type="radio" class="btn-check" value="femme" id="option2" autocomplete="off" name="sexeApprenant" #sexeApprenant="ngModel" ngModel/>
+								<label class="btn btn-primary rounded " for="option2">Femme</label>
+							  
+								
+							  </div>
 							<div class="form-group ">
 								<input type="text" id="form3Example8" class="form-control "
 									placeholder="Niveau d'etude"  name="niveauApprenant" #niveauApprenant="ngModel" ngModel/>
