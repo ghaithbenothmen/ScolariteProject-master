@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'presentation',          component: PresentationComponent },
   { path: 'accueil',          component: AccueilComponent },
   { path: 'actu', component: ActuPageComponent },
-  { path: 'themeFormation', component: AffichageThemeDeFormationComponent },
-   { path: 'sessionFormation', component: AffichagesessionDeFormationComponent }
+  { path: 'AffichagethemeFormation', component: AffichageThemeDeFormationComponent },
+   { path: 'AffichagesessionFormation', component: AffichagesessionDeFormationComponent }
 ];
 
 @NgModule({
