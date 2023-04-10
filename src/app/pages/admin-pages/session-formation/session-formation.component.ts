@@ -13,6 +13,7 @@ import { formateurService } from 'src/app/services/formateur.service';
 import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute } from '@angular/router';
+import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-session-formation',
   templateUrl: './session-formation.component.html',
@@ -30,7 +31,7 @@ export class SessionFormationComponent {
 
   public idFormation!: number;
   public codeFormateur!: number;
-
+  public f !:NgForm;
   public editForm!: FormGroup;
   // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -171,6 +172,10 @@ export class SessionFormationComponent {
       });
 
     });
+
+  /*   this.f = this.fb.group({
+      codeFormateur: [null]
+    }); */
 
   }
 

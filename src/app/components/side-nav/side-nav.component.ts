@@ -72,7 +72,7 @@ export class SideNavComponent implements OnInit{
   setActiveItem(item: number) {
     this.activeItem = item;
   }
-  /****************************************** */
+  /*******************************************/
   public menuItems!: any[];
   public isCollapsed = true;
 

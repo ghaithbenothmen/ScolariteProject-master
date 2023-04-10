@@ -5,11 +5,13 @@ import { AuthLayoutRoutingModule } from './auth-layout-routing.module';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from 'src/app/pages/register/register.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent
+    
   ],
   imports: [
     CommonModule,
