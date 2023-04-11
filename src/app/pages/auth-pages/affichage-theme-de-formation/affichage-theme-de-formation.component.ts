@@ -22,8 +22,8 @@ public isCollapsed = true;
 
   constructor(private modalService: BsModalService, private datePipe: DatePipe,  private fb: FormBuilder,public themeDeFormationService:ThemeDeFormationService ,private authService:AuthService) { }
  
-  getThemeDeFormation() {
-    this.themeDeFormationService.getThemeDeFormation().subscribe(response => {
+  getThemeDeFormationn() {
+    this.themeDeFormationService.getThemeDeFormationn().subscribe(response => {
       console.log(response);
      
       this.ThemeDeFormation = response;
@@ -32,7 +32,7 @@ public isCollapsed = true;
   }
   ngOnInit(): void {
     
-    this.getThemeDeFormation();
+    this.getThemeDeFormationn();
     console.log(this.authService.getToken())
     
     this.editForm = this.fb.group({

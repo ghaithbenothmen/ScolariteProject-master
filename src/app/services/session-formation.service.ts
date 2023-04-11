@@ -35,6 +35,12 @@ export class SessionFormationService {
     return this.httpClient.get<SessionFormation[]>(this.apiURL + "all", { headers: httpHeaders });
   }
 
+
+  getSessionFormationn() {
+  
+
+    return this.httpClient.get<SessionFormation[]>(this.apiURL + "all");
+  }
   addimage(file: File
 
   ): Observable<SessionFormation> {

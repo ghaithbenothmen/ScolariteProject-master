@@ -13,6 +13,7 @@ import { formateurService } from 'src/app/services/formateur.service';
 import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-affichagesession-de-formation',
   templateUrl: './affichagesession-de-formation.component.html',
@@ -42,31 +43,27 @@ public items = ['En ligne', 'Présentiel'];
   dbimage: any;
   idFormateur: any;
   idTh: any;
+   public dateDebut !: string;
+    
+public isCollapsed = true;
   //SessionFormationService: any;
 
 
 
 
-  constructor( private modalService: BsModalService,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor( private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   
-  getSessionFormation() {
+  getSessionFormationn() {
 
     this.SessionFormationService.getSessionFormation().subscribe(response => {
       console.log(response);
+       response.forEach((item) => {
+        const date=new Date(item.dateDebut)
+       // = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+      });
 
       this.sessionFormations = response;
 
-    });
-    this.formateurService.getFormateur().subscribe(response => {
-      console.log(response);
-
-      this.formateurs = response;
-
-    });
-    this.ThemeDeFormationService.getThemeDeFormation().subscribe(response => {
-      console.log(response);
-
-      this.themeDeFormations = response;
 
     });
 
@@ -85,7 +82,7 @@ public items = ['En ligne', 'Présentiel'];
 
   ngOnInit(): void {
 
-    this.getSessionFormation();
+    this.getSessionFormationn();
     console.log(this.authService.getToken());
 
     this.editForm = this.fb.group({
@@ -141,67 +138,10 @@ public items = ['En ligne', 'Présentiel'];
   }
 
 
-  /************************ pop up****************** */
-  openDetails(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) {
-    this.modalRef = this.modalService.show(modalTemplate,
-      {
-
-        class: 'modal-dialogue-centered modal-md',
-        backdrop: 'static',
-        keyboard: true
-      }
-    );
-
-    this.editForm.patchValue({
-
-      idSessionFormation: SessionFormation.idSessionFormation,
-      /* idFormation: SessionFormation.themeDeFormation.nomFormation, */
-
-      //idFormation: SessionFormation.themeDeFormation.nomFormation,
-
-      typeFormation: SessionFormation.typeFormation,
-
-      localFormation: SessionFormation.localFormation,
-      description: SessionFormation.description,
+ 
 
 
-      
-      codeFormateur: SessionFormation.formateur.codeFormateur,
-
-
-
-
-      dateDebut: SessionFormation.dateDebut,
-      nbrHeures: SessionFormation.nbrHeures,
-      //file:SessionFormation.data,
-      idFormation: SessionFormation.themeDeFormation.idFormation,
-
-    });
-
-  }
-
-
-  openModal(modalTemplate: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(modalTemplate,
-      {
-        class: 'modal-dialogue-centered modal-md',
-        backdrop: 'static',
-        keyboard: true
-      }
-    );
-  }
-  /***********contoller ************** */
-
-  onControl(f: NgForm) {
-    if (f.valid) {
-      this.message = 'Actualite bien ajouté !';
-    }
-    if (f.invalid) {
-      this.message = 'Actualite non ajoué ! Verifier votre formulaire !';
-    }
-  }
-
-
+  
   
 
 

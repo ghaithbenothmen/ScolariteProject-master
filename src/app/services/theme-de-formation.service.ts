@@ -24,6 +24,12 @@ export class ThemeDeFormationService {
     
     return this.httpClient.get<ThemeDeFormation[]>(this.apiURL+"all",{headers:httpHeaders});
   }
+  
+    getThemeDeFormationn() {
+    
+    
+    return this.httpClient.get<ThemeDeFormation[]>(this.apiURL+"all");
+  }
 
    
 
