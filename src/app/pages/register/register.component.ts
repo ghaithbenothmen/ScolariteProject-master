@@ -57,6 +57,7 @@ export class RegisterComponent {
       /* const email = this.registerForm.get('email').value;
       const password = this.registerForm.get('password').value; */
       this.appService.ajoutApp(f.value).subscribe(response => {
+        console.log(this.registerForm.value.email)
         console.log(response);
         
       })

@@ -1,12 +1,12 @@
 <section id="sidebar" [ngClass]="status ? 'hide' : ''">
-          
+
         <a href="#" class="brand">
-                <ng-container  *ngFor="let etablissement of etablissements">
-                        <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="50px"
-                                        height="50px" />
-                                        <span class="text">{{etablissement.nomEtablissement}}</span>
-                                </ng-container>
-                        
+                <ng-container *ngFor="let etablissement of etablissements">
+                        <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
+                                width="50px" height="50px" />
+                        <span class="text">{{etablissement.nomEtablissement}}</span>
+                </ng-container>
+
         </a>
         <ul class="side-menu top">
                 <li (click)="setActiveItem(1)" [ngClass]="{'active': activeItem === 1}">
@@ -26,11 +26,11 @@
                                 <i class='bx bx-notepad'></i>
                                 <span class="text">Théme De Formation</span>
                         </a>
-                        <li (click)="setActiveItem(4)" [ngClass]="{'active': activeItem === 4}">
-                                <a routerLink="sessionDeFormation">
-                                        <i class='bx bx-notepad'></i>
-                                        <span class="text">Session De Formation</span>
-                                </a>
+                <li (click)="setActiveItem(4)" [ngClass]="{'active': activeItem === 4}">
+                        <a routerLink="sessionDeFormation">
+                                <i class='bx bx-notepad'></i>
+                                <span class="text">Session De Formation</span>
+                        </a>
                 </li>
                 <li (click)="setActiveItem(5)" [ngClass]="{'active': activeItem === 5}">
                         <a routerLink="etablissement">
@@ -39,7 +39,7 @@
                         </a>
                 </li>
 
-              
+
                 <li (click)="setActiveItem(6)" [ngClass]="{'active': activeItem === 6}">
                         <a routerLink="actualiteDash">
                                 <i class='bx bxs-doughnut-chart'></i>
@@ -76,7 +76,7 @@
 <section id="content">
         <!-- NAVBAR -->
         <nav>
-               
+
                 <i (click)="addToggle()" class='bx bx-menu'></i>
 
                 <form action="#">
@@ -109,6 +109,6 @@
         <!-- NAVBAR -->
         <!-- MAIN -->
         <router-outlet></router-outlet>
-      
+
         <!-- MAIN -->
 </section>

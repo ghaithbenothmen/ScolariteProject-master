@@ -55,11 +55,12 @@ public isCollapsed = true;
   
   getSessionFormationn() {
 
-    this.SessionFormationService.getSessionFormation().subscribe(response => {
+    this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
       console.log(response);
+
        response.forEach((item) => {
         const date=new Date(item.dateDebut)
-       // = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+      item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
       });
 
       this.sessionFormations = response;
@@ -106,34 +107,6 @@ public isCollapsed = true;
 
 
     })
-
-    this.SessionFormationService.getSessionFormation().subscribe(sessionFormations => {
-
-      this.formateurService.getFormateur().subscribe(foreignKeys => {
-        this.sessionFormations = sessionFormations.map(example => {
-          const foreignKey = foreignKeys.find(fk => fk.codeFormateur === example.codeFormateur);
-
-          return { ...example, foreignKey };
-
-
-
-        });
-
-      });
-      
-      this.ThemeDeFormationService.getThemeDeFormation().subscribe(foreignKeys => {
-        this.sessionFormations = sessionFormations.map(example => {
-          const foreignKeyTh = foreignKeys.find(fk => fk.idFormation === example.idFormation);
-
-          return { ...example, foreignKeyTh };
-
-
-
-        });
-
-      });
-
-    });
 
   }
 
