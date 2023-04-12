@@ -5,7 +5,7 @@ export class Apprenant {
       public nomApprenant: string,
       public prenomApprenant: string,
       public sexeApprenant: string,
-      public dateNaissanceApprenant: Date,
+      public dateNaissanceApprenant: string,
       public emailApprenant: string,
       public telApprenant: number,
       public adresseApprenant: string,

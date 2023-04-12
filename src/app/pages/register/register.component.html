@@ -26,8 +26,8 @@
 
 						<!------------------------------------------------------------------------------------->
 						<div>
-							<input class="form-control" type="email" placeholder="Email " name="email" required 
-								[(ngModel)]="user.email" formControlName="email" />
+							<input class="form-control" type="email" placeholder="Email " name="emailApprenant" required ngModel
+								 [(ngModel)]="user.email" formControlName="emailApprenant" formControlName="email" />
 							<div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier syntax
 								de votre email</div>
 							<!-- <div *ngIf="registerForm.controls['email']?.errors?.['required']" class="error">email obligatoire</div> -->
@@ -44,7 +44,7 @@
 								passe doit avoir maximum 20 caracters</div>
 						</div>
 						<div>
-							<input class="form-control" type="password" placeholder="Retappez mot de passe"
+							<input class="form-control" type="password" placeholder="Retappez mot de passe" 
 								name="confirmPassword" formControlName="confirmPassword"
 								formControlName="confirmPassword" required />
 						</div>

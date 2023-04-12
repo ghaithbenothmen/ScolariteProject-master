@@ -6,6 +6,11 @@ import { User } from 'src/app/entities/user.model';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ApprenantService } from 'src/app/services/apprenant.service';
+import { Apprenant } from 'src/app/entities/apprenant.model';
+
+
+
+
 
 @Component({
   selector: 'app-register',
@@ -13,6 +18,8 @@ import { ApprenantService } from 'src/app/services/apprenant.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  
+
   
   user:User = {
     email:'',
@@ -24,13 +31,8 @@ export class RegisterComponent {
   public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
 
   public errorMessage!: String;
+ 
 
-  //message register
-  private registrationSuccessSubject = new Subject<string>();
-
-  registrationSuccess$ = this.registrationSuccessSubject.asObservable();
-  message!: string; // Add message variable
-/////////////////////////////////////////
 
 
   constructor(private appService: ApprenantService,private router: Router,private fb: FormBuilder,private userSer:UserService) { }

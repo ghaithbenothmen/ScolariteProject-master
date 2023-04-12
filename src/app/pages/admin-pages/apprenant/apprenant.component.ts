@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Apprenant } from 'src/app/entities/apprenant.model';
 import { ApprenantService } from 'src/app/services/apprenant.service';
@@ -39,6 +39,7 @@ export class ApprenantComponent {
   isCollapsed = false;
   ngOnInit(): void {
 
+    
     this.getApprenants();
     console.log(this.authService.getToken())
 
