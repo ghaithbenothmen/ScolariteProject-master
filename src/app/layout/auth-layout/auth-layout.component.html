@@ -3,15 +3,18 @@
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            
-                <ng-container *ngFor="let etablissement of etablissements">
-                   <a href="accueil"><img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
-                        width="70px" height="100%" class="rounded"/></a> 
-                        <a href="accueil" class="logo d-flex container-fluid">
-                    <span ><h1>{{etablissement.nomEtablissement}}</h1></span>  </a>
-                </ng-container>
 
-          
+            <ng-container *ngFor="let etablissement of etablissements">
+                <a href="accueil"><img height="36"
+                        src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="70px"
+                        height="100%" class="rounded" /></a>
+                <a href="accueil" class="logo d-flex container-fluid">
+                    <span>
+                        <h1>{{etablissement.nomEtablissement}}</h1>
+                    </span> </a>
+            </ng-container>
+
+
 
 
 
@@ -22,39 +25,48 @@
                     <li><a routerLink="presentation">Presentation</a></li>
                     <li><a routerLink="actu">Actualité</a></li>
 
-                    <li class="dropdown"><a href=""><span>  Formation</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <li class="dropdown"><a href=""><span> Formation</span> <i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li>
                                 <a routerLink="AffichagesessionFormation">Nous session de formation</a>
                             </li>
-                   
-                    
-                        <a routerLink="AffichagethemeFormation">Nous thèmes de formation</a>
-                    
+
+
+                            <a routerLink="AffichagethemeFormation">Nous thèmes de formation</a>
+
                         </ul>
                     </li>
                     <li><a routerLink="#">Contact</a></li>
-                    <li class="dropdown"><a href="login"><span>Connexion</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li>
-                                <a routerLink="login">Login</a>
-                            </li>
 
 
-                            <li><a routerLink="register">Register</a></li>
+        <li class="dropdown"><a href="login" *ngIf="!authService.isLoggedIn()"><span>Connexion</span> <i
+                    class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <a class="nav-link dropdown-toggle second-text fw-bold" type="button" *ngIf="authService.isLoggedIn()"
+                >
+                <i class="bi bi-chevron-down dropdown-indicator"></i><span>{{authService.loggedUser}}</span>
+            </a>
 
-                        </ul>
-                    </li>
-                    
-                </ul>
-            </nav><!-- .navbar -->
+            <ul>
+                <li>
+                    <a routerLink="login" *ngIf="!authService.isLoggedIn()">Login</a>
+                </li>
+                <li><a type="button" *ngIf="authService.isLoggedIn()" 
+                    (click)="onLogout()">Logout</a></li>
 
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                <li><a routerLink="register" *ngIf="!authService.isLoggedIn()">Register</a></li>
 
-        </div>
-    </header><!-- End Header -->
-    <router-outlet></router-outlet>
+            </ul>
+        </li>
+
+        </ul>
+        </nav><!-- .navbar -->
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+</div>
+</header><!-- End Header -->
+<router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

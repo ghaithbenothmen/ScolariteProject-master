@@ -101,8 +101,7 @@
                                 <!-- <li><a class="dropdown-item" href="#" ngbDropdownItem>Profile</a></li>
                             <li><a class="dropdown-item" href="#" ngbDropdownItem>Settings</a></li> -->
                 <li><a type="button" *ngIf="!authService.isLoggedIn()" ngbDropdownItem routerLink="login">Login</a></li>
-                <li><a type="button" *ngIf="authService.isLoggedIn()" ngbDropdownItem (click)="onLogout()">Logout</a>
-                </li>
+                <li><a type="button" *ngIf="authService.isLoggedIn()" ngbDropdownItem (click)="onLogout()">Logout</a></li>
                 </div>
                 </li>
         </nav>
