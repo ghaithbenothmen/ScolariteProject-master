@@ -27,14 +27,13 @@ export class SessionFormationService {
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 
 
+  
+
+
   getSessionFormation() {
-    let jwt = this.authService.getToken();
-    jwt = "Bearer " + jwt;
-    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
-    return this.httpClient.get<SessionFormation[]>(this.apiURL + "all", { headers: httpHeaders });
+   return this.httpClient.get<SessionFormation[]>(this.apiURL + "all",);
   }
-
   addimage(file: File
 
   ): Observable<SessionFormation> {

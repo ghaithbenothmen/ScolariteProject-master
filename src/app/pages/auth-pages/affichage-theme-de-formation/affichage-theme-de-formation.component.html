@@ -1,0 +1,46 @@
+<section class="event_section layout_padding">
+
+    <div class="container">
+
+        <div class="heading_container">
+            <h3>
+              Les thèmes
+            </h3>
+            <p>
+                Voila nous thèmes de formation :
+            </p>
+        </div>
+<div class="container py-5">
+        <div class="event_container">
+            <ng-container *ngFor="let ThemeDeFormation  of ThemeDeFormation">
+              
+                 
+                <div class="row">
+                    <div class="col-lg-7 mx-auto">
+                
+                        <!-- Timeline -->
+                        <ul class="timeline">
+                            <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                                <div class="timeline-arrow"></div>
+                                <h2 class="h5 mb-0">{{ThemeDeFormation.nomFormation}}</h2><span class="small text-gray"><i
+                                        class="fa fa-clock-o mr-1"></i>{{ThemeDeFormation.abrevation}}</span>
+                                <p class="text-small mt-2 font-weight-light">{{ThemeDeFormation.description}}</p>
+                            </li>
+                            
+                        </ul><!-- End -->
+                
+                    </div>
+                </div>
+          
+          
+                        </ng-container>
+
+            
+        </div>
+        <div class="btn-box">
+
+        </div>
+
+    </div>
+</div>
+</section>

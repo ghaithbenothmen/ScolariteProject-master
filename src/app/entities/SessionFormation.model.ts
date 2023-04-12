@@ -5,7 +5,7 @@ export class SessionFormation {
 
 
     constructor(
-      
+     
       
       public idSessionFormation: number,
       public typeFormation: string,
