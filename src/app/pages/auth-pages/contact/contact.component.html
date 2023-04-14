@@ -1,0 +1,44 @@
+<section class="contact_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h3>
+                Contactez-nous !
+              </h3>
+              <p>
+                Merci de nous contaactez et nous donnez votre avis par rapport notre etablissement.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-form">
+            <h5>
+              Contactez-nous !
+            </h5>
+            <form action="" #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+              <div>
+                <input type="text" placeholder="Votre Nom et Prenom " name="nomPrenom" #nomPrenom="ngModel" ngModel/>
+              </div>
+              <div>
+                <input type="text" placeholder="Numero Telephone" name="numTel" #numTel="ngModel" ngModel/>
+              </div>
+              <div>
+                <input type="email" placeholder="Adresse email" name="email" #email="ngModel" ngModel/>
+              </div>
+              <div>
+                <input type="text" placeholder="Message" class="input_message" name="message" #message="ngModel" ngModel/>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn_on-hover">
+                  Envoyer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

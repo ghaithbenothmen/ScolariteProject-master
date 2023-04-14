@@ -12,9 +12,11 @@ import { AffichageThemeDeFormationComponent } from 'src/app/pages/auth-pages/aff
 import { AffichagesessionDeFormationComponent } from 'src/app/pages/auth-pages/affichagesession-de-formation/affichagesession-de-formation.component';
 
 import { RegisterInfoComponent } from 'src/app/pages/register-info/register-info.component';
+import { ContactComponent } from 'src/app/pages/auth-pages/contact/contact.component';
 
 const routes: Routes = [
   { path: 'login',          component: LoginComponent },
+  { path: 'contact',          component: ContactComponent },
   { path: 'register',          component: RegisterComponent },
   { path: 'register-info',          component: RegisterInfoComponent },
   { path: 'presentation',          component: PresentationComponent },

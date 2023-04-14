@@ -7,14 +7,17 @@ import { AuthGuard } from './guard/auth.guard';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { ApprenantLayoutComponent } from './layout/apprenant-layout/apprenant-layout.component';
+import { Role } from './entities/role.model';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'apprenant',
     pathMatch: 'full',
-  }, {
+  }, 
+  {
     canActivate: [AuthGuard],
+    
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -25,7 +28,6 @@ const routes: Routes = [
     ]
   },
   {
-    canActivate: [AuthGuard],
     path: '',
     component: ApprenantLayoutComponent,
     children: [

@@ -12,7 +12,7 @@ export class ThemeDeFormationService {
 
    apiURL: string = "http://localhost:8080/apprenant/api/themeDeFormation/";
 
-  constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
+  constructor(private httpClient: HttpClient, private authService : AuthService) { }
 
 
 
@@ -65,7 +65,7 @@ export class ThemeDeFormationService {
         let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
 
-         return this.httpClient.delete(this.apiURL+idFormation,{headers:httpHeaders});}
+         return this.httpClient.delete(this.apiURL+idFormation ,{headers:httpHeaders});}
       } 
     
 

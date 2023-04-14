@@ -1,3 +1,4 @@
+import { MessagesComponent } from './../../pages/admin-pages/messages/messages.component';
 import {  FormateurComponent } from '../../pages/admin-pages/formateur/formateur.component';
 import { EtablissementComponent } from '../../pages/admin-pages/etablissement/etablissement.component';
 import { ApprenantComponent } from '../../pages/admin-pages/apprenant/apprenant.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'actualiteDash', component: ActualiteComponent },
   { path: 'themeDeFormation', component: ThemeDeFormationComponent },
    {path:'sessionDeFormation',component:SessionFormationComponent},
+   {path:'messages',component:MessagesComponent},
 ];
 
 @NgModule({

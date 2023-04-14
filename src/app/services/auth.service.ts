@@ -62,7 +62,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.router.navigate(['/login']);
-    window.location.reload();
+    
   }
 
   isTokenExpired(): Boolean {

@@ -47,6 +47,8 @@ import { AffichageThemeDeFormationComponent } from './pages/auth-pages/affichage
 import { AffichagesessionDeFormationComponent } from './pages/auth-pages/affichagesession-de-formation/affichagesession-de-formation.component';
 
 import { RegisterInfoComponent } from './pages/register-info/register-info.component';
+import { ContactComponent } from './pages/auth-pages/contact/contact.component';
+import { MessagesComponent } from './pages/admin-pages/messages/messages.component';
 
 registerLocaleData(localeFr);
 
@@ -79,6 +81,8 @@ registerLocaleData(localeFr);
        AffichagesessionDeFormationComponent,
 
        RegisterInfoComponent,
+         ContactComponent,
+         MessagesComponent,
 
        
 

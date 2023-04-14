@@ -35,6 +35,10 @@ export class LoginComponent {
         role: userD.role 
       };
     }); */
+
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/accueil']);
+    }
   }
 
   onLoggedin() {

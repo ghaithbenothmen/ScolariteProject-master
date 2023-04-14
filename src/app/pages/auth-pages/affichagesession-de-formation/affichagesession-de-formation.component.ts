@@ -60,9 +60,12 @@ public isCollapsed = true;
 
        response.forEach((item) => {
         const date=new Date(item.dateDebut)
-      item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
-      });
+        const day=new Date(item.dateDebut).getDay();
 
+      item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+
+      });
+      
       this.sessionFormations = response;
 
 
