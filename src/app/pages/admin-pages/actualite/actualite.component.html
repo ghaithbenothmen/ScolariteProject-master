@@ -63,7 +63,11 @@
 
                 </tbody>
             </table>
-
+            <pagination-controls previousLabel="Précédent"
+			nextLabel="Suivant"
+			(pageChange)="onTableChange($event)">
+				
+			</pagination-controls>
         </div>
 
     </div>

@@ -34,9 +34,24 @@ export class ApprenantComponent {
   public apiURL: string = "http://localhost:8080/apprenant/api";
 
 
+  
+
   constructor(private userSer: UserService, private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,
     private appService: ApprenantService, private authService: AuthService) { }
-  isCollapsed = false;
+    
+    
+    //Pagination//
+    page:number=1;
+    count:number=0;
+    tableSize:number=3;
+    onTableChange(event:any){
+      this.page=event;
+      this.getApprenants();
+
+    }
+
+
+
   ngOnInit(): void {
 
     

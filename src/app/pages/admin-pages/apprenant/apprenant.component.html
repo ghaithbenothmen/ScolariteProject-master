@@ -44,7 +44,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let apprenant of apprenants">
+					<tr *ngFor="let apprenant of apprenants | paginate:{
+						itemsPerPage:tableSize,
+						currentPage:page,
+						totalItems:count
+					}">
 						<ng-container *ngIf="!apprenant.archiveApprenant">
 							<td>{{apprenant.idApprenant}}</td>
 							<td>{{apprenant.nomApprenant}}</td>
@@ -68,6 +72,11 @@
 				</tbody>
 			</table>
 
+			<pagination-controls previousLabel="Précédent"
+			nextLabel="Suivant"
+			(pageChange)="onTableChange($event)">
+				
+			</pagination-controls>
 		</div>
 
 	</div>

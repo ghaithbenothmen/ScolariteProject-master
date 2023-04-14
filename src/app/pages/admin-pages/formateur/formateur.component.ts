@@ -36,7 +36,16 @@ export class FormateurComponent {
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService  : formateurService,private authService:AuthService,public etabService:EtablissementService) { }
- 
+  //Pagination//
+  page:number=1;
+  count:number=0;
+  tableSize:number=3;
+  onTableChange(event:any){
+    this.page=event;
+    this.getFormateur();
+
+  }
+
   getFormateur() {
     this.formateurService.getFormateur().subscribe(response => {
       console.log(response);

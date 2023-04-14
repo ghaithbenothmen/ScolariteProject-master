@@ -54,6 +54,17 @@ export class SessionFormationComponent {
 
 
   }
+
+   //Pagination//
+   page:number=1;
+   count:number=0;
+   tableSize:number=3;
+   onTableChange(event:any){
+     this.page=event;
+     this.getSessionFormation();
+
+   }
+
   getSessionFormation() {
 
     this.SessionFormationService.getSessionFormation().subscribe(response => {

@@ -16,7 +16,16 @@ export class MessagesComponent {
   public contact!:Contact;
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, public contService : ContactService) { }
-  
+   //Pagination//
+   page:number=1;
+   count:number=0;
+   tableSize:number=3;
+   onTableChange(event:any){
+     this.page=event;
+     this.getContact();
+
+   }
+
 
   ngOnInit(): void {
     

@@ -52,7 +52,7 @@
                         <td>{{contact.email}}</td>
 
                         <td>{{contact.numTel}}</td>
-                        <td height="200px">{{contact.message}}</td>
+                        <td >{{contact.message}}</td>
                         <td>
                             
                             <a type="button" (click)="openDelete(contentDelete, contact)" class="delete"
@@ -65,6 +65,11 @@
                 </tbody>
             </table>
 
+            <pagination-controls previousLabel="Précédent"
+			nextLabel="Suivant"
+			(pageChange)="onTableChange($event)">
+				
+			</pagination-controls>
         </div>
 
     </div>

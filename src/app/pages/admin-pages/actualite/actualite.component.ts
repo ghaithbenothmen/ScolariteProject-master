@@ -36,7 +36,16 @@ export class ActualiteComponent {
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService,public etabService:EtablissementService) { }
- 
+  //Pagination//
+  page:number=1;
+  count:number=0;
+  tableSize:number=3;
+  onTableChange(event:any){
+    this.page=event;
+    this.getActualite();
+
+  }
+
   getActualite() {
     this.actualiteService.getActualite().subscribe(response => {
       console.log(response);

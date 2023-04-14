@@ -30,7 +30,16 @@ export class ThemeDeFormationComponent {
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public themeDeFormationService : ThemeDeFormationService,private authService:AuthService) { }
- 
+  //Pagination//
+  page:number=1;
+  count:number=0;
+  tableSize:number=3;
+  onTableChange(event:any){
+    this.page=event;
+    this.getThemeDeFormation();
+
+  }
+
   getThemeDeFormation() {
     this.themeDeFormationService.getThemeDeFormation().subscribe(response => {
       console.log(response);

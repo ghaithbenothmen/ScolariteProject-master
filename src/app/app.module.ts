@@ -49,6 +49,7 @@ import { AffichagesessionDeFormationComponent } from './pages/auth-pages/afficha
 import { RegisterInfoComponent } from './pages/register-info/register-info.component';
 import { ContactComponent } from './pages/auth-pages/contact/contact.component';
 import { MessagesComponent } from './pages/admin-pages/messages/messages.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 registerLocaleData(localeFr);
 
@@ -106,7 +107,9 @@ registerLocaleData(localeFr);
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        CollapseModule.forRoot()
+        CollapseModule.forRoot(),
+        NgxPaginationModule,
+        
     ]
 })
 export class AppModule { }
