@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InscriptionComponent } from 'src/app/pages/apprenant-pages/inscription/inscription.component';
 
 const routes: Routes = [
-  { path: 'inscri',         component: InscriptionComponent },
+  { path: 'inscri/:id',         component: InscriptionComponent },
 ];
 
 @NgModule({

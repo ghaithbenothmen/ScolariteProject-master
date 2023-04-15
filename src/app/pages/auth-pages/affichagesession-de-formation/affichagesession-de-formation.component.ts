@@ -12,7 +12,7 @@ import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 import { formateurService } from 'src/app/services/formateur.service';
 import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-affichagesession-de-formation',
@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./affichagesession-de-formation.component.css']
 })
 export class AffichagesessionDeFormationComponent {
+
 
 public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
@@ -46,13 +47,17 @@ public items = ['En ligne', 'Présentiel'];
    public dateDebut !: string;
     
 public isCollapsed = true;
+id: any;
+
   //SessionFormationService: any;
 
 
 
 
-  constructor( private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
-  
+  constructor( private router:Router ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  onSelect(sessionFormation :SessionFormation) {
+    this.router.navigate(['/inscri', sessionFormation.idSessionFormation]);
+  }
   getSessionFormationn() {
 
     this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
