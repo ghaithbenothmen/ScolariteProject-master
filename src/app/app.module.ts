@@ -50,6 +50,7 @@ import { RegisterInfoComponent } from './pages/register-info/register-info.compo
 import { ContactComponent } from './pages/auth-pages/contact/contact.component';
 import { MessagesComponent } from './pages/admin-pages/messages/messages.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SessionComponent } from './pages/apprenant-pages/session/session.component';
 
 registerLocaleData(localeFr);
 
@@ -84,6 +85,7 @@ registerLocaleData(localeFr);
        RegisterInfoComponent,
          ContactComponent,
          MessagesComponent,
+         SessionComponent,
 
        
 
