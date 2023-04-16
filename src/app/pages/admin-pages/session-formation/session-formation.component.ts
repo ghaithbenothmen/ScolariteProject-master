@@ -145,6 +145,7 @@ export class SessionFormationComponent {
 
       codeFormateur: [],
       dateDebut: [''],
+       dateFin: [''],
       nbrHeures: [''],
 
 
@@ -220,7 +221,7 @@ export class SessionFormationComponent {
 
 
 
-
+ dateFin: SessionFormation.dateFin,
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
       //file:SessionFormation.data,
