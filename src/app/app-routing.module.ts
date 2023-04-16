@@ -12,12 +12,11 @@ import { Role } from './entities/role.model';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'apprenant',
+    redirectTo: 'accueil',
     pathMatch: 'full',
   }, 
   {
     canActivate: [AuthGuard],
-    
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -28,6 +27,7 @@ const routes: Routes = [
     ]
   },
   {
+    
     path: '',
     component: ApprenantLayoutComponent,
     children: [

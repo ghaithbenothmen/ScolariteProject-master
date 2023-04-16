@@ -50,6 +50,8 @@ import { RegisterInfoComponent } from './pages/register-info/register-info.compo
 import { ContactComponent } from './pages/auth-pages/contact/contact.component';
 import { MessagesComponent } from './pages/admin-pages/messages/messages.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from './guard/auth.guard';
+import { ProfilComponent } from './pages/profil/profil.component';
 
 registerLocaleData(localeFr);
 
@@ -84,13 +86,14 @@ registerLocaleData(localeFr);
        RegisterInfoComponent,
          ContactComponent,
          MessagesComponent,
+         ProfilComponent,
 
        
 
         
         
     ],
-    providers: [BsModalService,DatePipe,{ provide: LOCALE_ID, useValue: 'fr' }],
+    providers: [BsModalService,AuthGuard,DatePipe,{ provide: LOCALE_ID, useValue: 'fr' }],
     bootstrap: [AppComponent],
     imports: [
         CommonModule,

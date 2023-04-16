@@ -54,8 +54,9 @@ export class LoginComponent {
       this.authService.saveToken(token,this.user.role);
 
       const isAdmin = this.authService.isAdmin(); // Call isAdmin() function
+      //const isApp = this.authService.isApp(); // Call isAdmin() function
       console.log('Is admin:', isAdmin);
-
+      //console.log('Is App:', isApp);
       if (isAdmin) {
         
         this.router.navigate(['/apprenant']);
