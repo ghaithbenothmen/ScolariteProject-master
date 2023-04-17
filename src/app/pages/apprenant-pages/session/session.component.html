@@ -1,6 +1,20 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <section class="event_section layout_padding">
     <div class="container">
+        <div class="head-title">
+            <div class="left">
+                <h1>Dashboard</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        Dashboard
+                    </li>
+                    <li><i class='bx bx-chevron-right'></i></li>
+                    <li>
+                        Session
+                </ul>
+            </div>
+        </div>
+
         <div class="event-schedule-area-two bg-color pad100">
             <div class="container">
                 <div class="row">
@@ -64,8 +78,10 @@
                                                                 <a href="#">{{sessionFormations.typeFormation}}</a>
                                                             </div>
                                                             <div class="time">
-                                                                <span>de
-                                                                    {{sessionFormations.dateDebut}}jusqu'à,{{sessionFormations.nbrHeures}}heure</span>
+                                                                <span> de
+                                                                    {{sessionFormations.dateDebut}} jusqu'à
+                                                                    {{sessionFormations.dateFin}} , de
+                                                                    {{sessionFormations.nbrHeures}} heure</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -78,7 +94,7 @@
                                                 <td>
                                                     <div class="primary-btn">
                                                         <span class="btn btn-primary"
-                                                            (click)="onSelect(sessionFormations)">Read More</span>
+                                                            (click)="onSelect(sessionFormations)">Inscrire</span>
                                                     </div>
                                                 </td>
                                             </tr>

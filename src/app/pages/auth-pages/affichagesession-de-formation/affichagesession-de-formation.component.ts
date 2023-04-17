@@ -69,6 +69,14 @@ id: any;
 
       item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
 
+         
+       });
+        response.forEach((item) => {
+        const date=new Date(item.dateFin)
+        const day=new Date(item.dateDebut).getDay();
+
+      item.dateFin = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+
       });
       
       this.sessionFormations = response;

@@ -37,7 +37,7 @@
                         <th>Formateur </th>
                         <th>Date debut </th>
                         <th> Nombre d'heure </th>
-                        <th> Locale / en ligne  </th>
+                        <th> Locale / en ligne </th>
                         <th>Type formation</th>
                         <th>Description </th>
                         <th>Actions</th>
@@ -74,11 +74,9 @@
                 </tbody>
             </table>
 
-            <pagination-controls previousLabel="Précédent"
-			nextLabel="Suivant"
-			(pageChange)="onTableChange($event)">
-				
-			</pagination-controls>
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
+
+            </pagination-controls>
         </div>
 
     </div>
@@ -88,7 +86,7 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)"  >
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
                     <div class="modal-header">
                         <h4 class="modal-title">Ajouter </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -117,9 +115,9 @@
                         </div>
                         <div class="form-group">
                             <label>Formateur :</label>
-                            <select class="form-select" id="codeFormateur" name="codeFormateur"
-                                #codeFormateur="ngModel" [(ngModel)]="idFormateur" required ngModel>
-                                <option [value]="null" disabled >Selectionner formateur de formation</option>
+                            <select class="form-select" id="codeFormateur" name="codeFormateur" #codeFormateur="ngModel"
+                                [(ngModel)]="idFormateur" required ngModel>
+                                <option [value]="null" disabled>Selectionner formateur de formation</option>
                                 <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
                                     {{formateur.nomFormateur}}
                                 </option>
@@ -134,7 +132,14 @@
                                 ngModel>
                             <span *ngIf="dateDebut.invalid && dateDebut.touched" class="error">Vous
                                 devez
-                                entrer l'date de l'Actualite</span>
+                                entrer la date de l'Actualite</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Date fin :</label>
+                            <input type="date" name="dateFin" #dateFin="ngModel" class="form-control" required ngModel>
+                            <span *ngIf="dateFin.invalid && dateFin.touched" class="error">Vous
+                                devez
+                                entrer la de dateFin de l'Actualite</span>
                         </div>
                         <div class="form-group">
                             <label> Nombre d'heure :</label>
@@ -146,18 +151,18 @@
                         </div>
 
                         <div class="form-group">
-                        <label>Type de formation :</label>
+                            <label>Type de formation :</label>
 
-                        <select name="typeFormation" #typeFormation="ngModel" class="form-select" required ngModel>
-                            <option *ngFor="let item of items" [value]="item">
-                        
-                        
-                        
-                                {{ item }}
-                        
-                        
-                            </option>
-                        </select>
+                            <select name="typeFormation" #typeFormation="ngModel" class="form-select" required ngModel>
+                                <option *ngFor="let item of items" [value]="item">
+
+
+
+                                    {{ item }}
+
+
+                                </option>
+                            </select>
                             <span *ngIf="typeFormation.invalid && typeFormation.touched" class="error">Vous
                                 devez
                                 entrer typeFormationde formation</span>
@@ -205,7 +210,7 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <form [formGroup]="editForm" >
+                <form [formGroup]="editForm">
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Session </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -213,32 +218,36 @@
 
                     </div>
                     <div class="modal-body">
-                         <div class="form-group">
-                       <label> Theme de formation :</label>
-                        <select class="form-control  "     formControlName="idFormation"    required
-                            >
-                            <option [value]="null" >Selectionner une session de formation</option>
-                            <option *ngFor="let themeDeFormation of themeDeFormations "  [value]="themeDeFormation.idFormation">
-                           
-                                {{themeDeFormation.nomFormation}}
-                            </option>
-                        
-                        </select>
+                        <div class="form-group">
+                            <label> Theme de formation :</label>
+                            <select class="form-control  " formControlName="idFormation" required>
+                                <option [value]="null">Selectionner une session de formation</option>
+                                <option *ngFor="let themeDeFormation of themeDeFormations "
+                                    [value]="themeDeFormation.idFormation">
+
+                                    {{themeDeFormation.nomFormation}}
+                                </option>
+
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Formateur :</label>
-                            <select class="form-control"  formControlName="codeFormateur" required >
+                            <select class="form-control" formControlName="codeFormateur" required>
                                 <option [value]="null">Selectionner un formateur</option>
-                                <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur" >
+                                <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
                                     {{formateur.nomFormateur}}
                                 </option>
-                            
+
                             </select>
 
                         </div>
                         <div class="form-group">
                             <label>Date debut</label>
                             <input type="date" formControlName="dateDebut" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date Fin</label>
+                            <input type="date" formControlName="dateFin" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -249,12 +258,12 @@
                             <label>Type de formation :</label>
                             <select formControlName="typeFormation" class="form-select" required>
                                 <option *ngFor="let item of items" [value]="item">
-                            
-                            
-                            
+
+
+
                                     {{ item }}
-                            
-                            
+
+
                                 </option>
                             </select>
                         </div>
@@ -269,8 +278,7 @@
 
                         <div class="form-group">
                             <label>Affiche</label>
-                            <input type="file"  class="form-control"
-                                (change)="onFileChanged($event)" required>
+                            <input type="file" class="form-control" (change)="onFileChanged($event)" required>
                         </div>
 
                         <div class="modal-footer">

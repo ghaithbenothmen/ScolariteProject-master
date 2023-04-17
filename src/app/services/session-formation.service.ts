@@ -62,6 +62,7 @@ export class SessionFormationService {
     const formData = new FormData();
 
     formData.append('file', file);
+     formData.append('DateFin', SessionFormation.dateFin.toString());
     formData.append('DateDebut', SessionFormation.dateDebut.toString());
     formData.append('nbrHeures', SessionFormation.nbrHeures.toString());
     formData.append('Description', SessionFormation.description);
@@ -92,6 +93,7 @@ export class SessionFormationService {
     const formData = new FormData();
 
     formData.append('file', file);
+    formData.append('DateFin', sessionFormation.dateFin.toString());
     formData.append('DateDebut', sessionFormation.dateDebut.toString());
     formData.append('nbrHeures', sessionFormation.nbrHeures.toString());
     formData.append('Description', sessionFormation.description);
