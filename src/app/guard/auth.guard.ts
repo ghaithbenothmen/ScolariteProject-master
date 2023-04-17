@@ -26,12 +26,13 @@ export class AuthGuard implements CanActivate {
       if (this.authService.isApp() ) {
         // If the user is a regular user and trying to access the user dashboard, allow access to the route
         return true;
+        
       } else if (this.authService.isAdmin() ) {
         // If the user is an admin and trying to access the admin dashboard, allow access to the route
         return true;
       } else {
         // If the user is trying to access a dashboard they are not authorized for, redirect them to the home page
-        this.router.navigate(['/']);
+        this.router.navigate(['/inscri/:id']);
         return false;
       }
     } else {

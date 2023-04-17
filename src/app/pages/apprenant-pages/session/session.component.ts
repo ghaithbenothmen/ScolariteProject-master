@@ -64,7 +64,7 @@ id: any;
       console.log(response);
 
        response.forEach((item) => {
-        const date=new Date(item.dateDebut)
+        const date=new Date(item.dateDebut);
         const day=new Date(item.dateDebut).getDay();
 
       item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";

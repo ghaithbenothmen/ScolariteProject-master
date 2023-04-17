@@ -18,7 +18,7 @@ export class SessionFormation {
       public data :Blob,
       public file: File,
       public fileType: string,
-
+     public  dayOfWeek: string,
       public formateur: Formateur,
       public codeFormateur:number,
       

@@ -25,22 +25,22 @@
                     <li><a routerLink="presentation">Presentation</a></li>
                     <li><a routerLink="actu">Actualité</a></li>
 
-                    <li class="dropdown"><a href=""><span> Formation</span> <i
+                    <li class="dropdown"><a href="AffichagesessionFormation"  style="pointer-events: none"><span> Formation</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li>
-                                <a routerLink="AffichagesessionFormation">Nous session de formation</a>
+                                <a routerLink="AffichagesessionFormation" >Nos session de formation</a>
                             </li>
 
 
-                            <a routerLink="AffichagethemeFormation">Nous thèmes de formation</a>
+                            <a routerLink="AffichagethemeFormation">Nos thèmes de formation</a>
 
                         </ul>
                     </li>
                     <li><a routerLink="contact">Contact</a></li>
 
 
-        <li class="dropdown"><a href="login" *ngIf="!authService.isLoggedIn()"><span>Connexion</span> <i
+        <li class="dropdown"><a href="login" *ngIf="!authService.isLoggedIn()"  style="pointer-events: none"><span>Connexion</span> <i
                     class="bi bi-chevron-down dropdown-indicator"></i></a>
             <a class="nav-link dropdown-toggle second-text fw-bold" type="button" *ngIf="authService.isLoggedIn()"
                 >

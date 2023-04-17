@@ -13,6 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class LoginComponent {
   //user = new User();
+
+  message!: string;
+
   user:User = {
     email:'',
     password: '',
@@ -27,6 +30,8 @@ export class LoginComponent {
 
 
   ngOnInit(): void {
+
+    this.message = history.state.message;
    /*  this.userService.getUser().subscribe((userD: any) => {
       this.user = {
         userame: userD.userame,
@@ -61,7 +66,7 @@ export class LoginComponent {
         
         this.router.navigate(['/apprenant']);
       } else {
-        this.router.navigate(['/inscri']);
+        this.router.navigate(['/inscri/:id']);
       }
 
 

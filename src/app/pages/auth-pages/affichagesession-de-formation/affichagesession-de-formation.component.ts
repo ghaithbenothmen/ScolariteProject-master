@@ -48,7 +48,8 @@ public items = ['En ligne', 'Présentiel'];
     
 public isCollapsed = true;
 id: any;
-
+  day!: number;
+  dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   //SessionFormationService: any;
 
 
@@ -64,29 +65,34 @@ id: any;
       console.log(response);
 
        response.forEach((item) => {
-        const date=new Date(item.dateDebut)
-        const day=new Date(item.dateDebut).getDay();
+        const date=new Date(item.dateDebut);
+        
+        
+        const dayOfWeek = date.getDay(); 
+        item.dayOfWeek = this.getDayName(dayOfWeek);
 
       item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+      
 
-         
+      const dateF=new Date(item.dateFin);
+      item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
        });
-        response.forEach((item) => {
-        const date=new Date(item.dateFin)
-        const day=new Date(item.dateDebut).getDay();
-
-      item.dateFin = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
-
-      });
+       
       
       this.sessionFormations = response;
-
+      
 
     });
 
 
   }
 
+  
+  getDayName(dayOfWeek: number): string {
+    
+    const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    return dayNames[dayOfWeek];
+  }
   
 
 

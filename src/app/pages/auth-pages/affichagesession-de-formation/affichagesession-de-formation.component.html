@@ -40,7 +40,9 @@
                                             <tr class="inner-box">
                                                 <th scope="row">
                                                     <div class="event-date">
-                                                        <span>{{dateDebut}} </span>
+                                                        <!-- <span>{{dateDebut}} {{dayNames[day]}}</span> -->
+
+                                                        <span> {{ sessionFormations.dayOfWeek }}</span>
                                                         <p>{{sessionFormations.dateDebut}}</p>
                                                     </div>
                                                 </th>
@@ -65,9 +67,10 @@
                                                             </div>
                                                             <div class="time">
                                                                 <span> de
-                                                                    {{sessionFormations.dateDebut}} jusqu'à
-                                                                    {{sessionFormations.dateFin}} , de
-                                                                    {{sessionFormations.nbrHeures}} heure</span>
+                                                                    
+                                                                    <b>{{sessionFormations.dateDebut}}</b> jusqu'à
+                                                                    <b>{{sessionFormations.dateFin}}</b> , de 
+                                                                    <b>{{sessionFormations.nbrHeures}}</b> heures</span>
                                                             </div>
                                                         </div>
                                                     </div>

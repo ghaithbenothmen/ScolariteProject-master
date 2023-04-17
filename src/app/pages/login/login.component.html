@@ -30,7 +30,9 @@
 				  <div>
 					<input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" required/>
 				  </div>
+				  <div *ngIf="message" class="success-message">{{ message }}</div>
 				  <div class="alert alert-danger" *ngIf="err==1">
+					
 					<strong>login ou mot de passe erronés..</strong>
 					</div>
 				  <button type="submit" (click)="onLoggedin()">Se connecter</button>

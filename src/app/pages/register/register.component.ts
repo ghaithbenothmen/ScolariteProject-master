@@ -55,12 +55,14 @@ export class RegisterComponent {
   onRegister(f: NgForm): void {
     // Check if the form is valid
     if (this.registerForm.valid) {
+      f.value.emailApprenant=this.registerForm.value.email
       // Get the form values
       /* const email = this.registerForm.get('email').value;
       const password = this.registerForm.get('password').value; */
       this.appService.ajoutApp(f.value).subscribe(response => {
+        response.emailApprenant=this.registerForm.value.email;
         console.log(this.registerForm.value.email)
-        console.log(response);
+        console.log(response.emailApprenant);
         
       })
       // Send the form data to the API
@@ -68,7 +70,7 @@ export class RegisterComponent {
         .subscribe(
           () => {
           
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'], { state: { message: 'Vous etes bien inscri ! Merci de se connecter.' } });
           },
           (error) => {
            
