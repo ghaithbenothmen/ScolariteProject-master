@@ -28,7 +28,12 @@ export class SessionFormationService {
 
 
   
-
+  getFormateur() {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    
+    return this.httpClient.get<Formateur[]>(this.apiURL+"all",{headers:httpHeaders});}
 
   getSessionFormation() {
 

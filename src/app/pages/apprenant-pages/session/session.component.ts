@@ -1,6 +1,7 @@
+import { Component } from '@angular/core';
 //import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Component, TemplateRef } from '@angular/core';
+
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ThemeDeFormation } from 'src/app/entities/ThemeDeFormation.model';
@@ -15,12 +16,11 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 @Component({
-  selector: 'app-affichagesession-de-formation',
-  templateUrl: './affichagesession-de-formation.component.html',
-  styleUrls: ['./affichagesession-de-formation.component.css']
+  selector: 'app-session',
+  templateUrl: './session.component.html',
+  styleUrls: ['./session.component.css']
 })
-export class AffichagesessionDeFormationComponent {
-
+export class SessionComponent {
 
 public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
@@ -127,6 +127,7 @@ id: any;
 
 
 }
+
 
 
 
