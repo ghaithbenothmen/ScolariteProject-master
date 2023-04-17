@@ -5,7 +5,7 @@ import { InscriptionComponent } from 'src/app/pages/apprenant-pages/inscription/
 import { SessionComponent } from 'src/app/pages/apprenant-pages/session/session.component';
 
 const routes: Routes = [
-  { path: 'inscri/:id', component: InscriptionComponent ,canActivate: [AuthGuard],},
+  { path: 'inscri/:id', component: InscriptionComponent },
     { path: 'ListeSession',         component: SessionComponent },
 ];
 

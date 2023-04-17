@@ -64,9 +64,9 @@ export class LoginComponent {
       //console.log('Is App:', isApp);
       if (isAdmin) {
         
-        this.router.navigate(['/apprenant']);
+        this.router.navigate(['/admin-dashboard/apprenant']);
       } else {
-        this.router.navigate(['/inscri/:id']);
+        this.router.navigate(['/user-dashboard/inscri/:id']);
       }
 
 

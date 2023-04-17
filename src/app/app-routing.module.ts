@@ -17,7 +17,7 @@ const routes: Routes = [
   }, 
   {
     canActivate: [AuthGuard],
-    path: '',
+    path: 'admin-dashboard',
     component: AdminLayoutComponent,
     children: [
       {
@@ -27,8 +27,8 @@ const routes: Routes = [
     ]
   },
   {
-    
-    path: '',
+    canActivate: [AuthGuard],
+    path: 'user-dashboard',
     component: ApprenantLayoutComponent,
     children: [
       {
