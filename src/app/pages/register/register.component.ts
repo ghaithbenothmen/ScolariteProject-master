@@ -21,7 +21,8 @@ export class RegisterComponent {
   
 
   
-  user:User = {
+  user: User = {
+    id:0,
     email:'',
     password: '',
     role: Role.User // Set default role value to empty string

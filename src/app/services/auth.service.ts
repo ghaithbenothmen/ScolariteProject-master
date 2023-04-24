@@ -20,6 +20,8 @@ export class AuthService {
   public apiURL: string = 'http://localhost:8080/apprenant/api';
   public token!: string;
   public role!: any;
+  public id!: number;
+ public Id!: any;
   public isloggedIn!: boolean ;
   public roles!: Role;
   loggedUser!: string;
@@ -34,15 +36,17 @@ export class AuthService {
 
 
 
-  saveToken(jwt: string,role:any) {
+  saveToken(jwt: string,role:any,id:number ) {
     localStorage.setItem('token', jwt);
     localStorage.setItem('role', role as Role);
+    localStorage.setItem('UserId', id.toString() );
 
     this.token = jwt;
     this.isloggedIn = true;
     this.decodeJWT();
   }
   loadToken() {
+   this.Id=localStorage.getItem('UserId')!;
     this.role = localStorage.getItem('role')!;
     this.token = localStorage.getItem('token')!;
     this.decodeJWT();
@@ -57,9 +61,11 @@ export class AuthService {
   logout() {
     this.loggedUser = undefined!;
     this.role = undefined!;
+    this.Id = undefined!;
     this.token = undefined!;
     this.isloggedIn = false;
     localStorage.removeItem('token');
+     localStorage.removeItem('UserId');
     localStorage.removeItem('role');
     this.router.navigate(['/login']);
     
