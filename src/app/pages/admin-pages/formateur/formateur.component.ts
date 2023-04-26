@@ -123,11 +123,11 @@ export class FormateurComponent {
     );
 
     this.editForm.patchValue({
-      codeFormateur: formateur.codeFormateur,
+      codeFormateur: formateur.id,
      nomFormateur : formateur.nomFormateur,
       prenonFormateur: formateur.prenonFormateur,
       telFormateur: formateur.telFormateur,
-  emailFormateur:formateur.emailFormateur,
+  emailFormateur:formateur.email,
      adresseFormateur: formateur.adresseFormateur,
      specialite: formateur.specialite,
     
@@ -176,7 +176,7 @@ onControl(f: NgForm) {
 
 /**********************Template delete ******************* */
 openDelete(modalTemplate: TemplateRef<any>, formateur:Formateur) {
-  this.deleteId = formateur.codeFormateur
+  this.deleteId = formateur.id
       this.modalRef = this.modalService.show(modalTemplate,
         {
           class: 'modal-dialogue-centered modal-md',

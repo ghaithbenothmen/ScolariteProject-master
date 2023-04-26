@@ -118,7 +118,7 @@
                             <select class="form-select" id="codeFormateur" name="codeFormateur" #codeFormateur="ngModel"
                                 [(ngModel)]="idFormateur" required ngModel>
                                 <option [value]="null" disabled>Selectionner formateur de formation</option>
-                                <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
+                                <option *ngFor="let formateur  of formateurs " [value]="formateur.id">
                                     {{formateur.nomFormateur}}
                                 </option>
 
@@ -234,7 +234,7 @@
                             <label>Formateur :</label>
                             <select class="form-control" formControlName="codeFormateur" required>
                                 <option [value]="null">Selectionner un formateur</option>
-                                <option *ngFor="let formateur  of formateurs " [value]="formateur.codeFormateur">
+                                <option *ngFor="let formateur  of formateurs " [value]="formateur.id">
                                     {{formateur.nomFormateur}}
                                 </option>
 

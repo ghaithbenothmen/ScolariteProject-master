@@ -14,7 +14,7 @@
             </ul>
         </div>
         <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
-            class="material-icons">&#xE147;</i> <span>Ajouter formateur</span></button>
+                class="material-icons">&#xE147;</i> <span>Ajouter formateur</span></button>
 
     </div>
     <div class="alert alert-success" role="alert" *ngIf="message">
@@ -47,22 +47,24 @@
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
 
-                        <td>{{Formateur.codeFormateur}}</td>
-                 
+                        <td>{{Formateur.id}}</td>
+
                         <td>{{Formateur.nomFormateur}}</td>
                         <td>{{Formateur.prenonFormateur}}</td>
                         <td>{{Formateur.specialite}}</td>
-                        <td>{{Formateur.emailFormateur}}</td>
+                        <td>{{Formateur.email}}</td>
                         <td>{{Formateur.telFormateur}}</td>
                         <td>{{Formateur.adresseFormateur}}</td>
-                            <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"  download="{{Formateur.data}}" width="200px" height="200px" >Telecharger Cv </a></td>
+                        <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
+                                download="{{Formateur.data}}" width="200px" height="200px">Telecharger Cv </a></td>
 
                         <td>
                             <a type="button" (click)="openDetails(contentDetails,Formateur)" class="edit"
                                 data-toggle="modal">
                                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a type="button" (click)="openDelete(contentDelete, Formateur)" class="delete" data-toggle="modal"><i
-									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a type="button" (click)="openDelete(contentDelete, Formateur)" class="delete"
+                                data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                    title="Delete">&#xE872;</i></a>
                         </td>
                         <!-- </ng-container> -->
                     </tr>
@@ -70,11 +72,9 @@
                 </tbody>
             </table>
 
-            <pagination-controls previousLabel="Précédent"
-			nextLabel="Suivant"
-			(pageChange)="onTableChange($event)">
-				
-			</pagination-controls>
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
+
+            </pagination-controls>
         </div>
 
     </div>
@@ -98,36 +98,45 @@
 						</div> -->
                         <div class="form-group">
                             <label>Nom</label>
-                            <input type="text" name="nomFormateur" #nomFormateur="ngModel" class="form-control"
-                                required ngModel>
+                            <input type="text" name="nomFormateur" #nomFormateur="ngModel" class="form-control" required
+                                ngModel>
                             <span *ngIf="nomFormateur.invalid && nomFormateur.touched" class="error">Vous devez
                                 entrer le nom de Formateur </span>
                         </div>
-                            <div class="form-group">
-                                <label>Prenon</label>
-                                <input type="text" name="prenonFormateur" #prenonFormateur="ngModel" class="form-control" required ngModel>
-                                <span *ngIf="prenonFormateur.invalid && prenonFormateur.touched" class="error">Vous devez
-                                    entrer le Prenon de Formateur</span>
-                            </div>
+                        <div class="form-group">
+                            <label>Prenon</label>
+                            <input type="text" name="prenonFormateur" #prenonFormateur="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="prenonFormateur.invalid && prenonFormateur.touched" class="error">Vous devez
+                                entrer le Prenon de Formateur</span>
+                        </div>
                         <div class="form-group">
                             <label>Specialite</label>
-                            <input type="text" name="specialite" #Specialite="ngModel"
-                                class="form-control" required ngModel>
-                            <span *ngIf="Specialite.invalid && Specialite.touched"
-                                class="error">Vous devez entrer le Specialite de formateur </span>
+                            <input type="text" name="specialite" #Specialite="ngModel" class="form-control" required
+                                ngModel>
+                            <span *ngIf="Specialite.invalid && Specialite.touched" class="error">Vous devez entrer le
+                                Specialite de formateur </span>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="emailFormateur" #emailFormateur="ngModel"
-                                class="form-control" required ngModel>
+                            <input type="email" name="emailFormateur" #emailFormateur="ngModel" class="form-control"
+                                required ngModel>
                             <span *ngIf="emailFormateur.invalid && emailFormateur.touched" class="error">Vous
                                 devez
                                 entrer l'Email de Formateur</span>
                         </div>
                         <div class="form-group">
+                            <label>mot de passe</label>
+                            <input type="password" name="Password" #password="ngModel" class="form-control" required
+                                ngModel>
+                            <span *ngIf="password.invalid && password.touched" class="error">Vous
+                                devez
+                                entrer l'Email de Formateur</span>
+                        </div>
+                        <div class="form-group">
                             <label>Telephone</label>
-                            <input type="tel" name="telFormateur" #telFormateur="ngModel" class="form-control"
-                                required ngModel>
+                            <input type="tel" name="telFormateur" #telFormateur="ngModel" class="form-control" required
+                                ngModel>
                             <span *ngIf="telFormateur.invalid && telFormateur.touched" class="error">Vous devez
                                 entrer le telephone de Formateur</span>
                         </div>
@@ -135,14 +144,13 @@
 
                         <div class="form-group">
                             <label>Adresse </label>
-                            <input type="text" name="adresseFormateur" #adresseFormateur="ngModel"
-                                class="form-control" required ngModel>
-                            <span *ngIf="adresseFormateur.invalid && adresseFormateur.touched"
-                                class="error">Vous
+                            <input type="text" name="adresseFormateur" #adresseFormateur="ngModel" class="form-control"
+                                required ngModel>
+                            <span *ngIf="adresseFormateur.invalid && adresseFormateur.touched" class="error">Vous
                                 devez entrer l'adresse de Formateur</span>
                         </div>
                         <div class="form-group">
-                            <label>Cv  </label>
+                            <label>Cv </label>
                             <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
                                 (change)="onFileChanged($event)">
                             <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer cv de
@@ -169,7 +177,7 @@
             <div class="modal-content">
                 <form [formGroup]="editForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Formateur  </h4>
+                        <h4 class="modal-title">Edit Formateur </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
 
@@ -177,8 +185,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Code </label>
-                            <input readonly type="text" formControlName="codeFormateur" class="form-control"
-                                required>
+                            <input readonly type="text" formControlName="codeFormateur" class="form-control" required>
 
                         </div>
                         <div class="form-group">
@@ -223,27 +230,27 @@
 <!-- Delete Modal HTML -->
 
 <ng-template #contentDelete>
-	<div >
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div>
-					<div class="modal-header">
-						<h4 class="modal-title">Delete Apprenant</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-							(click)="modalRef.hide()">&times;</button>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<form class="modal-footer" >
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
-							(click)="modalRef.hide()">
-						<input type="submit" class="btn btn-danger"  value="Supprimer" (click)="onDelete(Formateur)">
-						
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Apprenant</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete these Records?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+                    <form class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                            (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(Formateur)">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>

@@ -67,7 +67,7 @@ export class SessionFormationService {
     formData.append('nbrHeures', SessionFormation.nbrHeures.toString());
     formData.append('Description', SessionFormation.description);
 
-    formData.append('formateur', JSON.stringify(SessionFormation.formateur.codeFormateur));
+    formData.append('formateur', JSON.stringify(SessionFormation.formateur.id));
     // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
     formData.append('LocalFormation', SessionFormation.localFormation);
     formData.append('TypeFormation', SessionFormation.typeFormation);
@@ -100,9 +100,9 @@ export class SessionFormationService {
 
     console.log('theme:',themeDeFormations);
     
-    const foreignKeyFormateur = formateurs.find(formateur => formateur.codeFormateur == selectedForeignKeyId);
+    const foreignKeyFormateur = formateurs.find(formateur => formateur.id == selectedForeignKeyId);
     if (foreignKeyFormateur) {
-      formData.append('formateur', JSON.stringify(foreignKeyFormateur.codeFormateur));
+      formData.append('formateur', JSON.stringify(foreignKeyFormateur.id));
       console.log(foreignKeyFormateur);
     } else {
       console.log('Foreign key object not found.');

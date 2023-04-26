@@ -1,12 +1,12 @@
 export class Formateur {
     constructor(
       
-      
-      public codeFormateur: number,
+      public Password:string,
+      public id: number,
       public nomFormateur: string,
       public prenonFormateur: string,
       public telFormateur: number,
-      public emailFormateur: string,
+      public email: string,
       public adresseFormateur: string,
       public specialite: string,
       public data :Blob,

@@ -50,10 +50,10 @@
 						totalItems:count
 					}">
 						<ng-container *ngIf="!apprenant.archiveApprenant">
-							<td>{{apprenant.idApprenant}}</td>
+							<td>{{apprenant.id}}</td>
 							<td>{{apprenant.nomApprenant}}</td>
 							<td>{{apprenant.prenomApprenant}}</td>
-							<td>{{apprenant.emailApprenant}}</td>
+							<td>{{apprenant.email}}</td>
 							<td>{{apprenant.telApprenant}}</td>
 							<td>
 								<a type="button" (click)="openDetails(ajoutCompte, apprenant)" data-toggle="modal"><i
@@ -133,9 +133,9 @@
 								</div>
 								<div class="form-group">
 									<label>Email</label>
-									<input type="email" name="emailApprenant" #emailApprenant="ngModel"
+									<input type="email" name="email" #email="ngModel"
 										class="form-control" required ngModel>
-									<span *ngIf="emailApprenant.invalid && emailApprenant.touched" class="error">Vous
+									<span *ngIf="email.invalid && email.touched" class="error">Vous
 										devez
 										entrer l'email de l'apprenant</span>
 								</div>
@@ -258,8 +258,8 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label>ID Apprenant</label>
-							<input readonly type="text" formControlName="idApprenant" class="form-control" required>
+							<label>ID </label>
+							<input readonly type="text" formControlName="id" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Nom</label>
@@ -271,7 +271,7 @@
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" formControlName="emailApprenant" class="form-control" required>
+							<input type="email" formControlName="email" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Telehone</label>

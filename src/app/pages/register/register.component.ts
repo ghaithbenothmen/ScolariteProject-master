@@ -61,9 +61,9 @@ export class RegisterComponent {
       /* const email = this.registerForm.get('email').value;
       const password = this.registerForm.get('password').value; */
       this.appService.ajoutApp(f.value).subscribe(response => {
-        response.emailApprenant=this.registerForm.value.email;
+        response.email=this.registerForm.value.email;
         console.log(this.registerForm.value.email)
-        console.log(response.emailApprenant);
+        console.log(response.email);
         
       })
       // Send the form data to the API

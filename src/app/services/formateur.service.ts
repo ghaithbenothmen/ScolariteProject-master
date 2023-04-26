@@ -59,14 +59,15 @@ export class formateurService  {
     let httpHeaders = new HttpHeaders({ "Authorization": jwt });
     
     const formData = new FormData();
-    formData.append('file',file);
+    formData.append('file', file);
+    formData.append('Password', Formateur.Password);
      formData.append('NomFormateur', Formateur.nomFormateur);
       formData.append('PrenonFormateur', Formateur.prenonFormateur);
      formData.append('telFormateur', Formateur.telFormateur.toString());
 
     formData.append('Specialite', Formateur.specialite);
     
-    formData.append('EmailFormateur', Formateur.emailFormateur);
+    formData.append('Email', Formateur.email);
     formData.append('AdresseFormateur', Formateur.adresseFormateur);
     return this.httpClient.post<Formateur>(this.apiURL+'add', formData,{headers:httpHeaders});
   }
@@ -74,7 +75,7 @@ export class formateurService  {
 
 
    updateFormateur( file :File,Formateur:Formateur) :Observable <Formateur>  {
-      const url = `${this.apiURL}${Formateur.codeFormateur}`;
+      const url = `${this.apiURL}${Formateur.id}`;
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt})
@@ -86,7 +87,7 @@ export class formateurService  {
 
     formData.append('Specialite', Formateur.specialite);
     
-    formData.append('EmailFormateur', Formateur.emailFormateur);
+    formData.append('Email', Formateur.email);
     formData.append('AdresseFormateur', Formateur.adresseFormateur);
       return this.httpClient.put<Formateur>(url, formData, {headers:httpHeaders});
       

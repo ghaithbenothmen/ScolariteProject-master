@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 
@@ -34,7 +34,7 @@ public items = ['En ligne', 'Présentiel'];
   public idFormation!: number;
   public codeFormateur!: number;
   public idS!: number;
-
+ public f !:NgForm;
   public editForm!: FormGroup;
   // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -86,12 +86,45 @@ public isCollapsed = true;
   
 
 
+onControl(f: NgForm) {
+    if (f.valid) {
+      this.message = 'Actualite bien ajouté !';
+    }
+    if (f.invalid) {
+      this.message = 'Actualite non ajoué ! Verifier votre formulaire !';
+    }
+}
+  
+
+ onSubmit(f: NgForm) {
+
+    this.ngOnInit();
+    f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
+    f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
 
 
+    this.SessionFormationService.addSessionFormation(f.value, this.selectedFile).subscribe(response => {
+
+      console.log(response);
+      window.location.reload();
+      this.ngOnInit();
+
+    })
+
+    this.modalService.hide(); //dismiss the modal
+  }
 
     
 
-
+openModal(modalTemplate: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(modalTemplate,
+      {
+        class: 'modal-dialogue-centered modal-md',
+        backdrop: 'static',
+        keyboard: true
+      }
+    );
+  }
 
   ngOnInit(): void {
  

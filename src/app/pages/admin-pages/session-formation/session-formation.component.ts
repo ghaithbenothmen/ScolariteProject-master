@@ -113,7 +113,7 @@ export class SessionFormationComponent {
 
     this.ngOnInit();
     f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
-    f.value.formateur = this.formateurs.find(formateur => formateur.codeFormateur == this.idFormateur);
+    f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
 
 
     this.SessionFormationService.addSessionFormation(f.value, this.selectedFile).subscribe(response => {
@@ -161,7 +161,7 @@ export class SessionFormationComponent {
 
       this.formateurService.getFormateur().subscribe(foreignKeys => {
         this.sessionFormations = sessionFormations.map(example => {
-          const foreignKey = foreignKeys.find(fk => fk.codeFormateur === example.codeFormateur);
+          const foreignKey = foreignKeys.find(fk => fk.id === example.codeFormateur);
 
           return { ...example, foreignKey };
 
@@ -217,7 +217,7 @@ export class SessionFormationComponent {
 
 
       
-      codeFormateur: SessionFormation.formateur.codeFormateur,
+      codeFormateur: SessionFormation.formateur.id,
 
 
 

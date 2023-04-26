@@ -39,7 +39,7 @@ export class ApprenantService {
   }
 
   updateApp(app: Apprenant) {
-    const url = `${this.apiURL}/${app.idApprenant}`;
+    const url = `${this.apiURL}/${app.id}`;
     let jwt = this.authService.getToken();
     jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })
@@ -48,7 +48,7 @@ export class ApprenantService {
   }
 
   supprimerApp(app: Apprenant) {
-    const url = `${this.apiURL}/${app.idApprenant}/patch`;
+    const url = `${this.apiURL}/${app.id}/patch`;
     let jwt = this.authService.getToken();
     jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt })

@@ -144,19 +144,19 @@ export class ApprenantComponent {
 
 
     this.editForm.patchValue({
-      idApprenant: apprenant.idApprenant,
+      idApprenant: apprenant.id,
 
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,
       dateNaissanceApprenant: apprenant.dateNaissanceApprenant,
-      emailApprenant: apprenant.emailApprenant,
+      emailApprenant: apprenant.email,
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
       userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
       password: apprenant.dateNaissanceApprenant,
-      email: apprenant.emailApprenant,
+      email: apprenant.email,
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,
 
@@ -188,7 +188,7 @@ export class ApprenantComponent {
 
 
   openDelete(modalTemplate: TemplateRef<any>, apprenant: Apprenant) {
-    this.deleteId = apprenant.idApprenant;
+    this.deleteId = apprenant.id;
     this.modalRef = this.modalService.show(modalTemplate,
       {
         class: 'modal-dialogue-centered modal-md',
@@ -198,13 +198,13 @@ export class ApprenantComponent {
     );
 
     this.editForm2.patchValue({
-      idApprenant: apprenant.idApprenant,
+      idApprenant: apprenant.id,
 
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,
       dateNaissanceApprenant: apprenant.dateNaissanceApprenant,
-      emailApprenant: apprenant.emailApprenant,
+      emailApprenant: apprenant.email,
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
