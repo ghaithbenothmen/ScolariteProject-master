@@ -139,6 +139,16 @@
 										devez
 										entrer l'email de l'apprenant</span>
 								</div>
+
+								<div class="form-group">
+									<label>Mot de passe</label>
+									<input type="password" name="password" #password="ngModel" class="form-control" required
+										ngModel>
+									<span *ngIf="password.invalid && password.touched" class="error">Vous
+										devez
+										entrer l'Email de apprenant</span>
+								</div>
+
 								<div class="form-group">
 									<label>Telehone</label>
 									<input type="text" name="telApprenant" #telApprenant="ngModel" class="form-control"
