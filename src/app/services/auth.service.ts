@@ -104,4 +104,6 @@ export class AuthService {
   getUserByEmail(email: string): Observable<User>{
     return this.http.get<User>(this.apiURL + '/v1/auth/email/' +email)
   }
+
+  
 }

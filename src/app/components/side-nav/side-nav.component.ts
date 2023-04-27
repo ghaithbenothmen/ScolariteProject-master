@@ -52,6 +52,14 @@ export class SideNavComponent implements OnInit{
         });
     
    });
+
+ /*   const activeItem = localStorage.getItem('activeItem'); 
+
+   // Check if activeItem exists in localStorage
+   if (activeItem) {
+     // Set the value of activeItem in your component
+     this.setActiveItem(Number(activeItem));
+   } */
   }
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
@@ -71,6 +79,7 @@ export class SideNavComponent implements OnInit{
   activeItem: number = 1;
 
   setActiveItem(item: number) {
+    localStorage.setItem('activeItem', String(item));
     this.activeItem = item;
   }
   /*******************************************/
