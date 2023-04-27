@@ -40,8 +40,8 @@ export class AuthGuard implements CanActivate {
         
         } else {
           // If the user is a regular user and trying to access any other route, allow access to the route
-          this.router.navigate(['/user-dashboard/ListeSession']);
-          return false;
+          //this.router.navigate(['/user-dashboard/ListeSession']);
+          return true;
         }
       } else {
         // If the user is trying to access a dashboard they are not authorized for, redirect them to the home page

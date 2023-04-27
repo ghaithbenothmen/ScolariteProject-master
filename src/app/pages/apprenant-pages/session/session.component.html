@@ -1,20 +1,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <section class="event_section layout_padding">
     <div class="container">
-        <div class="head-title">
-            <div class="left">
-                <h1>Dashboard</h1>
-                <ul class="breadcrumb">
-                    <li>
-                        Dashboard
-                    </li>
-                    <li><i class='bx bx-chevron-right'></i></li>
-                    <li>
-                        Session
-                </ul>
-            </div>
-        </div>
-
         <div class="event-schedule-area-two bg-color pad100">
             <div class="container">
                 <div class="row">
@@ -54,7 +40,9 @@
                                             <tr class="inner-box">
                                                 <th scope="row">
                                                     <div class="event-date">
-                                                        <span>{{dateDebut}} </span>
+                                                        <!-- <span>{{dateDebut}} {{dayNames[day]}}</span> -->
+
+                                                        <span> {{ sessionFormations.dayOfWeek }}</span>
                                                         <p>{{sessionFormations.dateDebut}}</p>
                                                     </div>
                                                 </th>
@@ -79,9 +67,10 @@
                                                             </div>
                                                             <div class="time">
                                                                 <span> de
-                                                                    {{sessionFormations.dateDebut}} jusqu'à
-                                                                    {{sessionFormations.dateFin}} , de
-                                                                    {{sessionFormations.nbrHeures}} heure</span>
+
+                                                                    <b>{{sessionFormations.dateDebut}}</b> jusqu'à
+                                                                    <b>{{sessionFormations.dateFin}}</b> , de
+                                                                    <b>{{sessionFormations.nbrHeures}}</b> heures</span>
                                                             </div>
                                                         </div>
                                                     </div>

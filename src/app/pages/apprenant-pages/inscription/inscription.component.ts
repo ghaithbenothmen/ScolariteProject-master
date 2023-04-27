@@ -15,6 +15,7 @@ import { Formateur } from 'src/app/entities/formateur.model';
 
 
 import { DatePipe } from '@angular/common';
+import { InscriptionService } from 'src/app/services/inscription.service';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -26,10 +27,9 @@ public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
-  public themeDeFormations!: ThemeDeFormation[];
-  public themeDeFormation!: ThemeDeFormation;
-  public formateurs!: Formateur[];
-  public formateur!: Formateur;
+  public inscriptionServices!: InscriptionService[];
+  public inscriptionService!: InscriptionService;
+  
 
   public idFormation!: number;
   public codeFormateur!: number;
@@ -48,6 +48,7 @@ public items = ['En ligne', 'Présentiel'];
    public dateDebut !: string;
   public id !: number;
 public isCollapsed = true;
+  public UserId !: string | null;
 
   //SessionFormationService: any;
 
@@ -99,8 +100,8 @@ onControl(f: NgForm) {
  onSubmit(f: NgForm) {
 
     this.ngOnInit();
-    f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
-    f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
+   // f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
+   // f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
 
 
     this.SessionFormationService.addSessionFormation(f.value, this.selectedFile).subscribe(response => {
@@ -128,9 +129,11 @@ openModal(modalTemplate: TemplateRef<any>) {
 
   ngOnInit(): void {
  
+
     //this.id=this.route.snapshot.paramMap.get("id");
     this.id = this.route.snapshot.params["id"];
-   
+    this.UserId = localStorage.getItem('Userid');
+    console.log(this.UserId);
     this.getSessionFormationn();
     console.log(this.authService.getToken());
  console.log("llk",this.id)
