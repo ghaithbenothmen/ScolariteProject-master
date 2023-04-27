@@ -16,6 +16,7 @@ import { Formateur } from 'src/app/entities/formateur.model';
 
 import { DatePipe } from '@angular/common';
 import { InscriptionService } from 'src/app/services/inscription.service';
+import { Apprenant } from '../../../entities/apprenant.model';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -25,6 +26,8 @@ export class InscriptionComponent {
 
 public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
+  public Apprenants!: Apprenant[];
+   public Apprenant!: Apprenant[];
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
   public inscriptionServices!: InscriptionService[];
@@ -55,7 +58,7 @@ public isCollapsed = true;
 
 
 
-  constructor( private route:ActivatedRoute ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor( private route:ActivatedRoute ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService,public InscriptionService:InscriptionService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   
   getSessionFormationn() {
 
@@ -115,7 +118,66 @@ onControl(f: NgForm) {
     this.modalService.hide(); //dismiss the modal
   }
 
+    openDetails(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) {
+    this.modalRef = this.modalService.show(modalTemplate,
+      {
+
+        class: 'modal-dialogue-centered modal-md',
+        backdrop: 'static',
+        keyboard: true
+      }
+    );
+
+    this.editForm.patchValue({
+
+        idSessionFormation: SessionFormation.idSessionFormation,
+      /* idFormation: SessionFormation.themeDeFormation.nomFormation, */
+
+      //idFormation: SessionFormation.themeDeFormation.nomFormation,
+
+      idUser:this.UserId
+
+
+      
     
+
+
+
+ 
+
+    });
+
+  }
+ onSave() {
+
+
+  // this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh); */
+   // this.editForm.value.codeFormateur = this.formateurs.find(formateur => formateur.codeFormateur == this.codeFormateur); 
+    console.log(this.editForm.value.idUser);
+   console.log(this.editForm.value.idSessionFormation);
+   
+this.editForm.value.sessionFormation = this.editForm.value.idSessionFormation
+
+   this.editForm.value.Apprenant = this.editForm.value.idUser 
+
+    /* console.log('formateurs:', this.formateurs); */
+    this.InscriptionService.addInsecription(this.editForm.value).subscribe(response => {
+      response.apprenant = this.editForm.value.Apprenant;
+      response.sessionFormation = this.editForm.value.sessionFormation;
+      console.log("eee", response);
+
+      
+
+
+      /* this.ngOnInit(); */
+})
+
+
+
+    this.modalService.hide(); //dismiss the modal
+  }
+  /***************************contoller ************** */
+
 
 openModal(modalTemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(modalTemplate,
@@ -132,27 +194,21 @@ openModal(modalTemplate: TemplateRef<any>) {
 
     //this.id=this.route.snapshot.paramMap.get("id");
     this.id = this.route.snapshot.params["id"];
-    this.UserId = localStorage.getItem('Userid');
-    console.log(this.UserId);
+
+    this.UserId = localStorage.getItem('UserId');
+    console.log("lklk",this.UserId);
     this.getSessionFormationn();
+
     console.log(this.authService.getToken());
- console.log("llk",this.id)
+ //console.log(this.sessionFormations.)
       ;
     this.editForm = this.fb.group({
 
-      idFormation: [''],
+      
       
       idSessionFormation: [''],
-      typeFormation: [''],
-      localFormation: [''],
-      description: [''],
-
-      codeFormateur: [],
-      dateDebut: [''],
-      nbrHeures: [''],
-
-
-      file: [''],
+     idUser: [''],
+  
 
 
 

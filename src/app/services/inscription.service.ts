@@ -17,7 +17,7 @@ import {inscription } from '../entities/inscription.model';
 export class InscriptionService {
  
   public inscription!: inscription;
-  apiURL: string = "http://localhost:8080/apprenant/api/SesionDeFormation/";
+  apiURL: string = "http://localhost:8080/apprenant/api/Inscription/";
   
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) {
@@ -25,11 +25,11 @@ export class InscriptionService {
   }
   
 
-    addInsecription(inscription:inscription) : Observable <inscription> {
+    addInsecription(inscription :inscription) : Observable <inscription> {
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt});
-     console.log(inscription);
+     console.log("fffff",inscription);
     return this.httpClient.post<inscription>(this.apiURL+"add",inscription,{headers:httpHeaders}).pipe(
       catchError((error) => {
         if (error.error && error.error.message === 'inscription existe deja ') {
