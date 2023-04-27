@@ -21,20 +21,69 @@
 					<h5>
 						S'inscrire maintenant
 					</h5>
-					<form action="" [formGroup]="registerForm">
 
+					<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+						<div class="row">
+							<div class="col-md-6 ">
+								<div class="form-outline">
+									<input type="text" id="form3Example1m" class="form-control" placeholder="Prenom"
+										formControlName="prenomApprenant" name="prenomApprenant">
+								</div>
+							</div>
+							<div class="col-md-6 ">
+								<div class="form-group">
+									<input type="text" id="form3Example1n" class="form-control" placeholder="Nom"
+										formControlName="nomApprenant">
+								</div>
+							</div>
+						</div>
 
-						<!------------------------------------------------------------------------------------->
+						<div class="form-group">
+							<input type="date" id="form3Example8" class="form-control" placeholder="date"
+								formControlName="dateNaissanceApprenant">
+						</div>
+						<div class="form-group">
+							<input type="text" id="form3Example8" class="form-control" placeholder="Telephone"
+								formControlName="telApprenant">
+						</div>
+
+						<div class="form-group">
+							<input type="text" id="form3Example8" class="form-control" placeholder="Adresse"
+								formControlName="adresseApprenant">
+						</div>
+
+						<div class="form-group">
+							<select class="form-select" formControlName="qualiteApprenant" required>
+								<option [value]="null" disabled selected>Selectionner une session de formation
+								</option>
+								<option *ngFor="let item of items" [value]="item">{{ item }}</option>
+							</select>
+							<!--  <span *ngIf="registerForm.get('qualiteApprenant').invalid && registerForm.get('qualiteApprenant').touched" class="error">Vous devez entrer qualité de l'apprenant</span> -->
+						</div>
+						<div class="btn-group">
+							<input type="radio" class="btn-check" value="homme" id="option1" autocomplete="off"
+								formControlName="sexeApprenant" name="sexeApprenant">
+							<label class="btn btn-primary rounded" for="option1">Homme</label>
+
+							<input type="radio" class="btn-check" value="femme" id="option2" autocomplete="off"
+								formControlName="sexeApprenant">
+							<label class="btn btn-primary rounded" for="option2">Femme</label>
+						</div>
+						<div class="form-group">
+							<input type="text" id="form3Example8" class="form-control" placeholder="Niveau d'etude"
+								formControlName="niveauApprenant">
+						</div>
+
 						<div>
-							<input class="form-control" type="email" placeholder="Email " name="emailApprenant" required ngModel
-								 [(ngModel)]="user.email" formControlName="emailApprenant" formControlName="email" />
+							<input class="form-control" type="email" placeholder="Email " name="emailApprenant" required
+								ngModel  formControlName="email" />
 							<div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier syntax
 								de votre email</div>
 							<!-- <div *ngIf="registerForm.controls['email']?.errors?.['required']" class="error">email obligatoire</div> -->
 						</div>
 						<div class="form-group">
 							<input class="form-control" type="password" placeholder="Mot de passe" name="password"
-								[(ngModel)]="user.password" required formControlName="password" />
+								required formControlName="password" />
 						</div>
 						<div *ngIf="registerForm.controls['password'].errors">
 							<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
@@ -44,7 +93,7 @@
 								passe doit avoir maximum 20 caracters</div>
 						</div>
 						<div>
-							<input class="form-control" type="password" placeholder="Retappez mot de passe" 
+							<input class="form-control" type="password" placeholder="Retappez mot de passe"
 								name="confirmPassword" formControlName="confirmPassword"
 								formControlName="confirmPassword" required />
 						</div>
@@ -53,62 +102,7 @@
 							Les mots de passe ne correspondent pas.
 						</div>
 
-						<form action="" #f="ngForm" (ngSubmit)="onRegister(f)">
-							<div class="row">
-								<div class="col-md-6 ">
-									<div class="form-outline">
-										<input type="text" id="form3Example1m" class="form-control "
-											placeholder="Prenom "  name="prenomApprenant" #prenomApprenant="ngModel" ngModel/>
-									</div>
-								</div>
-								<div class="col-md-6 ">
-									<div class="form-group">
-										<input type="text" id="form3Example1n" class="form-control "   
-											 placeholder="Nom " name="nomApprenant" #nomApprenant="ngModel" ngModel />
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group ">
-								<input type="date" id="form3Example8" class="form-control " placeholder="date" name="dateNaissanceApprenant" #dateNaissanceApprenant="ngModel" ngModel/>
-							</div>
-							<div class="form-group ">
-								<input type="text" id="form3Example8" class="form-control " placeholder="Telephone" name="telApprenant" #telApprenant="ngModel" ngModel/>
-							</div>
-
-							<div class="form-group ">
-								<input type="text" id="form3Example8" class="form-control " placeholder="Adresse" name="adresseApprenant" #adresseApprenant="ngModel" ngModel/>
-							</div>
-
-							
-							<div class="form-group">
-
-								<select class="form-select" name="qualiteApprenant" #qualiteApprenant="ngModel" ngModel
-									required>
-									<option [value]="null" disabled selected>Selectionner une session de formation
-									</option>
-									<option *ngFor="let item of items" [value]="item">{{ item }}</option>
-								</select>
-								<span *ngIf="qualiteApprenant.invalid && qualiteApprenant.touched" class="error">Vous
-									devez
-									entrer qualité de l'apprenant</span>
-							</div>
-							<div class="btn-group">
-								<input type="radio" class="btn-check" value="homme"  id="option1" autocomplete="off"  name="sexeApprenant" #sexeApprenant="ngModel" ngModel/>
-								<label class="btn btn-primary rounded " for="option1">Homme</label>
-							  
-								<input type="radio" class="btn-check" value="femme" id="option2" autocomplete="off" name="sexeApprenant" #sexeApprenant="ngModel" ngModel/>
-								<label class="btn btn-primary rounded " for="option2">Femme</label>
-							  
-								
-							  </div>
-							<div class="form-group ">
-								<input type="text" id="form3Example8" class="form-control "
-									placeholder="Niveau d'etude"  name="niveauApprenant" #niveauApprenant="ngModel" ngModel/>
-							</div>
-							<button type="button" (click)="onRegister(f)">Submit</button>
-						</form>
-
+						<button type="submit">Submit</button>
 					</form>
 
 				</div>

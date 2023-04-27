@@ -19,14 +19,9 @@ import { Apprenant } from 'src/app/entities/apprenant.model';
 })
 export class RegisterComponent {
   
-
+  myForm!: FormGroup;
   
-  user: User = {
-    id:0,
-    email:'',
-    password: '',
-    role: Role.User // Set default role value to empty string
-  };
+ 
 
   public registerForm!: FormGroup;
   public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
@@ -36,14 +31,37 @@ export class RegisterComponent {
 
 
 
-  constructor(private appService: ApprenantService,private router: Router,private fb: FormBuilder,private userSer:UserService) { }
+  constructor(private formBuilder: FormBuilder,private appService: ApprenantService,private router: Router,private fb: FormBuilder,private userSer:UserService) {
+   
+   /*  this.registerForm = this.formBuilder.group({
+      prenomApprenant: ['', Validators.required],
+      nomApprenant: ['', Validators.required],
+      dateNaissanceApprenant: ['', Validators.required],
+      telApprenant: ['', Validators.required],
+      adresseApprenant: ['', Validators.required],
+      qualiteApprenant: ['', Validators.required],
+      sexeApprenant: ['', Validators.required],
+      niveauApprenant: [''],
+      email:[''],
+      password:['']
 
+    }); */
+   }
+ 
   
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      prenomApprenant: ['', Validators.required],
+      nomApprenant: ['', Validators.required],
+      dateNaissanceApprenant: ['', Validators.required],
+      telApprenant: ['', Validators.required],
+      adresseApprenant: ['', Validators.required],
+      qualiteApprenant: ['', Validators.required],
+      sexeApprenant: ['', Validators.required],
+      niveauApprenant: [''],
     }, { validator: this.passwordsMatchValidator });
   }
   
@@ -53,31 +71,27 @@ export class RegisterComponent {
     return password && confirmPassword && password.value !== confirmPassword.value ? { 'passwordsMismatch': true } : null;
   }
 
-  onRegister(f: NgForm): void {
+  onRegister(): void {
+    
+    //console.log(this.registerForm.value);
+       
     // Check if the form is valid
     if (this.registerForm.valid) {
-      f.value.emailApprenant=this.registerForm.value.email
+     
       // Get the form values
       /* const email = this.registerForm.get('email').value;
       const password = this.registerForm.get('password').value; */
-      this.appService.ajoutApp(f.value).subscribe(response => {
-        response.email=this.registerForm.value.email;
-        console.log(this.registerForm.value.email)
-        console.log(response.email);
+      this.appService.ajoutApp(this.registerForm.value).subscribe(response => {
+        console.log(response)
+        this.router.navigate(['/login'], { state: { message: 'Vous etes bien inscri ! Merci de se connecter.' } });
         
+      },
+      
+      (error) => {
+        this.errorMessage = error.message;
       })
       // Send the form data to the API
-      this.userSer.register(this.user)
-        .subscribe(
-          () => {
-          
-            this.router.navigate(['/login'], { state: { message: 'Vous etes bien inscri ! Merci de se connecter.' } });
-          },
-          (error) => {
-           
-            this.errorMessage = error.message;
-          }
-        );
+      
     }
   }
 

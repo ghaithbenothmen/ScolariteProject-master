@@ -119,9 +119,9 @@
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="emailFormateur" #emailFormateur="ngModel" class="form-control"
+                            <input type="email" name="email" #email="ngModel" class="form-control"
                                 required ngModel>
-                            <span *ngIf="emailFormateur.invalid && emailFormateur.touched" class="error">Vous
+                            <span *ngIf="email.invalid && email.touched" class="error">Vous
                                 devez
                                 entrer l'Email de Formateur</span>
                         </div>
