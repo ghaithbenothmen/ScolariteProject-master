@@ -16,7 +16,8 @@ export class LoginComponent {
 
   message!: string;
 
-  user:User = {
+  user: User = {
+id:0,
     email:'',
     password: '',
     role: Role.User // Set default role value to empty string
@@ -52,11 +53,11 @@ export class LoginComponent {
       const token = res.token;
 
       this.authService.getUserByEmail(this.user.email).subscribe((user: User) => {
-       this.user.role =user.role;
-       
+         this.user.role =user.role;
+          this.user.id =user.id;
        
       console.log('User object:', this.user);
-      this.authService.saveToken(token,this.user.role);
+      this.authService.saveToken(token,this.user.role,this.user.id);
 
       const isAdmin = this.authService.isAdmin(); // Call isAdmin() function
       //const isApp = this.authService.isApp(); // Call isAdmin() function
