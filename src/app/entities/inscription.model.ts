@@ -5,8 +5,10 @@ export class Inscription  {
     constructor(
       
      
-      public CodeInscriptionSession: number,
-      public SesionDeFormation:SessionFormation,
+
+      public codeInscription: number,
+      public sessionFormation:SessionFormation,
+
       public apprenant: Apprenant,
      
       public idSessionFormation: number,

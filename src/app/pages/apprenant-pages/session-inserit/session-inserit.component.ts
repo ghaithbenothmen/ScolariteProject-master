@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 //import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { InscriptionService } from 'src/app/services/inscription.service';
@@ -17,11 +18,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { inscription } from 'src/app/entities/inscription.model';
 @Component({
-  selector: 'app-session',
-  templateUrl: './session.component.html',
-  styleUrls: ['./session.component.css']
+  selector: 'app-session-inserit',
+  templateUrl: './session-inserit.component.html',
+  styleUrls: ['./session-inserit.component.css']
 })
-export class SessionComponent {
+export class SessionInseritComponent {
 
 public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
@@ -53,6 +54,8 @@ public isCollapsed = true;
 id: any;
   day!: number;
   dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  public UserId!:  string | null;
+ public idUser!: number;
   
   //SessionFormationService: any;
 
@@ -60,55 +63,27 @@ id: any;
 
 
   constructor( private InscriptionService :  InscriptionService  ,private router:Router ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
-  onSelect(sessionFormation :SessionFormation) {
-    this.router.navigate(['/user-dashboard/inscri', sessionFormation.idSessionFormation]);
-  }
-  getSessionFormationn() {
 
-    this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
-      console.log(response);
-
-       response.forEach((item) => {
-        const date=new Date(item.dateDebut);
-        
-        
-        const dayOfWeek = date.getDay(); 
-        item.dayOfWeek = this.getDayName(dayOfWeek);
-
-      item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
-      
-
-      const dateF=new Date(item.dateFin);
-      item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
-       });
-       
-      
-      this.sessionFormations = response;
-      
-
-    });
-
-
-  }
+  
   
   getInsecription() {
 
     this.InscriptionService.getInsecription().subscribe((response:any[]) => {
       console.log(response);
 
-      //  response.forEach((item) => {
-      //   const date=new Date(item.dateDebut);
+       response.forEach((item) => {
+        const date=new Date(item.sessionFormation.dateDebut);
         
         
-      //   const dayOfWeek = date.getDay(); 
-      //   item.dayOfWeek = this.getDayName(dayOfWeek);
+        const dayOfWeek = date.getDay(); 
+        item.sessionFormation.dayOfWeek = this.getDayName(dayOfWeek);
 
-      // item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+      item.sessionFormation.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
       
 
-      // const dateF=new Date(item.dateFin);
-      // item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
-      //  });
+      const dateF=new Date(item.sessionFormation.dateFin);
+      item.sessionFormation.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+       });
        
       
       this.Inscriptions = response;
@@ -135,8 +110,12 @@ id: any;
 
 
   ngOnInit(): void {
+
+
+    this.UserId = localStorage.getItem('UserId');
+    this.idUser=Number(this.UserId)
    this.getInsecription();
-    this.getSessionFormationn();
+   
     console.log(this.authService.getToken());
 
     this.editForm = this.fb.group({

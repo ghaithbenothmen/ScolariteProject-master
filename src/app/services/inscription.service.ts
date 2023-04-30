@@ -16,10 +16,12 @@ import { Apprenant } from '../entities/apprenant.model';
   providedIn: 'root'
 })
 export class InscriptionService {
+
  public apprenants!:Apprenant[];
  public id!:number;
   public inscription!: Inscription;
   apiURL: string = "http://localhost:8080/apprenant/api/insecription/";
+
   
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) {
@@ -53,6 +55,7 @@ export class InscriptionService {
      //console.log("fffff",inscription);
 
     return this.httpClient.post<Inscription>(this.apiURL+"add",formData,{headers:httpHeaders}).pipe(
+
       catchError((error) => {
         if (error.error && error.error.message === 'inscription existe deja ') {
           // Display alert message using ngx-toastr or Angular's built-in Alert service

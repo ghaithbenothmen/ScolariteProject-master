@@ -15,6 +15,12 @@
                                 <span class="text">Liste des Sessions ouverte </span>
                         </a>
                 </li>
+                <li (click)="setActiveItem(2)" [ngClass]="{'active': activeItem === 2}">
+                        <a routerLink="Session-Insecrit">
+                                <i class='bx bxs-group'></i>
+                                <span class="text">Liste de session inscrit </span>
+                        </a>
+                </li>
 
                 <!-- <li (click)="setActiveItem(2)" [ngClass]="{'active': activeItem === 2}">
                     <a routerLink="formateur">
