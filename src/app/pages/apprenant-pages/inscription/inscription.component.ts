@@ -17,6 +17,8 @@ import { Formateur } from 'src/app/entities/formateur.model';
 import { DatePipe } from '@angular/common';
 import { InscriptionService } from 'src/app/services/inscription.service';
 import { Apprenant } from '../../../entities/apprenant.model';
+import { ApprenantService } from 'src/app/services/apprenant.service';
+import { Inscription } from 'src/app/entities/inscription.model';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -26,13 +28,13 @@ export class InscriptionComponent {
 
 public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
-  public Apprenants!: Apprenant[];
-   public Apprenant!: Apprenant[];
+  public apprenants!: Apprenant[];
+
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
-  public inscriptionServices!: InscriptionService[];
-  public inscriptionService!: InscriptionService;
-  
+  public inscriptions!: Inscription[];
+  public inscription!: Inscription;
+  public apprenant!:Apprenant;
 
   public idFormation!: number;
   public codeFormateur!: number;
@@ -58,8 +60,36 @@ public isCollapsed = true;
 
 
 
-  constructor( private route:ActivatedRoute ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService,public InscriptionService:InscriptionService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor(private appService:ApprenantService, private route:ActivatedRoute ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService,public InscriptionService:InscriptionService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   
+
+  getApprenants() {
+    this.appService.getApprenants().subscribe(response => {
+      console.log(response);
+      this.apprenants = response;
+    });
+  }
+
+
+ /*  getSessionFormationn() {
+
+    this.InscriptionService.getInscription().subscribe(response => {
+      //console.log(response);
+
+      this.inscriptions = response;
+
+    });
+    this.appService.getApprenants().subscribe(response => {
+      console.log(response);
+
+      this.apprenants = response;
+
+    });
+    
+
+
+  } */
+
   getSessionFormationn() {
 
     this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
@@ -83,7 +113,19 @@ public isCollapsed = true;
 
 
     });
+this.appService.getApprenants().subscribe(response => {
+      console.log(response);
 
+      this.apprenants = response;
+
+    });
+
+    this.SessionFormationService.getSessionFormation().subscribe(response => {
+      console.log(response);
+
+      this.sessionFormations = response;
+
+    });
 
   }
 
@@ -100,7 +142,7 @@ onControl(f: NgForm) {
 }
   
 
- onSubmit(f: NgForm) {
+/*  onSubmit(f: NgForm) {
 
     this.ngOnInit();
    // f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
@@ -116,7 +158,7 @@ onControl(f: NgForm) {
     })
 
     this.modalService.hide(); //dismiss the modal
-  }
+  } */
 
     openDetails(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) {
     this.modalRef = this.modalService.show(modalTemplate,
@@ -138,41 +180,39 @@ onControl(f: NgForm) {
       idUser:this.UserId
 
 
-      
-    
-
-
-
- 
-
     });
 
   }
  onSave() {
 
-
+  /* const selectedApprenant = this.apprenants.find(apprenant => apprenant.id == this.editForm.value.idUser);
+  const selectedSession = this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.editForm.value.idSessionFormation);
+  console.log("hi",selectedApprenant) */
   // this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh); */
    // this.editForm.value.codeFormateur = this.formateurs.find(formateur => formateur.codeFormateur == this.codeFormateur); 
-    console.log(this.editForm.value.idUser);
-   console.log(this.editForm.value.idSessionFormation);
-   
-this.editForm.value.sessionFormation = this.editForm.value.idSessionFormation
+   /*  console.log(this.editForm.value.idUser);
+   console.log(this.editForm.value.idSessionFormation); */
 
-   this.editForm.value.Apprenant = this.editForm.value.idUser 
+   console.log("edit",this.editForm.value)
+    /* this.editForm.value.sessionFormation = this.editForm.value.idSessionFormation
 
+   this.editForm.value.Apprenant = this.editForm.value.idUser  */
+    console.log("app",this.apprenants);
     /* console.log('formateurs:', this.formateurs); */
-    this.InscriptionService.addInsecription(this.editForm.value).subscribe(response => {
-      response.apprenant = this.editForm.value.Apprenant;
-      response.sessionFormation = this.editForm.value.sessionFormation;
-      console.log("eee", response);
-
+    
+    this.InscriptionService.addInsecription(this.apprenants, /* selectedApprenant */this.editForm.value, this.editForm.value.idUser).subscribe(response => {
+      //response.apprenant = selectedApprenant
+      /* response.apprenant = this.editForm.value.Apprenant;
+      response.SesionDeFormation = this.editForm.value.sessionFormation; */
+      console.log("eee", response); 
+     ;
       
 
 
       /* this.ngOnInit(); */
 })
 
-
+    
 
     this.modalService.hide(); //dismiss the modal
   }
@@ -202,17 +242,14 @@ openModal(modalTemplate: TemplateRef<any>) {
     console.log(this.authService.getToken());
  //console.log(this.sessionFormations.)
       ;
-    this.editForm = this.fb.group({
+    
+      this.editForm = this.fb.group({
 
       
       
       idSessionFormation: [''],
      idUser: [''],
   
-
-
-
-
 
     })
 
