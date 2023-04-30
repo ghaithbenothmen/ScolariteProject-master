@@ -17,20 +17,25 @@ import {inscription } from '../entities/inscription.model';
 export class InscriptionService {
  
   public inscription!: inscription;
-  apiURL: string = "http://localhost:8080/apprenant/api/Inscription/";
+  apiURL: string = "http://localhost:8080/apprenant/api/insecription";
   
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) {
   
   }
   
-
+getInsecription() {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.httpClient.get<inscription[]>(this.apiURL+"/all", { headers: httpHeaders });
+  }
     addInsecription(inscription :inscription) : Observable <inscription> {
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt});
      console.log("fffff",inscription);
-    return this.httpClient.post<inscription>(this.apiURL+"add",inscription,{headers:httpHeaders}).pipe(
+    return this.httpClient.post<inscription>(this.apiURL+"/add",inscription,{headers:httpHeaders}).pipe(
       catchError((error) => {
         if (error.error && error.error.message === 'inscription existe deja ') {
           // Display alert message using ngx-toastr or Angular's built-in Alert service

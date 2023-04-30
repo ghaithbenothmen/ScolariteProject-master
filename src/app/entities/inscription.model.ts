@@ -5,7 +5,7 @@ export class inscription  {
     constructor(
       
      
-      public CodeInscriptionSession: number,
+      public codeInscription: number,
       public sessionFormation:SessionFormation,
       public apprenant: Apprenant,
      
