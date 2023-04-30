@@ -9,6 +9,7 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 import { ActualiteComponent } from 'src/app/pages/admin-pages/actualite/actualite.component';
 import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 import { SessionFormationComponent } from '../../pages/admin-pages/session-formation/session-formation.component';
+import { ListeAppBySessionComponent } from 'src/app/pages/admin-pages/liste-app-by-session/liste-app-by-session.component';
 
 const routes: Routes = [
  
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'actualiteDash', component: ActualiteComponent },
   { path: 'themeDeFormation', component: ThemeDeFormationComponent },
    {path:'sessionDeFormation',component:SessionFormationComponent},
-   {path:'messages',component:MessagesComponent},
+  { path: 'messages', component: MessagesComponent },
+    {path:'app-liste-app-by-session',component:ListeAppBySessionComponent},
 ];
 
 @NgModule({
