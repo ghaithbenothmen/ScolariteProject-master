@@ -55,7 +55,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { SessionComponent } from './pages/apprenant-pages/session/session.component';
 import { SessionInseritComponent } from './pages/apprenant-pages/session-inserit/session-inserit.component';
-import { ListeAppBySessionComponent } from './pages/admin-pages/liste-app-by-session/liste-app-by-session.component';
+
 
 
 
@@ -98,7 +98,7 @@ registerLocaleData(localeFr);
 
          SessionComponent,
           SessionInseritComponent,
-          ListeAppBySessionComponent,
+      
 
 
        

@@ -69,7 +69,9 @@ id: any;
   getInsecription() {
 
     this.InscriptionService.getInscription().subscribe((response:any[]) => {
+
       console.log(response);
+
 
        response.forEach((item) => {
         const date=new Date(item.sessionFormation.dateDebut);

@@ -66,9 +66,11 @@ export class InscriptionService {
   }
 
   getInscription() {
+
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({"Authorization":jwt});
+
 
     return this.httpClient.get<Inscription[]>(this.apiURL + "all",{headers:httpHeaders});
    }
