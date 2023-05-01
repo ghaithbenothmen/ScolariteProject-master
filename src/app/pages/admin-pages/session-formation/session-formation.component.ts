@@ -209,17 +209,11 @@ export class SessionFormationComponent {
       /* idFormation: SessionFormation.themeDeFormation.nomFormation, */
 
       //idFormation: SessionFormation.themeDeFormation.nomFormation,
-
       typeFormation: SessionFormation.typeFormation,
-
       localFormation: SessionFormation.localFormation,
       description: SessionFormation.description,
 
-
-      
       codeFormateur: SessionFormation.formateur.id,
-
-
 
  dateFin: SessionFormation.dateFin,
       dateDebut: SessionFormation.dateDebut,
@@ -249,11 +243,12 @@ export class SessionFormationComponent {
     console.log(this.editForm.value.codeFormateur);
     console.log(this.editForm.value.idFormation);
 
+    console.log('foreeeee',this.formateurs)
     /* console.log('formateurs:', this.formateurs); */
     this.SessionFormationService.updateSessionFormation(this.themeDeFormations, this.formateurs, this.editForm.value, this.selectedFile, this.editForm.value.codeFormateur,this.editForm.value.idFormation).subscribe(response => {
       //console.log(response);
 
-      window.location.reload();
+     // window.location.reload();
 
 
       /* this.ngOnInit(); */
