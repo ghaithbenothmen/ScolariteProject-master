@@ -16,7 +16,7 @@ import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { inscription } from 'src/app/entities/inscription.model';
+import { Inscription } from 'src/app/entities/inscription.model';
 @Component({
   selector: 'app-session-inserit',
   templateUrl: './session-inserit.component.html',
@@ -30,8 +30,8 @@ public items = ['En ligne', 'Présentiel'];
   public sessionFormation!: SessionFormation;
   public themeDeFormations!: ThemeDeFormation[];
   public themeDeFormation!: ThemeDeFormation;
-  public Inscriptions!: inscription[];
-  public Inscription!: inscription;
+  public Inscriptions!: Inscription[];
+  public Inscription!: Inscription;
   public formateurs!: Formateur[];
   public formateur!: Formateur;
 
@@ -68,8 +68,8 @@ id: any;
   
   getInsecription() {
 
-    this.InscriptionService.getInsecription().subscribe((response:any[]) => {
-      console.log(response);
+    this.InscriptionService.getInscription().subscribe((response:any[]) => {
+      console.log("hhhh",response);
 
        response.forEach((item) => {
         const date=new Date(item.sessionFormation.dateDebut);

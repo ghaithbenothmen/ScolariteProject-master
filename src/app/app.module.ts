@@ -54,7 +54,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuard } from './guard/auth.guard';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { SessionComponent } from './pages/apprenant-pages/session/session.component';
-import { SessionInseritComponent } from './session-inserit/session-inserit.component';
+import { SessionInseritComponent } from './pages/apprenant-pages/session-inserit/session-inserit.component';
 
 
 
