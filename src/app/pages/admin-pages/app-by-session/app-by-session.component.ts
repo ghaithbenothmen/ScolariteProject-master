@@ -1,4 +1,7 @@
 
+
+
+
 //import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Component, TemplateRef } from '@angular/core';
@@ -16,11 +19,11 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute } from '@angular/router';
 import { NgFor } from '@angular/common';
 @Component({
-  selector: 'app-liste-app-by-session',
-  templateUrl: './liste-app-by-session.component.html',
-  styleUrls: ['./liste-app-by-session.component.css']
+  selector: 'app-app-by-session',
+  templateUrl: './app-by-session.component.html',
+  styleUrls: ['./app-by-session.component.css']
 })
-export class ListeAppBySessionComponent {
+export class AppBySessionComponent {
 public items = ['En ligne', 'Présentiel'];
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
@@ -44,9 +47,6 @@ public items = ['En ligne', 'Présentiel'];
   idFormateur: any;
   idTh: any;
   //SessionFormationService: any;
-
-
-
 
   constructor( private modalService: BsModalService,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   public onFileChanged(event: any) {
@@ -72,6 +72,7 @@ public items = ['En ligne', 'Présentiel'];
       console.log("dddd",response);
 
       this.sessionFormations = response;
+      console.log("dddd",this.sessionFormations);
 
     });
     this.formateurService.getFormateur().subscribe(response => {

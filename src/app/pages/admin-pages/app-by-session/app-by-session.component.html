@@ -1,0 +1,56 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a class="disabled" href="#">Session de formation</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="team-area sp">
+        <div class="row bootstrap snippets bootdey">
+            <div class="col-md-4" *ngFor="let SessionFormation of sessionFormations">
+                <div class="team-member">
+                    <figure class="effect-zoe">
+                        <div class="team-photo">
+                            <img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}"
+                                width="300px" height="300px" alt="Rachel James Johnes" class="img-responsive">
+                        </div>
+                        <div class="team-attrs">
+                            <div class="team-name font-accident-two-bold-italic">
+                            </div>
+                            <div class="team-position">{{SessionFormation.nbrHeures}}</div>
+                        </div>
+                        <div class="team-content small">
+                            Truong is also the recipient of The George C. Lin Emerging Filmmaker Award from the San
+                            Diego
+                        </div>
+                        <figcaption>
+
+                            <p class="icon-links">
+                                <a href="#!"><i class="fa fa-google"></i></a>
+                                <a href="#!"><i class="fa fa-instagram"></i></a>
+                                <a href="#!"><i class="fa fa-facebook"></i></a>
+                            </p>
+
+                            <p class="phone-number">
+                                <a href="#!">tel: 1 234 567-89-10</a>
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="dividewhite4"></div>
+            </div>
+
+
+        </div>
+    </div>
+</main>
