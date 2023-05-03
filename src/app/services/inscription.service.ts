@@ -1,5 +1,6 @@
+import { SessionFormation } from './../entities/SessionFormation.model';
 import { Injectable } from '@angular/core';
-import { SessionFormation } from 'src/app/entities/SessionFormation.model';
+
 
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -29,7 +30,7 @@ export class InscriptionService {
   }
   
 
-    addInsecription(apprenants:Apprenant[],inscription :Inscription,selectedForeignKeyId: number) : Observable <Inscription> {
+    /* addInsecription(apprenants:Apprenant[],inscription :Inscription,selectedForeignKeyId: number) : Observable <Inscription> {
       let jwt = this.authService.getToken();
       jwt = "Bearer "+jwt;
       let httpHeaders = new HttpHeaders({"Authorization":jwt});
@@ -49,9 +50,9 @@ export class InscriptionService {
       }
 
 
-     /*  formData.append('SesionDeFormation',  JSON.stringify(inscription.SesionDeFormation.idSessionFormation));
-      formData.append('apprenant', JSON.stringify(inscription.apprenant.id));
- */
+      //formData.append('SesionDeFormation',  JSON.stringify(inscription.SesionDeFormation.idSessionFormation));
+      //formData.append('apprenant', JSON.stringify(inscription.apprenant.id));
+ 
      //console.log("fffff",inscription);
 
     return this.httpClient.post<Inscription>(this.apiURL+"add",formData,{headers:httpHeaders}).pipe(
@@ -64,6 +65,31 @@ export class InscriptionService {
       })
     );
   }
+ */
+
+  addInsecription(idSessionFormation: number,idApp:number,inscription:Inscription) : Observable <Inscription> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Content-Type": 'application/json',"Authorization":jwt});
+
+   // httpHeaders.append('Content-Type', 'multipart/form-data');
+   // const formData = new FormData();
+
+    //formData.append('sessionFormation', JSON.stringify(inscription.sessionFormation.idSessionFormation));
+//formData.append('apprenant', JSON.stringify(inscription.apprenant.id));
+
+  return this.httpClient.post<Inscription>(this.apiURL+"add?idSessionFormation="+idSessionFormation+"&apprenant="+idApp,inscription, {headers:httpHeaders}).pipe(
+
+    catchError((error) => {
+      if (error.error && error.error.message === 'inscription existe deja ') {
+        // Display alert message using ngx-toastr or Angular's built-in Alert service
+      }
+      return throwError(error);
+    })
+  );
+}
+
+
 
   getInscription() {
 

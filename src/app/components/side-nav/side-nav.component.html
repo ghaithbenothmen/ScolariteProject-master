@@ -1,6 +1,6 @@
 <section id="sidebar" [ngClass]="status ? 'hide' : ''">
 
-        <a href="#" class="brand">
+        <a href="accueil" class="brand">
                 <ng-container *ngFor="let etablissement of etablissements"><a href="accueil">
                                 <img height="36"
                                         src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"

@@ -1,3 +1,4 @@
+
 import { Component, TemplateRef } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -35,7 +36,7 @@ public items = ['En ligne', 'Présentiel'];
   public inscriptions!: Inscription[];
   public inscription!: Inscription;
   public apprenant!:Apprenant;
-
+public ins!:Inscription[];
   public idFormation!: number;
   public codeFormateur!: number;
   public idS!: number;
@@ -172,13 +173,12 @@ onControl(f: NgForm) {
 
     this.editForm.patchValue({
 
-        idSessionFormation: SessionFormation.idSessionFormation,
+      sessionFormation: SessionFormation.idSessionFormation,
       /* idFormation: SessionFormation.themeDeFormation.nomFormation, */
 
       //idFormation: SessionFormation.themeDeFormation.nomFormation,
 
-      idUser:this.UserId
-
+      apprenant:this.UserId
 
     });
 
@@ -193,14 +193,18 @@ onControl(f: NgForm) {
    /*  console.log(this.editForm.value.idUser);
    console.log(this.editForm.value.idSessionFormation); */
 
-   console.log("edit",this.editForm.value)
+   //this.editForm.value.sessionFormation = this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.editForm.value.sessionFormation);
+   //this.editForm.value.apprenant = this.apprenants.find(app => app.id == this.editForm.value.apprenant);
+   this.ins=this.editForm.value;
+  
     /* this.editForm.value.sessionFormation = this.editForm.value.idSessionFormation
 
    this.editForm.value.Apprenant = this.editForm.value.idUser  */
-    console.log("app",this.apprenants);
+    
+    console.log("ins",this.editForm.value.sessionFormation );
     /* console.log('formateurs:', this.formateurs); */
     
-    this.InscriptionService.addInsecription(this.apprenants, /* selectedApprenant */this.editForm.value, this.editForm.value.idUser).subscribe(response => {
+    this.InscriptionService.addInsecription(this.editForm.value.sessionFormation  ,  this.editForm.value.apprenant  ,  this.editForm.value).subscribe(response => {
       //response.apprenant = selectedApprenant
       /* response.apprenant = this.editForm.value.Apprenant;
       response.SesionDeFormation = this.editForm.value.sessionFormation; */
@@ -247,8 +251,8 @@ openModal(modalTemplate: TemplateRef<any>) {
 
       
       
-      idSessionFormation: [''],
-     idUser: [''],
+        sessionFormation: [''],
+        apprenant: [''],
   
 
     })

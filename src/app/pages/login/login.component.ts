@@ -67,7 +67,7 @@ id:0,
         
         this.router.navigate(['/admin-dashboard/apprenant']);
       } else {
-        this.router.navigate(['/user-dashboard/inscri/:id']);
+        this.router.navigate(['/user-dashboard/ListeSession']);
       }
 
 

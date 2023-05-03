@@ -69,7 +69,7 @@ public items = ['En ligne', 'Présentiel'];
   getSessionFormation() {
 
     this.SessionFormationService.getSessionFormation().subscribe(response => {
-      console.log("dddd",response);
+      console.log("dddd",this.sessionFormations);
 
       this.sessionFormations = response;
 
