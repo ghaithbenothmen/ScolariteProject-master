@@ -5,11 +5,9 @@ import { ApprenantComponent } from '../../pages/admin-pages/apprenant/apprenant.
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ThemeDeFormationComponent } from '../../pages/admin-pages/theme-de-formation/theme-de-formation.component';
-import { LoginComponent } from 'src/app/pages/login/login.component';
 import { ActualiteComponent } from 'src/app/pages/admin-pages/actualite/actualite.component';
-import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 import { SessionFormationComponent } from '../../pages/admin-pages/session-formation/session-formation.component';
-import { ListeAppBySessionComponent } from 'src/app/pages/admin-pages/liste-app-by-session/liste-app-by-session.component';
+import { AppBySessionComponent } from 'src/app/pages/admin-pages/app-by-session/app-by-session.component';
 
 const routes: Routes = [
  
@@ -20,7 +18,7 @@ const routes: Routes = [
   { path: 'themeDeFormation', component: ThemeDeFormationComponent },
    {path:'sessionDeFormation',component:SessionFormationComponent},
   { path: 'messages', component: MessagesComponent },
-    {path:'app-liste-app-by-session',component:ListeAppBySessionComponent},
+    {path:'app-liste-app-by-session',component: AppBySessionComponent},
 ];
 
 @NgModule({
