@@ -18,7 +18,7 @@
     <div class="team-area sp">
         <div class="row bootstrap snippets bootdey">
             <div class="col-md-4" *ngFor="let SessionFormation of sessionFormations">
-                <div class="team-member">
+                <div class="team-member" (click)="onSelect(SessionFormation)">
                     <figure class="effect-zoe">
                         <div class="team-photo">
                             <img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}"

@@ -28,16 +28,18 @@ export class SessionFormationService {
 
 
   
-  getFormateur() {
-    let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+  // getFormateur() {
+  //   let jwt = this.authService.getToken();
+  //   jwt = "Bearer "+jwt;
+  //   let httpHeaders = new HttpHeaders({ "Authorization": jwt })
     
-    return this.httpClient.get<Formateur[]>(this.apiURL+"all",{headers:httpHeaders});}
+  //   return this.httpClient.get<Formateur[]>(this.apiURL+"all",{headers:httpHeaders});}
 
   getSessionFormation() {
 
-   return this.httpClient.get<SessionFormation[]>(this.apiURL + "all",);
+    return this.httpClient.get<SessionFormation[]>(this.apiURL + "all",);
+
+    
   }
   addimage(file: File
 

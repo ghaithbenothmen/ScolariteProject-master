@@ -16,7 +16,7 @@ import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 import { formateurService } from 'src/app/services/formateur.service';
 import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-app-by-session',
@@ -48,7 +48,7 @@ public items = ['En ligne', 'Présentiel'];
   idTh: any;
   //SessionFormationService: any;
 
-  constructor( private modalService: BsModalService,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor( private modalService: BsModalService,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   public onFileChanged(event: any) {
 
     this.selectedFile = event.target.files[0];
@@ -56,6 +56,9 @@ public items = ['En ligne', 'Présentiel'];
 
   }
 
+  onSelect(sessionFormation :SessionFormation) {
+    this.router.navigate(['/admin-dashboard/ListeAppSession', sessionFormation.idSessionFormation]);
+  }
    //Pagination//
    page:number=1;
    count:number=0;

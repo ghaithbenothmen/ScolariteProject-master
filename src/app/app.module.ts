@@ -56,6 +56,7 @@ import { ProfilComponent } from './pages/profil/profil.component';
 import { SessionComponent } from './pages/apprenant-pages/session/session.component';
 import { SessionInseritComponent } from './pages/apprenant-pages/session-inserit/session-inserit.component';
 import { AppBySessionComponent } from './pages/admin-pages/app-by-session/app-by-session.component';
+import { ListeAppSessionComponent } from './pages/admin-pages/liste-app-session/liste-app-session.component';
 
 
 
@@ -100,6 +101,7 @@ registerLocaleData(localeFr);
          SessionComponent,
           SessionInseritComponent,
           AppBySessionComponent,
+          ListeAppSessionComponent,
       
 
 
