@@ -59,7 +59,7 @@ export class ApprenantComponent {
     console.log(this.authService.getToken())
 
     this.editForm = this.fb.group({
-      idApprenant: [''],
+      id: [''],
 
       nomApprenant: [''],
       prenomApprenant: [''],
@@ -70,7 +70,6 @@ export class ApprenantComponent {
       adresseApprenant: [''],
       archiveApprenant: [''],
       sexeApprenant: [''],
-
       niveauApprenant: [''],
       qualiteApprenant: [''],
       userame: [''],
@@ -80,13 +79,13 @@ export class ApprenantComponent {
     })
 
     this.editForm2 = this.fb.group({
-      idApprenant: [''],
-
+      id: [''],
       nomApprenant: [''],
       prenomApprenant: [''],
       /* sexeApprenant: [''], */
       dateNaissanceApprenant: [''],
       emailApprenant: [''],
+      password:[''],
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
@@ -144,7 +143,7 @@ export class ApprenantComponent {
 
 
     this.editForm.patchValue({
-      idApprenant: apprenant.id,
+      id: apprenant.id,
 
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
@@ -167,7 +166,7 @@ export class ApprenantComponent {
   }
 
   onSave() {
-
+console.log("id",this.editForm.value.id);
     this.appService.updateApp(this.editForm.value).subscribe(response => {
       console.log(response);
 
@@ -184,6 +183,7 @@ export class ApprenantComponent {
       this.ngOnInit();
     });
     this.modalService.hide();
+    console.log(this.editForm2.value.id)
   }
 
 
@@ -198,8 +198,7 @@ export class ApprenantComponent {
     );
 
     this.editForm2.patchValue({
-      idApprenant: apprenant.id,
-
+      id: apprenant.id,
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,

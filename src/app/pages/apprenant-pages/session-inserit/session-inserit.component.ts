@@ -117,7 +117,7 @@ id: any;
     this.UserId = localStorage.getItem('UserId');
     this.idUser=Number(this.UserId)
    this.getInsecription();
-   
+   console.log(this.idUser)
     console.log(this.authService.getToken());
 
     this.editForm = this.fb.group({
