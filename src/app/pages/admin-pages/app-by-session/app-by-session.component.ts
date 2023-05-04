@@ -17,7 +17,7 @@ import { formateurService } from 'src/app/services/formateur.service';
 import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { DatePipe, NgFor } from '@angular/common';
 @Component({
   selector: 'app-app-by-session',
   templateUrl: './app-by-session.component.html',
@@ -48,7 +48,7 @@ public items = ['En ligne', 'Présentiel'];
   idTh: any;
   //SessionFormationService: any;
 
-  constructor( private modalService: BsModalService,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor( private modalService: BsModalService, private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   public onFileChanged(event: any) {
 
     this.selectedFile = event.target.files[0];
@@ -71,8 +71,23 @@ public items = ['En ligne', 'Présentiel'];
 
   getSessionFormation() {
 
-    this.SessionFormationService.getSessionFormation().subscribe(response => {
-      console.log("dddd",this.sessionFormations);
+     this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
+      console.log(response);
+
+       response.forEach((item) => {
+        const date=new Date(item.dateDebut);
+        
+        
+        const dayOfWeek = date.getDay(); 
+        item.dayOfWeek = this.getDayName(dayOfWeek);
+
+      item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+      
+
+      const dateF=new Date(item.dateFin);
+      item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+       });
+       
 
       this.sessionFormations = response;
       console.log("dddd",this.sessionFormations);
@@ -94,6 +109,12 @@ public items = ['En ligne', 'Présentiel'];
 
   }
 
+
+  getDayName(dayOfWeek: number): string {
+    
+    const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    return dayNames[dayOfWeek];
+  }
   /*  getSessionFormation() {
  
      this.SessionFormationService.getSessionFormation().subscribe(response => {

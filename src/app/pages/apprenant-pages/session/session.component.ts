@@ -59,7 +59,8 @@ id: any;
 
 
 
-  constructor( private InscriptionService :  InscriptionService  ,private router:Router ,private modalService: BsModalService,private datePipe: DatePipe,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor(private InscriptionService: InscriptionService, private router: Router, private modalService: BsModalService, private datePipe: DatePipe, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  
   onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/user-dashboard/inscri', sessionFormation.idSessionFormation]);
   }
