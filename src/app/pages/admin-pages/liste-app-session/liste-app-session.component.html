@@ -1,1 +1,69 @@
-<p>liste-app-session works!</p>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a class="disabled" href="#">Apprenant Par session </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- <button (click)="openModal(ajoutCompte)" class="btn btn-secondary" data-toggle="modal"><i
+				class="material-icons">&#xE147;</i> <span>Ajouter Compte</span></button> -->
+
+        <div class="table-data">
+            <div class="order">
+                <ng-container *ngFor="let Inscriptions of Inscriptions">
+                    <div class="head" *ngIf=" Inscriptions.sessionFormation.idSessionFormation==idSession">
+                        <h3>Tableau Apprenant insecrit dans la session
+                            {{Inscriptions.sessionFormation.themeDeFormation.nomFormation}}
+                        </h3>
+
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <!-- <ng-template #elseBlock>Content to render when condition is false.</ng-template> -->
+                </ng-container>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> </th>
+                            <th>Nom </th>
+                            <th>Prénom </th>
+                            <th>Email</th>
+                            <th>Telehone</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <ng-container *ngFor=" let Inscriptions of Inscriptions">
+                            <tr *ngFor="let apprenant of apprenants">
+                                <ng-container
+                                    *ngIf="!apprenant.archiveApprenant && Inscriptions.sessionFormation.idSessionFormation==idSession  ">
+                                    <td>{{apprenant.id}}</td>
+                                    <td>{{apprenant.nomApprenant}}</td>
+                                    <td>{{apprenant.prenomApprenant}}</td>
+                                    <td>{{apprenant.email}}</td>
+                                    <td>{{apprenant.telApprenant}}</td>
+
+                                </ng-container>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</main>

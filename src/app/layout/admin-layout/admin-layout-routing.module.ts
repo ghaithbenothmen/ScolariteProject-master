@@ -10,6 +10,7 @@ import { SessionFormationComponent } from '../../pages/admin-pages/session-forma
 import { AppBySessionComponent } from 'src/app/pages/admin-pages/app-by-session/app-by-session.component';
 import { ListeAppSessionComponent } from 'src/app/pages/admin-pages/liste-app-session/liste-app-session.component';
 
+
 const routes: Routes = [
  
   { path: 'apprenant',         component: ApprenantComponent },
