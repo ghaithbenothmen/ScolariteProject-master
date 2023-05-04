@@ -239,7 +239,7 @@ openModal(modalTemplate: TemplateRef<any>) {
     //this.id=this.route.snapshot.paramMap.get("id");
     this.id = this.route.snapshot.params["id"];
 
-    this.UserId = localStorage.getItem('UserId');
+    this.UserId = localStorage.getItem('UserId'); 
     console.log("lklk",this.UserId);
     this.getSessionFormationn();
 
