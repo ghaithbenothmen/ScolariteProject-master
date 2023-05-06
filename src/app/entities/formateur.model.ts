@@ -1,7 +1,7 @@
 export class Formateur {
     constructor(
       
-      public Password:string,
+      public password:string,
       public id: number,
       public nomFormateur: string,
       public prenonFormateur: string,

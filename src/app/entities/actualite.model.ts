@@ -6,7 +6,7 @@ export class Actualite {
       public titreActualite: string,
       public descriptionActualite: string,
       public dateActualite: Date,
-     
+      public  dayOfWeek: string,
       public data :Blob,
       public file: File,
       public  fileType :string,

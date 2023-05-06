@@ -28,13 +28,24 @@ public isCollapsed = true;
       console.log(response);
       
       response.forEach((item) => {
-        const date=new Date(item.dateActualite)
+        const date=new Date(item.dateActualite);
+
+        const dayOfWeek = date.getDay(); 
+        item.dayOfWeek = this.getDayName(dayOfWeek);
+
         item.dateActualite = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
       });
       
       this.Actualites = response;
      
       });
+  }
+
+  
+  getDayName(dayOfWeek: number): string {
+    
+    const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    return dayNames[dayOfWeek];
   }
   
   ngOnInit(): void {

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'inscri/:id', component: InscriptionComponent },
   { path: 'ListeSession', component: SessionComponent },
     { path: 'Session-Insecrit', component: SessionInseritComponent},
+    
 ];
 
 @NgModule({

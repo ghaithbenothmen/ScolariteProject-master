@@ -43,18 +43,19 @@
                     </thead>
                     <tbody>
 
-                        <ng-container *ngFor=" let Inscriptions of Inscriptions">
-                            <tr *ngFor="let apprenant of apprenants">
+                        <ng-container *ngFor=" let inscription of Inscriptions">
+                            
                                 <ng-container
-                                    *ngIf="!apprenant.archiveApprenant && Inscriptions.sessionFormation.idSessionFormation==idSession  ">
-                                    <td>{{apprenant.id}}</td>
-                                    <td>{{apprenant.nomApprenant}}</td>
-                                    <td>{{apprenant.prenomApprenant}}</td>
-                                    <td>{{apprenant.email}}</td>
-                                    <td>{{apprenant.telApprenant}}</td>
+                                    *ngIf=" !(inscription.apprenant.archiveApprenant) && inscription.sessionFormation.idSessionFormation==idSession  ">
+
+                                    <td>{{inscription.apprenant.id}}</td>
+                                    <td>{{inscription.apprenant.nomApprenant}}</td>
+                                    <td>{{inscription.apprenant.prenomApprenant}}</td>
+                                    <td>{{inscription.apprenant.email}}</td>
+                                    <td>{{inscription.apprenant.telApprenant}}</td>
 
                                 </ng-container>
-                            </tr>
+                            
                         </ng-container>
                     </tbody>
 

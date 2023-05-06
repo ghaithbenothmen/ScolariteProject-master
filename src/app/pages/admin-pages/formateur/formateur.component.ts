@@ -92,16 +92,15 @@ export class FormateurComponent {
     
     this.editForm = this.fb.group({
     
-      codeFormateur: [''],
+      id: [''],
      
      // adresseApprenant: [''],
-    file: [''],
-
-       
+      file: [''], 
      nomFormateur : [''],
       prenonFormateur: [''],
       telFormateur: [''],
-  emailFormateur: [''],
+      emailFormateur: [''],
+      password:[''],
      adresseFormateur: [''],
      specialite: [''],
     
@@ -123,11 +122,12 @@ export class FormateurComponent {
     );
 
     this.editForm.patchValue({
-      codeFormateur: formateur.id,
+      id: formateur.id,
      nomFormateur : formateur.nomFormateur,
       prenonFormateur: formateur.prenonFormateur,
       telFormateur: formateur.telFormateur,
-  emailFormateur:formateur.email,
+      emailFormateur:formateur.email,
+      password:formateur.password,
      adresseFormateur: formateur.adresseFormateur,
      specialite: formateur.specialite,
     
@@ -154,7 +154,7 @@ openModal(modalTemplate: TemplateRef<any>) {
 }
 onSave() {
   
-    
+    console.log(this.editForm.value.password);
   this.formateurService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(response => {
       //console.log(response);
      

@@ -60,7 +60,7 @@ export class formateurService  {
     
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('Password', Formateur.Password);
+    formData.append('Password', Formateur.password);
      formData.append('NomFormateur', Formateur.nomFormateur);
       formData.append('PrenonFormateur', Formateur.prenonFormateur);
      formData.append('telFormateur', Formateur.telFormateur.toString());
