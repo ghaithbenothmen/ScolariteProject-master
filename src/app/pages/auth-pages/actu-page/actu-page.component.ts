@@ -23,17 +23,30 @@ public isCollapsed = true;
 
   constructor(private modalService: BsModalService, private datePipe: DatePipe,  private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService) { }
  
+ 
+  page:number=1;
+  count:number=0;
+  tableSize:number=2;
+  onTableChange(event:any){
+    this.page=event;
+    this.getActualite();
+
+  }
+
+
   getActualite() {
     this.actualiteService.getActualite().subscribe((response:any[]) => {
       console.log(response);
       
       response.forEach((item) => {
         const date=new Date(item.dateActualite);
+        
 
         const dayOfWeek = date.getDay(); 
         item.dayOfWeek = this.getDayName(dayOfWeek);
 
         item.dateActualite = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+        
       });
       
       this.Actualites = response;
@@ -41,7 +54,12 @@ public isCollapsed = true;
       });
   }
 
-  
+  formatTime(timeString: string): string {
+    const [hours, minutes] = timeString.split(':');
+    const formattedHours = hours.padStart(2, '0');
+    const formattedMinutes = minutes.padStart(2, '0');
+    return `${formattedHours}:${formattedMinutes}`;
+  }
   getDayName(dayOfWeek: number): string {
     
     const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];

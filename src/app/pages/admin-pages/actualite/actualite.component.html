@@ -111,7 +111,16 @@
                                 class="form-control" required ngModel>
                             <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
                                 devez
-                                entrer l'date de l'Actualite</span>
+                                entrer date de l'Actualite</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Heure debut :</label>
+                            <input type="time" name="heureDebut" #heureDebut="ngModel"
+                                class="form-control" required ngModel max="24" min="00">
+                            <span *ngIf="heureDebut.invalid && heureDebut.touched" class="error">Vous
+                                devez
+                                entrer heure de l'Actualite</span>
                         </div>
                        
                         
@@ -169,6 +178,12 @@
                         <div class="form-group">
                             <label>Date actualite: </label>
                             <input type="date" formControlName="dateActualite" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Heure debut :</label>
+                            <input type="time" formControlName="heureDebut"
+                                class="form-control" required  >
+                            
                         </div>
                       
                         <div class="form-group">

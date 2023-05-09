@@ -94,7 +94,7 @@ export class ActualiteComponent {
       titreActualite: [''],
       descriptionActualite: [''],
       dateActualite: [''],
-   
+      heureDebut:[''],
       file: [''],
     fileType: [''],
    dataa:[''],
@@ -119,6 +119,7 @@ export class ActualiteComponent {
       titreActualite: Actualite.titreActualite,
       descriptionActualite: Actualite.descriptionActualite,
       dateActualite: Actualite.dateActualite,
+      heureDebut: Actualite.heureDebut,
       dataa: Actualite.data,
 
       fileType: Actualite.fileType,

@@ -22,6 +22,7 @@ export class AuthLayoutComponent {
 
   ngOnInit(): void {
     this.authService.loadToken();
+    this.getEtablissement();
     
 /****************Logo ******************* */
 this.imageService.getImage().subscribe(response => {
@@ -48,7 +49,13 @@ this.imageService.getImage().subscribe(response => {
       this.etablissements = response;
       });
   } */
- 
+  getEtablissement() {
+    this.etabService.getEtablissements().subscribe(response => {
+      console.log(response);
+     
+      this.etablissements = response;
+      });
+  }
 
 
 }

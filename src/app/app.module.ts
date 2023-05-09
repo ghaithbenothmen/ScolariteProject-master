@@ -31,7 +31,7 @@ import localeFr from '@angular/common/locales/fr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ActualiteComponent } from './pages/admin-pages/actualite/actualite.component';
 import { ActuPageComponent } from './pages/auth-pages/actu-page/actu-page.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import { ThemeDeFormationComponent } from './pages/admin-pages/theme-de-formation/theme-de-formation.component';
 

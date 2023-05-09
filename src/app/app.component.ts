@@ -3,7 +3,7 @@ import { AuthService } from './services/auth.service';
 import { Component, TemplateRef, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-
+import * as Popper from 'popper.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

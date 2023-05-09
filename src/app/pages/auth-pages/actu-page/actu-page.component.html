@@ -11,82 +11,42 @@
       </p>
     </div>
 
-    <div class="event_container">
-      <ng-container *ngFor="let actualite of Actualites">
-        <div class="box">
-          <div class="date-box">
-            <h3>
-              <p style="text-align: center;"> {{ actualite.dayOfWeek }}</p>
-              <span>
-                {{actualite.dateActualite }}
-              </span>
+    <section id="events" class="events">
+      <div class="container" data-aos="fade-up">
 
-            </h3>
-          </div>
-          <div class="img-box">
-            <img src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}" width="200px" height="200px" />
-          </div>
-          <div class="detail-box">
-            <h4>
-              {{actualite.titreActualite}}
-            </h4>
-            <!-- <h6>
-              &ensp; {{actualite.descriptionActualite}}
-              
-            </h6> -->
-            <div class="btn-box">
-              <a type="button" (click)="openDetails(contentDetails, actualite)" class="edit" data-toggle="modal">
-                Voire plus </a>
+        <div class="row">
+          
+      <ng-container *ngFor="let actualite of Actualites | paginate:{
+        itemsPerPage:tableSize,
+        currentPage:page,
+        totalItems:count
+      }">
+          <div class="col-md-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-img">
+                <img src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}"  />
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><a href="">{{actualite.titreActualite }}</a></h5>
+                <p class="fst-italic text-center" >{{ actualite.dayOfWeek }}, {{actualite.dateActualite }} a {{ formatTime(actualite.heureDebut) }} </p>
+
+                
+                <p class="card-text">{{ actualite.descriptionActualite }}</p>
+              </div>
             </div>
           </div>
-
-
-        </div>
-
       </ng-container>
-    </div>
-    <div class="btn-box">
-
-    </div>
-
-  </div>
-</section>
-<ng-template #contentDetails>
-
-<!--  class  modal-dialog-centered -->
-  <div class="modal-dialog modal-md  " role="document">
-    <div class="modal-content rounded-0">
-      <div class="modal-body py-0">
-        <div class="modal-header">
-          <h4 class="modal-title">Actualités:</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-            (click)="modalRef.hide()">&times;</button>
         </div>
-        <div *ngFor="let actualite of Actualites">
-          <div *ngIf="actualite.codeActualite==this.editForm.value.codeActualite">
-            <div class="d-block main-content">
-              <div>
-                <img height="200px" src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}" alt="Image"
-                  class="img-fluid " style="  background-color: #b2fcff;">
-              </div>
-              <div class="content-text p-4">
 
-                <h3 class="mb-4">{{actualite.titreActualite}}:</h3>
-                <p class="mb-4">{{actualite.descriptionActualite}}</p>
-                <div class="pull-right">
-
-                  <input type="button" class="btn btn-info" value="Fermer" (click)="modalRef.hide()">
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
       </div>
+    
+    </section><!-- End Events Section -->
+    <div class="pagination-container">
+    <pagination-controls  previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
+
+    </pagination-controls>
     </div>
-  </div>
-</ng-template>
+
 
 <!-- end event section -->
 

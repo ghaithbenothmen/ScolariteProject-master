@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Etablissement } from '../entities/etablissement.model';
-import { EtablissementService } from '../services/etablissement.service';
+import { Etablissement } from '../../entities/etablissement.model';
+import { EtablissementService } from '../../services/etablissement.service';
 
 @Component({
   selector: 'app-footer',

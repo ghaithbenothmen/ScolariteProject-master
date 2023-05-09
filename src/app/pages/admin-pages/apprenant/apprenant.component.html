@@ -219,7 +219,7 @@
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default" value="Fermer"
 										(click)="modalRef.hide()">
-									<input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajout">
+									<input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajouter">
 								</div>
 							</form>
 						</div>
@@ -383,18 +383,18 @@
 			<div class="modal-content">
 				<div>
 					<div class="modal-header">
-						<h4 class="modal-title">Delete Apprenant</h4>
+						<h4 class="modal-title">Archiver Apprenant</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
 							(click)="modalRef.hide()">&times;</button>
 					</div>
 					<div class="modal-body">
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
+						<p>Voulez-vous archiver ce apprenant?</p>
+						<p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
 					</div>
 					<form class="modal-footer" [formGroup]="editForm2">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
 							(click)="modalRef.hide()">
-						<input type="submit" class="btn btn-danger" value="Supprimer" (click)="onPatch()">
+						<input type="submit" class="btn btn-danger" value="Archiver" (click)="onPatch()">
 
 					</form>
 				</div>
