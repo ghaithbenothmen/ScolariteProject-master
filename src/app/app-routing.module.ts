@@ -8,6 +8,7 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { ApprenantLayoutComponent } from './layout/apprenant-layout/apprenant-layout.component';
 import { Role } from './entities/role.model';
+import { FormateurLayoutComponent } from './layout/formateur-layout/formateur-layout.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,17 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('src/app/layout/apprenant-layout/apprenant-layout.module').then(m => m.ApprenantLayoutModule)
+      }
+    ]
+  },
+  {
+    
+    path: 'formateur-dashboard',
+    component: FormateurLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/layout/formateur-layout/formateur-layout.module').then(m => m.FormateurLayoutModule)
       }
     ]
   },

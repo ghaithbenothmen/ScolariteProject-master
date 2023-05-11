@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormateurLayoutRoutingModule } from './formateur-layout-routing.module';
 
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -11,4 +12,7 @@ import { FormateurLayoutRoutingModule } from './formateur-layout-routing.module'
     FormateurLayoutRoutingModule
   ]
 })
-export class FormateurLayoutModule { }
+export class FormateurLayoutModule { 
+
+  
+}

@@ -1,1 +1,13 @@
-<p>formateur-layout works!</p>
+<!-- Sidenav -->
+<div *ngIf="authService.isLoggedIn()">
+    <app-side-for></app-side-for>
+</div>
+<div class="main-content">
+    <!-- Top navbar -->
+    <!--  <p *ngIf="(authService.isTokenExpired())==true" > <script>alert('byeyby')</script></p> -->
+    <!-- Pages -->
+
+    <div class="container-fluid">
+        <!--  <app-footer></app-footer> -->
+    </div>
+</div>

@@ -60,14 +60,17 @@ id:0,
       this.authService.saveToken(token,this.user.role,this.user.id);
 
       const isAdmin = this.authService.isAdmin(); // Call isAdmin() function
-      //const isApp = this.authService.isApp(); // Call isAdmin() function
+      const isApp = this.authService.isApp();
+     
       console.log('Is admin:', isAdmin);
       //console.log('Is App:', isApp);
       if (isAdmin) {
         
         this.router.navigate(['/admin-dashboard/apprenant']);
-      } else {
+      } else if (isApp){
         this.router.navigate(['/user-dashboard/ListeSession']);
+      }else {
+        this.router.navigate(['/formateur-dashboard']);
       }
 
 
