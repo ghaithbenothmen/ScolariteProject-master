@@ -27,15 +27,14 @@ const routes: Routes = [
   {path:'sessionDeFormation',component:SessionFormationComponent},
   { path: 'messages', component: MessagesComponent },
   { path: 'app-liste-app-by-session', component: AppBySessionComponent },
-<<<<<<< HEAD
+
   { path: 'Seance-Formation', component: SeanceComponent},
  //{path: 'Seance-Formation',component: SeanceComponent},
   { path: 'ListeAppSession/:id', component: ListeAppSessionComponent },
   
-=======
+
   { path: 'admin-dash', component: AdminDashComponent },
-  {path:'ListeAppSession/:id',component:ListeAppSessionComponent}
->>>>>>> 79bf1d6319ca3156b18908a7d1947a4f19cdff01
+  
 ];
 
 @NgModule({

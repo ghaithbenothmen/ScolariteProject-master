@@ -41,42 +41,7 @@
                         Les inscriptions                
                     </CDBSidebarMenuItem>
 
-<<<<<<< HEAD
-                <li (click)="setActiveItem(7)" [ngClass]="{'active': activeItem === 7}">
-                        <a routerLink="actualiteDash">
-                                <i class='bx bxs-doughnut-chart'></i>
-                                <span class="text">Actualite</span>
-                        </a>
-                </li>
-                <li (click)="setActiveItem(8)" [ngClass]="{'active': activeItem === 8}">
-                        <a routerLink="messages">
-                                <i class='bx bxs-message-dots'></i>
-                                <span class="text">Messages</span>
-                        </a>
-                </li>
-                <li (click)="setActiveItem(9)" [ngClass]="{'active': activeItem === 9}">
-                        <a routerLink="Seance-Formation">
-                                <i class='bx bxs-message-dots'></i>
-                                <span class="text">Seance-Formation</span>
-                        </a>
-                </li>
-        </ul>
-        <ul class="side-menu">
-                <li>
-                        <a href="profil">
-                                <i class='bx bxs-cog'></i>
-                                <span class="text">Parametres</span>
-                        </a>
-                </li>
-                <li>
-                        <a type="button" *ngIf="authService.isLoggedIn()" ngbDropdownItem (click)="onLogout()"
-                                class="logout">
-                                <i class='bx bxs-log-out-circle'></i>
-                                <span class="text">Logout</span>
-                        </a>
-                </li>
-        </ul>
-=======
+
                     <CDBSidebarMenuItem link='actualiteDash' icon="sticky-note" >
                         Les Actualités              
                     </CDBSidebarMenuItem>
@@ -84,7 +49,7 @@
                     <CDBSidebarMenuItem link="messages" icon="book" >
                         Les Messages              
                     </CDBSidebarMenuItem>
->>>>>>> 79bf1d6319ca3156b18908a7d1947a4f19cdff01
+
 
                                
                     <CDBSidebarMenuItem link="etablissement" icon="home" >

@@ -59,11 +59,11 @@ import { AppBySessionComponent } from './pages/admin-pages/app-by-session/app-by
 import { ListeAppSessionComponent } from './pages/admin-pages/liste-app-session/liste-app-session.component';
 import { FormateurLayoutComponent } from './layout/formateur-layout/formateur-layout.component';
 import { SideForComponent } from './components/side-for/side-for.component';
-<<<<<<< HEAD
+
 import { SeanceComponent } from './pages/admin-pages/seance/seance.component';
-=======
+
 import { NavbarForComponent } from './components/navbar-for/navbar-for.component';
->>>>>>> 79bf1d6319ca3156b18908a7d1947a4f19cdff01
+
 
 
 import { CDBFreeModule } from 'ng-cdbangular';
@@ -114,13 +114,13 @@ registerLocaleData(localeFr);
           ListeAppSessionComponent,
           FormateurLayoutComponent,
           SideForComponent,
-<<<<<<< HEAD
+
           SeanceComponent,
-=======
+
           NavbarForComponent,
           DashFormateurComponent,
           AdminDashComponent,
->>>>>>> 79bf1d6319ca3156b18908a7d1947a4f19cdff01
+
       
 
 
