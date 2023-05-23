@@ -10,6 +10,7 @@ import { SessionFormationComponent } from '../../pages/admin-pages/session-forma
 import { AppBySessionComponent } from 'src/app/pages/admin-pages/app-by-session/app-by-session.component';
 import { ListeAppSessionComponent } from 'src/app/pages/admin-pages/liste-app-session/liste-app-session.component';
 import { ProfilComponent } from 'src/app/pages/profil/profil.component';
+import { AdminDashComponent } from 'src/app/pages/admin-pages/admin-dash/admin-dash.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path:'sessionDeFormation',component:SessionFormationComponent},
   { path: 'messages', component: MessagesComponent },
   { path: 'app-liste-app-by-session', component: AppBySessionComponent },
- 
+  { path: 'admin-dash', component: AdminDashComponent },
   {path:'ListeAppSession/:id',component:ListeAppSessionComponent}
 ];
 

@@ -1,32 +1,35 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class='bx bx-chevron-right'></i></li>
-                <li>
-                    <a class="disabled" href="#">Formateur</a>
-                </li>
-            </ul>
-        </div>
-        <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
-                class="material-icons">&#xE147;</i> <span>Ajouter formateur</span></button>
 
-    </div>
-    <div class="alert alert-success" role="alert" *ngIf="message">
-        {{message}}
-    </div>
-    <div class="table-data">
-        <div class="order">
-            <div class="head">
-                <h3>Tableau formateur</h3>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
-            </div>
+    <div class="container">
+	
+		
+		<!-- ======================= Cards ================== -->
+		<div class="cardBox">
+			<div class="card">
+				<div>
+					<div class="numbers">{{numberOfFormateurs}}<span class="iconBx"> <i class="bi bi-people"></i></span></div>
+					
+				</div>
+				<div class="cardName">Formateurs </div>
+				
+			</div>
+	
+			
+		</div>
+	
+		<div class="alert alert-success" role="alert" *ngIf="message">
+			{{message}}
+		</div>
+		
+		<!-- ================ Order Details List ================= -->
+		<div class="details" >
+			<div class="recentOrders" >
+				<div class="cardHeader" >
+					<h2>List des formateurs</h2>
+					<button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+						class="material-icons">&#xE147;</i> <span>Ajouter Formateur</span></button>
+				</div>
+	
             <table>
                 <thead>
                     <tr>
@@ -72,13 +75,11 @@
                 </tbody>
             </table>
 
-            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
-
-            </pagination-controls>
+            
         </div>
 
     </div>
-</main>
+
 
 <ng-template #modalTemplate>
     <div>

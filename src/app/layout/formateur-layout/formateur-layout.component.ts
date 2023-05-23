@@ -5,7 +5,7 @@ import { EtablissementService } from 'src/app/services/etablissement.service';
 import { ImageService } from 'src/app/services/image.service';
 @Component({
   selector: 'app-formateur-layout',
-  templateUrl: './formateur-layout.component.html',
+templateUrl: './formateur-layout.component.html',
   styleUrls: ['./formateur-layout.component.css']
 })
 export class FormateurLayoutComponent {

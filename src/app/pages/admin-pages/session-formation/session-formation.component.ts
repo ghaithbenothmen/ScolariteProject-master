@@ -17,7 +17,7 @@ import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-session-formation',
   templateUrl: './session-formation.component.html',
-  styleUrls: ['./session-formation.component.css']
+  styleUrls: ['./session-formation.component.css','../apprenant/apprenant.component.css']
 })
 export class SessionFormationComponent {
   public items = ['En ligne', 'Présentiel'];
@@ -43,7 +43,7 @@ export class SessionFormationComponent {
   idFormateur: any;
   idTh: any;
   //SessionFormationService: any;
-
+  public numberOfSession!: number;
 
 
 
@@ -71,7 +71,7 @@ export class SessionFormationComponent {
       console.log(response);
 
       this.sessionFormations = response;
-
+      this.numberOfSession=response.length;
     });
     this.formateurService.getFormateur().subscribe(response => {
       console.log(response);

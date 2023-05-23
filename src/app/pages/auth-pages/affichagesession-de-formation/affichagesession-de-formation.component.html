@@ -1,110 +1,92 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<section class="event_section layout_padding">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../../../../assets/img/home-banner.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
     <div class="container">
-        <div class="event-schedule-area-two bg-color pad100">
-            <div class="container">
-                <div class="row">
-                    <div class="container">
-
-                        <div class="heading_container">
-                            <h3>
-                                Session De formation ouvert
-                            </h3>
-                            <p>
-                                Voila nous Session De formation ouvert:
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.col end-->
-                </div>
-                <!-- row end-->
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="home" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center" scope="col">Date</th>
-                                                <th scope="col">Affiche</th>
-                                                <th scope="col">Session</th>
-                                                <th scope="col">local</th>
-                                                <th class="text-center" scope="col"></th>
-                                            </tr>
-                                        </thead>
-
-
-                                        <tbody *ngFor="let sessionFormations of sessionFormations">
-                                            <tr class="inner-box">
-                                                <th scope="row">
-                                                    <div class="event-date">
-                                                        <!-- <span>{{dateDebut}} {{dayNames[day]}}</span> -->
-
-                                                        <span> {{ sessionFormations.dayOfWeek }}</span>
-                                                        <p>{{sessionFormations.dateDebut}}</p>
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <div class="event-img">
-                                                        <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
-                                                            width="200px" height="200px" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="event-wrap">
-                                                        <h3><a
-                                                                >{{sessionFormations.themeDeFormation.nomFormation}}</a>
-                                                        </h3>
-                                                        <div class="meta">
-                                                            <div class="organizers">
-                                                                <a
-                                                                    >{{sessionFormations.formateur.nomFormateur}}</a>
-                                                            </div>
-                                                            <div class="categories">
-                                                                <a >{{sessionFormations.typeFormation}}</a>
-                                                            </div>
-                                                            <div class="time">
-                                                                <i class='far fa-calendar-alt'></i>
-                                                                <span> De
-
-                                                                    <b>{{sessionFormations.dateDebut}}</b> jusqu'à
-                                                                    <b>{{sessionFormations.dateFin}}</b>  </span>
-
-                                                                    <div><i class='far fa-clock' ></i>     
-                                                                      <b>   {{sessionFormations.nbrHeures}}</b> heures</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="r-no">
-                                                        <span>{{sessionFormations.localFormation}}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="primary-btn">
-                                                        <span class="btn btn-primary"
-                                                            (click)="onSelect(sessionFormations)">Inscrire</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-                    <!-- /col end-->
-                </div>
-                <!-- /row end-->
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a routerLink="accueil">Accueil <i
+                                class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i
+                            class="ion-ios-arrow-forward"></i></span>
+                </p>
+                <h1 class="mb-0 bread">Session</h1>
             </div>
         </div>
     </div>
 </section>
+
+
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Nos session de formations</h2>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <span>Filtrer avec Thémes :</span>
+            <select class="selectpicker" [(ngModel)]="selectedTheme" (change)="filterSessions()">
+                <option value="null" [selected]="!selectedTheme" disabled>Sélectionnez théme</option>
+                <option value="" [selected]="!selectedTheme"> Tous les thémes</option>
+                <option *ngFor="let theme of themeDeFormations" [value]="theme.idFormation">{{ theme.nomFormation }}</option>
+              </select>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-5" *ngFor="let sessionFormations of filteredSessions ">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+
+                        <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
+                            class="card-img-top mb-2" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{sessionFormations.themeDeFormation.nomFormation}}</h4>
+                            <p class="card-text">
+                                {{sessionFormations.themeDeFormation.description}}
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Formateur</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.formateur.nomFormateur}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Type</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.typeFormation}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Date</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.dateDebut}} - {{sessionFormations.dateFin}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Nombre d'heure</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.nbrHeures}} Heures</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Local</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
+                            </div>
+                            
+                        </div>
+                        
+                        <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
+                            (click)="onSelect(sessionFormations)">S'inscrire</a>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </section>
+<!-- Class End -->

@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 
 
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { AuthService } from './auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 import {Inscription } from '../entities/inscription.model';
 import { Apprenant } from '../entities/apprenant.model';
@@ -17,11 +17,12 @@ import { Apprenant } from '../entities/apprenant.model';
   providedIn: 'root'
 })
 export class InscriptionService {
-
+  successMessage!: string;
+  errorMessage!: string;
  public apprenants!:Apprenant[];
  public id!:number;
   public inscription!: Inscription;
-  apiURL: string = "http://localhost:8080/apprenant/api/insecription/";
+  apiURL: string = "http://localhost:8080/apprenant/api/inscription/";
 
   
 
@@ -67,27 +68,29 @@ export class InscriptionService {
   }
  */
 
-  addInsecription(idSessionFormation: number,idApp:number,inscription:Inscription) : Observable <Inscription> {
+  addInsecription(idSessionFormation: number, idApp: number, inscription: Inscription): Observable<Inscription> {
     let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Content-Type": 'application/json',"Authorization":jwt});
-
-   // httpHeaders.append('Content-Type', 'multipart/form-data');
-   // const formData = new FormData();
-
-    //formData.append('sessionFormation', JSON.stringify(inscription.sessionFormation.idSessionFormation));
-//formData.append('apprenant', JSON.stringify(inscription.apprenant.id));
-
-  return this.httpClient.post<Inscription>(this.apiURL+"add?idSessionFormation="+idSessionFormation+"&apprenant="+idApp,inscription, {headers:httpHeaders}).pipe(
-
-    catchError((error) => {
-      if (error.error && error.error.message === 'inscription existe deja ') {
-        // Display alert message using ngx-toastr or Angular's built-in Alert service
-      }
-      return throwError(error);
-    })
-  );
-}
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Content-Type": 'application/json', "Authorization": jwt });
+  
+    return this.httpClient.post<Inscription>(this.apiURL + "add?idSessionFormation=" + idSessionFormation + "&apprenant=" + idApp, inscription, { headers: httpHeaders, observe: 'response' }).pipe(
+      map((response: HttpResponse<any>) => {
+        if (response.status === 200) {
+          // Inscription saved successfully
+          console.log('Inscription saved:', response.body);
+          this.successMessage = 'Inscription saved successfully.';
+          // Display success message in your frontend
+        } else if (response.status === 400) {
+          // Apprenant is already inscribed
+          console.log('You are already inscribed');
+          this.errorMessage = 'You are already inscribed.';
+          // Display error message in your frontend
+        }
+        return response.body;
+      }),
+      
+    );
+  }
 
 
 

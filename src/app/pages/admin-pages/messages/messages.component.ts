@@ -7,13 +7,15 @@ import { Contact } from 'src/app/entities/contact.model';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  styleUrls: ['./messages.component.css','../apprenant/apprenant.component.css']
 })
 export class MessagesComponent {
   public modalRef!: BsModalRef;
   private deleteId !: number;
   public contacts!:Contact[];
   public contact!:Contact;
+public numberMess!:number;
+
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, public contService : ContactService) { }
    //Pagination//
@@ -46,8 +48,9 @@ export class MessagesComponent {
 
   getContact() {
     this.contService.getContact().subscribe(response => {
-      console.log(response);
+    
       this.contacts = response;
+      this.numberMess=response.length;
     });
   }
 

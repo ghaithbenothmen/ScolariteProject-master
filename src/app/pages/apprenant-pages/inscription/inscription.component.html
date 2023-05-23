@@ -1,144 +1,126 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<section class="event_section layout_padding">
-    <div class="container">
-        <div class="event-schedule-area-two bg-color pad100">
-            <div class="container">
-                <div class="row">
-                    <div class="container">
 
-                        <div class="heading_container">
-                            <h3>
-                                Session De formation Selectionner:
-                            </h3>
-                            <p>Merci de confirmer votre insecription dans la Session De formation Selectionner
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.col end-->
-                </div>
-                <!-- row end-->
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="home" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center" scope="col">Date</th>
-                                                <th scope="col">Affiche</th>
-                                                <th scope="col">Session</th>
-                                                <th scope="col">local</th>
-                                                <th class="text-center" scope="col"></th>
-                                            </tr>
-                                        </thead>
-
-
-                                        <tbody *ngFor="let sessionFormations of sessionFormations">
-
-                                            <tr class="inner-box" *ngIf="sessionFormations.idSessionFormation==id">
-                                                <th scope="row">
-                                                    <div class="event-date">
-                                                        <span>{{dateDebut}}</span>
-                                                        <p>{{sessionFormations.dateDebut}}</p>
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <div class="event-img">
-                                                        <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
-                                                            width="200px" height="200px" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="event-wrap">
-                                                        <h3><a
-                                                                href="#">{{sessionFormations.themeDeFormation.nomFormation}}</a>
-                                                        </h3>
-                                                        <div class="meta">
-                                                            <div class="organizers">
-                                                                <a
-                                                                    href="#">{{sessionFormations.formateur.nomFormateur}}</a>
-                                                            </div>
-                                                            <div class="categories">
-                                                                <a href="#">{{sessionFormations.typeFormation}}</a>
-                                                            </div>
-                                                            <div class="time">
-                                                                <span> de
-                                                                    {{sessionFormations.dateDebut}} jusqu'à
-                                                                    {{sessionFormations.dateFin}} , de
-                                                                    {{sessionFormations.nbrHeures}} heure</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="r-no">
-                                                        <span>{{sessionFormations.localFormation}}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="primary-btn">
-                                                        <span (click)="openDetails(contentDetails,sessionFormations)"
-                                                            class="btn btn-primary">confirmer votre insecription
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-                    <!-- /col end-->
-                </div>
-                <!-- /row end-->
-            </div>
+<section class="course_details_area ">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Confirmation</h2>
         </div>
+    </div> 
+
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage" >
+        {{errorMessage}}
+      </div>
+      <div class="alert alert-success" role="alert"  *ngIf="successMessage">
+        {{successMessage}}
+      </div>
+      
+    <div class="container">
+        
+        <div class="row" *ngFor="let sessionFormations of sessionFormations">
+            
+            <ng-container *ngIf="sessionFormations.idSessionFormation==id">
+            <div class="col-lg-8 course_details_left">
+                <div class="main_image">
+                   
+                    <img class="img-fluid" src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
+                                                            />
+               </div>
+            </div>
+
+
+            <div class="col-lg-4 right-contents">
+                <ul>
+                    <li>
+                        <a class="justify-content-between d-flex" >
+                            <p>Formation</p>
+                            <span class="or">{{sessionFormations.themeDeFormation.nomFormation}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" >
+                            <p>Formateur</p>
+                            <span>{{sessionFormations.formateur.nomFormateur}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" >
+                            <p>Type de formation</p>
+                            <span>{{sessionFormations.typeFormation}}</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="justify-content-between d-flex">
+                            <p>Local</p>
+                            <span>{{sessionFormations.localFormation}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" >
+                            <p>Date </p>
+                            <span>De {{sessionFormations.dateDebut}} jusqu'à 
+                                {{sessionFormations.dateFin}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <a (click)="openDetails(contentDetails,sessionFormations)" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Confirmer votre insecription</a>
+
+                <h4 class="title">Description</h4>
+                <div class="content">
+                    <div class="review-top row pt-40">
+                        <div class="col-lg-12">
+                           
+                            <div class="d-flex flex-row reviews justify-content-between">
+                                
+                               
+                                    {{sessionFormations.description}}
+                                
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                         
+                </div>
+            </div>
+        </ng-container>
+        </div>
+       
+        
+        
+       
     </div>
 </section>
+
 <ng-template #contentDetails>
     <div>
-        <div class="modal-dialog">
+        <div class="modal-dialog m-0">
             <div class="modal-content">
                 <form [formGroup]="editForm">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Session </h4>
+                    <div class="modal-header m-0">
+                        <h2 class="modal-title">Confirmation</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
 
                     </div>
 
+                <p  class="modal-header m-0 " > Voulez-vous confirmer votre inscription ?</p>
 
 
-
-                    <div class="form-group">
-                        <label>id session de formation: </label>
-                        <input type="text" formControlName="sessionFormation" class="form-control" required>
-                    </div>
+                   
 
 
-                    <div class="form-group">
-                        <label>id user</label>
-                        <input type="text" formControlName="apprenant" class="form-control" required>
-                    </div>
+                    
 
 
 
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
                             value="Fermer">
-                        <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                        <input type="submit" class="btn primary-btn2 text-white" value="Confirmer" (click)="onSave()">
                     </div>
 
                 </form>
             </div>
         </div>
     </div>
-</ng-template>           
+</ng-template>        

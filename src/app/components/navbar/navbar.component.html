@@ -1,68 +1,136 @@
- <header id="header" class="header d-flex align-items-center">
 
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-
-            <ng-container *ngFor="let etablissement of etablissements">
-                <a href="accueil"><img height="36"
-                        src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="70px"
-                        height="100%" class="rounded" /></a>
-                <a href="accueil" class="logo d-flex container-fluid">
-                    <span>
-                        <h1>{{etablissement.nomEtablissement}}</h1>
-                    </span> </a>
-            </ng-container>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="accueil"><span class="flaticon-pawprint-1 mr-2"></span><ng-container
+                    *ngFor="let etablissement of etablissements">
+                    <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
+                        width="70px" height="100%" class="rounded" />
 
 
+                    {{etablissement.nomEtablissement}}
+                </ng-container></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="accueil" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="presentation" class="nav-link">Presentation</a></li>
+                    <li class="nav-item"><a href="actu" class="nav-link">Actualités</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Formations
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="AffichagethemeFormation"><b>Theme de formation</b></a>
 
-
-
-            <nav id="navbar" class="navbar">
-
-                <ul>
-                    <li><a routerLink="accueil">Accueil</a></li>
-                    <li><a routerLink="presentation">Presentation</a></li>
-                    <li><a routerLink="actu">Actualité</a></li>
-
-                    <li class="dropdown"><a href="AffichagesessionFormation"  style="pointer-events: none"><span> Formation</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li>
-                                <a routerLink="AffichagesessionFormation" >Nos session de formation</a>
-                            </li>
-
-
-                            <a routerLink="AffichagethemeFormation">Nos thèmes de formation</a>
-
-                        </ul>
+                            <a class="dropdown-item" href="AffichagesessionFormation"><b>Session de formation</b></a>
+                            <!-- Add more dropdown options as needed -->
+                        </div>
                     </li>
-                    <li><a routerLink="contact">Contact</a></li>
+
+                    <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
 
 
-        <li class="dropdown"><a href="login" *ngIf="!authService.isLoggedIn()"  style="pointer-events: none"><span>Connexion</span> <i
-                    class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <a class="nav-link dropdown-toggle second-text fw-bold" type="button" *ngIf="authService.isLoggedIn()"
-                >
-                <i class="bi bi-chevron-down dropdown-indicator"></i><span>{{authService.loggedUser}}</span>
-            </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" *ngIf="!authService.isLoggedIn()">
+                            Connexion
+                        </a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" *ngIf="authService.isLoggedIn()">
+                            {{authService.loggedUser}}
+                        </a>
+
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="login" *ngIf="!authService.isLoggedIn()"><b>Se
+                                    connecter</b></a>
+                            <a class="dropdown-item " type="button" *ngIf="authService.isLoggedIn()"
+                                (click)="onLogout()"><b>Se déconnecter</b></a>
+                                <a class="dropdown-item " routerLink="user-dashboard/ListeSession" type="button" *ngIf="authService.isLoggedIn()&&authService.isApp()"
+                                ><b>Dashboard Apprenant</b></a>
+                                <a class="dropdown-item " routerLink="admin-dashboard/apprenant" type="button" *ngIf="authService.isLoggedIn()&&authService.isAdmin()"
+                                ><b>Dashboard Admin</b></a>
+                                <a class="dropdown-item " routerLink="formateur-dashboard/dash-for" type="button" *ngIf="authService.isLoggedIn()&&authService.isFormateur()"
+                                ><b>Dashboard Formateur</b></a>
+                            <a class="dropdown-item" href="register"
+                                *ngIf="!authService.isLoggedIn()"><b>S'inscrire</b></a>
+                            <!-- Add more dropdown options as needed -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<!--  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+
+        <ng-container *ngFor="let etablissement of etablissements">
+            <a href="accueil"><img height="36"
+                    src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="70px"
+                    height="100%" class="rounded" /></a>
+            <a href="accueil" class="logo d-flex container-fluid">
+                <span>
+                    <h1>{{etablissement.nomEtablissement}}</h1>
+                </span> </a>
+        </ng-container>
+
+
+
+
+
+        <nav id="navbar" class="navbar">
 
             <ul>
-                <li>
-                    <a routerLink="login" *ngIf="!authService.isLoggedIn()">Login</a>
+                <li><a routerLink="accueil">Accueil</a></li>
+                <li><a routerLink="presentation">Presentation</a></li>
+                <li><a routerLink="actu">Actualité</a></li>
+
+                <li class="dropdown"><a href="AffichagesessionFormation"  style="pointer-events: none"><span> Formation</span> <i
+                            class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li>
+                            <a routerLink="AffichagesessionFormation" >Nos session de formation</a>
+                        </li>
+
+
+                        <a routerLink="AffichagethemeFormation">Nos thèmes de formation</a>
+
+                    </ul>
                 </li>
-                <li><a type="button" *ngIf="authService.isLoggedIn()" 
-                    (click)="onLogout()">Logout</a></li>
+                <li><a routerLink="contact">Contact</a></li>
 
-                <li><a routerLink="register" *ngIf="!authService.isLoggedIn()">Register</a></li>
 
-            </ul>
-        </li>
+    <li class="dropdown"><a href="login" *ngIf="!authService.isLoggedIn()"  style="pointer-events: none"><span>Connexion</span> <i
+                class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <a class="nav-link dropdown-toggle second-text fw-bold" type="button" *ngIf="authService.isLoggedIn()"
+            >
+            <i class="bi bi-chevron-down dropdown-indicator"></i><span>{{authService.loggedUser}}</span>
+        </a>
+
+        <ul>
+            <li>
+                <a routerLink="login" *ngIf="!authService.isLoggedIn()">Login</a>
+            </li>
+            <li><a type="button" *ngIf="authService.isLoggedIn()" 
+                (click)="onLogout()">Logout</a></li>
+
+            <li><a routerLink="register" *ngIf="!authService.isLoggedIn()">Register</a></li>
 
         </ul>
-        </nav><!-- .navbar -->
+    </li>
 
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </ul>
+    </nav>
+
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
 </div>
-</header><!-- End Header -->
+</header> --><!-- End Header -->

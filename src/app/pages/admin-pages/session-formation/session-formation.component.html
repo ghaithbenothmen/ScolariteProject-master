@@ -1,32 +1,34 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class='bx bx-chevron-right'></i></li>
-                <li>
-                    <a class="disabled" href="#">Session de formation</a>
-                </li>
-            </ul>
+<div class="container">
+	
+		
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{numberOfSession}}<span class="iconBx"><i class="bi bi-journal-bookmark-fill"></i></span></div>
+                
+            </div>
+            <div class="cardName">Sessions </div>
+            
         </div>
-        <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
-                class="material-icons">&#xE147;</i> <span>Ajouter Session de formation</span></button>
 
+        
     </div>
+
     <div class="alert alert-success" role="alert" *ngIf="message">
         {{message}}
     </div>
-    <div class="table-data">
-        <div class="order">
-            <div class="head">
-                <h3>Tableau de Session de formation</h3>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
+    
+    <!-- ================ Order Details List ================= -->
+    <div class="details" >
+        <div class="recentOrders" >
+            <div class="cardHeader" >
+                <h2>Liste des sessions formations</h2>
+                <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+                    class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
             </div>
+
             <table>
                 <thead>
                     <tr>
@@ -48,8 +50,8 @@
                     <tr *ngFor="let SessionFormation of sessionFormations">
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
-                        <td><img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}"
-                                width="200px" height="200px" />
+                        <td  class="imgBx" ><img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}"
+                                width="100px" height="100px" />
                         </td>
                         <td>{{SessionFormation.themeDeFormation.nomFormation}}</td>
 
@@ -74,13 +76,14 @@
                 </tbody>
             </table>
 
-            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
+            <!-- <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
 
-            </pagination-controls>
+            </pagination-controls> -->
+            
         </div>
 
     </div>
-</main>
+
 
 <ng-template #modalTemplate>
     <div>

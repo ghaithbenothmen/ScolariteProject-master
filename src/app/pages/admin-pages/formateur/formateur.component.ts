@@ -15,7 +15,7 @@ import { formateurService } from 'src/app/services/formateur.service';
 @Component({
   selector: 'app-formateur',
   templateUrl: './formateur.component.html',
-  styleUrls: ['./formateur.component.css']
+  styleUrls: ['./formateur.component.css','../apprenant/apprenant.component.css']
 })
   
 export class FormateurComponent {
@@ -32,7 +32,7 @@ export class FormateurComponent {
     dbimage: any;
     public etablissement!: Etablissement;
     public etablissements!: Etablissement[];
-  
+    public numberOfFormateurs!: number;
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService  : formateurService,private authService:AuthService,public etabService:EtablissementService) { }
@@ -51,7 +51,7 @@ export class FormateurComponent {
       console.log(response);
      
       this.formateur = response;
-   
+      this.numberOfFormateurs=response.length;
 
 
       });

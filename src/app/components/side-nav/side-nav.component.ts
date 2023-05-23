@@ -7,22 +7,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { EtablissementService } from 'src/app/services/etablissement.service';
 import { ImageService } from 'src/app/services/image.service';
 
-
 declare interface RouteInfo {
   path: string;
   title: string;
   icon: string;
   class: string;
 }
-export const ROUTES: RouteInfo[] = [
-  { path: '/apprenant', title: 'apprenant',  icon: 'ni-tv-2 text-primary', class: '' },
-  { path: '/etablissement', title: 'etablissement',  icon: 'ni-tv-2 text-primary', class: '' },
-  { path: '/login', title: 'login', icon: 'ni-tv-2 text-primary', class: '' },
-  { path: '/departement', title: 'departement', icon: 'ni-tv-2 text-primary', class: '' },
-  { path: '/ThemeDeFormation', title: 'ThemeDeFormation', icon: 'ni-tv-2 text-primary', class: '' },
-    
-   
-];
+
 
 @Component({
   selector: 'app-side-nav',
@@ -38,12 +29,15 @@ export class SideNavComponent implements OnInit{
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
   constructor(public authService: AuthService,private router: Router,public etabService : EtablissementService,private imageService: ImageService) { }
 
+  reload(){
+    window.location.reload()
+  }
   ngOnInit(): void {
     this.authService.loadToken();
 
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+   
     this.router.events.subscribe((event) => {
-      this.isCollapsed = true;
+      
 /****************Logo ******************* */
       this.imageService.getImage().subscribe(response => {
         console.log(response);
@@ -76,15 +70,15 @@ export class SideNavComponent implements OnInit{
   }
 
   /**************mettre li active**************/
-  activeItem: number = 1;
+ /*  activeItem: number = 1;
 
   setActiveItem(item: number) {
     localStorage.setItem('activeItem', String(item));
     this.activeItem = item;
-  }
+  } */
   /*******************************************/
-  public menuItems!: any[];
-  public isCollapsed = true;
+/*   public menuItems!: any[];
+  public isCollapsed = true; */
 
   
 

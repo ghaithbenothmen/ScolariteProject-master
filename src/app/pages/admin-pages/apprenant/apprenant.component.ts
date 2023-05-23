@@ -31,8 +31,8 @@ export class ApprenantComponent {
   public message!: string;
   public message2!: string;
   public ajoutForm!: FormGroup;  //variable peut etre null on ajoute 
-  public apiURL: string = "http://localhost:8080/apprenant/api";
 
+  public numberOfApprenants!: number;
 
   
 
@@ -72,7 +72,7 @@ export class ApprenantComponent {
       sexeApprenant: [''],
       niveauApprenant: [''],
       qualiteApprenant: [''],
-      userame: [''],
+      
       password: [''],
       email: ['']
 
@@ -99,6 +99,7 @@ export class ApprenantComponent {
     this.appService.getApprenants().subscribe(response => {
       console.log(response);
       this.apprenants = response;
+      this.numberOfApprenants=response.length;
     });
   }
 

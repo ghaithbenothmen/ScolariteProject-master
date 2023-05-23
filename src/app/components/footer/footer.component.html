@@ -1,4 +1,4 @@
-<section class="info_section layout_padding">
+<!-- <section class="info_section layout_padding">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -68,3 +68,58 @@
       </div>
     </div>
   </section>
+ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 class="footer-heading">CENTRE LE PLUS ÉVALUÉ</h2>
+          <p>On offre la qualité de nos formation pour vos collegues 
+            Nos formations ont un taux de satisfaction globale 
+              de la part des participants. </p>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          
+          <h2 class="footer-heading">Nos themes de formations </h2>
+          <ng-container *ngFor="let themeFor of ThemeFormations">
+           
+           
+            <div class="text">
+              
+              <ul class="list-unstyled">
+                <li><a ><span class="icon-calendar"></span></a></li>
+                
+                <li><a >{{themeFor.abrevation}}</a></li>
+              </ul>
+             
+          </div>
+        
+        </ng-container>
+        </div>
+        <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+          <h2 class="footer-heading">Liens</h2>
+          <ul class="list-unstyled">
+            <li><a href="accueil" class="py-2 d-block">Accueil</a></li>
+            <li><a href="presentation" class="py-2 d-block">Presentation</a></li>
+            <li><a href="actu" class="py-2 d-block">Actualités</a></li>
+            <li><a href="formations" class="py-2 d-block">Formations</a></li>
+            <li><a href="contact" class="py-2 d-block">Contact</a></li>
+            
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 class="footer-heading">Des Questions?</h2>
+          <div class="block-23 mb-3">
+            <ng-container *ngFor="let etablissement of etablissements">
+            <ul>
+              <li><span class="icon fa fa-map"></span><span class="text">Adresse</span></li>
+              <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+216 {{etablissement.telEtablissement}}</span></a></li>
+              <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">{{etablissement.emailEtablissement}}</span></a></li>
+            </ul>
+          </ng-container>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </footer>

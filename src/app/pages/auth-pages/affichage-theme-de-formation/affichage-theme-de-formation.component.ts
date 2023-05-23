@@ -9,7 +9,7 @@ import { ThemeDeFormationService } from 'src/app/services/theme-de-formation.ser
 @Component({
   selector: 'app-affichage-theme-de-formation',
   templateUrl: './affichage-theme-de-formation.component.html',
-  styleUrls: ['./affichage-theme-de-formation.component.css']
+  styleUrls: ['./affichage-theme-de-formation.component.css', '../../../components/navbar/navbar.component.css']
 })
 export class AffichageThemeDeFormationComponent {
     public modalRef!: BsModalRef;

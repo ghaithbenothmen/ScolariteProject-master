@@ -1,114 +1,67 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<section class="event_section layout_padding">
+
+
+<section class="ftco-section">
     <div class="container">
-        <div class="event-schedule-area-two bg-color pad100">
-            <div class="container">
-                <div class="row">
-                    <div class="container">
-
-                        <div class="heading_container">
-                            <h3>
-                                liste laquelle vous êtes inscrit
-                            </h3>
-                            <p>
-                                Voila les session à laquelle vous êtes inscrit :
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.col end-->
-                </div>
-                <!-- row end-->
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="home" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center" scope="col">Date</th>
-                                                <th scope="col">Affiche</th>
-                                                <th scope="col">Session</th>
-                                                <th scope="col">local</th>
-                                                <th class="text-center" scope="col"></th>
-                                            </tr>
-                                        </thead>
-
-
-                                        <tbody *ngFor="let Inscriptions of Inscriptions">
-
-
-                                            <tr *ngIf="Inscriptions.apprenant.id == idUser" class="inner-box">
-                                                <th scope="row">
-                                                    <div class="event-date">
-                                                        <!-- <span>{{dateDebut}} {{dayNames[day]}}</span> -->
-
-                                                        <span> {{ Inscriptions.sessionFormation.dayOfWeek }}</span>
-                                                        <p>{{Inscriptions.sessionFormation.dateDebut}}</p>
-
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <div class="event-img">
-                                                        <img src="{{'data:'+Inscriptions.sessionFormation.fileType+';base64,' + Inscriptions.sessionFormation.data}}"
-                                                            width="200px" height="200px" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="event-wrap">
-                                                        <h3><a
-                                                                href="#">{{Inscriptions.sessionFormation.themeDeFormation.nomFormation}}</a>
-                                                        </h3>
-                                                        <div class="meta">
-                                                            <div class="organizers">
-                                                                <a
-                                                                    href="#">{{Inscriptions.sessionFormation.formateur.nomFormateur}}</a>
-                                                            </div>
-                                                            <div class="categories">
-                                                                <a
-                                                                    href="#">{{Inscriptions.sessionFormation.typeFormation}}</a>
-                                                            </div>
-                                                            <div class="time">
-                                                                <span> de
-
-                                                                    <b>{{Inscriptions.sessionFormation.dateDebut}}</b>
-                                                                    jusqu'à
-                                                                    <b>{{Inscriptions.sessionFormation.dateFin}}</b>
-                                                                    ,
-                                                                    de
-                                                                    <b>{{Inscriptions.sessionFormation.nbrHeures}}</b>
-                                                                    heures</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="r-no">
-                                                        <span>{{Inscriptions.sessionFormation.localFormation}}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="primary-btn">
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-                    <!-- /col end-->
-                </div>
-                <!-- /row end-->
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Session de formations</h2>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-4 mb-5" *ngFor="let Inscriptions of Inscriptions">
+                <ng-container *ngIf="Inscriptions.apprenant.id == idUser">
+                <div class="card border-0 bg-light shadow-sm pb-2">
+
+                    <img src="{{'data:'+Inscriptions.sessionFormation.fileType+';base64,' + Inscriptions.sessionFormation.data}}"
+                        class="card-img-top mb-2" />
+                    <div class="card-body text-center">
+                        <h4 class="card-title">{{Inscriptions.sessionFormation.themeDeFormation.nomFormation}}</h4>
+                        <p class="card-text">
+                            {{Inscriptions.sessionFormation.themeDeFormation.description}}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent py-4 px-5">
+                        <div class="row border-bottom">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Formateur</strong>
+                            </div>
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.formateur.nomFormateur}}</div>
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Type</strong>
+                            </div>
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.typeFormation}}</div>
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Date</strong>
+                            </div>
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.dateDebut}} - {{Inscriptions.sessionFormation.dateFin}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Nombre d'heure</strong>
+                            </div>
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.nbrHeures}} Heures</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Local</strong>
+                            </div>
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.localFormation}}</div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </ng-container>
+            </div>
+
+        </div>
+        
     </div>
 </section>

@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-Departement',
   templateUrl: './actualite.component.html',
-  styleUrls: ['./actualite.component.css']
+  styleUrls: ['./actualite.component.css','../apprenant/apprenant.component.css']
 })
   
 export class ActualiteComponent {
@@ -31,6 +31,7 @@ export class ActualiteComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
+    public numberActu!:number;
   
   
   
@@ -49,7 +50,7 @@ export class ActualiteComponent {
   getActualite() {
     this.actualiteService.getActualite().subscribe(response => {
       console.log(response);
-     
+     this.numberActu=response.length;
       this.Actualites = response;
    
       });

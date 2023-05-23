@@ -1,15 +1,32 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../../../../assets/img/home-banner.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a routerLink="accueil">Accueil <i
+                                class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i
+                            class="ion-ios-arrow-forward"></i></span>
+                </p>
+                <h1 class="mb-0 bread">Session</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 <section class="event_section layout_padding">
 
     <div class="container">
-
-        <div class="heading_container">
-            <h3>
-              Les thèmes
-            </h3>
-            <p>
-                Voila nous thèmes de formation :
-            </p>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Nos Thémes de formations</h2>
+            </div>
         </div>
+
+        
 <div class="container py-5">
         <div class="event_container">
             <ng-container *ngFor="let ThemeDeFormation  of ThemeDeFormation">
@@ -43,4 +60,51 @@
 
     </div>
 </div>
+</section>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Nos Thémes de formations</h2>
+            </div>
+        </div>
+
+        <div class="mb-3">
+         
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-5" *ngFor="let ThemeDeFormation of ThemeDeFormation ">
+                <div class="card border-0 bg-light shadow-sm pb-2">
+
+                    
+                    <div class="row border-bottom">
+                        <div class="col-6 py-1 text-right border-right">
+                            <strong>Non Theme </strong>
+                        </div>
+                        <div class="col-6 py-1">{{ThemeDeFormation.nomFormation}}</div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="col-6 py-1 text-right border-right">
+                            <strong>Abrévation </strong>
+                        </div>
+                        <div class="col-6 py-1">{{ThemeDeFormation.abrevation}}</div>
+                    </div>
+                    <div class="card-footer bg-transparent py-4 px-5">
+                        <h4 class="card-title text-center">Les sessions disponible pour ce théme</h4>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{ThemeDeFormation.nomFormation}}</h4>
+                            <p class="card-text">
+                                {{ThemeDeFormation.abrevation}}
+                            </p>
+                        </div>
+                        
+                       
+                    </div>
+                
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
 </section>

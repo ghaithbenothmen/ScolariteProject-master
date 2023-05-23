@@ -1,6 +1,8 @@
+import { EtablissementService } from './../../../services/etablissement.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Contact } from 'src/app/entities/contact.model';
+import { Etablissement } from 'src/app/entities/etablissement.model';
 import { ContactService } from 'src/app/services/contact.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,12 +15,20 @@ export class ContactComponent {
   public message:any;
   public contacts !:Contact[];
 
-  constructor(private userSer: UserService , private contService: ContactService) { }
+  constructor( private contService: ContactService,private etabService : EtablissementService) { }
 
-  
+  public etablissements!: Etablissement[];
+  public etablissement!: Etablissement;
 
 
-  
+  getEtablissement() {
+    this.etabService.getEtablissements().subscribe(response => {
+      console.log(response);
+     
+      this.etablissements = response;
+      });
+  }
+
   onSubmit (f: NgForm) {
   
     
@@ -39,5 +49,7 @@ export class ContactComponent {
     }
   }
 
-
+  ngOnInit(): void {
+    this.getEtablissement();
+  }
 }

@@ -23,7 +23,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layout/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+        loadChildren: () => import('../app/layout/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
   },
@@ -34,18 +34,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layout/apprenant-layout/apprenant-layout.module').then(m => m.ApprenantLayoutModule)
+        loadChildren: () => import('../app/layout/apprenant-layout/apprenant-layout.module').then(m => m.ApprenantLayoutModule)
       }
     ]
   },
   {
-    
+    canActivate: [AuthGuard],
     path: 'formateur-dashboard',
     component: FormateurLayoutComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layout/formateur-layout/formateur-layout.module').then(m => m.FormateurLayoutModule)
+        loadChildren: () => import('../app/layout/formateur-layout/formateur-layout.module').then(m => m.FormateurLayoutModule)
       }
     ]
   },
@@ -55,7 +55,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layout/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
+        loadChildren: () => import('../app/layout/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
 
       }
     ]

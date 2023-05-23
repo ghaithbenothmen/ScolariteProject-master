@@ -1,0 +1,32 @@
+<Header [style.color]='color ? color :null' [style.backgroundColor]='bg ? bg :null' color="color">
+    <CDBNavbar class="justify-content-between" [dark]='true' expand="md" [scrolling]='true'>
+
+        <div class="ml-auto d-flex align-items-center">
+
+
+            <div class="nav-item dropdown" ngbDropdown>
+                <a type="button" class="nav-link dropdown-toggle second-text fw-bold" *ngIf="!authService.isLoggedIn()"
+                    ngbDropdownToggle>Connexion</a>
+
+                <a class="nav-link dropdown-toggle second-text fw-bold" type="button" *ngIf="authService.isLoggedIn()"
+                    ngbDropdownToggle>{{authService.loggedUser}}
+                    <img class="img"  alt="panelImage" src="../../../assets/img/user.png" style="width:2.5rem;height:2.5rem" />
+                    
+                </a>
+
+
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" ngbDropdownMenu>
+                    <!-- <li><a class="dropdown-item" href="#" ngbDropdownItem>Profile</a></li>
+                <li><a class="dropdown-item" href="#" ngbDropdownItem>Settings</a></li> -->
+                    <li><a type="button" *ngIf="!authService.isLoggedIn()" ngbDropdownItem routerLink="login">Connexion</a></li>
+                    <li><a type="button" *ngIf="authService.isLoggedIn()" ngbDropdownItem routerLink="login"> Profil <i class="bi bi-gear"></i></a></li>
+                    <li><a type="button" *ngIf="authService.isLoggedIn()" ngbDropdownItem (click)="onLogout()">Déconnexion<i class="bi bi-box-arrow-right"></i> </a> </li>
+       </div>
+
+
+        </div>
+
+        </div>
+    </CDBNavbar>
+</Header>

@@ -4,9 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { EtablissementService } from 'src/app/services/etablissement.service';
 import { ImageService } from 'src/app/services/image.service';
 import { Etablissement } from 'src/app/entities/etablissement.model';
-import * as $ from 'jquery';
-import 'bootstrap/js/dist/collapse';
-import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
