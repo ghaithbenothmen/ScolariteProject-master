@@ -19,7 +19,7 @@ import { Inscription } from 'src/app/entities/inscription.model';
 @Component({
   selector: 'app-session',
   templateUrl: './session.component.html',
-  styleUrls: ['./session.component.css']
+  styleUrls: ['../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class SessionComponent {
 

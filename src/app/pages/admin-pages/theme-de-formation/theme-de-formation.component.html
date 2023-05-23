@@ -1,32 +1,34 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class='bx bx-chevron-right'></i></li>
-                <li>
-                    <a class="disabled" href="#">Theme De Formation</a>
-                </li>
-            </ul>
+<div class="container">
+	
+		
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{numberOfThemes}}<span class="iconBx"><i class="bi bi-journals"></i></span></div>
+                
+            </div>
+            <div class="cardName">Thémes formations</div>
+            
         </div>
-        <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
-                class="material-icons">&#xE147;</i> <span>Ajouter un theme de formation</span></button>
 
+        
     </div>
+
     <div class="alert alert-success" role="alert" *ngIf="message">
         {{message}}
     </div>
-    <div class="table-data">
-        <div class="order">
-            <div class="head">
-                <h3>Tableau Theme De Formation</h3>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
+    
+    <!-- ================ Order Details List ================= -->
+    <div class="details" >
+        <div class="recentOrders" >
+            <div class="cardHeader" >
+                <h2>Liste des thémes formations </h2>
+                <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+                    class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
             </div>
+
             <table>
                 <thead>
                     <tr>
@@ -47,7 +49,7 @@
                        
                         <td>{{ThemeDeFormation.idFormation}}</td>
                         
-                        <td>{{ThemeDeFormation.nomFormation}}</td>
+                        <td >{{ThemeDeFormation.nomFormation}}</td>
                         <td>{{ThemeDeFormation.abrevation}}</td>
 
                         <td>{{ThemeDeFormation.description}}</td>
@@ -73,7 +75,7 @@
         </div>
 
     </div>
-</main>
+
 
 <ng-template #modalTemplate>
     <div>

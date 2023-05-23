@@ -59,9 +59,16 @@ import { AppBySessionComponent } from './pages/admin-pages/app-by-session/app-by
 import { ListeAppSessionComponent } from './pages/admin-pages/liste-app-session/liste-app-session.component';
 import { FormateurLayoutComponent } from './layout/formateur-layout/formateur-layout.component';
 import { SideForComponent } from './components/side-for/side-for.component';
+<<<<<<< HEAD
 import { SeanceComponent } from './pages/admin-pages/seance/seance.component';
+=======
+import { NavbarForComponent } from './components/navbar-for/navbar-for.component';
+>>>>>>> 79bf1d6319ca3156b18908a7d1947a4f19cdff01
 
 
+import { CDBFreeModule } from 'ng-cdbangular';
+import { DashFormateurComponent } from './pages/formateur-pages/dash-formateur/dash-formateur.component';
+import { AdminDashComponent } from './pages/admin-pages/admin-dash/admin-dash.component';
 
 
 
@@ -107,7 +114,13 @@ registerLocaleData(localeFr);
           ListeAppSessionComponent,
           FormateurLayoutComponent,
           SideForComponent,
+<<<<<<< HEAD
           SeanceComponent,
+=======
+          NavbarForComponent,
+          DashFormateurComponent,
+          AdminDashComponent,
+>>>>>>> 79bf1d6319ca3156b18908a7d1947a4f19cdff01
       
 
 
@@ -135,7 +148,7 @@ registerLocaleData(localeFr);
         ReactiveFormsModule,
         CollapseModule.forRoot(),
         NgxPaginationModule,
-        
+        CDBFreeModule
     ]
 })
 export class AppModule { }

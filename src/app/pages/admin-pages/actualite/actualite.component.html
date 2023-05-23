@@ -1,37 +1,39 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class='bx bx-chevron-right'></i></li>
-                <li>
-                    <a class="disabled" href="#">Actualite</a>
-                </li>
-            </ul>
+<div class="container">
+	
+		
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{numberActu}}<span class="iconBx"><i class="bi bi-bookmark-fill"></i></span></div>
+                
+            </div>
+            <div class="cardName">Actualités </div>
+            
         </div>
-        <button (click)="openModal(modalTemplate)" class="btn btn-success" data-toggle="modal"><i
-            class="material-icons">&#xE147;</i> <span>Ajouter Actualite</span></button>
 
+        
     </div>
+
     <div class="alert alert-success" role="alert" *ngIf="message">
         {{message}}
     </div>
-    <div class="table-data">
-        <div class="order">
-            <div class="head">
-                <h3>Tableau actualite</h3>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
+    
+    <!-- ================ Order Details List ================= -->
+    <div class="details" >
+        <div class="recentOrders" >
+            <div class="cardHeader" >
+                <h2>Liste des Actualités</h2>
+                <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+                    class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
             </div>
+
             <table>
                 <thead>
                     <tr>
 
-                        <th>Code Act</th>
+                        
                         <th>image</th>
                         <th>Titre</th>
                         <th>Description </th>
@@ -44,9 +46,10 @@
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
 
-                        <td>{{actualite.codeActualite}}</td>
-                        <td><img src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}" width="200px"
-                                height="200px" /></td>
+                        
+                        <td><img src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}" width="100px"
+                                height="100pc" /></td>
+                                
                         <td>{{actualite.titreActualite}}</td>
                         <td>{{actualite.descriptionActualite}}</td>
                         <td>{{actualite.dateActualite}}</td>
@@ -71,7 +74,7 @@
         </div>
 
     </div>
-</main>
+
 
 <ng-template #modalTemplate>
     <div>

@@ -13,7 +13,7 @@ import { EtablissementService } from 'src/app/services/etablissement.service';
 @Component({
   selector: 'app-etablissement',
   templateUrl: './etablissement.component.html',
-  styleUrls: ['./etablissement.component.css']
+  styleUrls: ['./etablissement.component.css','../apprenant/apprenant.component.css']
 })
   
 export class EtablissementComponent {

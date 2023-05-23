@@ -66,7 +66,7 @@ id:0,
       //console.log('Is App:', isApp);
       if (isAdmin) {
         
-        this.router.navigate(['/admin-dashboard/apprenant']);
+        this.router.navigate(['/admin-dashboard/admin-dash']);
       } else if (isApp){
         this.router.navigate(['/user-dashboard/ListeSession']);
       }else {

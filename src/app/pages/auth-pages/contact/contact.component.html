@@ -1,4 +1,4 @@
-<section class="contact_section">
+<!-- <section class="contact_section">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -41,4 +41,130 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../../../../assets/img/home-banner.jpg');"
+  data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-end">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs mb-2"><span class="mr-2"><a routerLink="accueil">Accueil <i
+                class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i class="ion-ios-arrow-forward"></i></span>
+        </p>
+        <h1 class="mb-0 bread">Contact</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5">
+        <h2 class="heading-section">Contact Nous</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="wrapper">
+          <div class="row mb-5">
+            <ng-container *ngFor="let etablissement of etablissements">
+            <div class="col-md-3">
+              <div class="dbox w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-map-marker"></span>
+                </div>
+
+
+                <div class="text">
+                  <p><span>Address:</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="dbox w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-phone"></span>
+                </div>
+                <div class="text">
+                  <p><span>Téléphone : (+216) </span> <a >{{etablissement.telEtablissement}}</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="dbox w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-paper-plane"></span>
+                </div>
+                <div class="text">
+                  <p><span>Email:</span> <a >{{etablissement.emailEtablissement}}</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="dbox w-100 text-center">
+                <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-globe"></span>
+                </div>
+                <div class="text">
+                  <p><span>Abrevation : </span> <a >{{etablissement.abreviationEtablissement}}</a></p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-md-7">
+              <div class="contact-wrap w-100 p-md-5 p-4">
+                <h3 class="mb-4">Contactez-Nous </h3>
+                <form action="" #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="label" for="name">Nom et Prénom</label>
+                        <input type="text" class="form-control" name="nomPrenom" #nomPrenom="ngModel" ngModel
+                          placeholder="Nom et Prenom">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="label" for="email">Addresse Email</label>
+                        <input type="email" class="form-control" name="email" #email="ngModel" ngModel
+                          placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="subject">Téléphone</label>
+                        <input type="text" class="form-control" placeholder="Téléphone" name="numTel" #numTel="ngModel"
+                          ngModel>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="#">Message</label>
+                        <textarea name="message" class="form-control" cols="30" rows="4" placeholder="Message"
+                          name="message" #message="ngModel" ngModel></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="submit" value="Envoyer Message" class="btn btn-primary">
+                        <div class="submitting"></div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-5 d-flex align-items-stretch">
+              <div class="info-wrap w-100 p-5 img" style="background-image: url(../../../../assets/img/about-2.jpg);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -56,6 +56,8 @@ public ins!:Inscription[];
 public isCollapsed = true;
   public UserId !: string | null;
 
+  errorMessage!: string;
+  successMessage!:string;
   //SessionFormationService: any;
 
 
@@ -185,36 +187,26 @@ onControl(f: NgForm) {
   }
  onSave() {
 
-  /* const selectedApprenant = this.apprenants.find(apprenant => apprenant.id == this.editForm.value.idUser);
-  const selectedSession = this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.editForm.value.idSessionFormation);
-  console.log("hi",selectedApprenant) */
-  // this.editForm.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh); */
-   // this.editForm.value.codeFormateur = this.formateurs.find(formateur => formateur.codeFormateur == this.codeFormateur); 
-   /*  console.log(this.editForm.value.idUser);
-   console.log(this.editForm.value.idSessionFormation); */
-
-   //this.editForm.value.sessionFormation = this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.editForm.value.sessionFormation);
-   //this.editForm.value.apprenant = this.apprenants.find(app => app.id == this.editForm.value.apprenant);
+ 
    this.ins=this.editForm.value;
-  
-    /* this.editForm.value.sessionFormation = this.editForm.value.idSessionFormation
-
-   this.editForm.value.Apprenant = this.editForm.value.idUser  */
-    
+ 
     console.log("ins",this.editForm.value.sessionFormation );
-    /* console.log('formateurs:', this.formateurs); */
+   
     
-    this.InscriptionService.addInsecription(this.editForm.value.sessionFormation  ,  this.editForm.value.apprenant  ,  this.editForm.value).subscribe(response => {
-      //response.apprenant = selectedApprenant
-      /* response.apprenant = this.editForm.value.Apprenant;
-      response.SesionDeFormation = this.editForm.value.sessionFormation; */
-      console.log("eee", response); 
-     ;
-      
-
-
-      /* this.ngOnInit(); */
-})
+    this.InscriptionService.addInsecription(this.editForm.value.sessionFormation  ,  this.editForm.value.apprenant  ,  this.editForm.value).subscribe(
+      (response: Inscription) => {
+        // Inscription saved successfully
+        // Do any additional actions here if needed
+        this.errorMessage = '';
+        this.successMessage = 'Vous-etes bien inscri dans cette session .';
+      },
+      (error) => {
+        // Error occurred
+        console.error('Error saving inscription:', error);
+        this.errorMessage = 'Vous etes déja inscri dans cette session .';
+        this.successMessage = '';
+      }
+    );
 
     
 

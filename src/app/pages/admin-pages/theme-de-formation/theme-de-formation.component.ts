@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-theme-de-formation',
   templateUrl: './theme-de-formation.component.html',
-  styleUrls: ['./theme-de-formation.component.css']
+  styleUrls: ['./theme-de-formation.component.css','../apprenant/apprenant.component.css']
 })
 export class ThemeDeFormationComponent {
  public modalRef!: BsModalRef;
@@ -25,7 +25,7 @@ export class ThemeDeFormationComponent {
   selectedFile: any;
     Data!: Blob;
     dbimage: any;
-  
+    public numberOfThemes!: number;
   
   
 
@@ -45,7 +45,7 @@ export class ThemeDeFormationComponent {
       console.log(response);
      
       this.ThemeDeFormation = response;
-   
+      this.numberOfThemes=response.length;
       });
   }
   

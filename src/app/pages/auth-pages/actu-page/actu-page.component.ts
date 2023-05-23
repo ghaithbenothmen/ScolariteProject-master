@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-actu-page',
   templateUrl: './actu-page.component.html',
-  styleUrls: ['./actu-page.component.css']
+  styleUrls: ['../../../components/navbar/navbar.component.css']
 })
 export class ActuPageComponent {
     public modalRef!: BsModalRef;
@@ -26,7 +26,7 @@ public isCollapsed = true;
  
   page:number=1;
   count:number=0;
-  tableSize:number=2;
+  tableSize:number=4;
   onTableChange(event:any){
     this.page=event;
     this.getActualite();
@@ -36,7 +36,11 @@ public isCollapsed = true;
 
   getActualite() {
     this.actualiteService.getActualite().subscribe((response:any[]) => {
-      console.log(response);
+
+
+     //filtrer les donnés avec date descendant
+      this.Actualites = response.sort((a, b) => new Date(b.dateActualite).getTime() - new Date(a.dateActualite).getTime());
+  
       
       response.forEach((item) => {
         const date=new Date(item.dateActualite);
@@ -60,6 +64,7 @@ public isCollapsed = true;
     const formattedMinutes = minutes.padStart(2, '0');
     return `${formattedHours}:${formattedMinutes}`;
   }
+  
   getDayName(dayOfWeek: number): string {
     
     const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
@@ -71,36 +76,9 @@ public isCollapsed = true;
     this.getActualite();
     
     console.log(this.authService.getToken())
-    this.editForm = this.fb.group({
-    
-      codeActualite: [''],
-      titreActualite: [''],
-      descriptionActualite: [''],
-      dateActualite: [''],
-   
-      file: [''],
-
-
-    })
+  
   
   }
-   openDetails(modalTemplate: TemplateRef<any>, Actualite: Actualite) {
-    this.modalRef = this.modalService.show(modalTemplate,
-      {
+   
 
-        class: 'modal-dialogue-centered modal-md',
-        backdrop: 'static',
-        keyboard: true
-      }
-    );
-
-    this.editForm.patchValue({
-      codeActualite: Actualite.codeActualite,
-      titreActualite: Actualite.titreActualite,
-      descriptionActualite: Actualite.descriptionActualite,
-      dateActualite: Actualite.dateActualite,
-
-    });
-
-  }
 }

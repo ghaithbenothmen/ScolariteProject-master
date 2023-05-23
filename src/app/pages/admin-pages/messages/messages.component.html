@@ -1,30 +1,31 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class='bx bx-chevron-right'></i></li>
-                <li>
-                    <a class="disabled" href="#">Message</a>
-                </li>
-            </ul>
-        </div>
-        
-
-    </div>
-    
-    <div class="table-data">
-        <div class="order">
-            <div class="head">
-                <h3>Tableau des messages envoyés</h3>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
+<div class="container">
+	
+		
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{numberMess}}<span class="iconBx"><i class="bi bi-chat-dots"></i></span></div>
+                
             </div>
+            <div class="cardName">Messages </div>
+            
+        </div>
+
+        
+    </div>
+
+ 
+    <!-- ================ Order Details List ================= -->
+    <div class="details" >
+        <div class="recentOrders" >
+            <div class="cardHeader" >
+                <h2>Liste des Messages</h2>
+                
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -73,7 +74,7 @@
         </div>
 
     </div>
-</main>
+
 <!-- Delete Modal HTML -->
 
 <ng-template #contentDelete>

@@ -15,7 +15,7 @@ export class ApprenantService {
   apiURL: string = "http://localhost:8080/apprenant/api/apprenant";
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
-
+  
 
   getApprenants() {
     let jwt = this.authService.getToken();

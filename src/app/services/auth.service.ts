@@ -106,6 +106,10 @@ export class AuthService {
     const role = localStorage.getItem('role');
     return role === Role.Apprenant.toString(); // Convert to string for comparison
   }
+  isFormateur() {
+    const role = localStorage.getItem('role');
+    return role === Role.Formateur.toString(); // Convert to string for comparison
+  }
 
   getUserByEmail(email: string): Observable<User>{
     return this.http.get<User>(this.apiURL + '/v1/auth/email/' +email)
