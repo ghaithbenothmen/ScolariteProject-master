@@ -9,7 +9,8 @@ import { ActualiteComponent } from 'src/app/pages/admin-pages/actualite/actualit
 import { SessionFormationComponent } from '../../pages/admin-pages/session-formation/session-formation.component';
 import { AppBySessionComponent } from 'src/app/pages/admin-pages/app-by-session/app-by-session.component';
 import { ListeAppSessionComponent } from 'src/app/pages/admin-pages/liste-app-session/liste-app-session.component';
-import { ProfilComponent } from 'src/app/pages/profil/profil.component';
+
+import { SeanceComponent } from 'src/app/pages/admin-pages/seance/seance.component';
 
 
 const routes: Routes = [
@@ -22,8 +23,10 @@ const routes: Routes = [
   {path:'sessionDeFormation',component:SessionFormationComponent},
   { path: 'messages', component: MessagesComponent },
   { path: 'app-liste-app-by-session', component: AppBySessionComponent },
- 
-  {path:'ListeAppSession/:id',component:ListeAppSessionComponent}
+  { path: 'Seance-Formation', component: SeanceComponent},
+ //{path: 'Seance-Formation',component: SeanceComponent},
+  { path: 'ListeAppSession/:id', component: ListeAppSessionComponent },
+  
 ];
 
 @NgModule({

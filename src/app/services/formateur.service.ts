@@ -86,7 +86,7 @@ export class formateurService  {
      formData.append('telFormateur', Formateur.telFormateur.toString());
 
     formData.append('Specialite', Formateur.specialite);
-    
+     formData.append('Password', Formateur.password);
     formData.append('Email', Formateur.email);
     formData.append('AdresseFormateur', Formateur.adresseFormateur);
       return this.httpClient.put<Formateur>(url, formData, {headers:httpHeaders});

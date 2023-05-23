@@ -154,7 +154,7 @@ export class ApprenantComponent {
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
       userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
-      password: apprenant.password,
+      password:'',
       email: apprenant.email,
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,

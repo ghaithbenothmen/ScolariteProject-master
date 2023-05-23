@@ -59,7 +59,12 @@
                                 <span class="text">Messages</span>
                         </a>
                 </li>
-
+                <li (click)="setActiveItem(9)" [ngClass]="{'active': activeItem === 9}">
+                        <a routerLink="Seance-Formation">
+                                <i class='bx bxs-message-dots'></i>
+                                <span class="text">Seance-Formation</span>
+                        </a>
+                </li>
         </ul>
         <ul class="side-menu">
                 <li>

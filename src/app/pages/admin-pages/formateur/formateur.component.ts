@@ -99,8 +99,8 @@ export class FormateurComponent {
      nomFormateur : [''],
       prenonFormateur: [''],
       telFormateur: [''],
-      emailFormateur: [''],
-      password:[''],
+     email: [''],
+      password:[''] ,
      adresseFormateur: [''],
      specialite: [''],
     
@@ -126,8 +126,8 @@ export class FormateurComponent {
      nomFormateur : formateur.nomFormateur,
       prenonFormateur: formateur.prenonFormateur,
       telFormateur: formateur.telFormateur,
-      emailFormateur:formateur.email,
-      password:formateur.password,
+      email:formateur.email,
+      password:'',
      adresseFormateur: formateur.adresseFormateur,
      specialite: formateur.specialite,
     

@@ -59,6 +59,7 @@ import { AppBySessionComponent } from './pages/admin-pages/app-by-session/app-by
 import { ListeAppSessionComponent } from './pages/admin-pages/liste-app-session/liste-app-session.component';
 import { FormateurLayoutComponent } from './layout/formateur-layout/formateur-layout.component';
 import { SideForComponent } from './components/side-for/side-for.component';
+import { SeanceComponent } from './pages/admin-pages/seance/seance.component';
 
 
 
@@ -106,6 +107,7 @@ registerLocaleData(localeFr);
           ListeAppSessionComponent,
           FormateurLayoutComponent,
           SideForComponent,
+          SeanceComponent,
       
 
 

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { toggleSidebar } from '../../../assets/js/scripts.js';
+
 @Component({
   selector: 'app-side-for',
   templateUrl: './side-for.component.html',
@@ -7,7 +7,7 @@ import { toggleSidebar } from '../../../assets/js/scripts.js';
 })
 export class SideForComponent implements AfterViewInit{
   ngAfterViewInit() {
-    toggleSidebar();
+ 
   }
   
 }
