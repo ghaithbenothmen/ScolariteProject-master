@@ -1,3 +1,4 @@
+import { Apprenant } from './../../../entities/apprenant.model';
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -8,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SeanceService } from 'src/app/services/seance.service';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
 import { InscriptionService } from 'src/app/services/inscription.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-seance',
   templateUrl: './seance.component.html',
@@ -38,7 +40,13 @@ export class SeanceComponent {
   public Inscription!: Inscription;
   apprenant: any;
   selectedCheckboxes: any[] = [];
-  constructor( private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
+
+   public UserId!:  string | null;
+ public idUser!: number;
+  idSession: any;
+
+
+  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
  
  
@@ -82,10 +90,16 @@ export class SeanceComponent {
 
       console.log("llll",response);
       this.Inscriptions = response;
-      
+      this.setInitialCheckboxValues();
     })
   }
   
+  setInitialCheckboxValues() {
+    for (let inscription of this.Inscriptions) {
+      inscription.apprenant.id == null; // Set the initial value to null
+    }
+  }
+
  onCheckboxChange() {
     const selectedOptions = this.Inscriptions.filter(Inscription => Inscription.apprenant.id);
      this.selectedCheckboxes =selectedOptions.filter(Inscription=> Inscription.apprenant.id);
@@ -112,6 +126,9 @@ console.log("hhhhh", this.selectedCheckboxes);
 
 
   ngOnInit(): void {
+    
+    this.idSession = this.route.snapshot.params["id"];
+    console.log('ddd',this.idSession);
 
     this.getSeance();
     console.log(this.authService.getToken());

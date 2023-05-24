@@ -22,11 +22,17 @@
     </div>
     <div class="table-data">
         <div class="order">
-            <div class="head">
-                <h3>Tableau de seance de formation</h3>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
-            </div>
+            <ng-container *ngFor="let Inscriptions of Inscriptions">
+                <div class="head" *ngIf=" Inscriptions.sessionFormation.idSessionFormation==idSession">
+                    <h3>Tableau Apprenant insecrit dans la session
+                        {{Inscriptions.sessionFormation.themeDeFormation.nomFormation}}
+                    </h3>
+
+                    <i class='bx bx-search'></i>
+                    <i class='bx bx-filter'></i>
+                </div>
+                <!-- <ng-template #elseBlock>Content to render when condition is false.</ng-template> -->
+            </ng-container>
             <table>
                 <thead>
                     <tr>
@@ -46,32 +52,33 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     <tr *ngFor="let seance of seances">
-                        <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
-                        <td>{{seance.idSeanceFormation}}</td>
+                        <ng-container *ngIf="seance.sessionFormation.idSessionFormation == idSession">
+                            <td>{{seance.idSeanceFormation}}</td>
 
-                        <td>{{seance.date}}</td>
-                        <td>{{seance.heuresDebut}}</td>
-                        <td>{{seance.nbrHeures}}H</td>
-                        <td>{{seance.local}}</td>
-                        <td>{{seance.contenu}}</td>
+                            <td>{{seance.date}}</td>
+                            <td>{{seance.heuresDebut}}</td>
+                            <td>{{seance.nbrHeures}}H</td>
+                            <td>{{seance.local}}</td>
+                            <td>{{seance.contenu}}</td>
 
-                        <td><a href="{{'data:'+seance.fileType+';base64,' + seance.data}}" download="{{seance.data}}"
-                                width="200px" height="200px"> Cours </a></td>
-
-
+                            <td><a href="{{'data:'+seance.fileType+';base64,' + seance.data}}"
+                                    download="{{seance.data}}" width="200px" height="200px"> Cours </a></td>
 
 
 
-                        <td>
-                            <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
-                                data-toggle="modal">
-                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a type="button" (click)="openDelete(contentDelete, seance)" class="delete"
-                                data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
-                                    title="Delete">&#xE872;</i></a>
-                        </td>
-                        <!-- </ng-container> -->
+
+
+                            <td>
+                                <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
+                                    data-toggle="modal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a type="button" (click)="openDelete(contentDelete, seance)" class="delete"
+                                    data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                        title="Delete">&#xE872;</i></a>
+                            </td>
+                        </ng-container>
                     </tr>
 
                 </tbody>
@@ -154,15 +161,20 @@
                                 entrer contenu de formation</span>
                         </div>
                         <div class="form-group">
-                            <!-- <div *ngIf="Inscriptions.sessionFormation.idSessionFormation "></div> -->
+
                             <label> presence :</label>
                             <div *ngFor="let Inscriptions of Inscriptions">
 
-                                <input type="checkbox" [(ngModel)]="Inscriptions.apprenant.id"
-                                    (ngModelChange)="onCheckboxChange()" name={{Inscriptions.apprenant.nomApprenant}}
-                                    [value]="Inscriptions.apprenant.id " [checked]="false">
-                                {{Inscriptions.apprenant.nomApprenant}}
-                                {{Inscriptions.apprenant.prenomApprenant}}
+                                <ng-container *ngIf="Inscriptions.sessionFormation.idSessionFormation == idSession">
+                                    
+                                    <input type="checkbox" [(ngModel)]="Inscriptions.apprenant.id"
+                                        (ngModelChange)="onCheckboxChange()"
+                                        name={{Inscriptions.apprenant.nomApprenant}}
+                                        [value]="Inscriptions.apprenant.id " [checked]="Inscriptions.apprenant.id == null">
+                                    {{Inscriptions.apprenant.nomApprenant}}
+                                    {{Inscriptions.apprenant.prenomApprenant}}
+
+                                </ng-container>
                                 <span *ngIf="contenu.invalid && contenu.touched" class="error">Vous
                                     devez
                                     entrer contenu de formation</span>

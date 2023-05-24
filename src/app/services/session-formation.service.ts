@@ -18,7 +18,7 @@ export class SessionFormationService {
 
 
   public formateur!: Formateur;
-  apiURL: string = "http://localhost:8080/apprenant/api/SesionDeFormation/";
+  apiURL: string = "http://localhost:8080/apprenant/api/sessionDeFormation/";
   idFormateur!: number;
   codeFormateur!: number;
   public record: any;

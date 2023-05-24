@@ -1,63 +1,38 @@
-
-
-
-
-//import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ThemeDeFormation } from 'src/app/entities/ThemeDeFormation.model';
+
 import { ThemeDeFormationService } from 'src/app/services/theme-de-formation.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+
 import { SessionFormationService } from 'src/app/services/session-formation.service';
 import { SessionFormation } from 'src/app/entities/SessionFormation.model';
 import { formateurService } from 'src/app/services/formateur.service';
-import { Formateur } from 'src/app/entities/formateur.model';
-import { Action } from 'rxjs/internal/scheduler/Action';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, NgFor } from '@angular/common';
+import { ThemeDeFormation } from 'src/app/entities/ThemeDeFormation.model';
+import { Formateur } from 'src/app/entities/formateur.model';
 @Component({
-  selector: 'app-app-by-session',
-  templateUrl: './app-by-session.component.html',
-  styleUrls: ['./app-by-session.component.css']
+  selector: 'app-session-form',
+  templateUrl: './session-form.component.html',
+  styleUrls: ['./session-form.component.css']
 })
-export class AppBySessionComponent {
-public items = ['En ligne', 'Présentiel'];
-  public modalRef!: BsModalRef;
+export class SessionFormComponent {
+  constructor(  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
   public themeDeFormations!: ThemeDeFormation[];
   public themeDeFormation!: ThemeDeFormation;
   public formateurs!: Formateur[];
   public formateur!: Formateur;
+  public UserId!:  string | null;
+  public idUser!: number;
 
-  public idFormation!: number;
-  public codeFormateur!: number;
-  public f !:NgForm;
-  public editForm!: FormGroup;
-  // public editForm2!: FormGroup;
-  private deleteId !: number;
-  public message!: string;
-  public ajoutForm!: FormGroup;
-  selectedFile: any;
-  Data!: Blob;
-  dbimage: any;
-  idFormateur: any;
-  idTh: any;
-  //SessionFormationService: any;
-
-  constructor( private modalService: BsModalService, private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
-  public onFileChanged(event: any) {
-
-    this.selectedFile = event.target.files[0];
-
-
-  }
-
+  
   onSelect(sessionFormation :SessionFormation) {
-    this.router.navigate(['/admin-dashboard/ListeAppSession', sessionFormation.idSessionFormation]);
+    this.router.navigate(['/formateur-dashboard/Seance-Formation', sessionFormation.idSessionFormation]);
   }
    //Pagination//
    page:number=1;
@@ -122,35 +97,11 @@ public items = ['En ligne', 'Présentiel'];
 
 
   ngOnInit(): void {
+    this.UserId = localStorage.getItem('UserId');
+    this.idUser=Number(this.UserId);
 
     this.getSessionFormation();
-    console.log(this.authService.getToken());
-
-    this.editForm = this.fb.group({
-
-      idFormation: [''],
-      
-      idSessionFormation: [''],
-      typeFormation: [''],
-      localFormation: [''],
-      description: [''],
-
-      codeFormateur: [],
-      dateDebut: [''],
-       dateFin: [''],
-      nbrHeures: [''],
-      file: [''],
-
-
-    })
-
+    
   }
 
-
-  
-
-
 }
-
-
-
