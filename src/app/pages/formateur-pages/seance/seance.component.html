@@ -22,10 +22,10 @@
     </div>
     <div class="table-data">
         <div class="order">
-            <ng-container *ngFor="let Inscriptions of Inscriptions">
-                <div class="head" *ngIf=" Inscriptions.sessionFormation.idSessionFormation==idSession">
+            <ng-container *ngFor="let session of sessionFormations">
+                <div class="head" *ngIf=" session.idSessionFormation==idSession">
                     <h3>Tableau Apprenant insecrit dans la session
-                        {{Inscriptions.sessionFormation.themeDeFormation.nomFormation}}
+                        {{session.themeDeFormation.nomFormation}}
                     </h3>
 
                     <i class='bx bx-search'></i>
@@ -170,7 +170,7 @@
                                     <input type="checkbox" [(ngModel)]="Inscriptions.apprenant.id"
                                         (ngModelChange)="onCheckboxChange()"
                                         name={{Inscriptions.apprenant.nomApprenant}}
-                                        [value]="Inscriptions.apprenant.id " [checked]="Inscriptions.apprenant.id == null">
+                                        [value]="Inscriptions.apprenant.id " [checked]="Inscriptions.apprenant.id">
                                     {{Inscriptions.apprenant.nomApprenant}}
                                     {{Inscriptions.apprenant.prenomApprenant}}
 

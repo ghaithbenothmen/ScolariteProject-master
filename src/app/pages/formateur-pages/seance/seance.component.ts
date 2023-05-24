@@ -96,7 +96,8 @@ export class SeanceComponent {
   
   setInitialCheckboxValues() {
     for (let inscription of this.Inscriptions) {
-      inscription.apprenant.id == null; // Set the initial value to null
+      inscription.apprenant.id = 0; // Set the initial value to null
+      console.log('null or not',inscription.apprenant.id)
     }
   }
 
