@@ -700,3 +700,14 @@ input.ng-invalid{
   {
 	text-align: left;
   }
+  .no-data-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     /* Adjust the height as per your requirement */
+  }
+  
+  .no-data-image {
+    max-width:50%;
+    max-height: 100%;
+  }

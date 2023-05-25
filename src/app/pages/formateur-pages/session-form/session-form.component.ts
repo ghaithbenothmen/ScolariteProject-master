@@ -16,7 +16,7 @@ import { Formateur } from 'src/app/entities/formateur.model';
 @Component({
   selector: 'app-session-form',
   templateUrl: './session-form.component.html',
-  styleUrls: ['./session-form.component.css']
+  styleUrls: ['./session-form.component.css','../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class SessionFormComponent {
   constructor(  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
@@ -34,6 +34,10 @@ export class SessionFormComponent {
   onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/formateur-dashboard/Seance-Formation', sessionFormation.idSessionFormation]);
   }
+  onSelectApp(sessionFormation :SessionFormation) {
+    this.router.navigate(['/formateur-dashboard/apprenant-sess', sessionFormation.idSessionFormation]);
+  }
+
    //Pagination//
    page:number=1;
    count:number=0;
@@ -64,7 +68,9 @@ export class SessionFormComponent {
        });
        
 
-      this.sessionFormations = response;
+   
+       this.sessionFormations = response.filter(inscri => inscri.formateur.id === this.idUser); //nafsha f html 
+     
       console.log("dddd",this.sessionFormations);
 
     });
@@ -80,7 +86,6 @@ export class SessionFormComponent {
       this.themeDeFormations = response;
 
     });
-
 
   }
 
@@ -98,7 +103,10 @@ export class SessionFormComponent {
 
   ngOnInit(): void {
     this.UserId = localStorage.getItem('UserId');
-    this.idUser=Number(this.UserId);
+    this.idUser=Number(this.UserId)
+
+   console.log(this.idUser)
+    
 
     this.getSessionFormation();
     

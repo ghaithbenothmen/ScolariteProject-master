@@ -21,7 +21,7 @@ import { DatePipe, NgFor } from '@angular/common';
 @Component({
   selector: 'app-app-by-session',
   templateUrl: './app-by-session.component.html',
-  styleUrls: ['./app-by-session.component.css']
+  styleUrls: ['./app-by-session.component.css','../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class AppBySessionComponent {
 public items = ['En ligne', 'Présentiel'];
@@ -56,9 +56,10 @@ public items = ['En ligne', 'Présentiel'];
 
   }
 
-  onSelect(sessionFormation :SessionFormation) {
+  onSelectApp(sessionFormation :SessionFormation) {
     this.router.navigate(['/admin-dashboard/ListeAppSession', sessionFormation.idSessionFormation]);
   }
+  
    //Pagination//
    page:number=1;
    count:number=0;

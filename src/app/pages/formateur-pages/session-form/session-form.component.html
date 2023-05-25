@@ -1,71 +1,72 @@
-
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class='bx bx-chevron-right'></i></li>
-                <li>
-                    <a class="disabled" href="#">Session de formation</a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
+<section class="ftco-section">
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Vos session de formations</h2>
+            </div>
+        </div>
         <div class="row">
-            <ng-container *ngFor=" let SessionFormation of sessionFormations " >
-
-            <div class="col-md-4 col-sm-4 col-xs-12 primary-btn" (click)="onSelect(SessionFormation) " *ngIf="SessionFormation.formateur.id == idUser">
-                <div class=" team-boxes" >
-                    <div class="team-thumb overlay-image view-overlay">
-                        <img src="{{'data:'+SessionFormation.fileType+';base64,' + SessionFormation.data}}"
-                            width="200px" height="200px">
-                        <div class="clear">
-                        </div>
-                        <div class="mask team_quote">
-                            <div class="port-zoom-link">
-                                <p>
-                                    <span class="accentcolor"
-                                        style="font-weight:700;">{{SessionFormation.themeDeFormation.abrevation}}</span>
-                                    <br>
-                                    <i>"{{SessionFormation.description}}"</i>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h2 class="bx bx-clipboard">Nom de formation:{{SessionFormation.themeDeFormation.nomFormation}}
-                        </h2>
-                        <h2 class="bx bx-male ">
-                            Formateur: Vous
-                        </h2>
-                        <div>
-
-                            <p class='bx bxs-calendar'>
-
-                                De {{SessionFormation.dateDebut}} jusqu'a {{SessionFormation.dateFin}}
-                            </p>
-                        </div>
-                        <div>
-                            <p class='bx bxs-time'>
-                                Durée {{SessionFormation.nbrHeures}}h
-                            </p>
-                            <p class='bx bxs-map-pin'> {{SessionFormation.typeFormation}} ,
-                                {{SessionFormation.localFormation}}
-                            </p>
-
-                        </div>
-                    </div>
-                    <div class="separator">
-                    </div>
+            <ng-container  *ngFor="let sessionFormations of sessionFormations">
+            <div class="col-lg-4 mb-5" >
+                
+               
                     
-                </div>
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+
+                        <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
+                            class="card-img-top mb-2" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{sessionFormations.themeDeFormation.nomFormation}}</h4>
+                            <p class="card-text">
+                                {{sessionFormations.themeDeFormation.description}}
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Formateur</strong>
+                                </div>
+                                <div class="col-6 py-1">Vous</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Type</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.typeFormation}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Date</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.dateDebut}} - {{sessionFormations.dateFin}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Nombre d'heure</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.nbrHeures}} Heures</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Local</strong>
+                                </div>
+                                <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
+                            </div>
+
+
+                        </div>
+
+                        <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
+                            (click)="onSelectApp(sessionFormations) ">Liste Apprenants</a>
+                        <a class="btn btn-info px-4 mx-auto mb-4 text-light"
+                            (click)="onSelect(sessionFormations) ">Liste Séances</a>
+
+                    </div>
+                
             </div>
         </ng-container>
         </div>
+
     </div>
-</main>
+</section>

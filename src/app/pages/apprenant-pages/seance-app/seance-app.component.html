@@ -1,0 +1,84 @@
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<div class="container">
+	
+		
+		<!-- ======================= Cards ================== -->
+		<div class="cardBox">
+			<div class="card">
+				<div>
+					<div class="numbers">{{lengthInscri}}<span class="iconBx"> <i class="bi bi-journal"></i></span></div>
+					
+				</div>
+				<div class="cardName">Séances </div>
+				
+			</div>
+	
+			
+		</div>
+	
+		<div class="alert alert-success" role="alert" *ngIf="message">
+			{{message}}
+		</div>
+		
+		<!-- ================ Order Details List ================= -->
+		<div class="details" >
+			<div class="recentOrders" >
+				<div class="cardHeader" >
+					<h2>Liste des séances</h2>
+					
+				</div>
+	
+				<table  *ngIf="!noDataAvailable">
+					<thead>
+						<tr >
+                            <th>id </th>
+
+                            <th> date</th>
+                            <th>heuresdebut </th>
+    
+                            <th> Nombre d'heure </th>
+                            <th> Locale </th>
+                            <th> Contenu </th>
+                            <th> Cours </th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<tr *ngFor="let seance of seances" >
+							<ng-container *ngIf="seance.sessionFormation.idSessionFormation == idSession">
+								<td>{{seance.idSeanceFormation}}</td>
+
+                                <td>{{seance.date}}</td>
+                                <td>{{seance.heuresDebut}}</td>
+                                <td>{{seance.nbrHeures}}H</td>
+                                <td>{{seance.local}}</td>
+                                <td>{{seance.contenu}}</td>
+
+                            <td><a href="{{'data:'+seance.fileType+';base64,' + seance.data}}"
+                                    download="{{seance.data}}" width="200px" height="200px">Télécharger Cours </a></td>
+
+								<td>
+									
+	
+								</td>
+							</ng-container>
+						</tr>
+	
+					</tbody>
+				</table>
+
+                <div *ngIf="noDataAvailable" class="no-data-container">
+                    <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg" alt="No data available">
+                  
+                   
+                  </div>
+                  <h2 *ngIf="noDataAvailable"  style="text-align: center;">Aucune données disponibles !</h2>
+
+			</div>
+	
+			
+		</div>
+	</div>
+

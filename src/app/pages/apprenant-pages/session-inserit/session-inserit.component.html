@@ -4,13 +4,15 @@
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
+            <div class="col-md-6 text-center ">
                 <h2 class="heading-section">Session de formations</h2>
             </div>
         </div>
+        
         <div class="row">
+            
             <div class="col-lg-4 mb-5" *ngFor="let Inscriptions of Inscriptions">
-                <ng-container *ngIf="Inscriptions.apprenant.id == idUser">
+               
                 <div class="card border-0 bg-light shadow-sm pb-2">
 
                     <img src="{{'data:'+Inscriptions.sessionFormation.fileType+';base64,' + Inscriptions.sessionFormation.data}}"
@@ -55,13 +57,48 @@
                         </div>
                         
                     </div>
-                    
+
+                    <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
+                     (click)="onSelect(Inscriptions.sessionFormation)"  >Liste séances (cours)</a>
+
+                    <a class="btn btn-danger px-4 mx-auto mb-4 text-light"
+                    (click)="openDelete(contentDelete, Inscriptions)"   >Désinscrire</a>
                     
                 </div>
-            </ng-container>
             </div>
-
+            <div class="alert alert-danger" role="alert" *ngIf="deleteStatusMessage">
+                {{deleteStatusMessage}}
+            </div>
         </div>
         
     </div>
 </section>
+
+
+<!-- Delete Modal HTML -->
+
+<ng-template #contentDelete>
+    <div>
+        <div class="modal-dialog m-0">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Désinscription</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous confirmer votre desinscription ?</p>
+                        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                    </div>
+                    <form class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                            (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-danger" value="Désinscrire" (click)="onDelete(Inscription)">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

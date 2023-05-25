@@ -97,20 +97,6 @@ id: any;
     this.InscriptionService.getInscription().subscribe((response:any[]) => {
       console.log(response);
 
-      //  response.forEach((item) => {
-      //   const date=new Date(item.dateDebut);
-        
-        
-      //   const dayOfWeek = date.getDay(); 
-      //   item.dayOfWeek = this.getDayName(dayOfWeek);
-
-      // item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
-      
-
-      // const dateF=new Date(item.dateFin);
-      // item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
-      //  });
-       
       
       this.Inscriptions = response;
      

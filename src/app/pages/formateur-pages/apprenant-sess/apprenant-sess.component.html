@@ -1,0 +1,76 @@
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div class="container">
+	
+		
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{lengthApp}}<span class="iconBx"> <i class="bi bi-people-fill"></i></span></div>
+                
+            </div>
+            <div class="cardName">Apprenants </div>
+            
+        </div>
+
+        
+    </div>
+
+   
+    
+    <!-- ================ Order Details List ================= -->
+    <div class="details" >
+        <div class="recentOrders" >
+            <div class="cardHeader" >
+                <h2>List des apprenants</h2>
+                
+            </div>
+
+            <table *ngIf="!noDataAvailable">
+                <thead>
+                    <tr>
+                        <td>ID </td>
+                    <td>Nom </td>
+                    <td>Prénom </td>
+                    <td>Email</td>
+                    <td>Telehone</td>
+                    <td>Actions</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor=" let inscription of Inscriptions">
+                            
+                        <ng-container
+                            *ngIf=" !(inscription.apprenant.archiveApprenant) && inscription.sessionFormation.idSessionFormation==idSession  ">
+
+                            <td>{{inscription.apprenant.id}}</td>
+                            <td>{{inscription.apprenant.nomApprenant}}</td>
+                            <td>{{inscription.apprenant.prenomApprenant}}</td>
+                            <td>{{inscription.apprenant.email}}</td>
+                            <td>{{inscription.apprenant.telApprenant}}</td>
+                            <td>
+                               
+                            </td>
+                        </ng-container>
+                    
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div *ngIf="noDataAvailable" class="no-data-container">
+                <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg" alt="No data available">
+              
+               
+              </div>
+              <h2 *ngIf="noDataAvailable"  style="text-align: center;">Aucune données disponibles !</h2>
+
+
+        </div>
+
+        
+    </div>
+</div>
+

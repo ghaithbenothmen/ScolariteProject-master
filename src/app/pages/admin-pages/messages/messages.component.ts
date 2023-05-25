@@ -15,7 +15,7 @@ export class MessagesComponent {
   public contacts!:Contact[];
   public contact!:Contact;
 public numberMess!:number;
-
+public noDataAvailable !: boolean;
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, public contService : ContactService) { }
    //Pagination//
@@ -51,6 +51,11 @@ public numberMess!:number;
     
       this.contacts = response;
       this.numberMess=response.length;
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
     });
   }
 

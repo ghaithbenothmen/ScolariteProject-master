@@ -35,7 +35,9 @@ export class SeanceService {
     let httpHeaders = new HttpHeaders({ "Authorization": jwt });
 
     const formData = new FormData();
-formData.append('Inscription', JSON.stringify(selectedCheckboxes));
+    const checkboxIds = selectedCheckboxes.map(checkbox => checkbox.id);
+    formData.append('inscription', JSON.stringify(checkboxIds));
+
     formData.append('file', file);
      formData.append('Date',seance.date.toString());
     formData.append(' heuresDebut', seance.heuresDebut.toString());
@@ -61,6 +63,7 @@ formData.append('Inscription', JSON.stringify(selectedCheckboxes));
 
 
 
+ 
   updateSeance( seance : seance , file: File): Observable<seance> {
     const url = `${this.apiURL}${seance.idSeanceFormation}`;
     let jwt = this.authService.getToken();

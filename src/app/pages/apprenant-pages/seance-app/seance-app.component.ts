@@ -1,3 +1,4 @@
+
 import { Apprenant } from './../../../entities/apprenant.model';
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
@@ -11,11 +12,11 @@ import { SessionFormationService } from 'src/app/services/session-formation.serv
 import { InscriptionService } from 'src/app/services/inscription.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
-  selector: 'app-seance',
-  templateUrl: './seance.component.html',
-  styleUrls: ['./seance.component.css', '../../admin-pages/apprenant/apprenant.component.css']
+  selector: 'app-seance-app',
+  templateUrl: './seance-app.component.html',
+  styleUrls: ['./seance-app.component.css', '../../admin-pages/apprenant/apprenant.component.css']
 })
-export class SeanceComponent {
+export class SeanceAppComponent {
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
@@ -94,6 +95,7 @@ public noDataAvailable !: boolean;
           
       }
     }
+    
     if (this.lengthInscri === 0) {
       this.noDataAvailable = true;
     } else {
@@ -210,8 +212,7 @@ idSeanceFormation:[''],
     );
 
     this.editForm.patchValue({
-      
-      idSeanceFormation:seance.idSeanceFormation,
+    idSeanceFormation:seance.idSeanceFormation,
       idSessionFormation: seance.sessionFormation.idSessionFormation,
       contenu: seance.contenu,
       date: seance.date,
@@ -285,6 +286,5 @@ idSeanceFormation:[''],
 
     this.modalService.hide(); //dismiss the modal
   }
-
 
 }

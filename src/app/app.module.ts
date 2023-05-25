@@ -70,6 +70,9 @@ import { CDBFreeModule } from 'ng-cdbangular';
 import { DashFormateurComponent } from './pages/formateur-pages/dash-formateur/dash-formateur.component';
 import { AdminDashComponent } from './pages/admin-pages/admin-dash/admin-dash.component';
 import { SessionFormComponent } from './pages/formateur-pages/session-form/session-form.component';
+import { ApprenantSessComponent } from './pages/formateur-pages/apprenant-sess/apprenant-sess.component';
+import { SeanceAppComponent } from './pages/apprenant-pages/seance-app/seance-app.component';
+import { EditProfilComponent } from './pages/apprenant-pages/edit-profil/edit-profil.component';
 
 
 
@@ -122,6 +125,9 @@ registerLocaleData(localeFr);
           DashFormateurComponent,
           AdminDashComponent,
           SessionFormComponent,
+          ApprenantSessComponent,
+          SeanceAppComponent,
+          EditProfilComponent,
 
       
 

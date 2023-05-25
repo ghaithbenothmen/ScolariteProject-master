@@ -230,3 +230,14 @@ table.table .avatar {
 .nav-tabs .nav-item {
   width: 50%;
 }
+.no-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   /* Adjust the height as per your requirement */
+}
+
+.no-data-image {
+  max-width:50%;
+  max-height: 100%;
+}
