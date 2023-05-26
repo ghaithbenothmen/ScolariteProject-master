@@ -32,12 +32,12 @@
         <div class="mt-auto">
 
             <CDBSidebarFooter class="sidebar-content">
-                <CDBSidebarMenuItem href='/formateur-dashboard/edit-profil' ><i class="mx-2 bi bi-person-fill"></i>
+                <CDBSidebarMenuItem link='/formateur-dashboard/edit-profil' ><i class="mx-2 bi bi-person-fill"></i>
                     <span style="margin-left: 5px;">Profil</span>                    
                 </CDBSidebarMenuItem> 
               
-                <CDBSidebarMenuItem href='/404' ><i class="bi mx-2 bi-box-arrow-right"></i>
-                    <span style="margin-left: 5px;">Déconnexion</span>                    
+                <CDBSidebarMenuItem ><i class="bi mx-2 bi-box-arrow-right"></i>
+                    <span style="margin-left: 5px;" (click)="onLogout()">Déconnexion</span>                    
                 </CDBSidebarMenuItem> 
 
                 

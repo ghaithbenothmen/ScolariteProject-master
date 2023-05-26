@@ -39,4 +39,7 @@ export class SideForComponent  {
     
    });
   }
+  onLogout() {
+    this.authService.logout();
+  }
 }

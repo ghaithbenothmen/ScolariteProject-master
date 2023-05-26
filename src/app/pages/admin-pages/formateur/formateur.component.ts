@@ -33,7 +33,8 @@ export class FormateurComponent {
     public etablissement!: Etablissement;
     public etablissements!: Etablissement[];
     public numberOfFormateurs!: number;
-  
+    errorMessage!: string;
+    successMessage!:string;
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService  : formateurService,private authService:AuthService,public etabService:EtablissementService) { }
   //Pagination//
@@ -57,7 +58,7 @@ export class FormateurComponent {
       });
   }
   
-
+ 
 
 //  onFileChange(event) {
 //     this.Departement.file = event.target.files[0];
@@ -74,7 +75,14 @@ export class FormateurComponent {
     
   this.formateurService .addformateur ( this.selectedFile , f.value ).subscribe(response => {
     console.log(response);
-    this.ngOnInit();  })
+    this.successMessage = "Formateur ajouté avec succès";
+    this.ngOnInit();  
+  }, error => {
+    this.errorMessage = "Erreur lors de l'ajout du formateur";
+    this.ngOnInit();  
+
+  });
+    this.ngOnInit();  
  
   this.modalService.hide(); //dismiss the modal
 }
@@ -155,23 +163,25 @@ openModal(modalTemplate: TemplateRef<any>) {
 onSave() {
   
    
-  this.formateurService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(response => {
-      //console.log(response);
-     
-      this.ngOnInit();})
-   
-    this.modalService.hide(); //dismiss the modal
-  }
-/***************************contoller ************** */
+  this.formateurService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(
+    response => {
+      console.log(response);
+      this.errorMessage = '';
+      this.successMessage = 'Formateur a été bien modifiées.';
+      this.ngOnInit();
+    },
+    error => {
+      
+      this.errorMessage = 'Vérifiez votre formulaire.';
+      this.successMessage = '';
+      this.ngOnInit();
+    }
+  );
+  this.modalService.hide();
+  this.ngOnInit();
 
-onControl(f: NgForm) {
-  if (f.valid) {
-    this.message = 'Formateur bien ajouté !';
-  }
-  if (f.invalid) {
-    this.message = 'Formateur non ajoué ! Verifier votre formulaire !';
-  }
 }
+
 
 
 /**********************Template delete ******************* */

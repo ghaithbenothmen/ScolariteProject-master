@@ -16,7 +16,12 @@
 	
 			
 		</div>
-	
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+            {{errorMessage}}
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="successMessage">
+            {{successMessage}}
+        </div>
 		<div class="alert alert-success" role="alert" *ngIf="message">
 			{{message}}
 		</div>
@@ -85,7 +90,7 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate >
                     <div class="modal-header">
                         <h4 class="modal-title">Ajouter formateur </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -211,9 +216,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Adresse </label>
+                            <input type="text" formControlName="adresseFormateur"  class="form-control"
+                                >
+                            
+                        </div>
+                        <div class="form-group">
                             <label>Specialite </label>
                             <input type="text" formControlName="specialite" class="form-control" required>
                         </div>
+                        
                         <div class="form-group">
                             <label>Cv</label>
                             <input type="file" formControlName="file" class="form-control"

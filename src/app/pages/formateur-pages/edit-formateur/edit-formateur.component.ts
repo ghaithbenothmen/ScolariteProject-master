@@ -36,9 +36,11 @@ onSave(): void {
    
     this.forService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(
       response => {
+        
         console.log(response);
         this.errorMessage = '';
         this.successMessage = 'Vos informations ont été bien modifiées.';
+        this.ngOnInit();
       },
       error => {
         console.error('Error saving inscription:', error);
