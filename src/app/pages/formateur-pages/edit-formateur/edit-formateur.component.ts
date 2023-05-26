@@ -3,17 +3,19 @@ import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/f
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Apprenant } from 'src/app/entities/apprenant.model';
+import { Formateur } from 'src/app/entities/formateur.model';
 import { ApprenantService } from 'src/app/services/apprenant.service';
+import { formateurService } from 'src/app/services/formateur.service';
 
 @Component({
-  selector: 'app-edit-profil',
-  templateUrl: './edit-profil.component.html',
-  styleUrls: ['./edit-profil.component.css']
+  selector: 'app-edit-formateur',
+  templateUrl: './edit-formateur.component.html',
+  styleUrls: ['./edit-formateur.component.css']
 })
-export class EditProfilComponent {
+export class EditFormateurComponent {
   public modalRef!: BsModalRef;
-  public apprenants!: Apprenant[];
-  public apprenant!: Apprenant;
+  public formateurs!: Formateur[];
+  public formateur!: Formateur;
   public id !: number;
   public UserId !: string | null;
   public editForm!: FormGroup;
@@ -21,19 +23,18 @@ export class EditProfilComponent {
   errorMessage!: string;
   successMessage!:string;
   public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
+  selectedFile: any;
 
-  constructor( private fb: FormBuilder, private appService: ApprenantService, private route:ActivatedRoute , private modalService: BsModalService) { } 
+  constructor( private fb: FormBuilder, private forService: formateurService, private route:ActivatedRoute , private modalService: BsModalService) { } 
 
 onreload(){
   window.location.reload();
 }
 
-  onSave(): void {
+onSave(): void {
   if (this.editForm.valid || this.isFormPartialValid()) {
-    console.log("id", this.editForm.value);
-    console.log("id", this.editForm.value.id);
-
-    this.appService.updateApp(this.editForm.value).subscribe(
+   
+    this.forService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(
       response => {
         console.log(response);
         this.errorMessage = '';
@@ -56,17 +57,17 @@ isFormPartialValid(): boolean {
   const passwordControl = this.editForm.get('password');
   const confirmPasswordControl = this.editForm.get('confirmPassword');
 
-  // Return true if both password and confirmPassword fields are empty or null
+  // Return true if  password and confirmPassword fields are empty or null
   return (!passwordControl?.value && !confirmPasswordControl?.value);
 }
 
   getApprenants() {
-    this.appService.getApprenants().subscribe(response => {
+    this.forService.getFormateur().subscribe(response => {
       //console.log('app',response);
       //this.apprenants = response;
    
-      this.apprenants = response.filter(app => app.id === this.idUser); //nafsha f html 
-       console.log(this.apprenants)
+      this.formateurs = response.filter(formateur => formateur.id === this.idUser); //nafsha f html 
+       console.log(this.formateurs)
     });
   }
 
@@ -102,22 +103,19 @@ this.getApprenants();
     console.log("lklk",this.UserId);
 
       this.editForm = this.fb.group({
-        id: [''],
-  
-        nomApprenant: [''],
-        prenomApprenant: [''],
-        /* sexeApprenant: [''], */
-        dateNaissanceApprenant: [''],
-
-        email: ['', [Validators.required,Validators.email]],
-
-        
-        telApprenant: [''],
-        adresseApprenant: [''],
-        archiveApprenant: [''],
-        sexeApprenant: [''],
-        niveauApprenant: [''],
-        qualiteApprenant: [''],
+            
+      id: [''],
+     
+      // adresseApprenant: [''],
+       file: [''], 
+      nomFormateur : [''],
+       prenonFormateur: [''],
+       telFormateur: [''],
+      email: [''],
+       
+      adresseFormateur: [''],
+      specialite: [''],
+     
         confirmPassword: [''],
         password: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       

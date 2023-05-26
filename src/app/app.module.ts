@@ -73,6 +73,7 @@ import { SessionFormComponent } from './pages/formateur-pages/session-form/sessi
 import { ApprenantSessComponent } from './pages/formateur-pages/apprenant-sess/apprenant-sess.component';
 import { SeanceAppComponent } from './pages/apprenant-pages/seance-app/seance-app.component';
 import { EditProfilComponent } from './pages/apprenant-pages/edit-profil/edit-profil.component';
+import { EditFormateurComponent } from './pages/formateur-pages/edit-formateur/edit-formateur.component';
 
 
 
@@ -128,6 +129,7 @@ registerLocaleData(localeFr);
           ApprenantSessComponent,
           SeanceAppComponent,
           EditProfilComponent,
+          EditFormateurComponent,
 
       
 

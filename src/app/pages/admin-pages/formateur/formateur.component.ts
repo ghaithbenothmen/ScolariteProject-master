@@ -154,7 +154,7 @@ openModal(modalTemplate: TemplateRef<any>) {
 }
 onSave() {
   
-    console.log(this.editForm.value.password);
+   
   this.formateurService.updateFormateur(this.selectedFile,this.editForm.value).subscribe(response => {
       //console.log(response);
      

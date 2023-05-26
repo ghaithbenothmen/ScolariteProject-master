@@ -2,7 +2,7 @@
 <div class="container ">
     <div class="row justify-content-center">
         <div class="col-md-6 text-center mb-5">
-            <h2 class="heading-section">Modifier votre profil</h2>
+            <h2 class="heading-section">Votre profil</h2>
         </div>
     </div>
     <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -131,7 +131,7 @@
                             <div class="form-group">
                                 <label for="sTate">Nouveau mot de passe </label>
                                 <input type="password" class="form-control" formControlName="password" name="password"
-                                       placeholder="Tappez votre nouveau mot de passe">
+                                      required placeholder="Tappez votre nouveau mot de passe">
                             </div>
                             <div *ngIf="editForm.controls['password'].errors">
                                 <!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label for="sTate">Confirmer nouveau mot de passe </label>
                                 <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"
-                                       placeholder="Confirmer votre nouveau mot de passe">
+                                      required placeholder="Confirmer votre nouveau mot de passe">
                             </div>
                             <div class="error"
 							*ngIf="editForm.hasError('passwordsMismatch') && ((editForm.controls['confirmPassword']?.dirty) || editForm.controls['confirmPassword']?.touched)">
