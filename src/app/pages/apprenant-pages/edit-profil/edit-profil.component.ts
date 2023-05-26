@@ -30,7 +30,7 @@ onreload(){
 
   onSave() {
 
-    if (this.editForm.valid) {
+   
     console.log("id",this.editForm.value);
     console.log("id",this.editForm.value.id);
         this.appService.updateApp(this.editForm.value).subscribe(response => {
@@ -48,9 +48,7 @@ onreload(){
           this.ngOnInit();
           
     
-      }else{
-        this.errorMessage = 'Vérifier votre formulaire .';
-      }
+     
       }
 
   getApprenants() {
@@ -100,7 +98,7 @@ this.getApprenants();
         sexeApprenant: [''],
         niveauApprenant: [''],
         qualiteApprenant: [''],
-        confirmPassword: ['', [Validators.required]],
+        confirmPassword: [''],
         password: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       
   

@@ -131,7 +131,7 @@
                             <div class="form-group">
                                 <label for="sTate">Nouveau mot de passe </label>
                                 <input type="password" class="form-control" formControlName="password" name="password"
-                                      required placeholder="Tappez votre nouveau mot de passe">
+                                       placeholder="Tappez votre nouveau mot de passe">
                             </div>
                             <div *ngIf="editForm.controls['password'].errors">
                                 <!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label for="sTate">Confirmer nouveau mot de passe </label>
                                 <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"
-                                      required placeholder="Confirmer votre nouveau mot de passe">
+                                       placeholder="Confirmer votre nouveau mot de passe">
                             </div>
                             <div class="error"
 							*ngIf="editForm.hasError('passwordsMismatch') && ((editForm.controls['confirmPassword']?.dirty) || editForm.controls['confirmPassword']?.touched)">
