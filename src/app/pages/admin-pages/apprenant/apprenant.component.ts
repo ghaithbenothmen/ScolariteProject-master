@@ -150,13 +150,17 @@ export class ApprenantComponent {
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,
       dateNaissanceApprenant: apprenant.dateNaissanceApprenant,
+
       emailApprenant: apprenant.email,
+
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
       userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
       password:'',
+
       email: apprenant.email,
+
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,
 
@@ -171,6 +175,7 @@ console.log("id",this.editForm.value.id);
     this.appService.updateApp(this.editForm.value).subscribe(response => {
       console.log(response);
 
+      
       this.ngOnInit();
     })
 

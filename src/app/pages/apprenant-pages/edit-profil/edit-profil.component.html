@@ -1,95 +1,208 @@
-<div class="container">
-    <div class="row gutters">
-    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-    <div class="card h-100">
-        <div class="card-body">
-            <div class="account-settings">
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <img src="../../../../assets/img/user.png" alt="Maxwell Admin">
-                    </div>
-                    <h5 class="user-name">Yuki Hayashi</h5>
-                    <h6 class="user-email">yuki@Maxwell.com</h6>
-                </div>
-                <div class="about">
-                    <h5>About</h5>
-                    <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
-                </div>
-            </div>
+<section class="ftco-section">
+<div class="container ">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Modifier votre profil</h2>
         </div>
     </div>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
     </div>
-    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-    <div class="card h-100">
-        <div class="card-body">
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary">Personal Details</h6>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="eMail">Email</label>
-                        <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="website">Website URL</label>
-                        <input type="url" class="form-control" id="website" placeholder="Website url">
-                    </div>
-                </div>
-            </div>
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="Street">Street</label>
-                        <input type="name" class="form-control" id="Street" placeholder="Enter Street">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="ciTy">City</label>
-                        <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="sTate">State</label>
-                        <input type="text" class="form-control" id="sTate" placeholder="Enter State">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="zIp">Zip Code</label>
-                        <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-                    </div>
-                </div>
-            </div>
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="text-right">
-                        <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                        <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+    <div class="alert alert-success" role="alert" *ngIf="successMessage">
+        {{successMessage}}
+    </div>
+    <div class="row gutters" *ngFor="let app of apprenants">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="../../../../assets/img/user.png" alt="Maxwell Admin">
+                            </div>
+                            <h5 class="user-name">{{app.nomApprenant}} {{app.prenomApprenant}}</h5>
+                            <h6 class="user-email">{{app.email}}</h6>
+                        </div>
+                        <div class="about">
+                            <h5>Apprenant</h5>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <form action="" [formGroup]="editForm">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary"> Details</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="sTate">id </label>
+                                    <input type="text" class="form-control" formControlName="id"  [ngModel]="app.id"
+                                        readonly placeholder="Adresse">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Nom </label>
+                                    <input type="text" class="form-control" formControlName="nomApprenant" name="nomApprenant"
+                                        [ngModel]="app.nomApprenant" placeholder=" Votre Nom" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="eMail">Prénom </label>
+                                    <input type="email" class="form-control" formControlName="prenomApprenant" name="prenomApprenant"
+                                        [ngModel]="app.prenomApprenant" placeholder=" Votre Prénom" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="eMail">Email </label>
+                                    <input type="email" class="form-control" formControlName="email"  
+                                        [ngModel]="app.email" placeholder=" Votre Prénom" required>
+                                </div>
+                                <div *ngIf="editForm.controls['email']?.errors?.['email']" class="error">Verifier syntax
+                                    de votre email</div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone">Téléphone</label>
+                                    <input type="text" class="form-control" formControlName="telApprenant" name="email" 
+                                        [ngModel]="app.telApprenant" placeholder="Votre téléphone" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="website">Votre niveau </label>
+                                    <input type="url" class="form-control" formControlName="niveauApprenant" name="niveauApprenant"
+                                        [ngModel]="app.niveauApprenant" placeholder="Niveau" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mt-3 mb-2 text-primary"> Plus d'informations</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="Street">Qualité </label>
+                                    <select class="form-select" formControlName="qualiteApprenant" name="qualiteApprenant"
+                                        [ngModel]="app.qualiteApprenant">
+                                        <option *ngFor="let item of items" [value]="item" required>
+
+
+
+                                            {{ item }}
+
+
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="ciTy">Date de naissance</label>
+                                    <input type="date" class="form-control" formControlName="dateNaissanceApprenant" name="dateNaissanceApprenant"
+                                        [ngModel]="app.dateNaissanceApprenant" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="sTate">Adresse </label>
+                                    <input type="text" class="form-control" formControlName="adresseApprenant" name="adresseApprenant"
+                                        [ngModel]="app.adresseApprenant" placeholder="Adresse" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
+
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 text-primary"> Modifier mot de passe</h6>
+                        </div>
+                        
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="sTate">Nouveau mot de passe </label>
+                                <input type="password" class="form-control" formControlName="password" name="password"
+                                      required placeholder="Tappez votre nouveau mot de passe">
+                            </div>
+                            <div *ngIf="editForm.controls['password'].errors">
+                                <!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+                                <div *ngIf="editForm.controls['password']?.errors?.['minlength']" class="error">mot de
+                                    passe doit avoir minimum 8 caracters</div>
+                                <div *ngIf="editForm.controls['password']?.errors?.['maxlength']" class="error">mot de
+                                    passe doit avoir maximum 20 caracters</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="sTate">Confirmer nouveau mot de passe </label>
+                                <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"
+                                      required placeholder="Confirmer votre nouveau mot de passe">
+                            </div>
+                            <div class="error"
+							*ngIf="editForm.hasError('passwordsMismatch') && ((editForm.controls['confirmPassword']?.dirty) || editForm.controls['confirmPassword']?.touched)">
+							Les mots de passe ne correspondent pas.
+						    </div>
+                        </div>
+                   
+
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+
+                                <button type="button" id="submit" name="submit" class="btn btn-primary"
+                                    (click)="openModal(modalTemplate)" (click)="onSave()">Modifier</button>
+                            </div>
+                        </div>
+                    </div>
+          
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
+
+</div>
+</section>
+
+<ng-template #modalTemplate>
+
+    <div class="modal-dialog m-0">
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="thank-you-pop" *ngIf="successMessage">
+                    <img src="../../../../assets/img/succes.png" alt="">
+                    <h1>Vos informations sont à jour !</h1>
+
+
+                </div>
+
+                <div class="thank-you-pop" *ngIf="errorMessage">
+                    <img src="../../../../assets/img/multiply.png" alt="">
+                    <h1>Verifier votre Formulaire .</h1>
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+                <input type="submit" class="btn btn-primary" value="OK" (click)="onreload()">
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+</ng-template>

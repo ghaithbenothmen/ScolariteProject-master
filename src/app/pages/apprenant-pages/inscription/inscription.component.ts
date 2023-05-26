@@ -135,15 +135,7 @@ this.appService.getApprenants().subscribe(response => {
   
 
 
-onControl(f: NgForm) {
-    if (f.valid) {
-      this.message = 'Actualite bien ajouté !';
-    }
-    if (f.invalid) {
-      this.message = 'Actualite non ajoué ! Verifier votre formulaire !';
-    }
-}
-  
+
 
 /*  onSubmit(f: NgForm) {
 

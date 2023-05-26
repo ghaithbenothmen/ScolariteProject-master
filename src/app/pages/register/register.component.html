@@ -76,7 +76,7 @@
 
 						<div>
 							<input class="form-control" type="email" placeholder="Email " name="emailApprenant" required
-								ngModel  formControlName="email" />
+								ngModel formControlName="email" />
 							<div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier syntax
 								de votre email</div>
 							<!-- <div *ngIf="registerForm.controls['email']?.errors?.['required']" class="error">email obligatoire</div> -->
@@ -94,8 +94,7 @@
 						</div>
 						<div>
 							<input class="form-control" type="password" placeholder="Retappez mot de passe"
-								name="confirmPassword" formControlName="confirmPassword"
-								formControlName="confirmPassword" required />
+								name="confirmPassword" formControlName="confirmPassword" required />
 						</div>
 						<div class="error"
 							*ngIf="registerForm.hasError('passwordsMismatch') && ((registerForm.controls['confirmPassword']?.dirty) || registerForm.controls['confirmPassword']?.touched)">
