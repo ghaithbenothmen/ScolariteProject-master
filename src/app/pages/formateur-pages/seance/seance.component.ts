@@ -39,13 +39,14 @@ export class SeanceComponent {
  public Inscriptions!: Inscription[];
   public Inscription!: Inscription;
   apprenant: any;
-  selectedCheckboxes: any[] = [];
+  selectedCheckboxes: number[] = [];
 
    public UserId!:  string | null;
  public idUser!: number;
   idSession: any;
 public lengthInscri!:number;
 public noDataAvailable !: boolean;
+public seanceID!:number;
 
   constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
@@ -126,30 +127,47 @@ public noDataAvailable !: boolean;
     }
   }
 
- onCheckboxChange() {
-    const selectedOptions = this.Inscriptions.filter(Inscription => Inscription.apprenant.id);
-     this.selectedCheckboxes =selectedOptions.filter(Inscription=> Inscription.apprenant.id);
-    console.log(this.selectedCheckboxes);
-    
+  onCheckboxChange() {
+    this.selectedCheckboxes = this.Inscriptions
+      .filter(Inscription => Inscription.apprenant.id)
+      .map(Inscription => Inscription.codeInscription);
+    console.log("grtgrt",this.selectedCheckboxes);
   }
 
+
   onSubmit(f: NgForm) {
-
     this.ngOnInit();
-    f.value.sessionFormation= this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.idSession);
-    //f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
     
+    const sessionFormation = this.sessionFormations.find(session => session.idSessionFormation == this.idSession);
+    f.value.sessionFormation = sessionFormation;
+    
+    console.log("hhhhh", this.selectedCheckboxes);
+    
+    this.seanceService.addSeance(f.value, this.selectedFile).subscribe(
+      seanceResponse => {
+        console.log("Seance added successfully:", seanceResponse);
 
-console.log("hhhhh", this.selectedCheckboxes);
-    this.seanceService.addSeance(f.value, this.selectedFile,this.selectedCheckboxes).subscribe(response => {
+        const seanceId = seanceResponse.idSeanceFormation;
 
-      console.log(response);
-      
-      this.ngOnInit();
+        const inscriptionIds = [ 23,25]; 
 
-    })
-
-    this.modalService.hide(); //dismiss the modal
+        this.seanceService.addInscriptionsToSeance(seanceId, this.selectedCheckboxes).subscribe(
+          inscriptionsResponse => {
+            console.log("Inscriptions added successfully:", inscriptionsResponse);
+            this.ngOnInit();
+            this.modalService.hide(); // Dismiss the modal
+          },
+          inscriptionsError => {
+            console.log("Error adding inscriptions:", inscriptionsError);
+            // Handle error scenario for adding inscriptions
+          }
+        );
+      },
+      seanceError => {
+        console.log("Error adding seance:", seanceError);
+        // Handle error scenario for adding seance
+      }
+    );
   }
 
 
@@ -164,13 +182,13 @@ console.log("hhhhh", this.selectedCheckboxes);
     this.editForm = this.fb.group({
 
 
-idSeanceFormation:[''],
+      idSeanceFormation:[''],
       idSessionFormation: [''],
       contenu: [''],
       date: [''],
-      heuresDebut: [''],
+      heureDebut: [''],
       local: [''],
-    nbrHeures:[''],
+      nbrHeures:[''],
 
 
 
@@ -215,7 +233,7 @@ idSeanceFormation:[''],
       idSessionFormation: seance.sessionFormation.idSessionFormation,
       contenu: seance.contenu,
       date: seance.date,
-      heuresDebut: seance.heuresDebut,
+      heureDebut: seance.heureDebut,
       local: seance.local,
       nbrHeures: seance.nbrHeures,
       
@@ -287,4 +305,10 @@ idSeanceFormation:[''],
   }
 
 
+  formatTime(timeString: string): string {
+    const [hours, minutes] = timeString.split(':');
+    const formattedHours = hours.padStart(2, '0');
+    const formattedMinutes = minutes.padStart(2, '0');
+    return `${formattedHours}:${formattedMinutes}`;
+  }
 }

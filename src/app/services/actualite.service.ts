@@ -58,6 +58,7 @@ export class ActualiteService {
     formData.append('descriptionActualite', actu.descriptionActualite);
 
     formData.append('dateActualite', actu.dateActualite.toString());
+    
     formData.append('heureDebut', actu.heureDebut);
     return this.httpClient.post<Actualite>(this.apiURL + 'add', formData, { headers: httpHeaders });
   }

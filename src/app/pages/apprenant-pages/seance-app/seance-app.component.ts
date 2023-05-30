@@ -143,7 +143,7 @@ public noDataAvailable !: boolean;
     
 
 console.log("hhhhh", this.selectedCheckboxes);
-    this.seanceService.addSeance(f.value, this.selectedFile,this.selectedCheckboxes).subscribe(response => {
+    this.seanceService.addSeance(f.value, this.selectedFile).subscribe(response => {
 
       console.log(response);
       
@@ -216,7 +216,7 @@ idSeanceFormation:[''],
       idSessionFormation: seance.sessionFormation.idSessionFormation,
       contenu: seance.contenu,
       date: seance.date,
-      heuresDebut: seance.heuresDebut,
+      heuresDebut: seance.heureDebut,
       local: seance.local,
       nbrHeures: seance.nbrHeures,
       
