@@ -24,7 +24,7 @@ export class RegisterComponent {
  
 
   public registerForm!: FormGroup;
-  public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
+  public items = ['Eleve', 'Etudiant', "Demandeur_emploie", 'Professionel'];
 
   public errorMessage!: String;
  
