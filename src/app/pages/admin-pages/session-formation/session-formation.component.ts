@@ -20,7 +20,7 @@ import { NgFor } from '@angular/common';
   styleUrls: ['./session-formation.component.css','../apprenant/apprenant.component.css']
 })
 export class SessionFormationComponent {
-  public items = ['En ligne', 'Présentiel'];
+  public items = ['EnLigne', 'Présentiel'];
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;

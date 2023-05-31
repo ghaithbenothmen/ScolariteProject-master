@@ -17,7 +17,7 @@ export class ApprenantComponent {
   public showForm1: boolean = false;
   public form1!: FormGroup;
   public form2!: FormGroup;
-  public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
+  public items = ['Eleve', 'Etudiant', "Demandeur_emploie", 'Professionel'];
 
   public selectedItem!: number;
 
@@ -80,15 +80,21 @@ export class ApprenantComponent {
 
     this.editForm2 = this.fb.group({
       id: [''],
+
       nomApprenant: [''],
       prenomApprenant: [''],
       /* sexeApprenant: [''], */
       dateNaissanceApprenant: [''],
       emailApprenant: [''],
-      password:[''],
       telApprenant: [''],
       adresseApprenant: [''],
       archiveApprenant: [''],
+      sexeApprenant: [''],
+      niveauApprenant: [''],
+      qualiteApprenant: [''],
+      
+      password: [''],
+      email: ['']
 
 
 
@@ -205,14 +211,24 @@ console.log("id",this.editForm.value.id);
 
     this.editForm2.patchValue({
       id: apprenant.id,
+
       nomApprenant: apprenant.nomApprenant,
       prenomApprenant: apprenant.prenomApprenant,
       sexeApprenant: apprenant.sexeApprenant,
       dateNaissanceApprenant: apprenant.dateNaissanceApprenant,
+
       emailApprenant: apprenant.email,
+
       telApprenant: apprenant.telApprenant,
       adresseApprenant: apprenant.adresseApprenant,
       archiveApprenant: apprenant.archiveApprenant,
+     userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
+      password:apprenant.password,
+
+      email: apprenant.email,
+
+      qualiteApprenant: apprenant.qualiteApprenant,
+      niveauApprenant: apprenant.niveauApprenant,
 
 
     });
