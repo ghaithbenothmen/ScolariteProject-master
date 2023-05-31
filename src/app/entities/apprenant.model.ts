@@ -12,7 +12,7 @@ export class Apprenant {
       public qualiteApprenant: string,
       public niveauApprenant: string,
       public archiveApprenant: boolean,
-     
+     public verified:boolean,
     ) {
     }
   }

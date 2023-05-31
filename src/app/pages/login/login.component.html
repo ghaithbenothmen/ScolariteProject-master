@@ -1,46 +1,50 @@
+<!-- login section -->
 
-	
-	  <!-- login section -->
-	
-	  <section class="login_section layout_padding">
-		<div class="container">
-		  <div class="row">
+<section class="login_section layout_padding">
+	<div class="container">
+		<div class="row">
 			<div class="col-md-6">
-			  <div class="detail-box">
-				<h3>
-				  Merci de nous choisir !
-				</h3>
-				<p>
-				  Se connecter ou crée votre premier compte chez nous .
-				</p>
-				<a href="/register">
-				  S'inscrire
-				</a>
-			  </div>
+				<div class="detail-box">
+					<h3>
+						Merci de nous choisir !
+					</h3>
+					<p>
+						Se connecter ou crée votre premier compte chez nous .
+					</p>
+					<a href="/register">
+						S'inscrire
+					</a>
+				</div>
 			</div>
 			<div class="col-md-6">
-			  <div class="login_form">
-				<h5>
-				  Se connecter maintenant
-				</h5>
-				<form action="">
-				  <div>
-					<input type="email" placeholder="Email " name="email" required [(ngModel)]="user.email"/>
-				  </div>
-				  <div>
-					<input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" required/>
-				  </div>
-				  <div *ngIf="message" class="success-message">{{ message }}</div>
-				  <div class="alert alert-danger" *ngIf="err==1">
-					
-					<strong>login ou mot de passe erronés..</strong>
-					</div>
-				  <button type="submit" (click)="onLoggedin()">Se connecter</button>
-				</form>
-			  </div>
+				<div class="login_form">
+					<h5>
+						Se connecter maintenant
+					</h5>
+					<form action="">
+						<div>
+							<input type="email" placeholder="Email " name="email" required [(ngModel)]="user.email" />
+						</div>
+						<div>
+							<input type="password" placeholder="Password" name="password" [(ngModel)]="user.password"
+								required />
+						</div>
+						<a href="forgot-password"> mot de passe oublié ?</a>
+						<div *ngIf="message" class="alert alert-success">{{ message }}</div>
+
+
+						<div class="alert alert-danger" *ngIf="err==1">
+
+							<strong>login ou mot de passe erronés..</strong>
+						</div>
+						<div class="alert alert-danger" *ngIf="err2==1">
+
+							<strong>Votre compte n'est pas vérifier</strong>
+						</div>
+						<button type="submit" (click)="onLoggedin()">Se connecter</button>
+					</form>
+				</div>
 			</div>
-		  </div>
 		</div>
-	  </section>
-	
-
+	</div>
+</section>

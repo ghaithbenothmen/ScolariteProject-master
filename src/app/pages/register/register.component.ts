@@ -83,7 +83,7 @@ export class RegisterComponent {
       const password = this.registerForm.get('password').value; */
       this.appService.ajoutApp(this.registerForm.value).subscribe(response => {
         console.log(response)
-        this.router.navigate(['/login'], { state: { message: 'Vous etes bien inscri ! Merci de se connecter.' } });
+        this.router.navigate(['/login'], { state: { message: 'Vous etes bien inscri ! Merci de se verifier votre compte dans votre boite mail.' } });
         
       },
       

@@ -13,10 +13,12 @@ import { AffichagesessionDeFormationComponent } from 'src/app/pages/auth-pages/a
 
 import { RegisterInfoComponent } from 'src/app/pages/register-info/register-info.component';
 import { ContactComponent } from 'src/app/pages/auth-pages/contact/contact.component';
-import { ProfilComponent } from 'src/app/pages/profil/profil.component';
+import { ForgotPassComponent } from 'src/app/pages/forgot-pass/forgot-pass.component';
+
 
 const routes: Routes = [
   { path: 'login',          component: LoginComponent },
+  { path: 'forgot-password',          component: ForgotPassComponent },
   { path: 'contact',          component: ContactComponent },
   { path: 'register',          component: RegisterComponent },
   { path: 'register-info',          component: RegisterInfoComponent },
@@ -25,7 +27,7 @@ const routes: Routes = [
   { path: 'actu', component: ActuPageComponent },
   { path: 'AffichagethemeFormation', component: AffichageThemeDeFormationComponent },
   { path: 'AffichagesessionFormation', component: AffichagesessionDeFormationComponent },
-  { path: 'profil', component: ProfilComponent },
+
 ];
 
 @NgModule({

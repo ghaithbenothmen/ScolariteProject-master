@@ -24,9 +24,7 @@ export class EditProfilComponent {
 
   constructor( private fb: FormBuilder, private appService: ApprenantService, private route:ActivatedRoute , private modalService: BsModalService) { } 
 
-onreload(){
-  window.location.reload();
-}
+
 
   onSave(): void {
   if (this.editForm.valid || this.isFormPartialValid()) {
@@ -38,6 +36,7 @@ onreload(){
         console.log(response);
         this.errorMessage = '';
         this.successMessage = 'Vos informations ont été bien modifiées.';
+        this.ngOnInit();
       },
       error => {
         console.error('Error saving inscription:', error);
@@ -66,7 +65,12 @@ isFormPartialValid(): boolean {
       //this.apprenants = response;
    
       this.apprenants = response.filter(app => app.id === this.idUser); //nafsha f html 
-       console.log(this.apprenants)
+
+    for(let app of this.apprenants){
+      console.log('bool',app.verified)
+      this.apprenant=app
+    }
+    console.log('bool',this.apprenant.verified)
     });
   }
 
@@ -99,7 +103,8 @@ this.getApprenants();
 
     this.UserId = localStorage.getItem('UserId');
     this.idUser=Number(this.UserId) 
-    console.log("lklk",this.UserId);
+    console.log("id",this.UserId);
+   
 
       this.editForm = this.fb.group({
         id: [''],

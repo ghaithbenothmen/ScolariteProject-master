@@ -52,7 +52,7 @@ import { MessagesComponent } from './pages/admin-pages/messages/messages.compone
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AuthGuard } from './guard/auth.guard';
-import { ProfilComponent } from './pages/profil/profil.component';
+
 import { SessionComponent } from './pages/apprenant-pages/session/session.component';
 import { SessionInseritComponent } from './pages/apprenant-pages/session-inserit/session-inserit.component';
 import { AppBySessionComponent } from './pages/admin-pages/app-by-session/app-by-session.component';
@@ -74,6 +74,7 @@ import { ApprenantSessComponent } from './pages/formateur-pages/apprenant-sess/a
 import { SeanceAppComponent } from './pages/apprenant-pages/seance-app/seance-app.component';
 import { EditProfilComponent } from './pages/apprenant-pages/edit-profil/edit-profil.component';
 import { EditFormateurComponent } from './pages/formateur-pages/edit-formateur/edit-formateur.component';
+import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
 
 
 
@@ -111,7 +112,7 @@ registerLocaleData(localeFr);
          ContactComponent,
          MessagesComponent,
 
-         ProfilComponent,
+    
 
          SessionComponent,
           SessionInseritComponent,
@@ -130,6 +131,7 @@ registerLocaleData(localeFr);
           SeanceAppComponent,
           EditProfilComponent,
           EditFormateurComponent,
+          ForgotPassComponent,
 
       
 

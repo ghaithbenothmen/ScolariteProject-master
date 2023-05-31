@@ -20,11 +20,12 @@ export class LoginComponent {
 id:0,
     email:'',
     password: '',
-    role: Role.User // Set default role value to empty string
+    role: Role.User, // Set default role value to empty string
+    verified:false
   };
   
   err: number = 0;
-
+  err2: number = 0;
 
   constructor(private router: Router, private authService: AuthService,private userService : UserService) { }
 
@@ -48,38 +49,36 @@ id:0,
   }
 
   onLoggedin() {
-
     this.authService.login(this.user).subscribe((res: any) => {
       const token = res.token;
-
       this.authService.getUserByEmail(this.user.email).subscribe((user: User) => {
-         this.user.role =user.role;
-          this.user.id =user.id;
-       
-      console.log('User object:', this.user);
-      this.authService.saveToken(token,this.user.role,this.user.id);
-
-      const isAdmin = this.authService.isAdmin(); // Call isAdmin() function
-      const isApp = this.authService.isApp();
-     
-      console.log('Is admin:', isAdmin);
-      //console.log('Is App:', isApp);
-      if (isAdmin) {
+        this.user.role = user.role;
+        this.user.id = user.id;
+        this.user.verified = user.verified;
         
-        this.router.navigate(['/admin-dashboard/admin-dash']);
-      } else if (isApp){
-        this.router.navigate(['/user-dashboard/ListeSession']);
-      }else {
-        this.router.navigate(['/formateur-dashboard']);
-      }
-
-
-    }, (erreur) => { this.err = 1; } );
-
-  },(erreur) => {
-    { this.err = 1; };
-  });
-
-  //si on a erreur on ajout 1 a err
+        console.log('User object:', user.verified);
+        if (this.user.verified) { // Check if user is verified
+          this.authService.saveToken(token, this.user.role, this.user.id);
+          const isAdmin = this.authService.isAdmin();
+          const isApp = this.authService.isApp();
+  
+          console.log('Is admin:', isAdmin);
+          if (isAdmin) {
+            this.router.navigate(['/admin-dashboard/admin-dash']);
+          } else if (isApp) {
+            this.router.navigate(['/user-dashboard/ListeSession']);
+          } else {
+            this.router.navigate(['/formateur-dashboard']);
+          }
+        } else {
+          this.err2 = 1; // User is not verified, set err2 to display error message
+        }
+      }, (erreur) => {
+        this.err = 1;
+      });
+    }, (erreur) => {
+      this.err = 1;
+    });
   }
+  
 }

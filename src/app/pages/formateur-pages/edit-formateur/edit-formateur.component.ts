@@ -27,9 +27,7 @@ export class EditFormateurComponent {
 
   constructor( private fb: FormBuilder, private forService: formateurService, private route:ActivatedRoute , private modalService: BsModalService) { } 
 
-onreload(){
-  window.location.reload();
-}
+
 
 onSave(): void {
   if (this.editForm.valid || this.isFormPartialValid()) {
