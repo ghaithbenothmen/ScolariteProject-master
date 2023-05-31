@@ -27,13 +27,14 @@
 
             <div class="mb-3">
                 <span>Filtrer avec Thémes :</span>
-            <select class="selectpicker" [(ngModel)]="selectedTheme" (change)="filterSessions()">
+            <select class="select" [(ngModel)]="selectedTheme" (change)="filterSessions()">
                 <option value="null" [selected]="!selectedTheme" disabled>Sélectionnez théme</option>
                 <option value="" [selected]="!selectedTheme"> Tous les thémes</option>
                 <option *ngFor="let theme of themeDeFormations" [value]="theme.idFormation">{{ theme.nomFormation }}</option>
               </select>
             </div>
-
+          
+              
             
             <div class="row">
                 <div class="col-lg-4 mb-5" *ngFor="let sessionFormations of filteredSessions ">

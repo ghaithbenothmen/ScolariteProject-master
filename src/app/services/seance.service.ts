@@ -28,40 +28,36 @@ export class SeanceService {
     
     return this.httpClient.get<seance[]>(this.apiURL+"all",{headers:httpHeaders});}
 
-  addSeance(seance : seance , file: File , selectedCheckboxes:any[]): Observable<seance> {
+  addSeance(seance : seance , file: File ): Observable<seance> {
 
     let jwt = this.authService.getToken();
     jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({ "Authorization": jwt });
 
     const formData = new FormData();
-    const checkboxIds = selectedCheckboxes.map(checkbox => checkbox.id);
-    formData.append('inscription', JSON.stringify(checkboxIds));
-
+   
     formData.append('file', file);
-     formData.append('Date',seance.date.toString());
-    formData.append(' heuresDebut', seance.heuresDebut.toString());
+     formData.append('date',seance.date.toString());
+    formData.append(' heureDebut', seance.heureDebut);
     formData.append('nbrHeures', seance.nbrHeures.toString());
-    formData.append('Contenu', seance.contenu);
+    formData.append('contenu', seance.contenu);
 
     formData.append('idSessionFormation', JSON.stringify(seance.sessionFormation.idSessionFormation));
-    // formData.append('RemarqueEtablissement', SessionFormation.idSessionFormation.toString());
+   
     formData.append('local', seance.local);
    
-    //formData.append('Inscription', JSON.stringify(seance.themeDeFormation.idFormation));
-
-
     return this.httpClient.post<seance>(this.apiURL + 'add', formData, { headers: httpHeaders });//.pipe(
-    //   catchError((error) => {
-    //     if (error.error && error.error.message === 'verifie ') {
-    //       // Display alert message using ngx-toastr or Angular's built-in Alert service
-    //     }
-    //     return throwError(error);
-    //   })
-    // );
+    
   }
 
+  addInscriptionsToSeance(seanceId: number, inscriptionIds: number[]) {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
+    const body = inscriptionIds;
+    return this.httpClient.post(this.apiURL + `seances/${seanceId}/inscriptions`, body, { headers: httpHeaders });
+  }
 
  
   updateSeance( seance : seance , file: File): Observable<seance> {
@@ -72,10 +68,10 @@ export class SeanceService {
     const formData = new FormData();
 
     formData.append('file', file);
-     formData.append('Date',seance.date.toString());
-    formData.append(' heuresDebut', seance.heuresDebut.toString());
+    formData.append('date',seance.date.toString());
+    formData.append(' heureDebut', seance.heureDebut);
     formData.append('nbrHeures', seance.nbrHeures.toString());
-    formData.append('Contenu', seance.contenu);
+    formData.append('contenu', seance.contenu);
 
  formData.append('idSessionFormation', JSON.stringify(seance.idSessionFormation));
 

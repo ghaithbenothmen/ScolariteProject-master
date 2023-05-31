@@ -42,7 +42,7 @@
                             <th> Nombre d'heure </th>
                             <th> Locale </th>
                             <th> contenu </th>
-                            <th> coure </th>
+                            <th> cours </th>
 						</tr>
 					</thead>
 	
@@ -52,7 +52,7 @@
 								<td>{{seance.idSeanceFormation}}</td>
 
                                 <td>{{seance.date}}</td>
-                                <td>{{seance.heuresDebut}}</td>
+                                <td>{{ formatTime(seance.heureDebut) }}</td>
                                 <td>{{seance.nbrHeures}}H</td>
                                 <td>{{seance.local}}</td>
                                 <td>{{seance.contenu}}</td>
@@ -130,9 +130,9 @@
                         </div>
                         <div class="form-group">
                             <label> Heure de debut :</label>
-                            <input type="time" name="heuresDebut" #heuresDebut="ngModel" class="form-control" required
+                            <input type="time" name="heureDebut" #heureDebut="ngModel" class="form-control" required
                                 ngModel>
-                            <span *ngIf="heuresDebut.invalid && heuresDebut.touched" class="error">Vous
+                            <span *ngIf="heureDebut.invalid && heureDebut.touched" class="error">Vous
                                 devez
                                 entrer heure de Debut de la seance </span>
                         </div>
@@ -231,7 +231,7 @@
                         </div>
                         <div class="form-group">
                             <label> Heure de debut :</label>
-                            <input type="number" name="heuresDebut" formControlName="heuresDebut" class="form-control"
+                            <input type="time" name="heureDebut" formControlName="heureDebut" class="form-control"
                                 required>
 
                         </div>

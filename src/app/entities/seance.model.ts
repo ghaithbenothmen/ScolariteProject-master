@@ -7,7 +7,7 @@ export class seance {
      
       public idSeanceFormation: number,
       public 	contenu: string,
-      public 	heuresDebut: number,
+      public 	heureDebut: string,
       public 	date: Date,
       public nbrHeures: number,
       public  local: string,
