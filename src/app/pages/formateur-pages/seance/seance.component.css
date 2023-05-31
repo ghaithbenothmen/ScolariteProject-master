@@ -241,3 +241,40 @@ table.table .avatar {
   max-width:50%;
   max-height: 100%;
 }
+
+
+label{
+	display:block;
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown .dropdown-toggle {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+}
+
+.dropdown-menu .form-group {
+  padding: 8px;
+}
+
+.dropdown-menu .form-group label {
+  margin-left: 8px;
+}
+
+.dropdown-menu .form-group input[type="checkbox"] {
+  margin-right: 4px;
+}
+
+.dropdown-menu .form-group:not(:first-child) {
+  border-top: 1px solid #dee2e6;
+}

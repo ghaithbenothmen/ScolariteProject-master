@@ -10,6 +10,12 @@ import { SeanceService } from 'src/app/services/seance.service';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
 import { InscriptionService } from 'src/app/services/inscription.service';
 import { ActivatedRoute } from '@angular/router';
+
+interface Language {
+  id: number;
+  name: string;
+  checked: boolean;
+}
 @Component({
   selector: 'app-seance',
   templateUrl: './seance.component.html',
@@ -47,6 +53,7 @@ export class SeanceComponent {
 public lengthInscri!:number;
 public noDataAvailable !: boolean;
 public seanceID!:number;
+
 
   constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
@@ -311,4 +318,21 @@ public seanceID!:number;
     const formattedMinutes = minutes.padStart(2, '0');
     return `${formattedHours}:${formattedMinutes}`;
   }
+
+  languages: Language[] = [
+    { id: 1, name: 'English', checked: false },
+    { id: 2, name: 'Spanish', checked: false },
+    { id: 3, name: 'French', checked: false },
+    { id: 4, name: 'German', checked: false },
+    { id: 5, name: 'Chinese', checked: false }
+  ];
+
+  selectAll(checked: boolean): void {
+    this.languages.forEach(language => (language.checked = checked));
+  }
+
+  toggleCheckbox(language: Language): void {
+    language.checked = !language.checked;
+  }
+  
 }

@@ -1,69 +1,70 @@
-
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="accueil"><span class="flaticon-pawprint-1 mr-2"></span><ng-container
-                    *ngFor="let etablissement of etablissements">
-                    <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
-                        width="70px" height="100%" class="rounded" />
-
-
-                    {{etablissement.nomEtablissement}}
-                </ng-container></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa fa-bars"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item "><a href="accueil" class="nav-link">Accueil</a></li>
-                    <li class="nav-item"><a href="presentation" class="nav-link">Presentation</a></li>
-                    <li class="nav-item"><a href="actu" class="nav-link">Actualités</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Formations
-                        </a>
-                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item " href="AffichagethemeFormation"><b>Theme de formation</b></a>
-
-                            <a class="dropdown-item" href="AffichagesessionFormation"><b>Session de formation</b></a>
-                            <!-- Add more dropdown options as needed -->
-                        </div>
-                    </li>
-
-                    <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="accueil"><span class="flaticon-pawprint-1 mr-2"></span><ng-container
+                *ngFor="let etablissement of etablissements">
+                <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="70px"
+                    height="100%" class="rounded" />
 
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" *ngIf="!authService.isLoggedIn()">
-                            Connexion
-                        </a>
+                {{etablissement.nomEtablissement}}
+            </ng-container></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item "><a href="accueil" class="nav-link">Accueil</a></li>
+                <li class="nav-item"><a href="presentation" class="nav-link">Presentation</a></li>
+                <li class="nav-item"><a href="actu" class="nav-link">Actualités</a></li>
+
+
+                <li class="nav-item submenu dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                        aria-haspopup="true" aria-expanded="false">Formations</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="AffichagethemeFormation">Thémes de formation</a></li>
+                        <li><a class="dropdown-item" href="AffichagesessionFormation">Session de formation</a></li>
+                    </ul>
+                </li>  
+
+                <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
+
+                
+
+                <li class="nav-item submenu dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" *ngIf="!authService.isLoggedIn()">
+                        Connexion
+                    </a>
+                 
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" *ngIf="authService.isLoggedIn()">
                             {{authService.loggedUser}}
                         </a>
-
-                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item " href="login" *ngIf="!authService.isLoggedIn()"><b>Se
-                                    connecter</b></a>
-                            <a class="dropdown-item " type="button" *ngIf="authService.isLoggedIn()"
-                                (click)="onLogout()"><b>Se déconnecter</b></a>
-                                <a class="dropdown-item " routerLink="user-dashboard/ListeSession" type="button" *ngIf="authService.isLoggedIn()&&authService.isApp()"
-                                ><b>Dashboard Apprenant</b></a>
-                                <a class="dropdown-item " routerLink="admin-dashboard/apprenant" type="button" *ngIf="authService.isLoggedIn()&&authService.isAdmin()"
-                                ><b>Dashboard Admin</b></a>
-                                <a class="dropdown-item " routerLink="formateur-dashboard/dash-for" type="button" *ngIf="authService.isLoggedIn()&&authService.isFormateur()"
-                                ><b>Dashboard Formateur</b></a>
-                            <a class="dropdown-item" href="register"
-                                *ngIf="!authService.isLoggedIn()"><b>S'inscrire</b></a>
+                        <ul class="dropdown-menu">
+                        
+                          <li>  <a class="dropdown-item" href="login" *ngIf="!authService.isLoggedIn()"><b>Se
+                                    connecter</b></a></li>
+                          <li>  <a class="dropdown-item " type="button" *ngIf="authService.isLoggedIn()"
+                                (click)="onLogout()"><b>Se déconnecter</b></a></li>
+                           <li> <a class="dropdown-item " routerLink="user-dashboard/ListeSession" type="button"
+                                *ngIf="authService.isLoggedIn()&&authService.isApp()"><b>Dashboard Apprenant</b></a></li>
+                          <li> <a class="dropdown-item " routerLink="admin-dashboard/apprenant" type="button"
+                                *ngIf="authService.isLoggedIn()&&authService.isAdmin()"><b>Dashboard Admin</b></a></li>
+                           <li> <a class="dropdown-item " routerLink="formateur-dashboard/dash-for" type="button"
+                                *ngIf="authService.isLoggedIn()&&authService.isFormateur()"><b>Dashboard
+                                    Formateur</b></a></li>
+                           <li> <a class="dropdown-item" href="register"
+                                *ngIf="!authService.isLoggedIn()"><b>S'inscrire</b></a></li>
                             <!-- Add more dropdown options as needed -->
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                     
+                    </ul>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
 
 <!--  <header id="header" class="header d-flex align-items-center">
