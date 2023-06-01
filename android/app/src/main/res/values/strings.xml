@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Scolarite</string>
+    <string name="title_activity_main">Scolarite</string>
+    <string name="package_name">com.scolarite.app</string>
+    <string name="custom_url_scheme">com.scolarite.app</string>
+</resources>

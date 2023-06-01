@@ -49,6 +49,7 @@ export class EditProfilComponent {
   } else {
     this.errorMessage = 'Vérifiez votre formulaire.';
   }
+  
 }
 
 isFormPartialValid(): boolean {
