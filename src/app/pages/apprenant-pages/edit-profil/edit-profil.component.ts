@@ -20,7 +20,7 @@ export class EditProfilComponent {
   public idUser!: number;
   errorMessage!: string;
   successMessage!:string;
-  public items = ['Eleve', 'Etudiant', "demandeur  d'emploie", 'Professionel'];
+ public items = ['Eleve', 'Etudiant', "Demandeur_emploie", 'Professionel'];
 
   constructor( private fb: FormBuilder, private appService: ApprenantService, private route:ActivatedRoute , private modalService: BsModalService) { } 
 
