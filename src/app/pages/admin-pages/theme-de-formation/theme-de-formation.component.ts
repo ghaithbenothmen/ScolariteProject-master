@@ -26,7 +26,8 @@ export class ThemeDeFormationComponent {
     Data!: Blob;
     dbimage: any;
     public numberOfThemes!: number;
-  
+    errorMessage!: string;
+    successMessage!:string;
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public themeDeFormationService : ThemeDeFormationService,private authService:AuthService) { }
@@ -64,12 +65,23 @@ export class ThemeDeFormationComponent {
   onSubmit (f: NgForm) {
   
     
-  this.themeDeFormationService.addThemeDeFormation(f.value).subscribe(response => {
-    console.log(response);
-    this.ngOnInit();  })
- 
-  this.modalService.hide(); //dismiss the modal
-}
+  this.themeDeFormationService.addThemeDeFormation(f.value).subscribe(
+    (response) => {
+      // Inscription saved successfully
+      // Do any additional actions here if needed
+      this.errorMessage = '';
+      this.successMessage = 'Théme bien ajouté .';
+    },
+    (error) => {
+      // Error occurred
+      console.error('Error saving apprenant:', error);
+      this.errorMessage = 'Théme non ajouté veuillez verifier votre formulaire.';
+      this.successMessage = '';
+    })
+
+  this.modalService.hide(); 
+
+  }
 
   // onSubmits() {
   //   this.departementService .addDepartement(
@@ -131,23 +143,24 @@ openModal(modalTemplate: TemplateRef<any>) {
 onSave() {
   
     
-  this.themeDeFormationService.updateThemeDeFormation(this.editForm.value).subscribe(response => {
-      //console.log(response);
-      window.location.reload();
-      this.ngOnInit();})
-   
-    this.modalService.hide(); //dismiss the modal
-  }
-/***************************contoller ************** */
+  this.themeDeFormationService.updateThemeDeFormation(this.editForm.value).subscribe(
+    (response) => {
+      // Inscription saved successfully
+      // Do any additional actions here if needed
+      this.errorMessage = '';
+      this.successMessage = 'Théme bien modifié .';
+    },
+    (error) => {
+      // Error occurred
+      console.error('Error saving Théme:', error);
+      this.errorMessage = 'Théme non modifié veuillez verifier votre formulaire.';
+      this.successMessage = '';
+    })
 
-onControl(f: NgForm) {
-  if (f.valid) {
-    this.message = 'Actualite bien ajouté !';
+  this.modalService.hide(); 
+
   }
-  if (f.invalid) {
-    this.message = 'Actualite non ajoué ! Verifier votre formulaire !';
-  }
-}
+
 
 
 /**********************Template delete ******************* */

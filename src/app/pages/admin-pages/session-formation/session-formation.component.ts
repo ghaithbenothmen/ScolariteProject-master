@@ -17,7 +17,7 @@ import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-session-formation',
   templateUrl: './session-formation.component.html',
-  styleUrls: ['./session-formation.component.css','../apprenant/apprenant.component.css']
+  styleUrls: ['./session-formation.component.css', '../apprenant/apprenant.component.css']
 })
 export class SessionFormationComponent {
   public items = ['EnLigne', 'Présentiel'];
@@ -31,7 +31,7 @@ export class SessionFormationComponent {
 
   public idFormation!: number;
   public codeFormateur!: number;
-  public f !:NgForm;
+  public f !: NgForm;
   public editForm!: FormGroup;
   // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -44,10 +44,11 @@ export class SessionFormationComponent {
   idTh: any;
   //SessionFormationService: any;
   public numberOfSession!: number;
+  errorMessage!: string;
+  successMessage!: string;
 
 
-
-  constructor( private modalService: BsModalService,  private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor(private modalService: BsModalService, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   public onFileChanged(event: any) {
 
     this.selectedFile = event.target.files[0];
@@ -55,15 +56,15 @@ export class SessionFormationComponent {
 
   }
 
-   //Pagination//
-   page:number=1;
-   count:number=0;
-   tableSize:number=3;
-   onTableChange(event:any){
-     this.page=event;
-     this.getSessionFormation();
+  //Pagination//
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 3;
+  onTableChange(event: any) {
+    this.page = event;
+    this.getSessionFormation();
 
-   }
+  }
 
   getSessionFormation() {
 
@@ -71,7 +72,7 @@ export class SessionFormationComponent {
       console.log(response);
 
       this.sessionFormations = response;
-      this.numberOfSession=response.length;
+      this.numberOfSession = response.length;
     });
     this.formateurService.getFormateur().subscribe(response => {
       console.log(response);
@@ -111,22 +112,29 @@ export class SessionFormationComponent {
 
   onSubmit(f: NgForm) {
 
-    this.ngOnInit();
+
     f.value.themeDeFormation = this.themeDeFormations.find(ThemeDeFormation => ThemeDeFormation.idFormation == this.idTh);
     f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
 
 
-    this.SessionFormationService.addSessionFormation(f.value, this.selectedFile).subscribe(response => {
+    this.SessionFormationService.addSessionFormation(f.value, this.selectedFile).subscribe(
+      (response) => {
+        // Inscription saved successfully
+        // Do any additional actions here if needed
+        this.errorMessage = '';
+        this.successMessage = 'Session bien ajouté .';
+        this.ngOnInit();
+      },
+      (error) => {
+        // Error occurred
+        console.error('Error saving Session:', error);
+        this.errorMessage = 'Session non ajouté veuillez verifier votre formulaire.';
+        this.successMessage = '';
+      })
 
-      console.log(response);
-      window.location.reload();
-      this.ngOnInit();
+    this.modalService.hide();
 
-    })
-
-    this.modalService.hide(); //dismiss the modal
   }
-
 
 
   ngOnInit(): void {
@@ -137,7 +145,7 @@ export class SessionFormationComponent {
     this.editForm = this.fb.group({
 
       idFormation: [''],
-      
+
       idSessionFormation: [''],
       typeFormation: [''],
       localFormation: [''],
@@ -145,7 +153,7 @@ export class SessionFormationComponent {
 
       codeFormateur: [],
       dateDebut: [''],
-       dateFin: [''],
+      dateFin: [''],
       nbrHeures: [''],
 
 
@@ -170,7 +178,7 @@ export class SessionFormationComponent {
         });
 
       });
-      
+
       this.ThemeDeFormationService.getThemeDeFormation().subscribe(foreignKeys => {
         this.sessionFormations = sessionFormations.map(example => {
           const foreignKeyTh = foreignKeys.find(fk => fk.idFormation === example.idFormation);
@@ -185,9 +193,9 @@ export class SessionFormationComponent {
 
     });
 
-  /*   this.f = this.fb.group({
-      codeFormateur: [null]
-    }); */
+    /*   this.f = this.fb.group({
+        codeFormateur: [null]
+      }); */
 
   }
 
@@ -215,7 +223,7 @@ export class SessionFormationComponent {
 
       codeFormateur: SessionFormation.formateur.id,
 
- dateFin: SessionFormation.dateFin,
+      dateFin: SessionFormation.dateFin,
       dateDebut: SessionFormation.dateDebut,
       nbrHeures: SessionFormation.nbrHeures,
       //file:SessionFormation.data,
@@ -238,7 +246,7 @@ export class SessionFormationComponent {
 
 
 
-  
+
   onSave() {
 
 
@@ -247,21 +255,27 @@ export class SessionFormationComponent {
     console.log(this.editForm.value.codeFormateur);
     console.log(this.editForm.value.idFormation);
 
-    console.log('foreeeee',this.formateurs)
+    console.log('foreeeee', this.formateurs)
     /* console.log('formateurs:', this.formateurs); */
-    this.SessionFormationService.updateSessionFormation(this.themeDeFormations, this.formateurs, this.editForm.value, this.selectedFile, this.editForm.value.codeFormateur,this.editForm.value.idFormation).subscribe(response => {
-      //console.log(response);
+    this.SessionFormationService.updateSessionFormation(this.themeDeFormations, this.formateurs, this.editForm.value, this.selectedFile, this.editForm.value.codeFormateur, this.editForm.value.idFormation)
+      .subscribe(
+        (response) => {
+          // Inscription saved successfully
+          // Do any additional actions here if needed
+          this.errorMessage = '';
+          this.successMessage = 'Session bien modifier .';
+        },
+        (error) => {
+          // Error occurred
+          console.error('Error saving session:', error);
+          this.errorMessage = 'Session non modifier veuillez verifier votre formulaire.';
+          this.successMessage = '';
+        })
+    this.ngOnInit();
+    this.modalService.hide();
 
-     // window.location.reload();
-
-
-      /* this.ngOnInit(); */
-})
-
-
-
-    this.modalService.hide(); //dismiss the modal
   }
+
   /***************************contoller ************** */
 
   onControl(f: NgForm) {

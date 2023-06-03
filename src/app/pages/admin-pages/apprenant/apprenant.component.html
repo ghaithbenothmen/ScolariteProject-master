@@ -4,7 +4,7 @@
 		
 		<!-- ======================= Cards ================== -->
 		<div class="cardBox">
-			<div class="card">
+			<div class="card" >
 				<div>
 					<div class="numbers">{{numberOfApprenants}}<span class="iconBx"> <i class="bi bi-people-fill"></i></span></div>
 					
@@ -12,15 +12,27 @@
 				<div class="cardName">Apprenants </div>
 				
 			</div>
+			<div class="card" >
+				<div>
+					<div class="numbers" > {{numberOfApprenantsArch}}<span class="iconBx" style="padding-left: 150px;"> <i class="bi bi-people"></i></span></div>
+					<div class="cardName"><a style="color: gray;" href="admin-dashboard/apprenantArch"> Apprenants archivés</a></div>
+				</div>
+	
+				<div class="iconBx">
+					<!-- <ion-icon name="cart-outline"></ion-icon> -->
+				</div>
+			</div>
 	
 			
 		</div>
 	
-		<div class="alert alert-success" role="alert" *ngIf="message">
-			{{message}}
+		<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+			{{errorMessage}}
+		</div>
+		<div class="alert alert-success" role="alert" *ngIf="successMessage">
+			{{successMessage}}
 		</div>
 		
-		<!-- ================ Order Details List ================= -->
 		<div class="details" >
 			<div class="recentOrders" >
 				<div class="cardHeader" >
@@ -29,13 +41,14 @@
 						class="material-icons">&#xE147;</i> <span>Ajouter Apprenant</span></button>
 				</div>
 	
-				<table>
+				<table *ngIf="!noDataAvailable">
 					<thead>
 						<tr>
 							<td>ID </td>
 						<td>Nom </td>
 						<td>Prénom </td>
 						<td>Email</td>
+						<td>Compte</td>
 						<td>Telehone</td>
 						<td>Actions</td>
 						</tr>
@@ -48,7 +61,11 @@
 								<td>{{apprenant.nomApprenant}}</td>
 								<td>{{apprenant.prenomApprenant}}</td>
 								<td>{{apprenant.email}}</td>
+								<td><span *ngIf="apprenant.verified" class="status delivered m-lg-2">Vérifier</span>
+								
+									<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span></td>
 								<td>{{apprenant.telApprenant}}</td>
+								
 								<td>
 									<a type="button" (click)="openDetails(ajoutCompte, apprenant)" data-toggle="modal"><i
 											class="material-icons">&#xE147;</i></a>
@@ -65,6 +82,10 @@
 	
 					</tbody>
 				</table>
+				<div *ngIf="noDataAvailable" class="no-data-container">
+					<img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg" alt="No data available">
+				  </div>
+				  <h2 *ngIf="noDataAvailable"  style="text-align: center;">Aucune données disponibles !</h2>
 			</div>
 	
 			
@@ -98,7 +119,7 @@
 
 					<div class="tab-content signin_tab" id="myTabContenet">
 						<div class="collapse fade show " id="home" role="tabpanel" aria-labelledby="home-tab">
-							<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)"
+							<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate
 								id="form1"><!-- *ngIf="showForm1" -->
 								<!-- <div class="form-group">
 									<label>Code Apprenant</label>
@@ -174,11 +195,11 @@
 									<input type="date" name="dateNaissanceApprenant" #dateNaissanceApprenant="ngModel"
 										class="form-control" required ngModel>
 									<span *ngIf="dateNaissanceApprenant.invalid && dateNaissanceApprenant.touched"
-										class="error">Donnez le date de naissance de l'apprenant</span>
+										class="error">Donnez la date de naissance de l'apprenant</span>
 								</div>
 								<div class="form-group">
 									<label>Adresse</label>
-									<input type="text" name="" #adresseApprenant="ngModel" class="form-control" required
+									<input type="text" name="adresseApprenant" #adresseApprenant="ngModel" class="form-control" required
 										ngModel>
 									<span *ngIf="adresseApprenant.invalid && adresseApprenant.touched"
 										class="error">Vous
@@ -190,15 +211,15 @@
 									<label>Qualité :</label>
 
 									<select class="form-select" name="qualiteApprenant" #qualiteApprenant="ngModel"
-										ngModel required>
-										<option selected>Selectionner votre qualité </option>
+										ngModel required [(ngModel)]="selectedValue" >
+										<option selected [value]="null" disabled>Selectionner la qualité </option>
 										<option *ngFor="let item of items" [value]="item">{{ item }}</option>
 									</select>
 
 									<span *ngIf="qualiteApprenant.invalid && qualiteApprenant.touched"
 										class="error">Vous
 										devez
-										entrer qualité de l'apprenant</span>
+										entrer la qualité de l'apprenant</span>
 								</div>
 
 								<div class="form-group">
@@ -207,7 +228,7 @@
 										class="form-control" required ngModel>
 									<span *ngIf="niveauApprenant.invalid && niveauApprenant.touched" class="error">Vous
 										devez
-										entrer l'Niveau de l'apprenant</span>
+										entrer le niveau de l'apprenant</span>
 								</div>
 
 								<div class="modal-footer">

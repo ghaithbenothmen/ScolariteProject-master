@@ -7,13 +7,12 @@ import { ApprenantService } from 'src/app/services/apprenant.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { UserService } from 'src/app/services/user.service';
-
 @Component({
-  selector: 'app-apprenant',
-  templateUrl: './apprenant.component.html',
-  styleUrls: ['./apprenant.component.css']
+  selector: 'app-apprenant-arch',
+  templateUrl: './apprenant-arch.component.html',
+  styleUrls: ['./apprenant-arch.component.css']
 })
-export class ApprenantComponent {
+export class ApprenantArchComponent {
   public showForm1: boolean = false;
   public form1!: FormGroup;
   public form2!: FormGroup;
@@ -25,7 +24,7 @@ export class ApprenantComponent {
   [x: string]: any;
   public modalRef!: BsModalRef;
   public apprenants!: Apprenant[];
-  public apprenantsArch!: Apprenant[];
+  public apprenantsApp!: Apprenant[];
   public apprenant!: Apprenant;
   public editForm!: FormGroup;
   public editForm2!: FormGroup;
@@ -35,7 +34,7 @@ export class ApprenantComponent {
   public ajoutForm!: FormGroup;  //variable peut etre null on ajoute 
   selectedValue: any = null;
   public numberOfApprenants!: number;
-  numberOfApprenantsArch!: number;
+  public numberOfApprenantsAff!: number;
   errorMessage!: string;
   successMessage!:string;
   public noDataAvailable !: boolean;
@@ -75,8 +74,8 @@ export class ApprenantComponent {
       archiveApprenant: [''],
       sexeApprenant: [''],
       niveauApprenant: [''],
-      qualiteApprenant: [''],
-      verified:[''],
+      qualiteApprenant: [null],
+      
       password: [''],
       email: ['']
 
@@ -96,8 +95,7 @@ export class ApprenantComponent {
       sexeApprenant: [''],
       niveauApprenant: [''],
       qualiteApprenant: [''],
-
-      verified:[''],
+      
       password: [''],
       email: ['']
 
@@ -108,24 +106,21 @@ export class ApprenantComponent {
 
   getApprenants() {
     this.appService.getApprenants().subscribe(response => {
-     
-      
-      this.apprenants = response.filter(app => app.archiveApprenant ===false); //nafsha f html 
-      this.apprenantsArch = response.filter(app=> app.archiveApprenant ===true);
+      this.apprenants = response.filter(app => app.archiveApprenant ===true); //nafsha f html 
+      this.apprenantsApp = response.filter(app => app.archiveApprenant ===false); //nafsha f html 
 
       console.log( this.apprenants );
 
-    
        
-          this.numberOfApprenantsArch=this.apprenantsArch.length;
+        this.numberOfApprenantsAff=this.apprenantsApp.length;
           this.numberOfApprenants=this.apprenants.length;
 
-      
           if (this.apprenants.length === 0) {
             this.noDataAvailable = true;
           } else {
             this.noDataAvailable = false;
           }
+
       
       
     });
@@ -186,7 +181,7 @@ export class ApprenantComponent {
       password:'',
 
       email: apprenant.email,
-      verified:apprenant.verified,
+
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,
 
@@ -198,27 +193,30 @@ export class ApprenantComponent {
 
   onSave() {
 console.log("id",this.editForm.value.id);
-    this.appService.updateApp(this.editForm.value).subscribe(
-      (response) => {
-        // Inscription saved successfully
-        // Do any additional actions here if needed
-        this.errorMessage = '';
-        this.successMessage = 'Apprenant bien modifié .';
-      },
-      (error) => {
-        // Error occurred
-        console.error('Error saving apprenant:', error);
-        this.errorMessage = 'Apprenant non modifié veuillez verifier votre formulaire.';
-        this.successMessage = '';
-      })
-this.ngOnInit();
+    this.appService.updateApp(this.editForm.value).subscribe(response => {
+      console.log(response);
+
+      
+      this.ngOnInit();
+    })
+
     this.modalService.hide(); //dismiss the modal
   }
 
   onPatch() {
     this.appService.supprimerApp(this.editForm2.value).subscribe(() => {
       //console.log(this.editForm2.value.idApprenant);
-      console.log("produit supprimé");
+      console.log("app supprimé");
+      this.ngOnInit();
+    });
+    this.modalService.hide();
+    console.log(this.editForm2.value.id)
+  }
+
+  onPatchArch() {
+    this.appService.desArchiveApp(this.editForm2.value).subscribe(() => {
+      //console.log(this.editForm2.value.idApprenant);
+      console.log("app supprimé");
       this.ngOnInit();
     });
     this.modalService.hide();
@@ -253,7 +251,7 @@ this.ngOnInit();
       password:apprenant.password,
 
       email: apprenant.email,
-verified:apprenant.verified,
+
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,
 
@@ -272,9 +270,13 @@ verified:apprenant.verified,
     this.modalService.hide(); //dismiss the modal
   }
 
-
+  onDelete(App: Apprenant) {
+    this.appService.deleteApp(this.deleteId).subscribe(response => {
+     console.log(response);
+     this.ngOnInit();})
+  
+   this.modalService.hide(); //dismiss the modal
+   } 
 
 
 }
-
-

@@ -78,7 +78,7 @@ export class FormateurComponent {
     this.successMessage = "Formateur ajouté avec succès";
     this.ngOnInit();  
   }, error => {
-    this.errorMessage = "Erreur lors de l'ajout du formateur";
+    this.errorMessage = "Erreur lors de l'ajout du formateur, vérifier votre formulaire";
     this.ngOnInit();  
 
   });
@@ -87,11 +87,7 @@ export class FormateurComponent {
   this.modalService.hide(); //dismiss the modal
 }
 
-  // onSubmits() {
-  //   this.departementService .addDepartement(
-  //     this.Departement
-  //   )
-  // }
+
 
   ngOnInit(): void {
     

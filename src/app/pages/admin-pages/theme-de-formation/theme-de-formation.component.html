@@ -16,8 +16,11 @@
         
     </div>
 
-    <div class="alert alert-success" role="alert" *ngIf="message">
-        {{message}}
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="successMessage">
+        {{successMessage}}
     </div>
     
     <!-- ================ Order Details List ================= -->
@@ -81,7 +84,7 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate (ngSubmit)="onControl(f)">
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate >
                     <div class="modal-header">
                         <h4 class="modal-title">Ajouter un theme de formation : </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -94,27 +97,27 @@
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
                         <div class="form-group">
-                            <label>Nom de formation :</label>
+                            <label>Nom de la formation :</label>
                             <input type="text" name="nomFormation" #nomFormation="ngModel" class="form-control"
                                 required ngModel>
                             <span *ngIf="nomFormation.invalid && nomFormation.touched" class="error">Vous devez
-                                entrer le om de formation </span>
+                                entrer le nom de la formation </span>
                         </div>
                         <div class="form-group">
                             <label> Abrivation :</label>
                             <input type="text" name="abrevation" #abrevation="ngModel" class="form-control" required ngModel>
                             <span *ngIf="abrevation.invalid &&  abrevation.touched" class="error">Vous
                                 devez
-                                entrer l'abrivation de formation </span>
+                                entrer l'abrivation de la formation </span>
                         </div>
                         <div class="form-group">
                             <!-- <label>Description de formation :</label> -->
                             <textarea name="description" #description="ngModel"
-                                class="form-control" required ngModel>Description de formation :</textarea>
+                                class="form-control" required ngModel>Description de la formation :</textarea>
                             <!-- <input type="text" name="description" #description="ngModel"
                                 class="form-control" required ngModel> -->
                             <span *ngIf="description.invalid &&description.touched"
-                                class="error">Vous devez entrer le description de formation </span>
+                                class="error">Vous devez entrer le description de laformation </span>
                         </div>
                      
 

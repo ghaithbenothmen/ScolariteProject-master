@@ -17,11 +17,12 @@ export class LoginComponent {
   message!: string;
 
   user: User = {
-id:0,
+    id:0,
     email:'',
     password: '',
     role: Role.User, // Set default role value to empty string
-    verified:false
+    verified:false,
+ 
   };
   
   err: number = 0;
@@ -55,7 +56,8 @@ id:0,
         this.user.role = user.role;
         this.user.id = user.id;
         this.user.verified = user.verified;
-        
+       
+
         console.log('User object:', user.verified);
         if (this.user.verified) { // Check if user is verified
           this.authService.saveToken(token, this.user.role, this.user.id);

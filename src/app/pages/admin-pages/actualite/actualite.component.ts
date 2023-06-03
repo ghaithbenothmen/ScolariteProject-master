@@ -32,7 +32,8 @@ export class ActualiteComponent {
     Data!: Blob;
     dbimage: any;
     public numberActu!:number;
-  
+    errorMessage!: string;
+    successMessage!:string;
   
   
 
@@ -71,18 +72,23 @@ export class ActualiteComponent {
   onSubmit (f: NgForm) {
   
     
-  this.actualiteService .addActualite( this.selectedFile , f.value ).subscribe(response => {
-    console.log(response);
-    this.ngOnInit();  })
- 
+  this.actualiteService .addActualite( this.selectedFile , f.value ).subscribe(
+    (response) => {
+      // Inscription saved successfully
+      // Do any additional actions here if needed
+      this.errorMessage = '';
+      this.successMessage = 'Actualité bien ajouté .';
+      this.ngOnInit();
+    },
+    (error) => {
+      // Error occurred
+      console.error('Error saving Actualité:', error);
+      this.errorMessage = 'Actualité non ajouté veuillez verifier votre formulaire.';
+      this.successMessage = '';
+    })
+
   this.modalService.hide(); //dismiss the modal
 }
-
-  // onSubmits() {
-  //   this.departementService .addDepartement(
-  //     this.Departement
-  //   )
-  // }
 
   ngOnInit(): void {
     
@@ -141,23 +147,24 @@ openModal(modalTemplate: TemplateRef<any>) {
 onSave() {
   
     
-  this.actualiteService.updateActualite(this.selectedFile ,this.editForm.value).subscribe(response => {
-      //console.log(response);
-      window.location.reload();
-      this.ngOnInit();})
-   
-    this.modalService.hide(); //dismiss the modal
-  }
-/***************************contoller ************** */
+  this.actualiteService.updateActualite(this.selectedFile ,this.editForm.value).subscribe(
+    (response) => {
+      // Inscription saved successfully
+      // Do any additional actions here if needed
+      this.errorMessage = '';
+      this.successMessage = 'Actualité bien modifié .';
+      this.ngOnInit();
+    },
+    (error) => {
+      // Error occurred
+      console.error('Error saving Actualité:', error);
+      this.errorMessage = 'Actualité non modifié veuillez verifier votre formulaire.';
+      this.successMessage = '';
+    })
 
-onControl(f: NgForm) {
-  if (f.valid) {
-    this.message = 'Actualite bien ajouté !';
-  }
-  if (f.invalid) {
-    this.message = 'Actualite non ajoué ! Verifier votre formulaire !';
-  }
+  this.modalService.hide(); //dismiss the modal
 }
+
 
 
 /**********************Template delete ******************* */

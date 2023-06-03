@@ -156,7 +156,7 @@ public seanceID!:number;
 
         const seanceId = seanceResponse.idSeanceFormation;
 
-        const inscriptionIds = [ 23,25]; 
+       // const inscriptionIds = [ 23,25]; 
 
         this.seanceService.addInscriptionsToSeance(seanceId, this.selectedCheckboxes).subscribe(
           inscriptionsResponse => {

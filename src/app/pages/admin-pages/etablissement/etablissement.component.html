@@ -16,8 +16,11 @@
         
     </div>
 
-    <div class="alert alert-success" role="alert" *ngIf="message">
-        {{message}}
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="successMessage">
+        {{successMessage}}
     </div>
     
     <!-- ================ Order Details List ================= -->

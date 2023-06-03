@@ -56,9 +56,23 @@ export class ApprenantService {
     return this.httpClient.put<Apprenant>(url, app, { headers: httpHeaders });
   }
 
+  desArchiveApp(app: Apprenant) {
+    const url = `${this.apiURL}/${app.id}/patchArch`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
+    return this.httpClient.put<Apprenant>(url, app, { headers: httpHeaders });
+  }
 
+  deleteApp(code : number) {
+    const url = `${this.apiURL}/${code}/delete`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
+    return this.httpClient.delete<Apprenant>(url, { headers: httpHeaders });
+  }
 
   /*  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
  debugger

@@ -29,7 +29,8 @@ export class EtablissementComponent {
     Data!: Blob;
     dbimage: any;
 
-  
+    errorMessage!: string;
+    successMessage!:string;
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public etabService : EtablissementService,private authService:AuthService,) { }
@@ -137,12 +138,23 @@ openModal(modalTemplate: TemplateRef<any>) {
 onSave() {
    
     
-  this.etabService.updateetab(this.selectedFile ,this.editForm.value).subscribe(response => {
-      console.log(response);
-      window.location.reload();
-      this.ngOnInit();})
-   
-    this.modalService.hide(); //dismiss the modal
+  this.etabService.updateetab(this.selectedFile ,this.editForm.value).subscribe(
+    (response) => {
+      // Inscription saved successfully
+      // Do any additional actions here if needed
+      this.errorMessage = '';
+      this.successMessage = 'Les informations de etablissement sont bien à jour .';
+      this.ngOnInit();
+    },
+    (error) => {
+      // Error occurred
+      console.error('Error saving apprenant:', error);
+      this.errorMessage = 'Les informations de etablissement non modifier veuillez verifier votre formulaire.';
+      this.successMessage = '';
+    })
+
+  this.modalService.hide(); 
+
   }
 /***************************contoller ************** */
 

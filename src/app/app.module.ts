@@ -75,6 +75,7 @@ import { SeanceAppComponent } from './pages/apprenant-pages/seance-app/seance-ap
 import { EditProfilComponent } from './pages/apprenant-pages/edit-profil/edit-profil.component';
 import { EditFormateurComponent } from './pages/formateur-pages/edit-formateur/edit-formateur.component';
 import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
+import { ApprenantArchComponent } from './pages/admin-pages/apprenant-arch/apprenant-arch.component';
 
 
 
@@ -132,6 +133,7 @@ registerLocaleData(localeFr);
           EditProfilComponent,
           EditFormateurComponent,
           ForgotPassComponent,
+          ApprenantArchComponent,
 
       
 
