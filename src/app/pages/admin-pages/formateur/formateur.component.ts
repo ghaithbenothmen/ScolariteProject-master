@@ -100,12 +100,12 @@ export class FormateurComponent {
      
      // adresseApprenant: [''],
       file: [''], 
-     nomFormateur : [''],
-      prenonFormateur: [''],
-      telFormateur: [''],
+     nom : [''],
+      prenom: [''],
+      tel: [''],
      email: [''],
       password:[''] ,
-     adresseFormateur: [''],
+     adresse: [''],
      specialite: [''],
     
 
@@ -127,12 +127,12 @@ export class FormateurComponent {
 
     this.editForm.patchValue({
       id: formateur.id,
-     nomFormateur : formateur.nomFormateur,
-      prenonFormateur: formateur.prenonFormateur,
-      telFormateur: formateur.telFormateur,
+     nom : formateur.nom,
+      prenom: formateur.prenom,
+      tel: formateur.tel,
       email:formateur.email,
       password:'',
-     adresseFormateur: formateur.adresseFormateur,
+     adresse: formateur.adresse,
      specialite: formateur.specialite,
     
  

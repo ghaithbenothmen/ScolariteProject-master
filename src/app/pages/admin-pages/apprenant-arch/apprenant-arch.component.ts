@@ -64,14 +64,14 @@ export class ApprenantArchComponent {
     this.editForm = this.fb.group({
       id: [''],
 
-      nomApprenant: [''],
-      prenomApprenant: [''],
+      nom: [''],
+      prenom: [''],
       /* sexeApprenant: [''], */
       dateNaissanceApprenant: [''],
       emailApprenant: [''],
-      telApprenant: [''],
+      tel: [''],
       adresseApprenant: [''],
-      archiveApprenant: [''],
+      archive: [''],
       sexeApprenant: [''],
       niveauApprenant: [''],
       qualiteApprenant: [null],
@@ -84,14 +84,14 @@ export class ApprenantArchComponent {
     this.editForm2 = this.fb.group({
       id: [''],
 
-      nomApprenant: [''],
-      prenomApprenant: [''],
+      nom: [''],
+      prenom: [''],
       /* sexeApprenant: [''], */
       dateNaissanceApprenant: [''],
       emailApprenant: [''],
       telApprenant: [''],
-      adresseApprenant: [''],
-      archiveApprenant: [''],
+      adresse: [''],
+      archive: [''],
       sexeApprenant: [''],
       niveauApprenant: [''],
       qualiteApprenant: [''],
@@ -106,8 +106,8 @@ export class ApprenantArchComponent {
 
   getApprenants() {
     this.appService.getApprenants().subscribe(response => {
-      this.apprenants = response.filter(app => app.archiveApprenant ===true); //nafsha f html 
-      this.apprenantsApp = response.filter(app => app.archiveApprenant ===false); //nafsha f html 
+      this.apprenants = response.filter(app => app.archive ===true); //nafsha f html 
+      this.apprenantsApp = response.filter(app => app.archive ===false); //nafsha f html 
 
       console.log( this.apprenants );
 
@@ -167,17 +167,17 @@ export class ApprenantArchComponent {
     this.editForm.patchValue({
       id: apprenant.id,
 
-      nomApprenant: apprenant.nomApprenant,
-      prenomApprenant: apprenant.prenomApprenant,
+      nom: apprenant.nom,
+      prenom: apprenant.prenom,
       sexeApprenant: apprenant.sexeApprenant,
       dateNaissanceApprenant: apprenant.dateNaissanceApprenant,
 
       emailApprenant: apprenant.email,
 
-      telApprenant: apprenant.telApprenant,
-      adresseApprenant: apprenant.adresseApprenant,
-      archiveApprenant: apprenant.archiveApprenant,
-      userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
+      tel: apprenant.tel,
+      adresse: apprenant.adresse,
+      archive: apprenant.archive,
+      userame: apprenant.nom + "." + apprenant.prenom,
       password:'',
 
       email: apprenant.email,
@@ -237,17 +237,17 @@ console.log("id",this.editForm.value.id);
     this.editForm2.patchValue({
       id: apprenant.id,
 
-      nomApprenant: apprenant.nomApprenant,
-      prenomApprenant: apprenant.prenomApprenant,
+      nom: apprenant.nom,
+      prenom: apprenant.prenom,
       sexeApprenant: apprenant.sexeApprenant,
       dateNaissanceApprenant: apprenant.dateNaissanceApprenant,
 
       emailApprenant: apprenant.email,
 
-      telApprenant: apprenant.telApprenant,
-      adresseApprenant: apprenant.adresseApprenant,
-      archiveApprenant: apprenant.archiveApprenant,
-     userame: apprenant.nomApprenant + "." + apprenant.prenomApprenant,
+      tel: apprenant.tel,
+      adresse: apprenant.adresse,
+      archiveApprenant: apprenant.archive,
+     userame: apprenant.nom + "." + apprenant.prenom,
       password:apprenant.password,
 
       email: apprenant.email,

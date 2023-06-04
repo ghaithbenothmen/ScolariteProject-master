@@ -1,106 +1,107 @@
+<div class="container">
 
 
-	<div class="container">
-	
-
-		<!-- ======================= Cards ================== -->
-		<div class="cardBox">
-			<div class="card">
-				<div>
-					<div class="numbers">{{numberOfApprenants}}<span class="iconBx" style="padding-left: 150px;"> <i class="bi bi-people-fill"></i></span></div>
-					<div class="cardName">Apprenants </div>
-				</div>
-	
-				
+	<!-- ======================= Cards ================== -->
+	<div class="cardBox">
+		<div class="card">
+			<div>
+				<div class="numbers">{{numberOfApprenants}}<span class="iconBx" style="padding-left: 150px;"> <i
+							class="bi bi-people-fill"></i></span></div>
+				<div class="cardName">Apprenants </div>
 			</div>
-	
-			<div class="card" >
-				<div>
-					<div class="numbers">{{numberOfFormateurs}} <span class="iconBx" style="padding-left: 150px;"> <i class="bi bi-people"></i></span></div>
-					<div class="cardName">Formateurs</div>
-				</div>
-	
-				<div class="iconBx">
-					<!-- <ion-icon name="cart-outline"></ion-icon> -->
-				</div>
+
+
+		</div>
+
+		<div class="card">
+			<div>
+				<div class="numbers">{{numberOfFormateurs}} <span class="iconBx" style="padding-left: 150px;"> <i
+							class="bi bi-people"></i></span></div>
+				<div class="cardName">Formateurs</div>
 			</div>
-	
-			<a class="card">
-				<div>
-					<div class="numbers">{{numberOfThemes}} <span class="iconBx" style="padding-left: 150px;"> <i class="bi bi-journals"></i></span> </div>
-					<div class="cardName">Thémes</div>
-				</div>
-	
-				<div class="iconBx">
-					<!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
-				</div>
-			</a>
-	
-			<div class="card">
-				<div>
-					<div class="numbers">{{numberOfSession}} <span class="iconBx" style="padding-left: 150px;"> <i class="bi bi-journal-bookmark-fill"></i></span></div>
-					<div class="cardName">Sessions</div>
-				</div>
-	
-				<div class="iconBx">
-					<!-- <ion-icon name="cash-outline"></ion-icon> -->
-				</div>
+
+			<div class="iconBx">
+				<!-- <ion-icon name="cart-outline"></ion-icon> -->
 			</div>
 		</div>
-	
-		<!-- ================ Order Details List ================= -->
-		<div class="details">
-			<div class="recentOrders">
-				<div class="cardHeader">
-					<h2>Nos Apprenants</h2>
-					<a href="admin-dashboard/apprenant" class="btn">Voir tout</a>
-				</div>
-	
-				<table>
-					<thead>
-						<tr>
-							<td>Nom</td>
-							<td>Prénom</td>
-							<td>Email</td>
-							<td>Téléphone</td>
-						</tr>
-					</thead>
-	
-					<tbody>
-						
-	
-						<tr *ngFor="let app of apprenants">
-                            <ng-container *ngIf="!app.archiveApprenant">
-							<td>{{app.nomApprenant}}</td>
-							<td>{{app.prenomApprenant}}</td>
-							<td>{{app.email}}</td>
-							<td>{{app.telApprenant}}</td>
-                        </ng-container>
-						</tr>
-					</tbody>
-				</table>
+
+		<a class="card">
+			<div>
+				<div class="numbers">{{numberOfThemes}} <span class="iconBx" style="padding-left: 150px;"> <i
+							class="bi bi-journals"></i></span> </div>
+				<div class="cardName">Thémes</div>
 			</div>
-	
-			<!-- ================= New Customers ================ -->
-			<div class="recentCustomers">
-				<div class="cardHeader">
-					<h2>Nos Formateurs</h2>
-				</div>
-	
-				<table>
-					
-		
-                    <tr *ngFor="let Formateur of formateur" height="10px">
-						<td width="60px">
-							<div class="imgBx"><img src="../../../../assets//img/user.png" alt=""></div>
-						</td>
-						<td>
-							<h4>{{Formateur.nomFormateur}} <br> <span>{{Formateur.prenonFormateur}}</span></h4>
-						</td>
-					</tr>
-	
-				</table>
+
+			<div class="iconBx">
+				<!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+			</div>
+		</a>
+
+		<div class="card">
+			<div>
+				<div class="numbers">{{numberOfSession}} <span class="iconBx" style="padding-left: 150px;"> <i
+							class="bi bi-journal-bookmark-fill"></i></span></div>
+				<div class="cardName">Sessions</div>
+			</div>
+
+			<div class="iconBx">
+				<!-- <ion-icon name="cash-outline"></ion-icon> -->
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- ================ Order Details List ================= -->
+	<div class="details">
+		<div class="recentOrders">
+			<div class="cardHeader">
+				<h2>Nos Apprenants</h2>
+				<a href="admin-dashboard/apprenant" class="btn">Voir tout</a>
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+						<td>Nom</td>
+						<td>Prénom</td>
+						<td>Email</td>
+						<td>Téléphone</td>
+					</tr>
+				</thead>
+
+				<tbody>
+
+
+					<tr *ngFor="let app of apprenants">
+						<ng-container *ngIf="!app.archive">
+							<td>{{app.nom}}</td>
+							<td>{{app.prenom}}</td>
+							<td>{{app.email}}</td>
+							<td>{{app.tel}}</td>
+						</ng-container>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- ================= New Customers ================ -->
+		<div class="recentCustomers">
+			<div class="cardHeader">
+				<h2>Nos Formateurs</h2>
+			</div>
+
+			<table>
+
+
+				<tr *ngFor="let Formateur of formateur" height="10px">
+					<td width="60px">
+						<div class="imgBx"><img src="../../../../assets//img/user.png" alt=""></div>
+					</td>
+					<td>
+						<h4>{{Formateur.nom}} <br> <span>{{Formateur.prenom}}</span></h4>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+</div>

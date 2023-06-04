@@ -1,93 +1,92 @@
-
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<div class="container">
-	
-		
-		<!-- ======================= Cards ================== -->
-		<div class="cardBox">
-			<div class="card">
-				<div>
-					<div class="numbers">{{lengthInscri}}<span class="iconBx"> <i class="bi bi-journal"></i></span></div>
-					
-				</div>
-				<div class="cardName">Séances </div>
-				
-			</div>
-	
-			
-		</div>
-	
-		<div class="alert alert-success" role="alert" *ngIf="message">
-			{{message}}
-		</div>
-		
-		<!-- ================ Order Details List ================= -->
-		<div class="details" >
-			<div class="recentOrders" >
-				<div class="cardHeader" >
-					<h2>Liste des séances</h2>
-					<button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
-						class="material-icons">&#xE147;</i> <span>Ajouter Séance</span></button>
-				</div>
-	
-				<table  *ngIf="!noDataAvailable">
-					<thead>
-						<tr >
-                            <th>id </th>
+<div class="container">
 
-                            <th> date</th>
-                            <th>heuresdebut </th>
-    
-                            <th> Nombre d'heure </th>
-                            <th> Locale </th>
-                            <th> contenu </th>
-                            <th> cours </th>
-						</tr>
-					</thead>
-	
-					<tbody>
-						<tr *ngFor="let seance of seances" >
-							<ng-container *ngIf="seance.sessionFormation.idSessionFormation == idSession">
-								<td>{{seance.idSeanceFormation}}</td>
 
-                                <td>{{seance.date}}</td>
-                                <td>{{ formatTime(seance.heureDebut) }}</td>
-                                <td>{{seance.nbrHeures}}H</td>
-                                <td>{{seance.local}}</td>
-                                <td>{{seance.contenu}}</td>
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{lengthInscri}}<span class="iconBx"> <i class="bi bi-journal"></i></span></div>
+
+            </div>
+            <div class="cardName">Séances </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+
+    <!-- ================ Order Details List ================= -->
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Liste des séances</h2>
+                <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+                        class="material-icons">&#xE147;</i> <span>Ajouter Séance</span></button>
+            </div>
+
+            <table *ngIf="!noDataAvailable">
+                <thead>
+                    <tr>
+                        <th>id </th>
+
+                        <th> date</th>
+                        <th>heuresdebut </th>
+
+                        <th> Nombre d'heure </th>
+                        <th> Locale </th>
+                        <th> contenu </th>
+                        <th> cours </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let seance of seances">
+                        <ng-container *ngIf="seance.sessionFormation.idSessionFormation == idSession">
+                            <td>{{seance.idSeanceFormation}}</td>
+
+                            <td>{{seance.date}}</td>
+                            <td>{{ formatTime(seance.heureDebut) }}</td>
+                            <td>{{seance.nbrHeures}}H</td>
+                            <td>{{seance.local}}</td>
+                            <td>{{seance.contenu}}</td>
 
                             <td><a href="{{'data:'+seance.fileType+';base64,' + seance.data}}"
                                     download="{{seance.data}}" width="200px" height="200px"> Cours </a></td>
 
-								<td>
-									
-									<a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
-										data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
-											title="Edit">&#xE254;</i></a>
-									<a type="button" (click)="openDelete(contentDelete, seance)" class="delete"
-										data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
-											title="Delete">&#xE872;</i></a>
-	
-								</td>
-							</ng-container>
-						</tr>
-	
-					</tbody>
-				</table>
+                            <td>
 
-                <div *ngIf="noDataAvailable" class="no-data-container">
-                    <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg" alt="No data available">
-                  
-                   
-                  </div>
-                  <h2 *ngIf="noDataAvailable"  style="text-align: center;">Aucune données disponibles !</h2>
+                                <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
+                                    data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
+                                        title="Edit">&#xE254;</i></a>
+                                <a type="button" (click)="openDelete(contentDelete, seance)" class="delete"
+                                    data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                        title="Delete">&#xE872;</i></a>
 
-			</div>
-	
-			
-		</div>
-	</div>
+                            </td>
+                        </ng-container>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div *ngIf="noDataAvailable" class="no-data-container">
+                <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                    alt="No data available">
+
+
+            </div>
+            <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
+
+        </div>
+
+
+    </div>
+</div>
 
 
 
@@ -167,13 +166,12 @@
                             <div *ngFor="let Inscriptions of Inscriptions">
 
                                 <ng-container *ngIf="Inscriptions.sessionFormation.idSessionFormation == idSession">
-                                    
-                                    <input type="checkbox" [(ngModel)]="Inscriptions.apprenant.id" 
-                                        (change)="onCheckboxChange()"
-                                        name={{Inscriptions.apprenant.nomApprenant}}
+
+                                    <input type="checkbox" [(ngModel)]="Inscriptions.apprenant.id"
+                                        (change)="onCheckboxChange()" name={{Inscriptions.apprenant.nom}}
                                         [value]="Inscriptions.apprenant.id " [checked]="Inscriptions.apprenant.id">
-                                    {{Inscriptions.apprenant.nomApprenant}}
-                                    {{Inscriptions.apprenant.prenomApprenant}}
+                                    {{Inscriptions.apprenant.nom}}
+                                    {{Inscriptions.apprenant.prenom}}
 
                                 </ng-container>
                                 <span *ngIf="contenu.invalid && contenu.touched" class="error">Vous
@@ -191,21 +189,22 @@
                         </div>
 
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                              aria-expanded="false">
-                              Select Languages
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Select Languages
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <div class="form-group">
-                                <label for="selectAll">Select All</label>
-                                <input type="checkbox" id="selectAll" >
-                              </div>
-                              <div class="form-group" *ngFor="let language of languages">
-                                <input type="checkbox" [id]="language.id" [checked]="language.checked" (change)="toggleCheckbox(language)">
-                                <label [for]="language.id">{{ language.name }}</label>
-                              </div>
+                                <div class="form-group">
+                                    <label for="selectAll">Select All</label>
+                                    <input type="checkbox" id="selectAll">
+                                </div>
+                                <div class="form-group" *ngFor="let language of languages">
+                                    <input type="checkbox" [id]="language.id" [checked]="language.checked"
+                                        (change)="toggleCheckbox(language)">
+                                    <label [for]="language.id">{{ language.name }}</label>
+                                </div>
                             </div>
-                          </div>
+                        </div>
 
 
                     </div>
@@ -227,7 +226,7 @@
             <div class="modal-content">
                 <form [formGroup]="editForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Modifer  seance :</h4>
+                        <h4 class="modal-title">Modifer seance :</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                             (click)="modalRef.hide()">&times;</button>
                     </div>
@@ -318,5 +317,3 @@
         </div>
     </div>
 </ng-template>
-
-
