@@ -13,7 +13,8 @@ export class Formateur {
       public file: File,
       public fileType: string,
          public archive: boolean,
-     public verified:boolean,
+      public verified: boolean,
+     
       
     ) {
     }

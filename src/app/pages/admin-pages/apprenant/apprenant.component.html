@@ -14,11 +14,12 @@
 
 		</div>
 		<div class="card">
-			<div>
-				<div class="numbers"> {{numberOfApprenantsArch}}<span class="iconBx" style="padding-left: 150px;"> <i
-							class="bi bi-people"></i></span></div>
-				<div class="cardName"><a style="color: gray;" href="admin-dashboard/apprenantArch"> Apprenants
-						archivés</a></div>
+			<div><a style="color: gray;" href="admin-dashboard/apprenantArch">
+					<div class="numbers"> {{numberOfApprenantsArch}}<span class="iconBx" style="padding-left: 150px;">
+							<i class="bi bi-people"></i></span></div>
+					<div class="cardName"> Apprenants
+						archivés</div>
+				</a>
 			</div>
 
 			<div class="iconBx">
@@ -51,8 +52,9 @@
 						<td>Nom </td>
 						<td>Prénom </td>
 						<td>Email</td>
-						<td>Compte</td>
+
 						<td>Telehone</td>
+						<td>Compte</td>
 						<td>Actions</td>
 					</tr>
 				</thead>
@@ -64,12 +66,12 @@
 							<td>{{apprenant.nom}}</td>
 							<td>{{apprenant.prenom}}</td>
 							<td>{{apprenant.email}}</td>
+
+							<td>{{apprenant.tel}}</td>
 							<td><span *ngIf="apprenant.verified" class="status delivered m-lg-2">Vérifier</span>
 
 								<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span>
 							</td>
-							<td>{{apprenant.tel}}</td>
-
 							<td>
 								<a type="button" (click)="openDetails(ajoutCompte, apprenant)" data-toggle="modal"><i
 										class="material-icons">&#xE147;</i></a>

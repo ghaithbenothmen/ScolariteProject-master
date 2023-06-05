@@ -62,7 +62,7 @@ export class formateurService  {
     formData.append('file', file);
     formData.append('Password', Formateur.password);
      formData.append('NomFormateur', Formateur.nom);
-      formData.append('PrenonFormateur', Formateur.prenom);
+     formData.append('PrenonFormateur', Formateur.prenom);
      formData.append('telFormateur', Formateur.tel.toString());
 
     formData.append('Specialite', Formateur.specialite);
@@ -101,8 +101,32 @@ export class formateurService  {
         let httpHeaders = new HttpHeaders({ "Authorization": jwt })
 
 
-         return this.httpClient.delete(this.apiURL+code,{headers:httpHeaders});}
+        return this.httpClient.delete(this.apiURL + code, { headers: httpHeaders });
+      }
+  
+
+ArcheverFormateur(code : number) {
+      //const urlDelete ='${this.apiURL}/${id}';  
+        let jwt = this.authService.getToken();
+        jwt = "Bearer "+jwt;
+        let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+
+         return this.httpClient.delete(this.apiURL+"Archivee/"+code,{headers:httpHeaders});}
+      
+  
+  
+DesArcheverFormateur(code : number) {
+      //const urlDelete ='${this.apiURL}/${id}';  
+        let jwt = this.authService.getToken();
+        jwt = "Bearer "+jwt;
+        let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+
+         return this.httpClient.delete(this.apiURL+'desArchivee/'+code,{headers:httpHeaders});}
       } 
+  
+      
     
 
 

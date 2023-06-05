@@ -13,6 +13,8 @@ import { ListeAppSessionComponent } from 'src/app/pages/admin-pages/liste-app-se
 
 import { AdminDashComponent } from 'src/app/pages/admin-pages/admin-dash/admin-dash.component';
 import { ApprenantArchComponent } from 'src/app/pages/admin-pages/apprenant-arch/apprenant-arch.component';
+import { FormateurArchiveComponent } from 'src/app/pages/admin-pages/formateur-archive/formateur-archive.component';
+
 
 
 
@@ -21,7 +23,8 @@ const routes: Routes = [
   { path: 'apprenant',         component: ApprenantComponent },
   { path: 'apprenantArch',         component: ApprenantArchComponent },
   { path: 'etablissement',  component: EtablissementComponent },
-  { path: 'formateur',  component: FormateurComponent },
+  { path: 'formateur', component: FormateurComponent },
+  { path: 'formateur-archive',  component: FormateurArchiveComponent },
   { path: 'actualiteDash', component: ActualiteComponent },
   { path: 'themeDeFormation', component: ThemeDeFormationComponent },
   {path:'sessionDeFormation',component:SessionFormationComponent},
