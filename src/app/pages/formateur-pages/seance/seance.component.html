@@ -23,12 +23,15 @@
     <!-- ================ Order Details List ================= -->
     <div class="details">
         <div class="recentOrders">
-            <div class="cardHeader">
-                <h2>Liste des séances</h2>
-                <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
-                        class="material-icons">&#xE147;</i> <span>Ajouter Séance</span></button>
-            </div>
-
+            <ng-container *ngFor="let sessionFormations of sessionFormations">
+                <ng-container *ngIf="sessionFormations.idSessionFormation==idSession &&sessionFormations.endOf==false">
+                    <div class=" cardHeader">
+                        <h2>Liste des séances</h2>
+                        <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+                                class="material-icons">&#xE147;</i> <span>Ajouter Séance</span></button>
+                    </div>
+                </ng-container>
+            </ng-container>
             <table *ngIf="!noDataAvailable">
                 <thead>
                     <tr>
@@ -110,7 +113,7 @@
 							<input type="text" name="codeEtablissement" #codeEtablissement="ngModel" class="form-control" required ngModel>
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
-                        <div class="form-group">
+                        <div class="form-group" hidden>
                             <label> id seance :</label>
                             <input type="text" name="idSessionFormation" #idSessionFormation="ngModel"
                                 [(ngModel)]="idSession" class="form-control" required ngModel [value]="idSession">

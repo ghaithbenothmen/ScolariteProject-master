@@ -13,15 +13,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, NgFor } from '@angular/common';
 import { ThemeDeFormation } from 'src/app/entities/ThemeDeFormation.model';
 import { Formateur } from 'src/app/entities/formateur.model';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { SeanceService } from 'src/app/services/seance.service';
+import { seance } from 'src/app/entities/seance.model';
 @Component({
   selector: 'app-session-form',
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.css','../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class SessionFormComponent {
-  constructor(  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
-
+  
+  constructor( private seanceService:SeanceService  ,private modalService: BsModalService,  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+ public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
+  public seances!: seance[];
   public sessionFormation!: SessionFormation;
   public themeDeFormations!: ThemeDeFormation[];
   public themeDeFormation!: ThemeDeFormation;
@@ -29,7 +34,7 @@ export class SessionFormComponent {
   public formateur!: Formateur;
   public UserId!:  string | null;
   public idUser!: number;
-
+  private deleteId !: number;
   
   onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/formateur-dashboard/Seance-Formation', sessionFormation.idSessionFormation]);
@@ -47,10 +52,26 @@ export class SessionFormComponent {
      this.getSessionFormation();
 
    }
+  
+  
+
+  
+
+  
 
   getSessionFormation() {
+      this.seanceService.getSeance().subscribe(response => {
+      console.log(response);
+
+      this.seances = response;
+      //this.numberOfSession = response.length;
+    });
+     
 
      this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
+
+       
+       
       console.log(response);
 
        response.forEach((item) => {
@@ -89,7 +110,29 @@ export class SessionFormComponent {
 
   }
 
+openDelete(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) {
+    this.deleteId = SessionFormation.idSessionFormation;
+    this.modalRef = this.modalService.show(modalTemplate,
+      {
+        class: 'modal-dialogue-centered modal-md',
+        backdrop: 'static',
+        keyboard: true
+      }
+    );
+  }
 
+  AcheverSessionFormation(SessionFormation: SessionFormation) {
+    this.SessionFormationService.AcheverSessionFormation(this.deleteId).subscribe(response => {
+      console.log(response);
+
+      this.ngOnInit();
+    })
+
+    this.modalService.hide(); //dismiss the modal
+  }
+
+
+  
   getDayName(dayOfWeek: number): string {
     
     const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];

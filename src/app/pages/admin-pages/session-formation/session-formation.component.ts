@@ -299,6 +299,17 @@ export class SessionFormationComponent {
       }
     );
   }
+
+  AcheverSessionFormation(SessionFormation: SessionFormation) {
+    this.SessionFormationService.AcheverSessionFormation(this.deleteId).subscribe(response => {
+      console.log(response);
+
+      this.ngOnInit();
+    })
+
+    this.modalService.hide(); //dismiss the modal
+  }
+
   onDelete(SessionFormation: SessionFormation) {
     this.SessionFormationService.deleteSessionFormation(this.deleteId).subscribe(response => {
       console.log(response);

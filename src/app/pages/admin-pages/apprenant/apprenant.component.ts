@@ -105,7 +105,6 @@ export class ApprenantComponent {
 
     })
   }
-
   getApprenants() {
     this.appService.getApprenants().subscribe(response => {
      
