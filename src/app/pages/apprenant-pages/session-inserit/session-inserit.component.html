@@ -1,4 +1,3 @@
-
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -6,11 +5,11 @@
                 <h2 class="heading-section">Liste des inscriptions</h2>
             </div>
         </div>
-        
+
         <div class="row">
-            
+
             <div class="col-lg-4 mb-5" *ngFor="let Inscriptions of Inscriptions">
-               
+
                 <div class="card border-0 bg-light shadow-sm pb-2">
 
                     <img src="{{'data:'+Inscriptions.sessionFormation.fileType+';base64,' + Inscriptions.sessionFormation.data}}"
@@ -26,7 +25,7 @@
                             <div class="col-6 py-1 text-right border-right">
                                 <strong>Formateur</strong>
                             </div>
-                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.formateur.nomFormateur}}</div>
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.formateur.nom}}</div>
                         </div>
                         <div class="row border-bottom">
                             <div class="col-6 py-1 text-right border-right">
@@ -38,7 +37,8 @@
                             <div class="col-6 py-1 text-right border-right">
                                 <strong>Date</strong>
                             </div>
-                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.dateDebut}} - {{Inscriptions.sessionFormation.dateFin}}
+                            <div class="col-6 py-1">{{Inscriptions.sessionFormation.dateDebut}} -
+                                {{Inscriptions.sessionFormation.dateFin}}
                             </div>
                         </div>
                         <div class="row">
@@ -53,22 +53,22 @@
                             </div>
                             <div class="col-6 py-1">{{Inscriptions.sessionFormation.localFormation}}</div>
                         </div>
-                        
+
                     </div>
 
                     <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
-                     (click)="onSelect(Inscriptions.sessionFormation)"  >Liste séances (cours)</a>
+                        (click)="onSelect(Inscriptions.sessionFormation)">Liste séances (cours)</a>
 
                     <a class="btn btn-danger px-4 mx-auto mb-4 text-light"
-                    (click)="openDelete(contentDelete, Inscriptions)"   >Désinscrire</a>
-                    
+                        (click)="openDelete(contentDelete, Inscriptions)">Désinscrire</a>
+
                 </div>
             </div>
             <div class="alert alert-danger" role="alert" *ngIf="deleteStatusMessage">
                 {{deleteStatusMessage}}
             </div>
         </div>
-        
+
     </div>
 </section>
 

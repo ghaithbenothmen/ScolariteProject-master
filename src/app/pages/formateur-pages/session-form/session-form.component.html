@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -6,11 +8,11 @@
             </div>
         </div>
         <div class="row">
-            <ng-container  *ngFor="let sessionFormations of sessionFormations">
-            <div class="col-lg-4 mb-5" >
-                
-               
-                    
+            <ng-container *ngFor="let sessionFormations of sessionFormations">
+                <div class="col-lg-4 mb-5">
+
+
+
                     <div class="card border-0 bg-light shadow-sm pb-2">
 
                         <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
@@ -53,20 +55,84 @@
                                 </div>
                                 <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
                             </div>
+                            <ng-container *ngIf="seances.length==0   && sessionFormations.endOf==false">
+                                <div class="row">
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
+                                    </div>
+                                    <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
+                                </div>
+
+                            </ng-container>
+                            <ng-container *ngFor="let seanc of seances">
+                                <ng-container
+                                    *ngIf="sessionFormations.idSessionFormation==seanc.sessionFormation.idSessionFormation && sessionFormations.endOf==false  ">
+                                    <div class="row">
+                                        <div class="col-6 py-1 text-right border-right">
+                                            <strong>Statut</strong>
+                                        </div>
+                                        <div class="col-6 py-1 badge badge-success ">Commencée</div>
+                                    </div>
+
+                                </ng-container>
 
 
+                            </ng-container>
+                            <ng-container *ngIf="sessionFormations.endOf==true ">
+                                <div class="row">
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
+                                    </div>
+                                    <div class="col-6 py-1 badge badge-warning">achevée</div>
+                                </div>
+
+                            </ng-container>
                         </div>
 
                         <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
                             (click)="onSelectApp(sessionFormations) ">Liste Apprenants</a>
                         <a class="btn btn-info px-4 mx-auto mb-4 text-light"
                             (click)="onSelect(sessionFormations) ">Liste Séances</a>
+                        <ng-container *ngIf="sessionFormations.endOf==false ">
+                            <a class="btn btn-warning px-4 mx-auto mb-4 text-light"
+                                (click)="openDelete(contentDelete, sessionFormations)">Achever
+                                session </a>
+
+                        </ng-container>
 
                     </div>
-                
-            </div>
-        </ng-container>
+
+                </div>
+            </ng-container>
         </div>
 
     </div>
 </section>
+<ng-template #contentDelete>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Achever formation</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous vraiment accomplir cette formation ?</p>
+                        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                    </div>
+                    <form class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                            (click)="modalRef.hide()">
+
+
+                        <input type="submit" class="btn btn-warning" value=" Achever"
+                            (click)=" AcheverSessionFormation(sessionFormation)">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -20,7 +20,7 @@
                                 <div class="user-avatar">
                                     <img src="../../../../assets/img/user.png" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name">{{app.nomFormateur}} {{app.prenonFormateur}}</h5>
+                                <h5 class="user-name">{{app.nom}} {{app.prenom}}</h5>
                                 <h6 class="user-email">{{app.email}}</h6>
                             </div>
                             <div class="about">
@@ -50,16 +50,15 @@
                                     <div class="form-group">
                                         <label for="fullName">Nom </label>
                                         <input type="text" class="form-control" formControlName="nomFormateur"
-                                            name="nomFormateur" [ngModel]="app.nomFormateur" placeholder=" Votre Nom"
-                                            required>
+                                            name="nomFormateur" [ngModel]="app.nom" placeholder=" Votre Nom" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="eMail">Prénom </label>
                                         <input type="email" class="form-control" formControlName="prenonFormateur"
-                                            name="prenonFormateur" [ngModel]="app.prenonFormateur"
-                                            placeholder=" Votre Prénom" required>
+                                            name="prenonFormateur" [ngModel]="app.prenom" placeholder=" Votre Prénom"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -76,8 +75,8 @@
                                     <div class="form-group">
                                         <label for="phone">Téléphone</label>
                                         <input type="text" class="form-control" formControlName="telFormateur"
-                                            name="telFormateur" [ngModel]="app.telFormateur"
-                                            placeholder="Votre téléphone" required>
+                                            name="telFormateur" [ngModel]="app.tel" placeholder="Votre téléphone"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

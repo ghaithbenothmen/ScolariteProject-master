@@ -10,12 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccueilComponent } from '../../pages/auth-pages/accueil/accueil.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormateurArchiveComponent } from 'src/app/pages/admin-pages/formateur-archive/formateur-archive.component';
 
 
 @NgModule({
   declarations: [
     ApprenantComponent,
-    
+    FormateurArchiveComponent,
     EtablissementComponent,
     AccueilComponent
   ],

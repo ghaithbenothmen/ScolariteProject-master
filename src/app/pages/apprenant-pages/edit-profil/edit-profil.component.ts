@@ -110,17 +110,17 @@ this.getApprenants();
       this.editForm = this.fb.group({
         id: [''],
   
-        nomApprenant: [''],
-        prenomApprenant: [''],
+        nom: [''],
+        prenom: [''],
         /* sexeApprenant: [''], */
         dateNaissanceApprenant: [''],
 
         email: ['', [Validators.required,Validators.email]],
 
         
-        telApprenant: [''],
-        adresseApprenant: [''],
-        archiveApprenant: [''],
+        tel: [''],
+        adresse: [''],
+        archive: [''],
         sexeApprenant: [''],
         niveauApprenant: [''],
         qualiteApprenant: [''],

@@ -1,3 +1,4 @@
+
 import { EtablissementService } from 'src/app/services/etablissement.service';
 
 
@@ -13,12 +14,12 @@ import { formateurService } from 'src/app/services/formateur.service';
 
 
 @Component({
-  selector: 'app-formateur',
-  templateUrl: './formateur.component.html',
-  styleUrls: ['./formateur.component.css','../apprenant/apprenant.component.css']
+  selector: 'app-formateur-archive',
+  templateUrl: './formateur-archive.component.html',
+  styleUrls: ['./formateur-archive.component.css','../apprenant/apprenant.component.css']
 })
   
-export class FormateurComponent {
+export class FormateurArchiveComponent {
   public modalRef!: BsModalRef;
   public formateur!:  Formateur [];
   public Formateur!:  Formateur ;
@@ -35,9 +36,9 @@ export class FormateurComponent {
     public numberOfFormateurs!: number;
     errorMessage!: string;
     successMessage!:string;
+  Formateurs!: Formateur[];
   FormateurApp!: Formateur[];
   numberOfForamteurAff!: number;
-  Formateurs!: Formateur[];
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public formateurService  : formateurService,private authService:AuthService,public etabService:EtablissementService) { }
   //Pagination//
@@ -50,7 +51,7 @@ export class FormateurComponent {
 
   }
 
-  getFormateur() {
+ getFormateur() {
     
     this.formateurService.getFormateur().subscribe(response => {
     //  this.FormateurApp = response.filter(app => app.archive === true); //nafsha f html 
@@ -67,7 +68,6 @@ export class FormateurComponent {
 
       });
   }
-  
  
 
 //  onFileChange(event) {
@@ -201,16 +201,21 @@ openDelete(modalTemplate: TemplateRef<any>, formateur:Formateur) {
         }
       );
 }
- onArchive(Formateur: Formateur) {
-   this.formateurService.ArcheverFormateur(this.deleteId).subscribe(response => {
+onDelete(Formateur: Formateur) {
+   this.formateurService.deleteFormateur(this.deleteId).subscribe(response => {
     console.log(response);
-     //this.ngOnInit()
-       ;
-   })
+    this.ngOnInit();})
  
   this.modalService.hide(); //dismiss the modal
   } 
   
-
+ onDesArchiver(Formateur: Formateur) {
+   this.formateurService.DesArcheverFormateur(this.deleteId).subscribe(response => {
+    console.log(response);
+    this.ngOnInit();})
+ 
+  this.modalService.hide(); //dismiss the modal
+  } 
+  
 
 }

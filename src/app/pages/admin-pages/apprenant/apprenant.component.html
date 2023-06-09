@@ -1,97 +1,104 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<div class="container">
-	
-		
-		<!-- ======================= Cards ================== -->
-		<div class="cardBox">
-			<div class="card" >
-				<div>
-					<div class="numbers">{{numberOfApprenants}}<span class="iconBx"> <i class="bi bi-people-fill"></i></span></div>
-					
-				</div>
-				<div class="cardName">Apprenants </div>
-				
+<div class="container">
+
+
+	<!-- ======================= Cards ================== -->
+	<div class="cardBox">
+		<div class="card">
+			<div>
+				<div class="numbers">{{numberOfApprenants}}<span class="iconBx"> <i
+							class="bi bi-people-fill"></i></span></div>
+
 			</div>
-			<div class="card" >
-				<div>
-					<div class="numbers" > {{numberOfApprenantsArch}}<span class="iconBx" style="padding-left: 150px;"> <i class="bi bi-people"></i></span></div>
-					<div class="cardName"><a style="color: gray;" href="admin-dashboard/apprenantArch"> Apprenants archivés</a></div>
-				</div>
-	
-				<div class="iconBx">
-					<!-- <ion-icon name="cart-outline"></ion-icon> -->
-				</div>
+			<div class="cardName">Apprenants </div>
+
+		</div>
+		<div class="card">
+			<div><a style="color: gray;" href="admin-dashboard/apprenantArch">
+					<div class="numbers"> {{numberOfApprenantsArch}}<span class="iconBx" style="padding-left: 150px;">
+							<i class="bi bi-people"></i></span></div>
+					<div class="cardName"> Apprenants
+						archivés</div>
+				</a>
 			</div>
-	
-			
+
+			<div class="iconBx">
+				<!-- <ion-icon name="cart-outline"></ion-icon> -->
+			</div>
 		</div>
-	
-		<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-			{{errorMessage}}
-		</div>
-		<div class="alert alert-success" role="alert" *ngIf="successMessage">
-			{{successMessage}}
-		</div>
-		
-		<div class="details" >
-			<div class="recentOrders" >
-				<div class="cardHeader" >
-					<h2>List des apprenants</h2>
-					<button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
+
+
+	</div>
+
+	<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+		{{errorMessage}}
+	</div>
+	<div class="alert alert-success" role="alert" *ngIf="successMessage">
+		{{successMessage}}
+	</div>
+
+	<div class="details">
+		<div class="recentOrders">
+			<div class="cardHeader">
+				<h2>List des apprenants</h2>
+				<button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
 						class="material-icons">&#xE147;</i> <span>Ajouter Apprenant</span></button>
-				</div>
-	
-				<table *ngIf="!noDataAvailable">
-					<thead>
-						<tr>
-							<td>ID </td>
+			</div>
+
+			<table *ngIf="!noDataAvailable">
+				<thead>
+					<tr>
+						<td>ID </td>
 						<td>Nom </td>
 						<td>Prénom </td>
 						<td>Email</td>
-						<td>Compte</td>
+
 						<td>Telehone</td>
+						<td>Compte</td>
 						<td>Actions</td>
-						</tr>
-					</thead>
-	
-					<tbody>
-						<tr *ngFor="let apprenant of apprenants ">
-							<ng-container *ngIf="!apprenant.archiveApprenant">
-								<td>{{apprenant.id}}</td>
-								<td>{{apprenant.nomApprenant}}</td>
-								<td>{{apprenant.prenomApprenant}}</td>
-								<td>{{apprenant.email}}</td>
-								<td><span *ngIf="apprenant.verified" class="status delivered m-lg-2">Vérifier</span>
-								
-									<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span></td>
-								<td>{{apprenant.telApprenant}}</td>
-								
-								<td>
-									<a type="button" (click)="openDetails(ajoutCompte, apprenant)" data-toggle="modal"><i
-											class="material-icons">&#xE147;</i></a>
-									<a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
-										data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
-											title="Edit">&#xE254;</i></a>
-									<a type="button" (click)="openDelete(contentDelete, apprenant)" class="delete"
-										data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
-											title="Delete">&#xE872;</i></a>
-	
-								</td>
-							</ng-container>
-						</tr>
-	
-					</tbody>
-				</table>
-				<div *ngIf="noDataAvailable" class="no-data-container">
-					<img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg" alt="No data available">
-				  </div>
-				  <h2 *ngIf="noDataAvailable"  style="text-align: center;">Aucune données disponibles !</h2>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr *ngFor="let apprenant of apprenants ">
+						<ng-container *ngIf="!apprenant.archive">
+							<td>{{apprenant.id}}</td>
+							<td>{{apprenant.nom}}</td>
+							<td>{{apprenant.prenom}}</td>
+							<td>{{apprenant.email}}</td>
+
+							<td>{{apprenant.tel}}</td>
+							<td><span *ngIf="apprenant.verified" class="status delivered m-lg-2">Vérifier</span>
+
+								<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span>
+							</td>
+							<td>
+								<a type="button" (click)="openDetails(ajoutCompte, apprenant)" data-toggle="modal"><i
+										class="material-icons">&#xE147;</i></a>
+								<a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
+									data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
+										title="Edit">&#xE254;</i></a>
+								<a type="button" (click)="openDelete(contentDelete, apprenant)" class="delete"
+									data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+										title="Delete">&#xE872;</i></a>
+
+							</td>
+						</ng-container>
+					</tr>
+
+				</tbody>
+			</table>
+			<div *ngIf="noDataAvailable" class="no-data-container">
+				<img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+					alt="No data available">
 			</div>
-	
-			
+			<h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
 		</div>
+
+
 	</div>
-	
+</div>
+
 
 
 
@@ -119,8 +126,8 @@
 
 					<div class="tab-content signin_tab" id="myTabContenet">
 						<div class="collapse fade show " id="home" role="tabpanel" aria-labelledby="home-tab">
-							<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate
-								id="form1"><!-- *ngIf="showForm1" -->
+							<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate id="form1">
+								<!-- *ngIf="showForm1" -->
 								<!-- <div class="form-group">
 									<label>Code Apprenant</label>
 									<input type="text" name="codeApprenant" #codeApprenant="ngModel"
@@ -132,16 +139,16 @@
 								</div> -->
 								<div class="form-group">
 									<label>Nom</label>
-									<input type="text" name="nomApprenant" #nomApprenant="ngModel" class="form-control"
-										required ngModel >
+									<input type="text" name="nom" #nomApprenant="ngModel" class="form-control" required
+										ngModel>
 									<span *ngIf="nomApprenant.invalid && nomApprenant.touched" class="error">Vous devez
 										entrer
 										le nom de l'apprenant</span>
 								</div>
 								<div class="form-group">
 									<label>Prenom</label>
-									<input type="text" name="prenomApprenant" #prenomApprenant="ngModel"
-										class="form-control" required ngModel>
+									<input type="text" name="prenom" #prenomApprenant="ngModel" class="form-control"
+										required ngModel>
 									<span *ngIf="prenomApprenant.invalid && prenomApprenant.touched" class="error">Vous
 										devez
 										entrer le prenom de l'apprenant</span>
@@ -166,8 +173,8 @@
 
 								<div class="form-group">
 									<label>Telehone</label>
-									<input type="text" name="telApprenant" #telApprenant="ngModel" class="form-control"
-										required ngModel>
+									<input type="text" name="tel" #telApprenant="ngModel" class="form-control" required
+										ngModel>
 									<span *ngIf="telApprenant.invalid && telApprenant.touched" class="error">Vous devez
 										entrer
 										le telephone de l'apprenant</span>
@@ -199,8 +206,8 @@
 								</div>
 								<div class="form-group">
 									<label>Adresse</label>
-									<input type="text" name="adresseApprenant" #adresseApprenant="ngModel" class="form-control" required
-										ngModel>
+									<input type="text" name="adresse" #adresseApprenant="ngModel" class="form-control"
+										required ngModel>
 									<span *ngIf="adresseApprenant.invalid && adresseApprenant.touched"
 										class="error">Vous
 										devez
@@ -211,7 +218,7 @@
 									<label>Qualité :</label>
 
 									<select class="form-select" name="qualiteApprenant" #qualiteApprenant="ngModel"
-										ngModel required [(ngModel)]="selectedValue" >
+										ngModel required [(ngModel)]="selectedValue">
 										<option selected [value]="null" disabled>Selectionner la qualité </option>
 										<option *ngFor="let item of items" [value]="item">{{ item }}</option>
 									</select>
@@ -288,11 +295,11 @@
 						</div>
 						<div class="form-group">
 							<label>Nom</label>
-							<input type="text" formControlName="nomApprenant" class="form-control" required>
+							<input type="text" formControlName="nom" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Prenom</label>
-							<input type="text" formControlName="prenomApprenant" class="form-control" required>
+							<input type="text" formControlName="prenom" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Email</label>
@@ -304,7 +311,7 @@
 						</div>
 						<div class="form-group">
 							<label>Telehone</label>
-							<input type="text" formControlName="telApprenant" class="form-control" required>
+							<input type="text" formControlName="tel" class="form-control" required>
 						</div>
 						<!-- <div class="form-group">
 							<label>Sexe</label><br>
@@ -341,7 +348,7 @@
 						</div>
 						<div class="form-group">
 							<label>Adresse</label>
-							<input type="text" formControlName="adresseApprenant" class="form-control" required>
+							<input type="text" formControlName="adresse" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Qualité :</label>

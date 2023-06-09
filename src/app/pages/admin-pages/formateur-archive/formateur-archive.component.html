@@ -1,0 +1,184 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<div class="container">
+
+
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+
+        <div class="card"><a style="color: gray;" href="admin-dashboard/formateur-archive">
+                <div>
+                    <div class="numbers"> {{ numberOfForamteurAff}}<span class="iconBx" style="padding-left: 150px;"> <i
+                                class="bi bi-people"></i></span></div>
+                    <div class="cardName"> Formateur
+                        archivés</div>
+
+                </div>
+
+                <div class="iconBx">
+                    <!-- <ion-icon name="cart-outline"></ion-icon> -->
+                </div>
+            </a>
+        </div>
+        <div class="card"><a style="color: gray;" href="admin-dashboard/formateur">
+                <div>
+                    <div class="numbers">{{numberOfFormateurs}}<span class="iconBx"> <i class="bi bi-people"></i></span>
+                    </div>
+
+                </div>
+                <div class="cardName">Formateurs </div>
+            </a>
+        </div>
+
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="successMessage">
+        {{successMessage}}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+
+    <!-- ================ Order Details List ================= -->
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>List des formateurs Archivés</h2>
+
+            </div>
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>Code </th>
+                        <th>Nom</th>
+                        <th>Prenom </th>
+                        <th>Specialite </th>
+                        <th>Email</th>
+                        <th>Tel</th>
+                        <th>Adresse</th>
+                        <th>Cv</th>
+                        <td>Compte</td>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Formateur of formateur">
+                        <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
+                        <ng-container *ngIf="Formateur.archive">
+
+                            <td>{{Formateur.id}}</td>
+
+                            <td>{{Formateur.nom}}</td>
+                            <td>{{Formateur.prenom}}</td>
+                            <td>{{Formateur.specialite}}</td>
+                            <td>{{Formateur.email}}</td>
+                            <td>{{Formateur.tel}}</td>
+                            <td>{{Formateur.adresse}}</td>
+                            <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
+                                    download="{{Formateur.nom}} {{Formateur.prenom}} Cv" width="200px"
+                                    height="200px">Telecharger Cv </a></td>
+                            <td><span *ngIf="Formateur.verified" class="status delivered m-lg-2">Vérifier</span>
+
+                                <span *ngIf="!Formateur.verified" class="status return">Non vérifier</span>
+                            </td>
+
+                            <td>
+                                <a type="button" (click)="openDelete(contentArch,  Formateur)" data-toggle="modal"><i
+                                        class="material-icons">&#xE147;</i></a>
+                                <!-- <a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
+										data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
+											title="Edit">&#xE254;</i></a> -->
+                                <a type="button" (click)="openDelete(contentDelete,  Formateur)" class="delete"
+                                    data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                        title="Delete">&#xE872;</i></a>
+
+                            </td>
+                            <!-- </ng-container> -->
+                        </ng-container>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div><ng-template #contentDelete>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Supprimer formateur</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Voulez-vous supprimer ce formateur ?</p>
+                            <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                        </div>
+                        <form class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                                (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(Formateur)">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div><ng-template #contentArch>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Desarchiver formateur</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous desarchiver ce formateur ?</p>
+                        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                    </div>
+                    <form class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                            (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-danger" value="Supprimer"
+                            (click)="onDesArchiver(Formateur)">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #contentDelete>
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Supprimer formateur</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="modalRef.hide()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous supprimer ce formateur ?</p>
+                        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                    </div>
+                    <form class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                            (click)="modalRef.hide()">
+                        <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(Formateur)">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

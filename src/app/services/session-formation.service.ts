@@ -160,6 +160,18 @@ export class SessionFormationService {
   }
 
 
+
+ AcheverSessionFormation(code: number) {
+    //const urlDelete ='${this.apiURL}/${id}';  
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+
+    return this.httpClient.delete(this.apiURL+"FinSession/" + code, { headers: httpHeaders });
+  }
+
+
 }
 
 

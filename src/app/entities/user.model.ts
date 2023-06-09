@@ -6,4 +6,5 @@ export class User {
     role!:Role;
     verified!:boolean;
 
+
   }

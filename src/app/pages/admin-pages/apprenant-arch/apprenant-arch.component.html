@@ -1,95 +1,100 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<div class="container">
-	
-		
-		<!-- ======================= Cards ================== -->
-		<div class="cardBox">
-			<div class="card">
-				<div>
-					<div class="numbers">{{numberOfApprenants}}<span class="iconBx"> <i class="bi bi-people-fill"></i></span></div>
-					
-				</div>
-				<div class="cardName">Apprenants Archivés</div>
-				
+<div class="container">
+
+
+	<!-- ======================= Cards ================== -->
+	<div class="cardBox">
+		<div class="card">
+			<div>
+				<div class="numbers">{{numberOfApprenants}}<span class="iconBx"> <i
+							class="bi bi-people-fill"></i></span></div>
+
 			</div>
-            <div class="card" >
+			<div class="cardName">Apprenants Archivés</div>
+
+		</div>
+		<div class="card"><a style="color: gray;" href="admin-dashboard/apprenant">
 				<div>
-					<div class="numbers">{{numberOfApprenantsAff}}<span class="iconBx"> <i class="bi bi-people-fill"></i></span></div>
-					
+					<div class="numbers">{{numberOfApprenantsAff}}<span class="iconBx"> <i
+								class="bi bi-people-fill"></i></span></div>
+
 				</div>
-				<div class="cardName"><a style="color: gray;" href="admin-dashboard/apprenant"> Apprenants</a> </div>
-				
+				<div class="cardName"> Apprenants </div>
+			</a>
+		</div>
+
+	</div>
+
+	<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+		{{errorMessage}}
+	</div>
+	<div class="alert alert-success" role="alert" *ngIf="successMessage">
+		{{successMessage}}
+	</div>
+
+	<div class="details">
+		<div class="recentOrders">
+			<div class="cardHeader">
+				<h2>List des apprenants archivés</h2>
 			</div>
-			
-		</div>
-	
-		<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-			{{errorMessage}}
-		</div>
-		<div class="alert alert-success" role="alert" *ngIf="successMessage">
-			{{successMessage}}
-		</div>
-		
-		<div class="details" >
-			<div class="recentOrders" >
-				<div class="cardHeader" >
-					<h2>List des apprenants archivés</h2>
-				</div>
-	
-				<table *ngIf="!noDataAvailable">
-					<thead>
-						<tr>
+
+			<table *ngIf="!noDataAvailable">
+				<thead>
+					<tr>
 						<td>ID </td>
 						<td>Nom </td>
 						<td>Prénom </td>
 						<td>Email</td>
-                        <td>Compte</td>
+
 						<td>Telehone</td>
+						<td>Compte</td>
 						<td>Actions</td>
-						</tr>
-					</thead>
-	
-					<tbody>
-						<tr *ngFor="let apprenant of apprenants ">
-							<ng-container *ngIf="apprenant.archiveApprenant">
-								<td>{{apprenant.id}}</td>
-								<td>{{apprenant.nomApprenant}}</td>
-								<td>{{apprenant.prenomApprenant}}</td>
-								<td>{{apprenant.email}}</td>
-								<td>{{apprenant.telApprenant}}</td>
-                                <td><span *ngIf="apprenant.verified" class="status delivered m-lg-2">Vérifier</span>
-								
-									<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span></td>
-								<td>
-									<a type="button" (click)="openDelete(contentArch, apprenant)" data-toggle="modal"><i
-											class="material-icons">&#xE147;</i></a>
-									<!-- <a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr *ngFor="let apprenant of apprenants ">
+						<ng-container *ngIf="apprenant.archive">
+							<td>{{apprenant.id}}</td>
+							<td>{{apprenant.nom}}</td>
+							<td>{{apprenant.prenom}}</td>
+							<td>{{apprenant.email}}</td>
+							<td>{{apprenant.tel}}</td>
+							<td><span *ngIf="apprenant.verified" class="status delivered m-lg-2">Vérifier</span>
+
+								<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span>
+							</td>
+							<td>
+								<a type="button" (click)="openDelete(contentArch, apprenant)" data-toggle="modal"><i
+										class="material-icons">&#xE147;</i></a>
+								<!-- <a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
 										data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
 											title="Edit">&#xE254;</i></a> -->
-									<a type="button" (click)="openDelete(contentDelete, apprenant)" class="delete"
-										data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
-											title="Delete">&#xE872;</i></a>
-	
-								</td>
-							</ng-container>
-						</tr>
-	
-					</tbody>
-				</table>
+								<a type="button" (click)="openDelete(contentDelete, apprenant)" class="delete"
+									data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+										title="Delete">&#xE872;</i></a>
 
-                <div *ngIf="noDataAvailable" class="no-data-container">
-					<img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg" alt="No data available">
-				  
-				   
-				  </div>
+							</td>
+						</ng-container>
+					</tr>
 
-                  <h2 *ngIf="noDataAvailable"  style="text-align: center;">Aucune données disponibles !</h2>
+				</tbody>
+			</table>
+
+			<div *ngIf="noDataAvailable" class="no-data-container">
+				<img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+					alt="No data available">
+
+
 			</div>
-	
-			
+
+			<h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
 		</div>
+
+
 	</div>
-	
+</div>
+
 
 <ng-template #contentArch>
 	<div>

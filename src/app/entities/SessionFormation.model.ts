@@ -21,7 +21,7 @@ export class SessionFormation {
      public  dayOfWeek: string,
       public formateur: Formateur,
       public codeFormateur:number,
-      
+      public  endOf :boolean,
       public themeDeFormation:ThemeDeFormation,
       public idFormation:number
       

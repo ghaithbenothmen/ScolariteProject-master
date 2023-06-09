@@ -17,19 +17,20 @@
 
 
 
-    <section class="ftco-section bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Nos session de formations</h2>
-                </div>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Nos session de formations</h2>
             </div>
+        </div>
 
-            <div class="mb-3">
-                <span>Filtrer avec Thémes :</span>
+        <div class="mb-3">
+            <span>Filtrer avec Thémes :</span>
             <select class="select" [(ngModel)]="selectedTheme" (change)="filterSessions()">
                 <option value="null" [selected]="!selectedTheme" disabled>Sélectionnez théme</option>
                 <option value="" [selected]="!selectedTheme"> Tous les thémes</option>
+
                 <option *ngFor="let theme of themeDeFormations" [value]="theme.idFormation">{{ theme.nomFormation }}</option>
               </select>
             </div>
@@ -53,7 +54,7 @@
                                 <div class="col-6 py-1 text-right border-right">
                                     <strong>Formateur</strong>
                                 </div>
-                                <div class="col-6 py-1">{{sessionFormations.formateur.nomFormateur}}</div>
+                                <div class="col-6 py-1">{{sessionFormations.formateur.nom}}</div>
                             </div>
                             <div class="row border-bottom">
                                 <div class="col-6 py-1 text-right border-right">
@@ -90,6 +91,65 @@
 
             </div>
             
+
         </div>
-    </section>
+
+
+
+        <div class="row">
+            <div class="col-lg-4 mb-5" *ngFor="let sessionFormations of filteredSessions ">
+                <div class="card border-0 bg-light shadow-sm pb-2">
+
+                    <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
+                        class="card-img-top mb-2" />
+                    <div class="card-body text-center">
+                        <h4 class="card-title">{{sessionFormations.themeDeFormation.nomFormation}}</h4>
+                        <p class="card-text">
+                            {{sessionFormations.themeDeFormation.description}}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent py-4 px-5">
+                        <div class="row border-bottom">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Formateur</strong>
+                            </div>
+                            <div class="col-6 py-1">{{sessionFormations.formateur.nom}}</div>
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Type</strong>
+                            </div>
+                            <div class="col-6 py-1">{{sessionFormations.typeFormation}}</div>
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Date</strong>
+                            </div>
+                            <div class="col-6 py-1">{{sessionFormations.dateDebut}} - {{sessionFormations.dateFin}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Nombre d'heure</strong>
+                            </div>
+                            <div class="col-6 py-1">{{sessionFormations.nbrHeures}} Heures</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-1 text-right border-right">
+                                <strong>Local</strong>
+                            </div>
+                            <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
+                        </div>
+
+                    </div>
+
+                    <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
+                        (click)="onSelect(sessionFormations)">S'inscrire</a>
+                </div>
+            </div>
+
+        </div>
+
+ 
+</section>
 <!-- Class End -->
