@@ -2,7 +2,7 @@ export class Actualite {
     
     constructor(
       
-      public isCollapsed = false,
+    
       public codeActualite: number,
       public titreActualite: string,
       public descriptionActualite: string,
@@ -14,4 +14,5 @@ export class Actualite {
       public  fileType :string,
     ) {
     }
+    
   }

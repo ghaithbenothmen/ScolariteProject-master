@@ -25,7 +25,7 @@ export class RegisterComponent {
 
   public registerForm!: FormGroup;
   public items = ['Eleve', 'Etudiant', "Demandeur_emploie", 'Professionel'];
-
+  public itemsNiveau = ['<Bac', 'Bac +3', "Bac +4", '>Bac +4'];
   public errorMessage!: String;
  
 

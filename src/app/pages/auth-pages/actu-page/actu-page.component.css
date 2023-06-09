@@ -1,0 +1,29 @@
+::ng-deep .ngx-pagination .ngx-pagination-previous,
+::ng-deep .ngx-pagination .ngx-pagination-next {
+  /* Styles for previous and next buttons */
+}
+
+::ng-deep .ngx-pagination .ngx-pagination-ellipses {
+  /* Styles for ellipsis (...) */
+}
+
+::ng-deep .ngx-pagination .ngx-pagination-item {
+  /* Styles for individual page numbers */
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+::ng-deep .ngx-pagination .ngx-pagination-item.active {
+  /* Styles for the active page number */
+  background-color: darkgreen;
+  color: white;
+}
+
+::ng-deep .ngx-pagination .ngx-pagination-item:hover {
+  /* Styles for when hovering over the page number */
+  background-color: lightgreen;
+  color: black;
+}
