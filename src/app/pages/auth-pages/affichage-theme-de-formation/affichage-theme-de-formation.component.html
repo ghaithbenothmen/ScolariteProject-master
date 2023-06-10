@@ -26,40 +26,41 @@
             </div>
         </div>
 
-        
-<div class="container py-5">
-        <div class="event_container">
-            <ng-container *ngFor="let ThemeDeFormation  of ThemeDeFormation">
-              
-                 
-                <div class="row">
-                    <div class="col-lg-7 mx-auto">
-                
-                        <!-- Timeline -->
-                        <ul class="timeline">
-                            <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                                <div class="timeline-arrow"></div>
-                                <h2 class="h5 mb-0">{{ThemeDeFormation.nomFormation}}</h2><span class="small text-gray"><i
-                                        class="fa fa-clock-o mr-1"></i>{{ThemeDeFormation.abrevation}}</span>
-                                <p class="text-small mt-2 font-weight-light">{{ThemeDeFormation.description}}</p>
-                            </li>
-                            
-                        </ul><!-- End -->
-                
+
+        <div class="container py-5">
+            <div class="event_container">
+                <ng-container *ngFor="let ThemeDeFormation  of ThemeDeFormation">
+
+
+                    <div class="row">
+                        <div class="col-lg-7 mx-auto">
+
+                            <!-- Timeline -->
+                            <ul class="timeline">
+                                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                                    <div class="timeline-arrow"></div>
+                                    <h2 class="h5 mb-0">{{ThemeDeFormation.nomFormation}}</h2><span
+                                        class="small text-gray"><i
+                                            class="fa fa-clock-o mr-1"></i>{{ThemeDeFormation.abrevation}}</span>
+                                    <p class="text-small mt-2 font-weight-light">{{ThemeDeFormation.description}}</p>
+                                </li>
+
+                            </ul><!-- End -->
+
+                        </div>
                     </div>
-                </div>
-          
-          
-                        </ng-container>
 
-            
+
+                </ng-container>
+
+
+            </div>
+            <div class="btn-box">
+
+            </div>
+
         </div>
-        <div class="btn-box">
-
-        </div>
-
     </div>
-</div>
 </section>
 <section class="ftco-section bg-light">
     <div class="container">
@@ -70,13 +71,13 @@
         </div>
 
         <div class="mb-3">
-         
+
         </div>
         <div class="row">
             <div class="col-lg-4 mb-5" *ngFor="let ThemeDeFormation of ThemeDeFormation ">
                 <div class="card border-0 bg-light shadow-sm pb-2">
 
-                    
+
                     <div class="row border-bottom">
                         <div class="col-6 py-1 text-right border-right">
                             <strong>Non Theme </strong>
@@ -97,14 +98,14 @@
                                 {{ThemeDeFormation.abrevation}}
                             </p>
                         </div>
-                        
-                       
+
+
                     </div>
-                
+
                 </div>
             </div>
 
         </div>
-        
+
     </div>
 </section>

@@ -5,7 +5,8 @@
                 <h2 class="heading-section">Inscription des sessions de formations</h2>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="!noDataAvailable">
+
             <ng-container *ngFor="let sessionFormations of sessionFormations">
                 <div class="col-lg-4 mb-5">
 
@@ -54,7 +55,38 @@
                                 <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
                             </div>
 
+                            <ng-container *ngIf="seances.length==0   && sessionFormations.endOf==false">
+                                <div class="row">
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
+                                    </div>
+                                    <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
+                                </div>
 
+                            </ng-container>
+                            <ng-container *ngFor="let seanc of seances">
+                                <ng-container
+                                    *ngIf="sessionFormations.idSessionFormation==seanc.sessionFormation.idSessionFormation && sessionFormations.endOf==false  ">
+                                    <div class="row">
+                                        <div class="col-6 py-1 text-right border-right">
+                                            <strong>Statut</strong>
+                                        </div>
+                                        <div class="col-6 py-1 badge badge-success ">Commencée</div>
+                                    </div>
+
+                                </ng-container>
+
+
+                            </ng-container>
+                            <ng-container *ngIf="sessionFormations.endOf==true ">
+                                <div class="row">
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
+                                    </div>
+                                    <div class="col-6 py-1 badge badge-warning">achevée</div>
+                                </div>
+
+                            </ng-container>
                         </div>
 
                         <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
@@ -66,6 +98,11 @@
                 </div>
             </ng-container>
         </div>
+        <div *ngIf="noDataAvailable" class="no-data-container">
+            <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                alt="No data available">
+        </div>
+        <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
 
     </div>
 </section>

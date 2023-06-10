@@ -16,6 +16,8 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Inscription } from 'src/app/entities/inscription.model';
+import { SeanceService } from 'src/app/services/seance.service';
+import { seance } from 'src/app/entities/seance.model';
 @Component({
   selector: 'app-session',
   templateUrl: './session.component.html',
@@ -33,6 +35,7 @@ public items = ['En ligne', 'Présentiel'];
   public Inscription!: Inscription;
   public formateurs!: Formateur[];
   public formateur!: Formateur;
+  public seances!: seance[];
 
   public idFormation!: number;
   public codeFormateur!: number;
@@ -53,19 +56,27 @@ public isCollapsed = true;
 id: any;
   day!: number;
   dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  noDataAvailable!: boolean;
   
   //SessionFormationService: any;
 
 
 
 
-  constructor(private InscriptionService: InscriptionService, private router: Router, private modalService: BsModalService, private datePipe: DatePipe, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor(private seanceService: SeanceService, private InscriptionService: InscriptionService, private router: Router, private modalService: BsModalService, private datePipe: DatePipe, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   
   onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/user-dashboard/inscri', sessionFormation.idSessionFormation]);
   }
   getSessionFormationn() {
+    
+ this.seanceService.getSeance().subscribe(response => {
+      console.log(response);
 
+      this.seances = response;
+      //this.numberOfSession = response.length;
+    });
+     
     this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
       console.log(response);
 
@@ -86,6 +97,11 @@ id: any;
       
       this.sessionFormations = response;
       
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
 
     });
 

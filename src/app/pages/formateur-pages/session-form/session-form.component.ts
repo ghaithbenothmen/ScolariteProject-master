@@ -22,6 +22,7 @@ import { seance } from 'src/app/entities/seance.model';
   styleUrls: ['./session-form.component.css','../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class SessionFormComponent {
+  noDataAvailable!: boolean;
   
   constructor( private seanceService:SeanceService  ,private modalService: BsModalService,  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
  public modalRef!: BsModalRef;
@@ -92,7 +93,13 @@ export class SessionFormComponent {
    
        this.sessionFormations = response.filter(inscri => inscri.formateur.id === this.idUser); //nafsha f html 
      
-      console.log("dddd",this.sessionFormations);
+       console.log("dddd", this.sessionFormations);
+       
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
 
     });
     this.formateurService.getFormateur().subscribe(response => {

@@ -112,6 +112,7 @@ public isCollapsed = true;
       item.dateFin = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
 
       });
+      
       this.sessionFormations = response;
 
 

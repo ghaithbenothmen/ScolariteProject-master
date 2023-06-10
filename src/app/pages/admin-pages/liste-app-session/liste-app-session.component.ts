@@ -246,7 +246,9 @@ this.appService.getApprenants().subscribe(response => {
      );
  
      
- this.ngOnInit();
-     this.modalService.hide(); //dismiss the modal
+    this.ngOnInit();
+   
+    this.modalService.hide(); //dismiss the modal
+    
    }
 }

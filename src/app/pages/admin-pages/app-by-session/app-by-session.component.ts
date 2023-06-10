@@ -18,6 +18,8 @@ import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, NgFor } from '@angular/common';
+import { SeanceService } from 'src/app/services/seance.service';
+import { seance } from 'src/app/entities/seance.model';
 @Component({
   selector: 'app-app-by-session',
   templateUrl: './app-by-session.component.html',
@@ -46,9 +48,11 @@ public items = ['En ligne', 'Présentiel'];
   dbimage: any;
   idFormateur: any;
   idTh: any;
+    public seances!: seance[];
+  noDataAvailable!: boolean;
   //SessionFormationService: any;
 
-  constructor( private modalService: BsModalService, private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor( private seanceService:SeanceService ,private modalService: BsModalService, private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   public onFileChanged(event: any) {
 
     this.selectedFile = event.target.files[0];
@@ -71,6 +75,13 @@ public items = ['En ligne', 'Présentiel'];
    }
 
   getSessionFormation() {
+     this.seanceService.getSeance().subscribe(response => {
+      console.log(response);
+
+      this.seances = response;
+      //this.numberOfSession = response.length;
+    });
+     
 
      this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
       console.log(response);
@@ -90,7 +101,13 @@ public items = ['En ligne', 'Présentiel'];
        });
        
 
-      this.sessionFormations = response;
+       this.sessionFormations = response;
+
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
       console.log("dddd",this.sessionFormations);
 
     });

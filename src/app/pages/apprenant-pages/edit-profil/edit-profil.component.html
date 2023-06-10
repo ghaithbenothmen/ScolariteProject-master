@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <label for="eMail">Email </label>
                                         <input type="email" class="form-control" formControlName="email"
-                                            [ngModel]="app.email" placeholder=" Votre Prénom" required>
+                                            [ngModel]="app.email" placeholder=" Votre Prénom" readonly required>
                                     </div>
                                     <div *ngIf="editForm.controls['email']?.errors?.['email']" class="error">Verifier
                                         syntax

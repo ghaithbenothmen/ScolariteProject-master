@@ -1,19 +1,19 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <div class="container">
-	
-		
+
+
     <!-- ======================= Cards ================== -->
     <div class="cardBox">
         <div class="card">
             <div>
                 <div class="numbers">{{numberOfThemes}}<span class="iconBx"><i class="bi bi-journals"></i></span></div>
-                
+
             </div>
             <div class="cardName">Thémes formations</div>
-            
+
         </div>
 
-        
+
     </div>
 
     <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -22,24 +22,24 @@
     <div class="alert alert-success" role="alert" *ngIf="successMessage">
         {{successMessage}}
     </div>
-    
+
     <!-- ================ Order Details List ================= -->
-    <div class="details" >
-        <div class="recentOrders" >
-            <div class="cardHeader" >
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
                 <h2>Liste des thémes formations </h2>
                 <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
-                    class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
+                        class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
             </div>
 
-            <table>
+            <table *ngIf="!noDataAvailable">
                 <thead>
                     <tr>
 
                         <th>Code formation </th>
                         <th>Nom de fomration </th>
                         <th>Abrivation de formation </th>
-                        <th>Description de formation  </th>
+                        <th>Description de formation </th>
                         <th>Actions</th>
 
                     </tr>
@@ -49,10 +49,10 @@
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
 
-                       
+
                         <td>{{ThemeDeFormation.idFormation}}</td>
-                        
-                        <td >{{ThemeDeFormation.nomFormation}}</td>
+
+                        <td>{{ThemeDeFormation.nomFormation}}</td>
                         <td>{{ThemeDeFormation.abrevation}}</td>
 
                         <td>{{ThemeDeFormation.description}}</td>
@@ -70,147 +70,154 @@
 
                 </tbody>
             </table>
-            <pagination-controls previousLabel="Précédent"
-			nextLabel="Suivant"
-			(pageChange)="onTableChange($event)" >
-				
-			</pagination-controls>
+                    <div *ngIf="noDataAvailable" class="no-data-container">
+                        <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                            alt="No data available">
+                    </div>
+                    <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
+
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
+
+            </pagination-controls>
         </div>
 
     </div>
 
 
-<ng-template #modalTemplate>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate >
-                    <div class="modal-header">
-                        <h4 class="modal-title">Ajouter un theme de formation : </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            (click)="modalRef.hide()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- <div class="form-group">
+    <ng-template #modalTemplate>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ajouter un theme de formation : </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- <div class="form-group">
 							<label>Code </label>
 							<input type="text" name="codeEtablissement" #codeEtablissement="ngModel" class="form-control" required ngModel>
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
-                        <div class="form-group">
-                            <label>Nom de la formation :</label>
-                            <input type="text" name="nomFormation" #nomFormation="ngModel" class="form-control"
-                                required ngModel>
-                            <span *ngIf="nomFormation.invalid && nomFormation.touched" class="error">Vous devez
-                                entrer le nom de la formation </span>
-                        </div>
-                        <div class="form-group">
-                            <label> Abrivation :</label>
-                            <input type="text" name="abrevation" #abrevation="ngModel" class="form-control" required ngModel>
-                            <span *ngIf="abrevation.invalid &&  abrevation.touched" class="error">Vous
-                                devez
-                                entrer l'abrivation de la formation </span>
-                        </div>
-                        <div class="form-group">
-                            <!-- <label>Description de formation :</label> -->
-                            <textarea name="description" #description="ngModel"
-                                class="form-control" required ngModel>Description de la formation :</textarea>
-                            <!-- <input type="text" name="description" #description="ngModel"
-                                class="form-control" required ngModel> -->
-                            <span *ngIf="description.invalid &&description.touched"
-                                class="error">Vous devez entrer le description de laformation </span>
-                        </div>
-                     
-
-
-                       
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Fermer" (click)="modalRef.hide()">
-                        <input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajouter">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</ng-template>
-<!-- detail Modal HTML -->
-
-<!-- detail Modal HTML -->
-<ng-template #contentDetails>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form [formGroup]="editForm">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit theme de formation </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            (click)="modalRef.hide()">&times;</button>
-
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Id formation </label>
-                            <input readonly type="text" formControlName="idFormation" class="form-control" required>
-
-                        </div>
-                        <div class="form-group">
-                            <label>Nom de Formation : </label>
-                            <input type="text" formControlName="nomFormation" class="form-control" required>
-
-                        </div>
                             <div class="form-group">
-                            <label>Abrivation de formation </label>
-                            <input type="text" formControlName="abrevation" class="form-control" required>
+                                <label>Nom de la formation :</label>
+                                <input type="text" name="nomFormation" #nomFormation="ngModel" class="form-control"
+                                    required ngModel>
+                                <span *ngIf="nomFormation.invalid && nomFormation.touched" class="error">Vous devez
+                                    entrer le nom de la formation </span>
+                            </div>
+                            <div class="form-group">
+                                <label> Abrivation :</label>
+                                <input type="text" name="abrevation" #abrevation="ngModel" class="form-control" required
+                                    ngModel>
+                                <span *ngIf="abrevation.invalid &&  abrevation.touched" class="error">Vous
+                                    devez
+                                    entrer l'abrivation de la formation </span>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Description de formation :</label> -->
+                                <textarea name="description" #description="ngModel" class="form-control" required
+                                    ngModel>Description de la formation :</textarea>
+                                <!-- <input type="text" name="description" #description="ngModel"
+                                class="form-control" required ngModel> -->
+                                <span *ngIf="description.invalid &&description.touched" class="error">Vous devez entrer
+                                    le description de laformation </span>
+                            </div>
+
+
+
+
+
+
                         </div>
-
-                        <div class="form-group">
-                            <label>Description de formation  </label>
-                            <!-- <input type="text" formControlName="description" class="form-control" required> -->
-                            <textarea class="form-control"   formControlName="description"    required    >Description de formation :</textarea>
-                        </div>
-
-                        
-
-                     
-
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
-                                value="Fermer">
-                            <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                            <input type="button" class="btn btn-default" value="Fermer" (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajouter">
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</ng-template>
-<!-- Delete Modal HTML -->
-<!-- Delete Modal HTML -->
-
-<ng-template #contentDelete>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div>
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete Apprenant</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            (click)="modalRef.hide()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete these Records?</p>
-                        <p class="text-warning"><small>This action cannot be undone.</small></p>
-                    </div>
-                    <form class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
-                            (click)="modalRef.hide()">
-                        <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(themeDeFormation)">
-
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</ng-template>
+    </ng-template>
+    <!-- detail Modal HTML -->
+
+    <!-- detail Modal HTML -->
+    <ng-template #contentDetails>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form [formGroup]="editForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit theme de formation </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Id formation </label>
+                                <input readonly type="text" formControlName="idFormation" class="form-control" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Nom de Formation : </label>
+                                <input type="text" formControlName="nomFormation" class="form-control" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Abrivation de formation </label>
+                                <input type="text" formControlName="abrevation" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description de formation </label>
+                                <!-- <input type="text" formControlName="description" class="form-control" required> -->
+                                <textarea class="form-control" formControlName="description"
+                                    required>Description de formation :</textarea>
+                            </div>
+
+
+
+
+
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal"
+                                    (click)="modalRef.hide()" value="Fermer">
+                                <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <!-- Delete Modal HTML -->
+    <!-- Delete Modal HTML -->
+
+    <ng-template #contentDelete>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Apprenant</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <form class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                                (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-danger" value="Supprimer"
+                                (click)="onDelete(themeDeFormation)">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>

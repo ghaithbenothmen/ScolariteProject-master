@@ -28,6 +28,7 @@ export class ThemeDeFormationComponent {
     public numberOfThemes!: number;
     errorMessage!: string;
     successMessage!:string;
+  noDataAvailable!: boolean;
   
 
   constructor(private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,public themeDeFormationService : ThemeDeFormationService,private authService:AuthService) { }
@@ -46,7 +47,13 @@ export class ThemeDeFormationComponent {
       console.log(response);
      
       this.ThemeDeFormation = response;
-      this.numberOfThemes=response.length;
+      this.numberOfThemes = response.length;
+    
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
       });
   }
   

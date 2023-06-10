@@ -20,6 +20,7 @@ public dateActualite !: string;
   editForm: any;
   
 public isCollapsed = true;
+  noDataAvailable!: boolean;
 
   constructor(private modalService: BsModalService, private datePipe: DatePipe,  private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService) { }
  
@@ -54,6 +55,12 @@ public isCollapsed = true;
       });
       
       this.Actualites = response;
+     
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
      
       });
   }

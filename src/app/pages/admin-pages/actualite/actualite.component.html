@@ -1,39 +1,39 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <div class="container">
-	
-		
+
+
     <!-- ======================= Cards ================== -->
     <div class="cardBox">
         <div class="card">
             <div>
                 <div class="numbers">{{numberActu}}<span class="iconBx"><i class="bi bi-bookmark-fill"></i></span></div>
-                
+
             </div>
             <div class="cardName">Actualités </div>
-            
+
         </div>
 
-        
+
     </div>
 
     <div class="alert alert-success" role="alert" *ngIf="message">
         {{message}}
     </div>
-    
+
     <!-- ================ Order Details List ================= -->
-    <div class="details" >
-        <div class="recentOrders" >
-            <div class="cardHeader" >
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
                 <h2>Liste des Actualités</h2>
                 <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
-                    class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
+                        class="material-icons">&#xE147;</i> <span>Ajouter Actualités</span></button>
             </div>
 
-            <table>
+            <table *ngIf="!noDataAvailable">
                 <thead>
                     <tr>
 
-                        
+
                         <th>image</th>
                         <th>Titre</th>
                         <th>Description </th>
@@ -46,191 +46,196 @@
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
 
-                        
+
                         <td><img src="{{'data:'+actualite.fileType+';base64,' + actualite.data}}" width="100px"
                                 height="100pc" /></td>
-                                
+
                         <td>{{actualite.titreActualite}}</td>
                         <td>{{actualite.descriptionActualite}}</td>
                         <td>{{actualite.dateActualite}}</td>
-             
+
                         <td>
                             <a type="button" (click)="openDetails(contentDetails, actualite)" class="edit"
                                 data-toggle="modal">
                                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a type="button" (click)="openDelete(contentDelete, actualite)" class="delete" data-toggle="modal"><i
-									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a type="button" (click)="openDelete(contentDelete, actualite)" class="delete"
+                                data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                    title="Delete">&#xE872;</i></a>
                         </td>
                         <!-- </ng-container> -->
                     </tr>
 
                 </tbody>
             </table>
-            <pagination-controls previousLabel="Précédent"
-			nextLabel="Suivant"
-			(pageChange)="onTableChange($event)">
-				
-			</pagination-controls>
+            <div *ngIf="noDataAvailable" class="no-data-container">
+                <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                    alt="No data available">
+
+            </div>
+            <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
+
+            </pagination-controls>
         </div>
 
     </div>
 
 
-<ng-template #modalTemplate>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate >
-                    <div class="modal-header">
-                        <h4 class="modal-title">Ajouter Actualite</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            (click)="modalRef.hide()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- <div class="form-group">
+    <ng-template #modalTemplate>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ajouter Actualite</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- <div class="form-group">
 							<label>Code </label>
 							<input type="text" name="codeEtablissement" #codeEtablissement="ngModel" class="form-control" required ngModel>
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
-                        <div class="form-group">
-                            <label>Titre Actualite :</label>
-                            <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
-                                required ngModel>
-                            <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
-                                entrer le titre de l'actualite </span>
-                        </div>
-                        <div class="form-group">
-                            <label>Description Actualite:</label>
-                            <!-- <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
+                            <div class="form-group">
+                                <label>Titre Actualite :</label>
+                                <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
+                                    required ngModel>
+                                <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
+                                    entrer le titre de l'actualite </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Description Actualite:</label>
+                                <!-- <input type="text" name="descriptionActualite" #descriptionActualite="ngModel"
                                 class="form-control" required ngModel> -->
                                 <textarea name="descriptionActualite" #descriptionActualite="ngModel"
-                                class="form-control" required ngModel>Description  :</textarea>
-                            <span *ngIf="descriptionActualite.invalid && descriptionActualite.touched"
-                                class="error">Vous devez entrer le description de l'Actualite</span>
-                        </div>
-                        <div class="form-group">
-                            <label>Date :</label>
-                            <input type="date" name="dateActualite" #dateActualite="ngModel"
-                                class="form-control" required ngModel>
-                            <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
-                                devez
-                                entrer date de l'Actualite</span>
-                        </div>
+                                    class="form-control" required ngModel>Description  :</textarea>
+                                <span *ngIf="descriptionActualite.invalid && descriptionActualite.touched"
+                                    class="error">Vous devez entrer le description de l'Actualite</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Date :</label>
+                                <input type="date" name="dateActualite" #dateActualite="ngModel" class="form-control"
+                                    required ngModel>
+                                <span *ngIf="dateActualite.invalid && dateActualite.touched" class="error">Vous
+                                    devez
+                                    entrer date de l'Actualite</span>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Heure debut :</label>
-                            <input type="time" name="heureDebut" #heureDebut="ngModel"
-                                class="form-control" required ngModel>
-                            <span *ngIf="heureDebut.invalid && heureDebut.touched" class="error">Vous
-                                devez
-                                entrer heure de l'Actualite</span>
-                        </div>
-                       
-                        
-                        <div class="form-group">
-                            <label>Image :</label>
-                            <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
-                                (change)="onFileChanged($event)">
-                            <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
-                            Actualite</span>
-                        </div>
+                            <div class="form-group">
+                                <label>Heure debut :</label>
+                                <input type="time" name="heureDebut" #heureDebut="ngModel" class="form-control" required
+                                    ngModel>
+                                <span *ngIf="heureDebut.invalid && heureDebut.touched" class="error">Vous
+                                    devez
+                                    entrer heure de l'Actualite</span>
+                            </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
-                        <input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</ng-template>
-<!-- detail Modal HTML -->
+                            <div class="form-group">
+                                <label>Image :</label>
+                                <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
+                                    (change)="onFileChanged($event)">
+                                <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
+                                    Actualite</span>
+                            </div>
 
-<!-- detail Modal HTML -->
-<ng-template #contentDetails>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form [formGroup]="editForm">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Actualite </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            (click)="modalRef.hide()">&times;</button>
-
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Code </label>
-                            <input readonly type="text" formControlName="codeActualite" class="form-control"
-                                required>
 
                         </div>
-                        <div class="form-group">
-                            <label>Titre : </label>
-                            <input type="text" formControlName="titreActualite" class="form-control" required>
-
-                        </div>
-                        <div class="form-group">
-                            <label>Description Actualite: </label>
-                            <textarea formControlName="descriptionActualite" class="form-control" required>Description  :</textarea>
-                            <!-- <input type="text" formControlName="descriptionActualite" class="form-control" required> -->
-                        </div>
-
-                        <div class="form-group">
-                            <label>Date actualite: </label>
-                            <input type="date" formControlName="dateActualite" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Heure debut :</label>
-                            <input type="time" formControlName="heureDebut"
-                                class="form-control" required  >
-                            
-                        </div>
-                      
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" formControlName="file" class="form-control"
-                                (change)="onFileChanged($event)" required>
-                        </div>
-
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
-                                value="Fermer">
-                            <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                            <input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</ng-template>
-<!-- Delete Modal HTML -->
-<!-- Delete Modal HTML -->
+    </ng-template>
+    <!-- detail Modal HTML -->
 
-<ng-template #contentDelete>
-	<div >
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div>
-					<div class="modal-header">
-						<h4 class="modal-title">Delete Apprenant</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-							(click)="modalRef.hide()">&times;</button>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<form class="modal-footer" >
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
-							(click)="modalRef.hide()">
-						<input type="submit" class="btn btn-danger"  value="Supprimer" (click)="onDelete(actualite)">
-						
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</ng-template>
+    <!-- detail Modal HTML -->
+    <ng-template #contentDetails>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form [formGroup]="editForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Actualite </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Code </label>
+                                <input readonly type="text" formControlName="codeActualite" class="form-control"
+                                    required>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Titre : </label>
+                                <input type="text" formControlName="titreActualite" class="form-control" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Description Actualite: </label>
+                                <textarea formControlName="descriptionActualite" class="form-control"
+                                    required>Description  :</textarea>
+                                <!-- <input type="text" formControlName="descriptionActualite" class="form-control" required> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label>Date actualite: </label>
+                                <input type="date" formControlName="dateActualite" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Heure debut :</label>
+                                <input type="time" formControlName="heureDebut" class="form-control" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" formControlName="file" class="form-control"
+                                    (change)="onFileChanged($event)" required>
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal"
+                                    (click)="modalRef.hide()" value="Fermer">
+                                <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <!-- Delete Modal HTML -->
+    <!-- Delete Modal HTML -->
+
+    <ng-template #contentDelete>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Apprenant</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <form class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
+                                (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-danger" value="Supprimer" (click)="onDelete(actualite)">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
