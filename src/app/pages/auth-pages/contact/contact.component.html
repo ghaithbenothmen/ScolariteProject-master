@@ -79,16 +79,23 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label class="label" for="name">Nom et Prénom</label>
-                        <input type="text" class="form-control" name="nomPrenom" #nomPrenom="ngModel" ngModel
+                        <label class="label" for="name">Nom </label>
+                        <input type="text" class="form-control" name="nom" #nom="ngModel" ngModel
                           placeholder="Nom et Prenom">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label class="label" for="email">Addresse Email</label>
-                        <input type="email" class="form-control" name="email" #email="ngModel" ngModel
+                        <label class="label" for="email">Prénom</label>
+                        <input type="text" class="form-control" name="prenom" #prenom="ngModel" ngModel
                           placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="subject">Addresse Email</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email"  #email="ngModel" ngModel
+                          >
                       </div>
                     </div>
                     <div class="col-md-12">

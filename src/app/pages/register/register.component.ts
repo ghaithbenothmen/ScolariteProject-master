@@ -21,7 +21,7 @@ export class RegisterComponent {
   
   myForm!: FormGroup;
   
- 
+  submitted = false;
 
   public registerForm!: FormGroup;
   public items = ['Eleve', 'Etudiant', "Demandeur_emploie", 'Professionel'];
@@ -57,11 +57,11 @@ export class RegisterComponent {
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
       dateNaissanceApprenant: ['', Validators.required],
-      tel: ['', Validators.required],
+      tel: ['',[ Validators.required,Validators.pattern('^[0-9]{8}$')]],
       adresse: ['', Validators.required],
-      qualiteApprenant: ['', Validators.required],
+      qualiteApprenant: [null, Validators.required],
       sexeApprenant: ['', Validators.required],
-      niveauApprenant: [''],
+      niveauApprenant: [null,Validators.required],
     }, { validator: this.passwordsMatchValidator });
   }
   
@@ -74,7 +74,7 @@ export class RegisterComponent {
   onRegister(): void {
     
     //console.log(this.registerForm.value);
-       
+    this.submitted = true;
     // Check if the form is valid
     if (this.registerForm.valid) {
      
@@ -88,7 +88,7 @@ export class RegisterComponent {
       },
       
       (error) => {
-        this.errorMessage = error.message;
+        this.errorMessage = "Cet adresse mail exist déja !";
       })
       // Send the form data to the API
       

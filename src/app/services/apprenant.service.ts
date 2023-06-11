@@ -24,6 +24,14 @@ export class ApprenantService {
     return this.httpClient.get<Apprenant[]>(this.apiURL, { headers: httpHeaders });
   }
 
+  getApprenantId(id:number) {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.httpClient.get<Apprenant>(`${this.apiURL}/${id}`, { headers: httpHeaders });
+  }
+
+
 
   ajoutApp(app: Apprenant): Observable<Apprenant> {
 

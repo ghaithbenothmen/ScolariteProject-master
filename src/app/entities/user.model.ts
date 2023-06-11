@@ -5,6 +5,8 @@ export class User {
     password!:string;
     role!:Role;
     verified!:boolean;
-
-
+    archive!:boolean;
+nom!:string;
+prenom!:string;
+tel!:string;
   }

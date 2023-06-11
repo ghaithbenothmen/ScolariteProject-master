@@ -15,7 +15,13 @@ export class formateurService  {
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 
 
-
+  getFormateurId(id:number) {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    
+    return this.httpClient.get<Formateur>(`${this.apiURL}${id}`, { headers: httpHeaders });
+  }
   
   getFormateur() {
     let jwt = this.authService.getToken();

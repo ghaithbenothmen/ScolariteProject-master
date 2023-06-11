@@ -43,7 +43,7 @@ export class ApprenantComponent {
   constructor(private userSer: UserService, private modalService: BsModalService, private httpClient: HttpClient, private fb: FormBuilder,
     private appService: ApprenantService, private authService: AuthService) { }
     
-    
+    public itemsNiveau = ['<Bac', 'Bac +3', "Bac +4", '>Bac +4'];
     //Pagination//
     page:number=1;
     count:number=0;

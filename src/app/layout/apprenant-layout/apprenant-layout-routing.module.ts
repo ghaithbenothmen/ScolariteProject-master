@@ -9,6 +9,7 @@ import { SessionInseritComponent } from 'src/app/pages/apprenant-pages/session-i
 
 import { SessionComponent } from 'src/app/pages/apprenant-pages/session/session.component';
 import { ApprenantSessComponent } from 'src/app/pages/formateur-pages/apprenant-sess/apprenant-sess.component';
+import { DashAppComponent } from 'src/app/pages/apprenant-pages/dash-app/dash-app.component';
 
 const routes: Routes = [
   { path: 'inscri/:id', component: InscriptionComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
     { path: 'Session-Insecrit', component: SessionInseritComponent},
     { path: 'Seance-app/:id', component: SeanceAppComponent},
     { path: 'edit-profil', component: EditProfilComponent},
-    
+
+     { path: 'dash-app', component: DashAppComponent},
 ];
 
 @NgModule({
