@@ -64,20 +64,19 @@
                                 </div>
 
                             </ng-container>
-                            <ng-container *ngFor="let seanc of seances">
-                                <ng-container
-                                    *ngIf="sessionFormations.idSessionFormation==seanc.sessionFormation.idSessionFormation && sessionFormations.endOf==false  ">
-                                    <div class="row">
-                                        <div class="col-6 py-1 text-right border-right">
-                                            <strong>Statut</strong>
-                                        </div>
-                                        <div class="col-6 py-1 badge badge-success ">Commencée</div>
+
+                            <ng-container *ngIf="seances.length!=0&& sessionFormations.endOf==false  ">
+                                <div class="row">
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
                                     </div>
-
-                                </ng-container>
-
+                                    <div class="col-6 py-1 badge badge-success ">Commencée</div>
+                                </div>
 
                             </ng-container>
+
+
+
                             <ng-container *ngIf="sessionFormations.endOf==true ">
                                 <div class="row">
                                     <div class="col-6 py-1 text-right border-right">
