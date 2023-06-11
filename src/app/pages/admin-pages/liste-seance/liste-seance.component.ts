@@ -1,5 +1,4 @@
 
-import { Apprenant } from 'src/app/entities/apprenant.model';
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -10,14 +9,15 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SeanceService } from 'src/app/services/seance.service';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
 import { InscriptionService } from 'src/app/services/inscription.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-seance-app',
-  templateUrl: './seance-app.component.html',
-  styleUrls: ['./seance-app.component.css', '../../admin-pages/apprenant/apprenant.component.css']
+  selector: 'app-liste-seance',
+  templateUrl: './liste-seance.component.html',
+  styleUrls: ['./liste-seance.component.css', '../../admin-pages/apprenant/apprenant.component.css']
+
 })
-export class SeanceAppComponent {
-  public modalRef!: BsModalRef;
+export class ListeSeanceComponent {
+public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
   
@@ -48,7 +48,7 @@ export class SeanceAppComponent {
 public lengthInscri!:number;
 public noDataAvailable !: boolean;
 
-  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
+  constructor( private router:Router,private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
  
  
@@ -157,9 +157,8 @@ console.log("hhhhh", this.selectedCheckboxes);
 
   ngOnInit(): void {
     
-    this.idSession = this.route.snapshot.params["id"];
+  this.idSession = this.route.snapshot.params["id"];
     console.log('ddd',this.idSession);
-
     this.getSeance();
     console.log(this.authService.getToken());
 

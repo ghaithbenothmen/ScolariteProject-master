@@ -11,7 +11,6 @@ import { Apprenant } from 'src/app/entities/apprenant.model';
 
 
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

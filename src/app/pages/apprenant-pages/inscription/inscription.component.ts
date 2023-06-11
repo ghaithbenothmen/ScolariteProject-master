@@ -17,7 +17,7 @@ import { Formateur } from 'src/app/entities/formateur.model';
 
 import { DatePipe } from '@angular/common';
 import { InscriptionService } from 'src/app/services/inscription.service';
-import { Apprenant } from '../../../entities/apprenant.model';
+import { Apprenant } from 'src/app/entities/apprenant.model';
 import { ApprenantService } from 'src/app/services/apprenant.service';
 import { Inscription } from 'src/app/entities/inscription.model';
 @Component({

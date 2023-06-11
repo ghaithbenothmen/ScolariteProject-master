@@ -14,6 +14,7 @@ import { ListeAppSessionComponent } from 'src/app/pages/admin-pages/liste-app-se
 import { AdminDashComponent } from 'src/app/pages/admin-pages/admin-dash/admin-dash.component';
 import { ApprenantArchComponent } from 'src/app/pages/admin-pages/apprenant-arch/apprenant-arch.component';
 import { FormateurArchiveComponent } from 'src/app/pages/admin-pages/formateur-archive/formateur-archive.component';
+import { EditProfilAdminComponent } from 'src/app/pages/admin-pages/edit-profil-admin/edit-profil-admin.component';
 
 
 
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'messages', component: MessagesComponent },
   { path: 'app-liste-app-by-session', component: AppBySessionComponent },
 
-  
+  { path: 'edit_profil', component:EditProfilAdminComponent},
  //{path: 'Seance-Formation',component: SeanceComponent},
   { path: 'ListeAppSession/:id', component: ListeAppSessionComponent },
   

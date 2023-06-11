@@ -59,7 +59,10 @@ public items = ['En ligne', 'Présentiel'];
 
 
   }
-
+onSelect(sessionFormation :SessionFormation) {
+    this.router.navigate(['/admin-dashboard/liste-seance-by-session', sessionFormation.idSessionFormation]);
+}
+  
   onSelectApp(sessionFormation :SessionFormation) {
     this.router.navigate(['/admin-dashboard/ListeAppSession', sessionFormation.idSessionFormation]);
   }
