@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-actu-page',
   templateUrl: './actu-page.component.html',
-  styleUrls: ['../../../components/navbar/navbar.component.css']
+  styleUrls: ['../../../components/navbar/navbar.component.css','./actu-page.component.css']
 })
 export class ActuPageComponent {
     public modalRef!: BsModalRef;
@@ -27,7 +27,7 @@ public isCollapsed = true;
  
   page:number=1;
   count:number=0;
-  tableSize:number=4;
+  tableSize:number=3;
   onTableChange(event:any){
     this.page=event;
     this.getActualite();

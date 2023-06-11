@@ -4,14 +4,17 @@ import { AuthService } from '../../services/auth.service';
 import { EtablissementService } from 'src/app/services/etablissement.service';
 import { ImageService } from 'src/app/services/image.service';
 import { Etablissement } from 'src/app/entities/etablissement.model';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css','../../../responsive.css']
 })
 export class NavbarComponent implements OnInit {
-  
+  setActiveNavItem(route: string): boolean {
+    return this.router.url.includes(route);
+  }
   public isCollapsed=true;
   public etablissements!: Etablissement[];
 
