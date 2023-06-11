@@ -76,9 +76,14 @@ import { EditProfilComponent } from './pages/apprenant-pages/edit-profil/edit-pr
 import { EditFormateurComponent } from './pages/formateur-pages/edit-formateur/edit-formateur.component';
 import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
 import { ApprenantArchComponent } from './pages/admin-pages/apprenant-arch/apprenant-arch.component';
+
+import { DashAppComponent } from './pages/apprenant-pages/dash-app/dash-app.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { EditProfilAdminComponent } from './pages/admin-pages/edit-profil-admin/edit-profil-admin.component';
 
 import { ListeSeanceComponent } from './pages/admin-pages/liste-seance/liste-seance.component';
+
 
 
 
@@ -137,9 +142,13 @@ registerLocaleData(localeFr);
           EditFormateurComponent,
           ForgotPassComponent,
           ApprenantArchComponent,
+
+          DashAppComponent,
+
           EditProfilAdminComponent,
    
           ListeSeanceComponent,
+
 
       
 
@@ -152,6 +161,7 @@ registerLocaleData(localeFr);
     providers: [BsModalService,AuthGuard,DatePipe,{ provide: LOCALE_ID, useValue: 'fr' }],
     bootstrap: [AppComponent],
     imports: [
+        FontAwesomeModule,
         CommonModule,
         MatSidenavModule,
         MatToolbarModule,
@@ -168,7 +178,8 @@ registerLocaleData(localeFr);
         ReactiveFormsModule,
         CollapseModule.forRoot(),
         NgxPaginationModule,
-        CDBFreeModule
+        CDBFreeModule,
+        FontAwesomeModule
     ]
 })
 export class AppModule { }

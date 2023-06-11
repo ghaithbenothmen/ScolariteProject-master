@@ -76,22 +76,28 @@ public noDataAvailable !: boolean;
   getSeance() {
 
     this.SessionFormationService.getSessionFormation().subscribe(response => {
-      console.log(response);
-
-      this.sessionFormations = response;
+      //console.log(response);
 
     });
     this.seanceService.getSeance().subscribe(response => {
-      console.log(response);
+
+      //console.log(response);
       this.lengthInscri = 0;
-      this.seances = response;
+      //this.seances = response;
     
+      this.seances = response.filter(sea=>sea.sessionFormation.idSessionFormation==this.idSession);//filter html
+   
+      console.log("coucou",this.seances);
       
       for(let seance of response){
+       
         if(seance.sessionFormation.idSessionFormation == this.idSession){
           this.lengthInscri++;
+          seance.inscription.forEach(inscription => {
+            //console.log(inscription.codeInscription); // Access the inscription ID
+            console.log(inscription.apprenant); // Access other properties of the apprenant object
           
-          
+          });
           
       }
     }

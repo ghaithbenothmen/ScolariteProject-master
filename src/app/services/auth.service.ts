@@ -81,7 +81,7 @@ export class AuthService {
   {   if (this.token == undefined)
             return;
     const decodedToken = this.helper.decodeToken(this.token);
-    //console.log("roles :"+this.roles);
+    //console.log("decoded :"+decodedToken.nom);
     this.roles = decodedToken.roles;
     this.loggedUser = decodedToken.sub;
   }

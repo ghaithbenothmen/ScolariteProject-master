@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="login_form">
+				<div class="login_form m-5">
 					<h5>
 						Se connecter maintenant
 					</h5>
@@ -29,7 +29,7 @@
 							<input type="password" placeholder="Password" name="password" [(ngModel)]="user.password"
 								required />
 						</div>
-						<a href="forgot-password"> mot de passe oublié ?</a>
+						<a href="forgot-password" class="m-5"> mot de passe oublié ?</a>
 						<div *ngIf="message" class="alert alert-success">{{ message }}</div>
 
 
@@ -40,6 +40,10 @@
 						<div class="alert alert-danger" *ngIf="err2==1">
 
 							<strong>Votre compte n'est pas vérifier</strong>
+						</div>
+						<div class="alert alert-danger" *ngIf="err3==1">
+
+							<strong>Votre compte est archivé ,veuillez contactez l'aministration !</strong>
 						</div>
 						<button type="submit" (click)="onLoggedin()">Se connecter</button>
 					</form>

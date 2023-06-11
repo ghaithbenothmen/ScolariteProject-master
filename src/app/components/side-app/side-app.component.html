@@ -1,48 +1,48 @@
 <div class="app" style="display: flex; height: 100vh; overflow:scroll initial">
-    <CDBSidebar textColor="#ffffff" backgroundColor="#333333">
-        <CDBSidebarHeader [prefix]="icon">
-
-            <a href="#" class="brand">
-                <ng-container *ngFor="let etablissement of etablissements">
-                    <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
-                        width="50px" height="50px" />
-                    <span class="text text-light">{{etablissement.nomEtablissement}}</span>
-                </ng-container>
-            </a>
-            <ng-template #icon>
-                <i class="fa fa-bars fa-large"></i>
-            </ng-template>
-
-
-        </CDBSidebarHeader>
-
-        <CDBSidebarContent>
-            <CDBSidebarMenu class="sidebar-content">
-                <CDBSidebarMenuItem link='/' icon="columns">
-                    Dashboard
-                </CDBSidebarMenuItem>
-                <CDBSidebarMenuItem link='ListeSession' icon="table">
-                    Liste des sessions
-                </CDBSidebarMenuItem>
-                <CDBSidebarMenuItem link='Session-Insecrit' icon="users"><!-- <i class="mx-2 bi bi-people-fill"></i> -->
-                    Liste des inscriptions
-                </CDBSidebarMenuItem>
-
-            </CDBSidebarMenu>
-        </CDBSidebarContent>
-        <div class="mt-auto">
-
-            <CDBSidebarFooter class="sidebar-content">
-                <CDBSidebarMenuItem link='/user-dashboard/edit-profil'><i class="mx-2 bi bi-person-fill"></i>
-                    <span style="margin-left: 5px;">Profil</span>
-                </CDBSidebarMenuItem>
-
-                <CDBSidebarMenuItem><i class="bi mx-2 bi-box-arrow-right"></i>
-                    <span style="margin-left: 5px;" (click)="onLogout()">Déconnexion</span>
-                </CDBSidebarMenuItem>
-
-
-            </CDBSidebarFooter>
-        </div>
-    </CDBSidebar>
-</div>
+        <CDBSidebar textColor="#ffffff" backgroundColor="#333333">
+            <CDBSidebarHeader [prefix]="icon" >
+    
+                <a href="#" class="brand">
+                    <ng-container *ngFor="let etablissement of etablissements">
+                            <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
+                                    width="50px" height="50px" />
+                            <span class="text text-light">{{etablissement.nomEtablissement}}</span>
+                    </ng-container>
+                 </a>
+                <ng-template #icon>
+                    <i class="fa fa-bars fa-large"></i>
+                </ng-template>
+    
+               
+            </CDBSidebarHeader>
+    
+            <CDBSidebarContent>
+                <CDBSidebarMenu class="sidebar-content">
+                    <CDBSidebarMenuItem link='/' icon="columns" >
+                        Dashboard                   
+                    </CDBSidebarMenuItem>               
+                    <CDBSidebarMenuItem link='ListeSession' icon="table" >
+                        Liste des sessions                
+                    </CDBSidebarMenuItem>               
+                    <CDBSidebarMenuItem link='Session-Insecrit'  icon="users"><!-- <i class="mx-2 bi bi-people-fill"></i> -->
+                        Liste des inscriptions                  
+                    </CDBSidebarMenuItem>               
+                                 
+                </CDBSidebarMenu>
+            </CDBSidebarContent>
+            <div class="mt-auto">
+    
+                <CDBSidebarFooter class="sidebar-content">
+                    <CDBSidebarMenuItem link='/user-dashboard/edit-profil' ><i class="mx-2 bi bi-person-fill"></i>
+                        <span style="margin-left: 5px;">Profil</span>                    
+                    </CDBSidebarMenuItem> 
+                  
+                    <CDBSidebarMenuItem  ><i class="bi mx-2 bi-box-arrow-right"></i>
+                        <span style="margin-left: 5px;" (click)="onLogout()">Déconnexion</span>                    
+                    </CDBSidebarMenuItem> 
+    
+                    
+                </CDBSidebarFooter>
+            </div>
+        </CDBSidebar>
+    </div>

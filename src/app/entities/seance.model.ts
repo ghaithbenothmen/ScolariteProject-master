@@ -1,4 +1,5 @@
 import { SessionFormation } from "./SessionFormation.model";
+import { Inscription } from "./inscription.model";
 
 export class seance {
     
@@ -15,7 +16,8 @@ export class seance {
       public file: File,
       public fileType: string,
       public sessionFormation: SessionFormation,
-      public idSessionFormation:number
+      public idSessionFormation:number,
+      public inscription:Inscription[],
     ) {
     }
   }

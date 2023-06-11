@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="login_form">
+				<div class="login_form m-5">
 					<h5>
 						S'inscrire maintenant
 					</h5>
@@ -28,12 +28,26 @@
 								<div class="form-outline">
 									<input type="text" id="form3Example1m" class="form-control" placeholder="Prenom"
 										formControlName="prenom" name="prenom">
+									<div
+										*ngIf="registerForm.controls['prenom'].invalid && registerForm.controls['prenom'].touched">
+										<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+										<div *ngIf="registerForm.controls['prenom']?.errors?.['required']"
+											class="error">Prenom est obligatoire</div>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-6 ">
 								<div class="form-group">
 									<input type="text" id="form3Example1n" class="form-control" placeholder="Nom"
 										formControlName="nom">
+									<div
+										*ngIf="registerForm.controls['nom'].invalid && registerForm.controls['nom'].touched">
+										<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+										<div *ngIf="registerForm.controls['nom']?.errors?.['required']" class="error">
+											Nom est obligatoire</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -41,26 +55,55 @@
 						<div class="form-group">
 							<input type="date" id="form3Example8" class="form-control" placeholder="date"
 								formControlName="dateNaissanceApprenant">
+							<div
+								*ngIf="registerForm.controls['dateNaissanceApprenant'].invalid && registerForm.controls['dateNaissanceApprenant'].touched">
+								<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+								<div *ngIf="registerForm.controls['dateNaissanceApprenant']?.errors?.['required']"
+									class="error">Date de naissance est obligatoire</div>
+							</div>
 						</div>
 						<div class="form-group">
-							<input type="text" id="form3Example8" class="form-control" placeholder="Telephone"
-								formControlName="tel">
+							<input type="number" id="form3Example8" class="form-control" placeholder="Telephone"
+								formControlName="tel" >
+							<div *ngIf="registerForm.controls['tel'].invalid && registerForm.controls['tel'].touched">
+								<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+								<div *ngIf="registerForm.controls['tel']?.errors?.['required']" class="error">Téléphone
+									est obligatoire</div>
+								<div *ngIf="registerForm.controls['tel']?.errors?.['pattern']" class="error">Téléphone
+									doit contenir 8 chiffres</div>
+
+							</div>
 						</div>
 
 						<div class="form-group">
 							<input type="text" id="form3Example8" class="form-control" placeholder="Adresse"
 								formControlName="adresse">
+							<div
+								*ngIf="registerForm.controls['adresse'].invalid && registerForm.controls['adresse'].touched">
+								<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+								<div *ngIf="registerForm.controls['adresse']?.errors?.['required']" class="error">
+									1dresse est obligatoire</div>
+							</div>
 						</div>
 
 						<div class="form-group">
 							<select class="form-select" formControlName="qualiteApprenant" required>
-								<option [value]="null" disabled selected>Selectionner une session de formation
+								<option [value]="null" disabled selected>Selectionner votre qualité
 								</option>
 								<option *ngFor="let item of items" [value]="item">{{ item }}</option>
 							</select>
-							<!--  <span *ngIf="registerForm.get('qualiteApprenant').invalid && registerForm.get('qualiteApprenant').touched" class="error">Vous devez entrer qualité de l'apprenant</span> -->
+							<div
+								*ngIf="registerForm.controls['qualiteApprenant'].invalid && registerForm.controls['qualiteApprenant'].touched">
+								<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+								<div *ngIf="registerForm.controls['qualiteApprenant']?.errors?.['required']"
+									class="error">Votre qualité</div>
+							</div>
 						</div>
-						<div class="btn-group">
+						<div class="btn-group m-1">
 							<input type="radio" class="btn-check" value="homme" id="option1" autocomplete="off"
 								formControlName="sexeApprenant" name="sexeApprenant">
 							<label class="btn btn-primary rounded m-1" for="option1">Homme</label>
@@ -68,22 +111,46 @@
 							<input type="radio" class="btn-check" value="femme" id="option2" autocomplete="off"
 								formControlName="sexeApprenant">
 							<label class="btn btn-primary rounded m-1" for="option2">Femme</label>
+
+							<div
+								*ngIf="registerForm.controls['sexeApprenant'].invalid && registerForm.controls['sexeApprenant'].touched">
+								<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+								<div *ngIf="registerForm.controls['sexeApprenant']?.errors?.['required']" class="error">
+									Votre sexe</div>
+							</div>
 						</div>
 						<div class="form-group">
-							
-								<select class="form-select" formControlName="niveauApprenant" required>
-									<option [value]="null" disabled selected>Selectionner une session de formation
-									</option>
-									<option *ngFor="let item of itemsNiveau" [value]="item">{{ item }}</option>
-								</select>
+
+							<select class="form-select" formControlName="niveauApprenant" required>
+								<option [value]="null" disabled selected>Selectionner votre niveau
+								</option>
+								<option *ngFor="let item of itemsNiveau" [value]="item">{{ item }}</option>
+							</select>
+							<div
+								*ngIf="registerForm.controls['niveauApprenant'].invalid && registerForm.controls['niveauApprenant'].touched">
+								<!-- <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="error">mot de passe est obligatoire</div> -->
+
+								<div *ngIf="registerForm.controls['niveauApprenant']?.errors?.['required']"
+									class="error">Votre niveau</div>
+							</div>
 						</div>
 
 						<div>
 							<input class="form-control" type="email" placeholder="Email " name="emailApprenant" required
 								ngModel formControlName="email" />
-							<div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier syntax
-								de votre email</div>
-							<!-- <div *ngIf="registerForm.controls['email']?.errors?.['required']" class="error">email obligatoire</div> -->
+
+							<div
+								*ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
+								<div *ngIf="registerForm.controls['email']?.errors?.['email']" class="error">Verifier
+									syntax
+									de votre email</div>
+								<div *ngIf="registerForm.controls['email']?.errors?.['required']" class="error">Votre
+									mail</div>
+
+							</div>
+
+
 						</div>
 						<div class="form-group">
 							<input class="form-control" type="password" placeholder="Mot de passe" name="password"
@@ -104,8 +171,12 @@
 							*ngIf="registerForm.hasError('passwordsMismatch') && ((registerForm.controls['confirmPassword']?.dirty) || registerForm.controls['confirmPassword']?.touched)">
 							Les mots de passe ne correspondent pas.
 						</div>
-
-						<button type="submit">Submit</button>
+						<div *ngIf="submitted && registerForm.invalid" class="error">
+							Veuillez remplir tous les champs requis.
+						</div>
+						<p>{{errorMessage}}
+						<p>
+							<button type="submit">Soumettre</button>
 					</form>
 
 				</div>

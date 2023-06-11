@@ -231,8 +231,13 @@
 
 								<div class="form-group">
 									<label>Niveau d'etude:</label>
-									<input type="text" name="niveauApprenant" #niveauApprenant="ngModel"
-										class="form-control" required ngModel>
+									
+									<select class="form-select" name="niveauApprenant" required #niveauApprenant="ngModel"
+									ngModel required [(ngModel)]="selectedValue">
+										<option [value]="null" disabled selected>Selectionner un niveau
+										</option>
+										<option *ngFor="let item of itemsNiveau" [value]="item">{{ item }}</option>
+									</select>
 									<span *ngIf="niveauApprenant.invalid && niveauApprenant.touched" class="error">Vous
 										devez
 										entrer le niveau de l'apprenant</span>
