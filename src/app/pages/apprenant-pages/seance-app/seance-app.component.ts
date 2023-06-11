@@ -1,5 +1,5 @@
 
-import { Apprenant } from './../../../entities/apprenant.model';
+import { Apprenant } from 'src/app/entities/apprenant.model';
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';

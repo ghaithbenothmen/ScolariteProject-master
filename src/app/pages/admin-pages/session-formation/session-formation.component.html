@@ -33,19 +33,20 @@
                         class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
             </div>
 
-            <table>
+            <table *ngIf="!noDataAvailable">
                 <thead>
                     <tr>
 
 
                         <th>Img </th>
-                        <th>Theme de formation </th>
+                        <th>Theme </th>
                         <th>Formateur </th>
                         <th>Date debut </th>
                         <th> Nombre d'heure </th>
                         <th> Locale / en ligne </th>
                         <th>Type formation</th>
                         <th>Description </th>
+
                         <th>Actions</th>
 
                     </tr>
@@ -67,6 +68,7 @@
                         <td>{{SessionFormation.localFormation}}</td>
                         <td>{{SessionFormation.typeFormation}}</td>
                         <td>{{SessionFormation.description}}</td>
+
                         <td>
                             <a type="button" (click)="openDetails(contentDetails, SessionFormation)" class="edit"
                                 data-toggle="modal">
@@ -80,6 +82,11 @@
 
                 </tbody>
             </table>
+            <div *ngIf="noDataAvailable" class="no-data-container">
+                <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                    alt="No data available">
+            </div>
+            <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
 
             <!-- <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
 

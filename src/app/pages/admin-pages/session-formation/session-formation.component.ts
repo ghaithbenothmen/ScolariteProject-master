@@ -46,6 +46,7 @@ export class SessionFormationComponent {
   public numberOfSession!: number;
   errorMessage!: string;
   successMessage!: string;
+  noDataAvailable!: boolean;
 
 
   constructor(private modalService: BsModalService, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
@@ -73,6 +74,12 @@ export class SessionFormationComponent {
 
       this.sessionFormations = response;
       this.numberOfSession = response.length;
+     
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
     });
     this.formateurService.getFormateur().subscribe(response => {
       console.log(response);

@@ -19,6 +19,7 @@ public dateActualite !: string;
   editForm: any;
   
 public isCollapsed = true;
+  noDataAvailable!: boolean;
 
   constructor(private modalService: BsModalService, private datePipe: DatePipe,  private fb: FormBuilder,public themeDeFormationService:ThemeDeFormationService ,private authService:AuthService) { }
  
@@ -27,7 +28,12 @@ public isCollapsed = true;
       console.log(response);
      
       this.ThemeDeFormation = response;
-   
+ 
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
       });
   }
   ngOnInit(): void {

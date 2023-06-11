@@ -17,6 +17,8 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Inscription } from 'src/app/entities/inscription.model';
+import { SeanceService } from 'src/app/services/seance.service';
+import { seance } from 'src/app/entities/seance.model';
 @Component({
   selector: 'app-session-inserit',
   templateUrl: './session-inserit.component.html',
@@ -31,10 +33,11 @@ public items = ['En ligne', 'Présentiel'];
   public themeDeFormations!: ThemeDeFormation[];
   public themeDeFormation!: ThemeDeFormation;
   public Inscriptions!: Inscription[];
+  
   public Inscription!: Inscription;
   public formateurs!: Formateur[];
   public formateur!: Formateur;
-
+ public seances!: seance[];
   public idFormation!: number;
   public codeFormateur!: number;
 
@@ -57,12 +60,13 @@ id: any;
   public UserId!:  string | null;
  public idUser!: number;
  idSession: any;
+  noDataAvailable!: boolean;
   //SessionFormationService: any;
 
 
 
 
-  constructor( private route: ActivatedRoute, private InscriptionService :  InscriptionService  ,private router:Router ,private modalService: BsModalService,private datePipe: DatePipe, 
+  constructor( private seanceService :SeanceService ,private route: ActivatedRoute, private InscriptionService :  InscriptionService  ,private router:Router ,private modalService: BsModalService,private datePipe: DatePipe, 
      private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService,
      public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
 
@@ -72,6 +76,12 @@ id: any;
   
   
   getInsecription() {
+    this.seanceService.getSeance().subscribe(response => {
+      console.log(response);
+
+      this.seances = response;
+      //this.numberOfSession = response.length;
+    });
 
     this.InscriptionService.getInscription().subscribe((response:any[]) => {
 
@@ -94,8 +104,12 @@ id: any;
        
        this.Inscriptions = response.filter(inscri => inscri.apprenant.id === this.idUser); //nafsha f html 
        console.log(this.Inscriptions)
-      
      
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
 
     });
 

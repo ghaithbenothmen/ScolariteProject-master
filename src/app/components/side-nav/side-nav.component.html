@@ -1,75 +1,74 @@
-
 <div class="app" style="display: flex; height: 100vh; overflow:scroll initial">
-        <CDBSidebar textColor="#ffffff" backgroundColor="#333333">
-            <CDBSidebarHeader [prefix]="icon" >
-    
-                <a href="#" class="brand">
-                    <ng-container *ngFor="let etablissement of etablissements">
-                            <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
-                                    width="50px" height="50px" />
-                            <span class="text text-light">{{etablissement.nomEtablissement}}</span>
-                    </ng-container>
-                 </a>
-                <ng-template #icon>
-                    <i class="fa fa-bars fa-large"></i>
-                </ng-template>
-    
-               
-            </CDBSidebarHeader>
-    
-            <CDBSidebarContent>
-                <CDBSidebarMenu class="sidebar-content">
-                    <CDBSidebarMenuItem link='admin-dash' icon="columns" >
-                        Dashboard                   
-                    </CDBSidebarMenuItem> 
-                    <CDBSidebarMenuItem  icon="users" link='apprenant'>
-                        Liste des apprenants                 
-                    </CDBSidebarMenuItem>    
-                    <CDBSidebarMenuItem   icon="users" link='formateur' (click)="reload()"> 
-                        Liste des Formateurs          
-                    </CDBSidebarMenuItem>    
+    <CDBSidebar textColor="#ffffff" backgroundColor="#333333">
+        <CDBSidebarHeader [prefix]="icon">
+
+            <a href="#" class="brand">
+                <ng-container *ngFor="let etablissement of etablissements">
+                    <img height="36" src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}"
+                        width="50px" height="50px" />
+                    <span class="text text-light">{{etablissement.nomEtablissement}}</span>
+                </ng-container>
+            </a>
+            <ng-template #icon>
+                <i class="fa fa-bars fa-large"></i>
+            </ng-template>
 
 
-                    <CDBSidebarMenuItem link="sessionDeFormation" icon="table" >
-                        Sessions de formation                  
-                    </CDBSidebarMenuItem> 
-                    <CDBSidebarMenuItem link="themeDeFormation" icon="table" >
-                        Thémes de formation               
-                    </CDBSidebarMenuItem>
-                    
-                    <CDBSidebarMenuItem link="app-liste-app-by-session" icon="th-large" >
-                        Les inscriptions                
-                    </CDBSidebarMenuItem>
+        </CDBSidebarHeader>
+
+        <CDBSidebarContent>
+            <CDBSidebarMenu class="sidebar-content">
+                <CDBSidebarMenuItem link='admin-dash' icon="columns">
+                    Dashboard
+                </CDBSidebarMenuItem>
+                <CDBSidebarMenuItem icon="users" link='apprenant'>
+                    Liste des apprenants
+                </CDBSidebarMenuItem>
+                <CDBSidebarMenuItem icon="users" link='formateur' (click)="reload()">
+                    Liste des Formateurs
+                </CDBSidebarMenuItem>
 
 
-                    <CDBSidebarMenuItem link='actualiteDash' icon="sticky-note" >
-                        Les Actualités              
-                    </CDBSidebarMenuItem>
+                <CDBSidebarMenuItem link="sessionDeFormation" icon="table">
+                    Sessions de formation
+                </CDBSidebarMenuItem>
+                <CDBSidebarMenuItem link="themeDeFormation" icon="table">
+                    Thémes de formation
+                </CDBSidebarMenuItem>
 
-                    <CDBSidebarMenuItem link="messages" icon="book" >
-                        Les Messages              
-                    </CDBSidebarMenuItem>
+                <CDBSidebarMenuItem link="app-liste-app-by-session" icon="th-large">
+                    Les inscriptions
+                </CDBSidebarMenuItem>
 
 
-                               
-                    <CDBSidebarMenuItem link="etablissement" icon="home" >
-                        <span style="margin-left: 5px;">Etablissement</span>                    
-                    </CDBSidebarMenuItem>                 
-                </CDBSidebarMenu>
-            </CDBSidebarContent>
-            <div class="mt-auto">
-    
-                <CDBSidebarFooter class="sidebar-content">
-                    <CDBSidebarMenuItem href='/404' ><i class="mx-2 bi bi-person-fill"></i>
-                        <span style="margin-left: 5px;">Profil</span>                    
-                    </CDBSidebarMenuItem> 
-                  
-                    <CDBSidebarMenuItem href='/404' ><i class="bi mx-2 bi-box-arrow-right"></i>
-                        <span style="margin-left: 5px;">Déconnexion</span>                    
-                    </CDBSidebarMenuItem> 
-    
-                    
-                </CDBSidebarFooter>
-            </div>
-        </CDBSidebar>
-    </div>
+                <CDBSidebarMenuItem link='actualiteDash' icon="sticky-note">
+                    Les Actualités
+                </CDBSidebarMenuItem>
+
+                <CDBSidebarMenuItem link="messages" icon="book">
+                    Les Messages
+                </CDBSidebarMenuItem>
+
+
+
+                <CDBSidebarMenuItem link="etablissement" icon="home">
+                    <span style="margin-left: 5px;">Etablissement</span>
+                </CDBSidebarMenuItem>
+            </CDBSidebarMenu>
+        </CDBSidebarContent>
+        <div class="mt-auto">
+
+            <CDBSidebarFooter class="sidebar-content">
+                <CDBSidebarMenuItem link='/admin-dashboard/edit_profil'><i class="mx-2 bi bi-person-fill"></i>
+                    <span style="margin-left: 5px;">Profil</span>
+                </CDBSidebarMenuItem>
+
+                <CDBSidebarMenuItem href='/404'><i class="bi mx-2 bi-box-arrow-right"></i>
+                    <span style="margin-left: 5px;">Déconnexion</span>
+                </CDBSidebarMenuItem>
+
+
+            </CDBSidebarFooter>
+        </div>
+    </CDBSidebar>
+</div>

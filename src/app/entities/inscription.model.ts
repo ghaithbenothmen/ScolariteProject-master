@@ -1,5 +1,5 @@
 import { SessionFormation } from "./SessionFormation.model";
-import { Apprenant } from "./apprenant.model";
+import { Apprenant } from 'src/app/entities/apprenant.model';
 
 export class Inscription  {
     constructor(

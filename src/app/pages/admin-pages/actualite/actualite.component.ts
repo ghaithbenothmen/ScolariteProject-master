@@ -34,6 +34,7 @@ export class ActualiteComponent {
     public numberActu!:number;
     errorMessage!: string;
     successMessage!:string;
+  noDataAvailable!: boolean;
   
   
 
@@ -53,6 +54,12 @@ export class ActualiteComponent {
       console.log(response);
      this.numberActu=response.length;
       this.Actualites = response;
+      this.numberActu=response.length;
+      if (response.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
    
       });
   }

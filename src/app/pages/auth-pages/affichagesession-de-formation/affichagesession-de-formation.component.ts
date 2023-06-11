@@ -14,6 +14,8 @@ import { Formateur } from 'src/app/entities/formateur.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { SeanceService } from 'src/app/services/seance.service';
+import { seance } from 'src/app/entities/seance.model';
 @Component({
   selector: 'app-affichagesession-de-formation',
   templateUrl: './affichagesession-de-formation.component.html',
@@ -49,6 +51,7 @@ export class AffichagesessionDeFormationComponent {
   dbimage: any;
   idFormateur: any;
   idTh: any;
+  public seances!: seance[];
   public dateDebut !: string;
 
   public isCollapsed = true;
@@ -60,11 +63,17 @@ export class AffichagesessionDeFormationComponent {
 
 
 
-  constructor(private router: Router, private datePipe: DatePipe, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+  constructor(private seanceService: SeanceService,private router: Router, private datePipe: DatePipe, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
   onSelect(sessionFormation: SessionFormation) {
     this.router.navigate(['/user-dashboard/inscri', sessionFormation.idSessionFormation]);
   }
   getSessionFormationn() {
+     this.seanceService.getSeance().subscribe(response => {
+      console.log(response);
+
+      this.seances = response;
+      //this.numberOfSession = response.length;
+    });
 
     this.SessionFormationService.getSessionFormation().subscribe((response: any[]) => {
       
