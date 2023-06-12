@@ -36,6 +36,7 @@ export class SessionFormComponent {
   public UserId!:  string | null;
   public idUser!: number;
   private deleteId !: number;
+  private legthInscr!:number;
   
   onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/formateur-dashboard/Seance-Formation', sessionFormation.idSessionFormation]);
@@ -92,8 +93,8 @@ export class SessionFormComponent {
 
    
        this.sessionFormations = response.filter(inscri => inscri.formateur.id === this.idUser); //nafsha f html 
-     
-       console.log("dddd", this.sessionFormations);
+     this.legthInscr=this.sessionFormations.length;
+       console.log("dddd", this.legthInscr);
        
       if (response.length === 0) {
         this.noDataAvailable = true;

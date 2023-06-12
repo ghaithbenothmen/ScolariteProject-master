@@ -40,7 +40,8 @@ export class DashFormateurComponent {
      }
     
  public contactForm: FormGroup;
- 
+ public UserId!:  string | null;
+ public idUser!: number;
  public Actualites!: Actualite[];
  public actualite!: Actualite;
  public apprenant!:Apprenant;
@@ -52,7 +53,7 @@ export class DashFormateurComponent {
  public themeDeFormation!: ThemeDeFormation;
  public formateurs!: Formateur[];
  public formateur!: Formateur;
-
+ public legthInscr!:number;
  user: User = {
    id: 0,
    email: '',
@@ -182,6 +183,10 @@ this.getSessionFormation();
    console.log(this.authService.getToken())
    console.log('User detail 4:', this.user);
 
+   this.UserId = localStorage.getItem('UserId');
+   this.idUser=Number(this.UserId)
+this.getSessionInscri();
+
  }
 
 
@@ -201,4 +206,50 @@ this.getSessionFormation();
    // Perform the form submission logic
    // ...
  }
+ getSessionInscri() {
+
+ this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
+
+   
+   
+  console.log(response);
+
+   response.forEach((item) => {
+    const date=new Date(item.dateDebut);
+    
+    
+    const dayOfWeek = date.getDay(); 
+    item.dayOfWeek = this.getDayName(dayOfWeek);
+
+  item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+  
+
+  const dateF=new Date(item.dateFin);
+  item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+   });
+   
+
+
+   this.sessionFormations = response.filter(inscri => inscri.formateur.id === this.idUser); //nafsha f html 
+ this.legthInscr=this.sessionFormations.length;
+   console.log("dddd", this.legthInscr);
+   
+ 
+
+});
+this.formateurService.getFormateur().subscribe(response => {
+  console.log(response);
+
+  this.formateurs = response;
+
+});
+this.ThemeDeFormationService.getThemeDeFormation().subscribe(response => {
+  console.log(response);
+
+  this.themeDeFormations = response;
+
+});
+
+}
+
 }

@@ -51,7 +51,7 @@
                                         *ngIf="!authService.isLoggedIn()">Se connecter</a></li>
                                 <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn()"
                                         (click)="onLogout()">Se déconnecter</a></li>
-                                <li class="nav-item"> <a class="nav-link" routerLink="user-dashboard/ListeSession"
+                                <li class="nav-item"> <a class="nav-link" routerLink="user-dashboard/ListeSession/dash-app"
                                         type="button" *ngIf="authService.isLoggedIn()&&authService.isApp()">Dashboard
                                             Apprenant</a></li>
                                 <li class="nav-item"> <a class=" nav-link" routerLink="admin-dashboard/apprenant"
