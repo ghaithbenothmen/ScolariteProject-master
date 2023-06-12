@@ -61,7 +61,7 @@ isFormPartialValid(): boolean {
   return (!passwordControl?.value && !confirmPasswordControl?.value);
 }
 
-  getApprenants() {
+  getFormateurs() {
     this.forService.getFormateur().subscribe(response => {
       //console.log('app',response);
       //this.apprenants = response;
@@ -94,7 +94,7 @@ isFormPartialValid(): boolean {
 
 
    
-this.getApprenants();
+this.getFormateurs();
     //this.id=this.route.snapshot.paramMap.get("id");
     this.id = this.route.snapshot.params["id"];
 
@@ -108,9 +108,9 @@ this.getApprenants();
      
       // adresseApprenant: [''],
        file: [''], 
-      nomFormateur : [''],
-       prenonFormateur: [''],
-       telFormateur: [''],
+      nom : [''],
+       prenom: [''],
+       tel: [''],
       email: [''],
        
       adresseFormateur: [''],
