@@ -39,7 +39,7 @@ public items = ['En ligne', 'Présentiel'];
 
   public idFormation!: number;
   public codeFormateur!: number;
-
+  isButtonDisabled: boolean = true;
   public editForm!: FormGroup;
   // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -57,7 +57,9 @@ id: any;
   day!: number;
   dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   noDataAvailable!: boolean;
-  
+  filteredSessions!: SessionFormation[];
+  selectedTheme: number | null = null;
+
   //SessionFormationService: any;
 
 
@@ -69,44 +71,51 @@ id: any;
     this.router.navigate(['/user-dashboard/inscri', sessionFormation.idSessionFormation]);
   }
   getSessionFormationn() {
-    
- this.seanceService.getSeance().subscribe(response => {
+    this.SessionFormationService.getSessionFormation().subscribe((response: any[]) => {
+      
+      this.sessionFormations = response.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime());//filtrer avec date 
       console.log(response);
-
-      this.seances = response;
-      //this.numberOfSession = response.length;
-    });
-     
-    this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
-      console.log(response);
-
-       response.forEach((item) => {
-        const date=new Date(item.dateDebut);
-        
-        
+  
+      response.forEach((item) => {
+        const date = new Date(item.dateDebut);
         const dayOfWeek = date.getDay(); 
         item.dayOfWeek = this.getDayName(dayOfWeek);
+        item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy') ?? "";
+  
+        const dateF = new Date(item.dateFin);
+        item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy') ?? "";
+        console.log("hrlllloooo",item.idSessionFormation);
+        // Associate seances with the sessionFormation
 
-      item.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
-      
+        this.seanceService.getSeance().subscribe(response => {
+     
+          item.seances= response.filter(seance => seance.sessionFormation.idSessionFormation === item.idSessionFormation);
+          //this.seances = response;
+          console.log("seances", item.seances,item.idSessionFormation);
+          //this.numberOfSession = response.length;
+        });
 
-      const dateF=new Date(item.dateFin);
-      item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
-       });
-       
-      
+        //this.seances = response.filter(seance => seance.sessionFormation.idSessionFormation === item.idSessionFormation);
+        //console.log("hrllo",this.seances);
+      });
+    
       this.sessionFormations = response;
-      
+      this.filteredSessions = this.sessionFormations;
       if (response.length === 0) {
         this.noDataAvailable = true;
       } else {
         this.noDataAvailable = false;
       }
+    });
+    this.ThemeDeFormationService.getThemeDeFormation().subscribe(response => {
+      console.log(response);
+
+      this.themeDeFormations = response;
 
     });
-
-
+   
   }
+  
   
   getInsecription() {
 
@@ -129,7 +138,15 @@ id: any;
   }
   
 
-
+  filterSessions() {
+    if (!this.selectedTheme) {
+      this.filteredSessions = this.sessionFormations; // No theme selected, show all sessions
+      console.log('filter',this.filteredSessions);
+    } else {
+      this.filteredSessions = this.sessionFormations.filter(session => session.themeDeFormation.idFormation == this.selectedTheme);
+      console.log('filter',this.filteredSessions);
+    }
+  }
 
 
 
@@ -138,6 +155,7 @@ id: any;
 
 
   ngOnInit(): void {
+    this.filterSessions();
    this.getInsecription();
     this.getSessionFormationn();
     console.log(this.authService.getToken());

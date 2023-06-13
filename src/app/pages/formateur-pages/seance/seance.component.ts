@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SeanceService } from 'src/app/services/seance.service';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
 import { InscriptionService } from 'src/app/services/inscription.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Language {
   id: number;
@@ -55,7 +55,7 @@ public noDataAvailable !: boolean;
 public seanceID!:number;
 
 
-  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
+  constructor(private router: Router,private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
  
  
@@ -89,17 +89,18 @@ public seanceID!:number;
 
     });
     this.seanceService.getSeance().subscribe(response => {
-      console.log(response);
-      this.lengthInscri = 0;
-      this.seances = response;
-    
       
+      this.lengthInscri = 0;
+      this.seances = response.filter(seance=>seance.sessionFormation.idSessionFormation==this.idSession);//nafsha html
+      
+      console.log("seances",this.seances);
+      
+
+
       for(let seance of response){
         if(seance.sessionFormation.idSessionFormation == this.idSession){
           this.lengthInscri++;
-          
-          
-          
+
       }
     }
     if (this.lengthInscri === 0) {
@@ -107,6 +108,7 @@ public seanceID!:number;
     } else {
       this.noDataAvailable = false;
     }
+    
     console.log(this.lengthInscri)
     });
     
@@ -177,6 +179,11 @@ public seanceID!:number;
     );
   }
 
+  showSeanceDetails(seanceId: number): void {
+   
+    this.router.navigate(['formateur-dashboard/seance-details', seanceId]);
+
+  }
 
   ngOnInit(): void {
     
@@ -201,7 +208,7 @@ public seanceID!:number;
 
     })
 
-    this.seanceService.getSeance().subscribe(seances => {
+  /*   this.seanceService.getSeance().subscribe(seances => {
 
       this.SessionFormationService.getSessionFormation().subscribe(foreignKeys => {
         this.seances = seances.map(example => {
@@ -218,6 +225,7 @@ public seanceID!:number;
   
 
     });
+ */
 
   }
 

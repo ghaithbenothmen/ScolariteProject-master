@@ -48,7 +48,9 @@ export class SeanceAppComponent {
 public lengthInscri!:number;
 public noDataAvailable !: boolean;
 
-  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
+  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, 
+    private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder,
+     public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
  
  

@@ -5,8 +5,19 @@
                 <h2 class="heading-section">Session de formations</h2>
             </div>
         </div>
+        <div class="mb-3">
+            <span>Filtrer avec Thémes :</span>
+            <select class="select" [(ngModel)]="selectedTheme" (change)="filterSessions()">
+                <option value="null" [selected]="!selectedTheme" disabled>Sélectionnez théme</option>
+                <option value="" [selected]="!selectedTheme"> Tous les thémes</option>
+
+                <option *ngFor="let theme of themeDeFormations" [value]="theme.idFormation">{{ theme.nomFormation }}</option>
+              </select>
+            </div>
+
+
         <div class="row" *ngIf="!noDataAvailable">
-            <div class="col-lg-4 mb-5" *ngFor="let sessionFormations of sessionFormations">
+            <div class="col-lg-4 mb-5" *ngFor="let sessionFormations of filteredSessions">
                 <div class="card border-0 bg-light shadow-sm pb-2">
 
                     <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
@@ -49,44 +60,31 @@
                             </div>
                             <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
                         </div>
-                        <ng-container *ngIf="seances.length==0   && sessionFormations.endOf==false">
-                            <div class="row">
+                        
+                            <!-- Check if seances exist for the session -->
+                            <ng-container *ngIf="sessionFormations.seances">
+                              <!-- Display the number of seances -->
+                              <div class="row">
                                 <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
+                                  <strong>Statut</strong>
                                 </div>
-                                <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
-                            </div>
+                                <div class="mt-2 col-6 py-1 px-4  mb-4 badge badge-success" *ngIf="sessionFormations.seances.length >= 1 && !sessionFormations.endOf">Commencée </div>
+                                <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-secondary" *ngIf="sessionFormations.seances.length === 0 && !sessionFormations.endOf">Pas encore </div>
+                                <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-warning" *ngIf="sessionFormations.endOf" >Achevée</div>
+                              </div>
+                            
+          
+                          </ng-container>
 
-                        </ng-container>
-                        <ng-container *ngFor="let seanc of seances">
-                            <ng-container
-                                *ngIf="sessionFormations.idSessionFormation==seanc.sessionFormation.idSessionFormation && sessionFormations.endOf==false  ">
-                                <div class="row">
-                                    <div class="col-6 py-1 text-right border-right">
-                                        <strong>Statut</strong>
-                                    </div>
-                                    <div class="col-6 py-1 badge badge-success ">Commencée</div>
-                                </div>
-
-                            </ng-container>
-
-
-                        </ng-container>
-                        <ng-container *ngIf="sessionFormations.endOf==true ">
-                            <div class="row">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
-                                </div>
-                                <div class="col-6 py-1 badge badge-warning">achevée</div>
-                            </div>
-
-                        </ng-container>
-                    </div>
-                    <ng-container *ngIf="sessionFormations.endOf==false ">
-                        <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
-                            (click)="onSelect(sessionFormations)">S'inscrire</a>
-                    </ng-container>
+                    
                 </div>
+                
+                    <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
+                        (click)="onSelect(sessionFormations)"  *ngIf="sessionFormations.endOf==false ">S'inscrire</a>
+
+                        <button class="btn btn-secondary px-4 mx-auto mb-4 text-light"
+                        (click)="onSelect(sessionFormations)"  *ngIf="sessionFormations.endOf==true" [disabled]="isButtonDisabled" >S'inscrire</button>  
+               
             </div>
 
         </div>
@@ -95,6 +93,6 @@
                 alt="No data available">
         </div>
         <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
-
+        </div>
     </div>
 </section>

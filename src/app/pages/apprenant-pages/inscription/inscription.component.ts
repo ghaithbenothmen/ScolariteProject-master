@@ -20,6 +20,7 @@ import { InscriptionService } from 'src/app/services/inscription.service';
 import { Apprenant } from 'src/app/entities/apprenant.model';
 import { ApprenantService } from 'src/app/services/apprenant.service';
 import { Inscription } from 'src/app/entities/inscription.model';
+import { seance } from 'src/app/entities/seance.model';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -59,7 +60,7 @@ public isCollapsed = true;
   errorMessage!: string;
   successMessage!:string;
   //SessionFormationService: any;
-
+  
 
 
 
@@ -243,6 +244,8 @@ openModal(modalTemplate: TemplateRef<any>) {
     })
 
   }
+
+ 
 
 
  

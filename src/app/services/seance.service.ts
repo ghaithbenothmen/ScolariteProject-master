@@ -94,4 +94,14 @@ export class SeanceService {
 
     return this.httpClient.delete(this.apiURL + code, { headers: httpHeaders });
   }
+
+  getSeanceById(id: number){
+
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+
+    return this.httpClient.get<seance>(this.apiURL + id, { headers: httpHeaders });
+  }
 }

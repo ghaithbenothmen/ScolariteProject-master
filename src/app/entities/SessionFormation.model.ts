@@ -1,5 +1,6 @@
 
 import {Formateur } from "./formateur.model";
+import { seance } from "./seance.model";
 import {ThemeDeFormation } from "./ThemeDeFormation.model";
 export class SessionFormation {
 
@@ -23,8 +24,8 @@ export class SessionFormation {
       public codeFormateur:number,
       public  endOf :boolean,
       public themeDeFormation:ThemeDeFormation,
-      public idFormation:number
-      
+      public idFormation:number,
+     public seances: seance[]
     ) {
     }
   }

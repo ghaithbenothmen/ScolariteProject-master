@@ -48,8 +48,9 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let seance of seances">
-                        <ng-container *ngIf="seance.sessionFormation.idSessionFormation == idSession">
+                    <ng-container *ngFor="let seance of seances">
+                    <tr (click)="showSeanceDetails(seance.idSeanceFormation)">
+                        
                             <td>{{seance.idSeanceFormation}}</td>
 
                             <td>{{seance.date}}</td>
@@ -71,9 +72,9 @@
                                         title="Delete">&#xE872;</i></a>
 
                             </td>
-                        </ng-container>
+                   
                     </tr>
-
+                </ng-container>
                 </tbody>
             </table>
 

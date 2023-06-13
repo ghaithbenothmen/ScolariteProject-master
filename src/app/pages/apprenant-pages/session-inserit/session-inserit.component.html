@@ -55,37 +55,18 @@
                         </div>
 
 
-                        <ng-container *ngIf="seances.length==0   && Inscriptions.sessionFormation.endOf==false">
+                        <ng-container *ngIf="Inscriptions.sessionFormation.seances">
+                            <!-- Display the number of seances -->
                             <div class="row">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
-                                </div>
-                                <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
+                              <div class="col-6 py-1 text-right border-right">
+                                <strong>Statut</strong>
+                              </div>
+                              <div class="mt-2 col-6 py-1 px-4  mb-4 badge badge-success" *ngIf="Inscriptions.sessionFormation.seances.length >= 1 && !Inscriptions.sessionFormation.endOf">Commencée </div>
+                              <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-secondary" *ngIf="Inscriptions.sessionFormation.seances.length === 0 && !Inscriptions.sessionFormation.endOf">Pas encore </div>
+                              <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-warning" *ngIf="Inscriptions.sessionFormation.endOf" >Achevée</div>
                             </div>
-
-                        </ng-container>
-                        <ng-container *ngFor="let seanc of seances">
-                            <ng-container
-                                *ngIf="Inscriptions.sessionFormation.idSessionFormation==seanc.sessionFormation.idSessionFormation && Inscriptions.sessionFormation.endOf==false  ">
-                                <div class="row">
-                                    <div class="col-6 py-1 text-right border-right">
-                                        <strong>Statut</strong>
-                                    </div>
-                                    <div class="col-6 py-1 badge badge-success ">Commencée</div>
-                                </div>
-
-                            </ng-container>
-
-
-                        </ng-container>
-                        <ng-container *ngIf="Inscriptions.sessionFormation.endOf==true ">
-                            <div class="row">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
-                                </div>
-                                <div class="col-6 py-1 badge badge-warning">achevée</div>
-                            </div>
-
+                          
+        
                         </ng-container>
                     </div>
 
