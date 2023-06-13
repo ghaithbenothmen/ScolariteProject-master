@@ -118,31 +118,33 @@
 
                                 </ng-container>
 
+                            </ng-container>
+
 
 
                         </div>
+                        <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
+                            (click)="onSelectApp(sessionFormations) ">Liste
+                            Apprenants</a>
+                        <a class="btn btn-info px-4 mx-auto mb-4 text-light"
+                            (click)="onSelect(sessionFormations) ">Liste
+                            Séances</a>
+
+                        <a class="btn btn-warning px-4 mx-auto mb-4 text-light"
+                            (click)="openDelete(contentDelete, sessionFormations)"
+                            *ngIf="sessionFormations.endOf==false ">Achever
+                            session </a>
+                        <button class="btn btn-secondary px-4 mx-auto mb-4 text-light"
+                            (click)="openDelete(contentDelete, sessionFormations)"
+                            *ngIf="sessionFormations.endOf==true " [disabled]="isButtonDisabled">Déja achevé
+
+                        </button>
+
+
+
                     </div>
-                    <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
-                        (click)="onSelectApp(sessionFormations) ">Liste
-                        Apprenants</a>
-                    <a class="btn btn-info px-4 mx-auto mb-4 text-light" (click)="onSelect(sessionFormations) ">Liste
-                        Séances</a>
-
-                    <a class="btn btn-warning px-4 mx-auto mb-4 text-light"
-                        (click)="openDelete(contentDelete, sessionFormations)"
-                        *ngIf="sessionFormations.endOf==false ">Achever
-                        session </a>
-                    <button class="btn btn-secondary px-4 mx-auto mb-4 text-light"
-                        (click)="openDelete(contentDelete, sessionFormations)" *ngIf="sessionFormations.endOf==true "
-                        [disabled]="isButtonDisabled">Déja achevé
-
-                    </button>
-
-
 
                 </div>
-
-
             </ng-container>
         </div>
         <div *ngIf="noDataAvailable" class="no-data-container">

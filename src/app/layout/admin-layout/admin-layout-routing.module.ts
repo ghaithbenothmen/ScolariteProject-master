@@ -15,6 +15,7 @@ import { AdminDashComponent } from 'src/app/pages/admin-pages/admin-dash/admin-d
 import { ApprenantArchComponent } from 'src/app/pages/admin-pages/apprenant-arch/apprenant-arch.component';
 import { FormateurArchiveComponent } from 'src/app/pages/admin-pages/formateur-archive/formateur-archive.component';
 import { EditProfilAdminComponent } from 'src/app/pages/admin-pages/edit-profil-admin/edit-profil-admin.component';
+import { SeanceComponent } from 'src/app/pages/formateur-pages/seance/seance.component';
 
 
 
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: 'app-liste-app-by-session', component: AppBySessionComponent },
 
   { path: 'edit_profil', component:EditProfilAdminComponent},
- //{path: 'Seance-Formation',component: SeanceComponent},
+ {path: 'liste-seance-by-session/:id',component: SeanceComponent},
   { path: 'ListeAppSession/:id', component: ListeAppSessionComponent },
   
 
