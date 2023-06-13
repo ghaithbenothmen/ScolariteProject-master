@@ -39,7 +39,12 @@ export class SessionFormComponent {
   public UserId!:  string | null;
   public idUser!: number;
   private deleteId !: number;
-  
+  private legthInscr!:number;
+  isButtonDisabled: boolean = true;
+  selectedTheme: number | null = null;
+  filteredSessions!: SessionFormation[];
+
+
   onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/formateur-dashboard/Seance-Formation', sessionFormation.idSessionFormation]);
   }
@@ -60,7 +65,7 @@ export class SessionFormComponent {
   
 
   
-
+  
   
 
   getSessionFormation() {
@@ -81,8 +86,10 @@ export class SessionFormComponent {
      this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
 
        
-       
+       this.sessionFormations = response.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime());//filtrer avec date 
       console.log(response);
+      
+
 
        response.forEach((item) => {
         const date=new Date(item.dateDebut);
@@ -96,13 +103,26 @@ export class SessionFormComponent {
 
       const dateF=new Date(item.dateFin);
       item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+
+      this.seanceService.getSeance().subscribe(response => {
+     
+        item.seances= response.filter(seance => seance.sessionFormation.idSessionFormation === item.idSessionFormation);
+        //this.seances = response;
+        console.log("seances", item.seances,item.idSessionFormation);
+        
+        //this.numberOfSession = response.length;
+      });
+  
        });
        
 
    
        this.sessionFormations = response.filter(inscri => inscri.formateur.id === this.idUser); //nafsha f html 
-     
-       console.log("dddd", this.sessionFormations);
+       this.filteredSessions = this.sessionFormations;
+
+
+      this.legthInscr=this.sessionFormations.length;
+       console.log("dddd", this.legthInscr);
        
       if (response.length === 0) {
         this.noDataAvailable = true;
@@ -166,9 +186,20 @@ openDelete(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) 
 
    console.log(this.idUser)
     
-
+   this.selectedTheme = null; // filter
     this.getSessionFormation();
-    
+    this.filterSessions();
+  }
+
+
+  filterSessions() {
+    if (!this.selectedTheme) {
+      this.filteredSessions = this.sessionFormations; // No theme selected, show all sessions
+      console.log('filter',this.filteredSessions);
+    } else {
+      this.filteredSessions = this.sessionFormations.filter(session => session.themeDeFormation.idFormation == this.selectedTheme);
+      console.log('filter',this.filteredSessions);
+    }
   }
 
 }

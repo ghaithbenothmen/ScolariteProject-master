@@ -52,7 +52,7 @@ public items = ['En ligne', 'Présentiel'];
   idFormateur: any;
   idTh: any;
    public dateDebut !: string;
-    
+    public seancelength!:number;
 public isCollapsed = true;
 id: any;
   day!: number;
@@ -77,18 +77,19 @@ id: any;
   
   getInsecription() {
     this.seanceService.getSeance().subscribe(response => {
-      console.log(response);
+            //console.log(response);
 
-      this.seances = response;
-      //this.numberOfSession = response.length;
-    });
+            this.seances = response;
+            //this.numberOfSession = response.length;
+          });
 
     this.InscriptionService.getInscription().subscribe((response:any[]) => {
+      this.Inscriptions = response.sort((a, b) => new Date(b.sessionFormation.dateDebut).getTime() - new Date(a.sessionFormation.dateDebut).getTime());//filtrer avec date 
+      response = response.filter(inscri => inscri.apprenant.id === this.idUser); //nafsha f html 
+      console.log("filtrer",response);
 
-     
 
-
-       response.forEach((item) => {
+      response.forEach((item) => {
         const date=new Date(item.sessionFormation.dateDebut);
         
         
@@ -100,10 +101,20 @@ id: any;
 
       const dateF=new Date(item.sessionFormation.dateFin);
       item.sessionFormation.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+
+      this.seanceService.getSeance().subscribe(response => {
+     
+        item.sessionFormation.seances= response.filter(seance => seance.sessionFormation.idSessionFormation === item.sessionFormation.idSessionFormation);
+        //this.seances = response;
+        console.log("seances", item.sessionFormation.seances,item.sessionFormation.idSessionFormation);
+        //this.numberOfSession = response.length;
+      });
+      
+      this.Inscriptions=response;
+      
        });
-       
-       this.Inscriptions = response.filter(inscri => inscri.apprenant.id === this.idUser); //nafsha f html 
-       console.log(this.Inscriptions)
+       console.log('helooo',this.Inscriptions)
+ 
      
       if (response.length === 0) {
         this.noDataAvailable = true;

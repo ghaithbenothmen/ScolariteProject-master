@@ -83,6 +83,7 @@ import { DashAppComponent } from './pages/apprenant-pages/dash-app/dash-app.comp
 import { EditProfilAdminComponent } from './pages/admin-pages/edit-profil-admin/edit-profil-admin.component';
 
 import { ListeSeanceComponent } from './pages/admin-pages/liste-seance/liste-seance.component';
+import { SeanceDetailsComponent } from './pages/formateur-pages/seance-details/seance-details.component';
 
 
 
@@ -148,6 +149,7 @@ registerLocaleData(localeFr);
           EditProfilAdminComponent,
    
           ListeSeanceComponent,
+               SeanceDetailsComponent,
 
 
       

@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div class="container">
+
+
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers"><span class="iconBx"> <i class="bi bi-calendar-week"></i></span></div>
+
+            </div>
+            <div class="cardName">{{seance.date}} </div>
+
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers"><span class="iconBx"> <i class="bi bi-clock"></i></span></div>
+
+            </div>
+            <div class="cardName">{{formatTime(seance.heureDebut)}} durée {{seance.nbrHeures}} H </div>
+
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers"><span class="iconBx"><i class="bi bi-pin-map"></i></span></div>
+
+            </div>
+            <div class="cardName">{{seance.local}} </div>
+
+        </div>
+        <div class="card">
+            <div>
+               <span class="iconBx"><i class="bi bi-person-check"></i></span> <span class="numbers padd">{{lengthInscri}}</span>
+
+            </div>
+            <div class="cardName">Présents </div>
+
+        </div>
+    </div>
+
+   
+
+    <!-- ================ Order Details List ================= -->
+    <div class="details">
+        <div class="recentOrders">
+            
+                    <div class=" cardHeader">
+                        <h2>Liste des Présences</h2>
+                        <a href="{{'data:'+seance.fileType+';base64,' + seance.data}}"
+                        download="Cours séance {{seance.idSeanceFormation}}"  type="button" class="btn btn-success " ><i class="bi bi-arrow-down-circle-fill m-1"></i><span>Télécharger cours</span></a>
+                    </div>
+          
+            <table *ngIf="!noDataAvailable">
+                <thead>
+                    <tr>
+                      
+						<td>Nom </td>
+						<td>Prénom </td>
+						<td>Email</td>
+
+						<td>Telehone</td>
+						
+						
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <ng-container >
+                    <tr *ngFor="let inscri of Inscriptions">
+                        
+                            <td>{{inscri.apprenant.nom}}</td>
+
+                            <td>{{inscri.apprenant.prenom}}</td>
+                            <td>{{inscri.apprenant.email}}</td>
+                            <td>{{inscri.apprenant.tel}}</td>
+                   
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+
+            <div *ngIf="noDataAvailable" class="no-data-container">
+                <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                    alt="No data available">
+
+
+            </div>
+            <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+

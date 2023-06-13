@@ -13,7 +13,7 @@
                 <div class="card border-0 bg-light shadow-sm pb-2">
 
                     <img src="{{'data:'+Inscriptions.sessionFormation.fileType+';base64,' + Inscriptions.sessionFormation.data}}"
-                        class="card-img-top mb-2" />
+                        class="card-img-top mb-2" height="250px" width="100px"/>
                     <div class="card-body text-center">
                         <h4 class="card-title">{{Inscriptions.sessionFormation.themeDeFormation.nomFormation}}</h4>
                         <p class="card-text">
@@ -55,37 +55,18 @@
                         </div>
 
 
-                        <ng-container *ngIf="seances.length==0   && Inscriptions.sessionFormation.endOf==false">
+                        <ng-container *ngIf="Inscriptions.sessionFormation.seances">
+                            <!-- Display the number of seances -->
                             <div class="row">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
-                                </div>
-                                <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
+                              <div class="col-6 py-1 text-right border-right">
+                                <strong>Statut</strong>
+                              </div>
+                              <div class="mt-2 col-6 py-1 px-4  mb-4 badge badge-success" *ngIf="Inscriptions.sessionFormation.seances.length >= 1 && !Inscriptions.sessionFormation.endOf">Commencée </div>
+                              <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-secondary" *ngIf="Inscriptions.sessionFormation.seances.length === 0 && !Inscriptions.sessionFormation.endOf">Pas encore </div>
+                              <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-warning" *ngIf="Inscriptions.sessionFormation.endOf" >Achevée</div>
                             </div>
-
-                        </ng-container>
-                        <ng-container *ngFor="let seanc of seances">
-                            <ng-container
-                                *ngIf="Inscriptions.sessionFormation.idSessionFormation==seanc.sessionFormation.idSessionFormation && Inscriptions.sessionFormation.endOf==false  ">
-                                <div class="row">
-                                    <div class="col-6 py-1 text-right border-right">
-                                        <strong>Statut</strong>
-                                    </div>
-                                    <div class="col-6 py-1 badge badge-success ">Commencée</div>
-                                </div>
-
-                            </ng-container>
-
-
-                        </ng-container>
-                        <ng-container *ngIf="Inscriptions.sessionFormation.endOf==true ">
-                            <div class="row">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
-                                </div>
-                                <div class="col-6 py-1 badge badge-warning">achevée</div>
-                            </div>
-
+                          
+        
                         </ng-container>
                     </div>
 

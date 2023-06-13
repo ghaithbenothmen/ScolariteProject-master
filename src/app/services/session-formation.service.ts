@@ -9,6 +9,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, catchError, throwError } from 'rxjs';
 
 import { Formateur } from '../entities/formateur.model';
+import { seance } from '../entities/seance.model';
 
 @Injectable({
   providedIn: 'root'
@@ -159,7 +160,12 @@ export class SessionFormationService {
     return this.httpClient.get(this.apiURL + code, { headers: httpHeaders });
   }
 
+  getSeancesForSession(sessionId: number): Observable<seance[]> {
+    const url = `${this.apiURL}${sessionId}`; // Assuming your API endpoint follows this pattern
 
+    return this.httpClient.get<seance[]>(url);
+  }
+  
 
  AcheverSessionFormation(code: number) {
     //const urlDelete ='${this.apiURL}/${id}';  

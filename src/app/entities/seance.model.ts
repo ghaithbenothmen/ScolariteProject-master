@@ -10,6 +10,7 @@ export class seance {
       public 	contenu: string,
       public 	heureDebut: string,
       public 	date: Date,
+      
       public nbrHeures: number,
       public  local: string,
       public data :Blob,

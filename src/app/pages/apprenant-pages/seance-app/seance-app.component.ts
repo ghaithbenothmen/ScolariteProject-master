@@ -48,7 +48,9 @@ export class SeanceAppComponent {
 public lengthInscri!:number;
 public noDataAvailable !: boolean;
 
-  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder, public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
+  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, 
+    private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder,
+     public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
  
  
  
@@ -94,7 +96,7 @@ public noDataAvailable !: boolean;
         if(seance.sessionFormation.idSessionFormation == this.idSession){
           this.lengthInscri++;
           seance.inscription.forEach(inscription => {
-            //console.log(inscription.codeInscription); // Access the inscription ID
+            console.log(inscription.codeInscription); // Access the inscription ID
             console.log(inscription.apprenant); // Access other properties of the apprenant object
           
           });

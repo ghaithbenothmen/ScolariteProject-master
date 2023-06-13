@@ -14,6 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ContactComponent {
   public message:any;
   public contacts !:Contact[];
+  errorMessage!: string;
+  successMessage!:string;
 
   constructor( private contService: ContactService,private etabService : EtablissementService) { }
 
@@ -23,7 +25,7 @@ export class ContactComponent {
 
   getEtablissement() {
     this.etabService.getEtablissements().subscribe(response => {
-      console.log(response);
+      
      
       this.etablissements = response;
       });
@@ -32,11 +34,21 @@ export class ContactComponent {
   onSubmit (f: NgForm) {
   
     
-    this.contService.ajoutCon(f.value).subscribe(response => {
-      console.log(response);
-       })
-       window.location.reload();
-  
+    this.contService.ajoutCon(f.value).subscribe(
+      response => {
+        
+        console.log(response);
+        this.errorMessage = '';
+        this.successMessage = 'Votre message a été bien envoyé.';
+        this.ngOnInit();
+      },
+      error => {
+        console.error('Error saving inscription:', error);
+        this.errorMessage = 'Vérifiez le formulaire.';
+        this.successMessage = '';
+        this.ngOnInit();
+      }
+    )
   }
 
 

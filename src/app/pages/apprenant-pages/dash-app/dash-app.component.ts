@@ -19,28 +19,32 @@ import { ThemeDeFormationService } from 'src/app/services/theme-de-formation.ser
 import { formateurService } from 'src/app/services/formateur.service';
 import { ThemeDeFormation } from 'src/app/entities/ThemeDeFormation.model';
 import { Formateur } from 'src/app/entities/formateur.model';
+import { InscriptionService } from 'src/app/services/inscription.service';
+import { Inscription } from 'src/app/entities/inscription.model';
 @Component({
   selector: 'app-dash-app',
   templateUrl: './dash-app.component.html',
   styleUrls: ['./dash-app.component.css']
 })
 export class DashAppComponent {
-  constructor(public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private contService: ContactService,private formBuilder: FormBuilder,private appService:ApprenantService,  private UserServ: UserService, private modalService: BsModalService, private datePipe: DatePipe, private fb: FormBuilder,
-     public actualiteService: ActualiteService, private authService: AuthService) {
-      this.contactForm = this.formBuilder.group({
-        nom: ['', Validators.required],
-        prenom: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        numTel: ['', Validators.required],
-        message: ['', Validators.required]
-      });
-      }
-     
+  constructor(public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private contService: ContactService, private formBuilder: FormBuilder, private appService: ApprenantService, private UserServ: UserService, private modalService: BsModalService, private datePipe: DatePipe, private fb: FormBuilder,
+    public actualiteService: ActualiteService, private InscriptionService :  InscriptionService  ,private authService: AuthService) {
+    this.contactForm = this.formBuilder.group({
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      numTel: ['', Validators.required],
+      message: ['', Validators.required]
+    });
+  }
+
+  public UserId!: string | null;
+  public idUser!: number;
   public contactForm: FormGroup;
-  
+  public legthInscr!: number;
   public Actualites!: Actualite[];
   public actualite!: Actualite;
-  public apprenant!:Apprenant;
+  public apprenant!: Apprenant;
   //public user!:User;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
@@ -49,7 +53,9 @@ export class DashAppComponent {
   public themeDeFormation!: ThemeDeFormation;
   public formateurs!: Formateur[];
   public formateur!: Formateur;
-
+  public Inscriptions!: Inscription[];
+  
+  public Inscription!: Inscription;
   user: User = {
     id: 0,
     email: '',
@@ -63,14 +69,14 @@ export class DashAppComponent {
 
   };
 
-getApprenantId(){
-/*   this.appService.getApprenantId(this.user.id).subscribe(response => {
-console.log('apprenant',response)
+  getApprenantId() {
+    /*   this.appService.getApprenantId(this.user.id).subscribe(response => {
+    console.log('apprenant',response)
+    
+    }) */
+  }
 
-}) */
-}
-
- getSessionFormation() {
+  getSessionFormation() {
 
     this.SessionFormationService.getSessionFormation().subscribe(response => {
       console.log("session",response);
@@ -94,6 +100,39 @@ console.log('apprenant',response)
 
   }
 
+  getInsecription() {
+   
+
+    this.InscriptionService.getInscription().subscribe((response:any[]) => {
+
+     
+
+
+       response.forEach((item) => {
+        const date=new Date(item.sessionFormation.dateDebut);
+        
+        
+        const dayOfWeek = date.getDay(); 
+        item.sessionFormation.dayOfWeek = this.getDayName(dayOfWeek);
+
+      item.sessionFormation.dateDebut = this.datePipe.transform(date, 'dd MMMM yyyy')??"";
+      
+
+      const dateF=new Date(item.sessionFormation.dateFin);
+      item.sessionFormation.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+       });
+       
+       this.Inscriptions = response.filter(inscri => inscri.apprenant.id === this.idUser); //nafsha f html 
+this.legthInscr=this.Inscriptions.length;
+
+       console.log(this.Inscriptions)
+     
+
+    });
+
+
+  }
+
   userLog() {
     this.authService.getUserByEmail(this.authService.loggedUser).subscribe((user: User) => {
       this.user.role = user.role;
@@ -111,14 +150,14 @@ console.log('apprenant',response)
         nom: this.user.nom,
         prenom: this.user.prenom,
         email: this.user.email,
-        numTel:this.user.tel
+        numTel: this.user.tel
       });
 
       this.appService.getApprenantId(user.id).subscribe(response => {
-        console.log('apprenant',response)
+        console.log('apprenant', response)
 
-        this.apprenant=response;
-        })
+        this.apprenant = response;
+      })
     })
 
 
@@ -174,11 +213,14 @@ console.log('apprenant',response)
   ngOnInit(): void {
     this.userLog();
     this.getActualite();
-this.getApprenantId();
-this.getSessionFormation();
+    this.getApprenantId();
+    this.getSessionFormation();
     console.log(this.authService.getToken())
     console.log('User detail 4:', this.user);
 
+    this.UserId = localStorage.getItem('UserId');
+    this.idUser = Number(this.UserId)
+    this.getInsecription();
   }
 
 
@@ -193,8 +235,8 @@ this.getSessionFormation();
     console.log(formValues);
     this.contService.ajoutCon(formValues).subscribe(response => {
       console.log(response);
-       })
-       window.location.reload();
+    })
+    window.location.reload();
     // Perform the form submission logic
     // ...
   }
