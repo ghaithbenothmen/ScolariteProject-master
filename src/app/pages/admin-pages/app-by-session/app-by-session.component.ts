@@ -26,47 +26,36 @@ import { seance } from 'src/app/entities/seance.model';
   styleUrls: ['./app-by-session.component.css','../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class AppBySessionComponent {
-public items = ['En ligne', 'Présentiel'];
-  public modalRef!: BsModalRef;
+noDataAvailable!: boolean;
+  tes!: seance[];
+  
+  idss!: number;
+  
+  constructor( private seanceService:SeanceService  ,private modalService: BsModalService,  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
+ public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
+  public seances!: seance[];
   public sessionFormation!: SessionFormation;
   public themeDeFormations!: ThemeDeFormation[];
   public themeDeFormation!: ThemeDeFormation;
   public formateurs!: Formateur[];
   public formateur!: Formateur;
-
-  public idFormation!: number;
-  public codeFormateur!: number;
-  public f !:NgForm;
-  public editForm!: FormGroup;
-  // public editForm2!: FormGroup;
+  public UserId!:  string | null;
+  public idUser!: number;
   private deleteId !: number;
-  public message!: string;
-  public ajoutForm!: FormGroup;
-  selectedFile: any;
-  Data!: Blob;
-  dbimage: any;
-  idFormateur: any;
-  idTh: any;
-    public seances!: seance[];
-  noDataAvailable!: boolean;
-  //SessionFormationService: any;
-
-  constructor( private seanceService:SeanceService ,private modalService: BsModalService, private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
-  public onFileChanged(event: any) {
-
-    this.selectedFile = event.target.files[0];
+  private legthInscr!:number;
+  isButtonDisabled: boolean = true;
+  selectedTheme: number | null = null;
+  filteredSessions!: SessionFormation[];
 
 
-  }
-onSelect(sessionFormation :SessionFormation) {
+  onSelect(sessionFormation :SessionFormation) {
     this.router.navigate(['/admin-dashboard/liste-seance-by-session', sessionFormation.idSessionFormation]);
-}
-  
+  }
   onSelectApp(sessionFormation :SessionFormation) {
     this.router.navigate(['/admin-dashboard/ListeAppSession', sessionFormation.idSessionFormation]);
   }
-  
+
    //Pagination//
    page:number=1;
    count:number=0;
@@ -76,10 +65,22 @@ onSelect(sessionFormation :SessionFormation) {
      this.getSessionFormation();
 
    }
+  
+  
+
+  
+  
+  
 
   getSessionFormation() {
-     this.seanceService.getSeance().subscribe(response => {
-      console.log(response);
+    this.seanceService.getSeance().subscribe(response => {
+      //this.tes=response.filter(se=>se.sessionFormation.idSessionFormation==)
+  response.forEach((item) => {
+    this.idss= item.sessionFormation.idSessionFormation;
+        
+       
+       });
+      console.log("aaaa",this.idss);
 
       this.seances = response;
       //this.numberOfSession = response.length;
@@ -87,7 +88,12 @@ onSelect(sessionFormation :SessionFormation) {
      
 
      this.SessionFormationService.getSessionFormation().subscribe((response:any[]) => {
-      console.log(response);
+
+       
+       this.sessionFormations = response.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime());//filtrer avec date 
+      console.log("sess",response);
+      
+
 
        response.forEach((item) => {
         const date=new Date(item.dateDebut);
@@ -101,17 +107,32 @@ onSelect(sessionFormation :SessionFormation) {
 
       const dateF=new Date(item.dateFin);
       item.dateFin = this.datePipe.transform(dateF, 'dd MMMM yyyy')??"";
+
+      this.seanceService.getSeance().subscribe(response => {
+     
+        item.seances= response.filter(seance => seance.sessionFormation.idSessionFormation === item.idSessionFormation);
+        //this.seances = response;
+        console.log("seances", item.seances,item.idSessionFormation);
+        
+        //this.numberOfSession = response.length;
+      });
+  
        });
        
 
-       this.sessionFormations = response;
+   
+      
+       this.filteredSessions = this.sessionFormations;
 
+
+      this.legthInscr=this.sessionFormations.length;
+       console.log("dddd", this.legthInscr);
+       
       if (response.length === 0) {
         this.noDataAvailable = true;
       } else {
         this.noDataAvailable = false;
       }
-      console.log("dddd",this.sessionFormations);
 
     });
     this.formateurService.getFormateur().subscribe(response => {
@@ -127,10 +148,31 @@ onSelect(sessionFormation :SessionFormation) {
 
     });
 
+  }
 
+openDelete(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) {
+    this.deleteId = SessionFormation.idSessionFormation;
+    this.modalRef = this.modalService.show(modalTemplate,
+      {
+        class: 'modal-dialogue-centered modal-md',
+        backdrop: 'static',
+        keyboard: true
+      }
+    );
+  }
+
+  AcheverSessionFormation(SessionFormation: SessionFormation) {
+    this.SessionFormationService.AcheverSessionFormation(this.deleteId).subscribe(response => {
+      console.log(response);
+
+      this.ngOnInit();
+    })
+
+    this.modalService.hide(); //dismiss the modal
   }
 
 
+  
   getDayName(dayOfWeek: number): string {
     
     const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
@@ -143,35 +185,26 @@ onSelect(sessionFormation :SessionFormation) {
 
 
   ngOnInit(): void {
+    this.UserId = localStorage.getItem('UserId');
+    this.idUser=Number(this.UserId)
 
+   console.log(this.idUser)
+    
+   this.selectedTheme = null; // filter
     this.getSessionFormation();
-    console.log(this.authService.getToken());
-
-    this.editForm = this.fb.group({
-
-      idFormation: [''],
-      
-      idSessionFormation: [''],
-      typeFormation: [''],
-      localFormation: [''],
-      description: [''],
-
-      codeFormateur: [],
-      dateDebut: [''],
-       dateFin: [''],
-      nbrHeures: [''],
-      file: [''],
-
-
-    })
-
+    this.filterSessions();
   }
 
 
-  
-
+  filterSessions() {
+    if (!this.selectedTheme) {
+      this.filteredSessions = this.sessionFormations; // No theme selected, show all sessions
+      console.log('filter',this.filteredSessions);
+    } else {
+      this.filteredSessions = this.sessionFormations.filter(session => session.themeDeFormation.idFormation == this.selectedTheme);
+      console.log('filter',this.filteredSessions);
+    }
+  }
 
 }
-
-
 

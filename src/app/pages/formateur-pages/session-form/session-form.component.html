@@ -13,10 +13,11 @@
                 <option value="null" [selected]="!selectedTheme" disabled>Sélectionnez théme</option>
                 <option value="" [selected]="!selectedTheme"> Tous les thémes</option>
 
-                <option *ngFor="let theme of themeDeFormations" [value]="theme.idFormation">{{ theme.nomFormation }}</option>
-              </select>
-            </div>
-        
+                <option *ngFor="let theme of themeDeFormations" [value]="theme.idFormation">{{ theme.nomFormation }}
+                </option>
+            </select>
+        </div>
+
         <div class="row" *ngIf="!noDataAvailable">
             <ng-container *ngFor="let sessionFormations of filteredSessions">
                 <div class="col-lg-4 mb-5">
@@ -26,7 +27,7 @@
                     <div class="card border-0 bg-light shadow-sm pb-2">
 
                         <img src="{{'data:'+sessionFormations.fileType+';base64,' + sessionFormations.data}}"
-                            class="card-img-top mb-2"  height="250px" width="100px"/>
+                            class="card-img-top mb-2" height="250px" width="100px" />
                         <div class="card-body text-center">
                             <h4 class="card-title">{{sessionFormations.themeDeFormation.nomFormation}}</h4>
                             <p class="card-text">
@@ -65,43 +66,50 @@
                                 </div>
                                 <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
                             </div>
-                          
-                           
-                              
 
-                            
+
+
+
+
                             <ng-container *ngIf="sessionFormations.seances">
                                 <!-- Display the number of seances -->
                                 <div class="row">
-                                  <div class="col-6 py-1 text-right border-right">
-                                    <strong>Statut</strong>
-                                  </div>
-                                  <div class="mt-2 col-6 py-1 px-4  mb-4 badge badge-success" *ngIf="sessionFormations.seances.length >= 1 && !sessionFormations.endOf">Commencée </div>
-                                  <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-secondary" *ngIf="sessionFormations.seances.length === 0 && !sessionFormations.endOf">Pas encore </div>
-                                  <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-warning" *ngIf="sessionFormations.endOf" >Achevée</div>
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
+                                    </div>
+                                    <div class="mt-2 col-6 py-1 px-4  mb-4 badge badge-success"
+                                        *ngIf="sessionFormations.seances.length >= 1 && !sessionFormations.endOf">
+                                        Commencée </div>
+                                    <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-secondary"
+                                        *ngIf="sessionFormations.seances.length === 0 && !sessionFormations.endOf">Pas
+                                        encore </div>
+                                    <div class="mt-2 col-6 py-1 px-4 mx-auto mb-4 badge badge-warning"
+                                        *ngIf="sessionFormations.endOf">Achevée</div>
                                 </div>
-                              
-            
+
+
                             </ng-container>
 
 
-                            
+
                         </div>
 
                         <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
                             (click)="onSelectApp(sessionFormations) ">Liste Apprenants</a>
                         <a class="btn btn-info px-4 mx-auto mb-4 text-light"
                             (click)="onSelect(sessionFormations) ">Liste Séances</a>
-                        
-                            <a class="btn btn-warning px-4 mx-auto mb-4 text-light"
-                                (click)="openDelete(contentDelete, sessionFormations)" *ngIf="sessionFormations.endOf==false ">Achever
-                                session </a>
-                                <button class="btn btn-secondary px-4 mx-auto mb-4 text-light"
-                                (click)="openDelete(contentDelete, sessionFormations)" *ngIf="sessionFormations.endOf==true " [disabled]="isButtonDisabled" >Déja achevé
-                                
-                             </button>
 
-                     
+                        <a class="btn btn-warning px-4 mx-auto mb-4 text-light"
+                            (click)="openDelete(contentDelete, sessionFormations)"
+                            *ngIf="sessionFormations.endOf==false ">Achever
+                            session </a>
+                        <button class="btn btn-secondary px-4 mx-auto mb-4 text-light"
+                            (click)="openDelete(contentDelete, sessionFormations)"
+                            *ngIf="sessionFormations.endOf==true " [disabled]="isButtonDisabled">Déja achevé
+
+                        </button>
+
+
 
                     </div>
 
