@@ -49,7 +49,7 @@
 
                 <tbody>
                     <ng-container *ngFor="let seance of seances">
-                    <tr (click)="showSeanceDetails(seance.idSeanceFormation)">
+                    <tr >
                         
                             <td>{{seance.idSeanceFormation}}</td>
 
@@ -64,9 +64,16 @@
 
                             <td>
 
-                                <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
+
+                                <a type="button" (click)="showSeanceDetails(seance.idSeanceFormation)" class="show"
+                                    data-toggle="modal"><span class="material-symbols-outlined">
+                                        visibility
+                                        </span></a>
+
+
+                                        <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
                                     data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
-                                        title="Edit">&#xE254;</i></a>
+                                        title="Show">&#xE254;</i></a>
                                 <a type="button" (click)="openDelete(contentDelete, seance)" class="delete"
                                     data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
                                         title="Delete">&#xE872;</i></a>
