@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-6 py-1">{{sessionFormations.localFormation}}</div>
                             </div>
-                            <ng-container *ngIf="seances.length==0   && sessionFormations.endOf==false">
+                            <!-- <ng-container *ngIf="seances.length==0   && sessionFormations.endOf==false">
                                 <div class="row">
                                     <div class="col-6 py-1 text-right border-right">
                                         <strong>Statut</strong>
@@ -63,14 +63,27 @@
                                     <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
                                 </div>
 
-                            </ng-container>
+                            </ng-container> -->
 
-                            <ng-container *ngIf="seances.length!=0&& sessionFormations.endOf==false  ">
+
+
+                            <ng-container
+                                *ngIf=" seances.length>=0 && sessionFormations.idSessionFormation==idss && sessionFormations.endOf==false ">
                                 <div class="row">
                                     <div class="col-6 py-1 text-right border-right">
                                         <strong>Statut</strong>
                                     </div>
                                     <div class="col-6 py-1 badge badge-success ">Commencée</div>
+                                </div>
+
+                            </ng-container>
+
+                            <ng-container *ngIf="seances.length==0 && sessionFormations.endOf==false">
+                                <div class="row">
+                                    <div class="col-6 py-1 text-right border-right">
+                                        <strong>Statut</strong>
+                                    </div>
+                                    <div class="col-6 py-1 badge badge-secondary">Pas encore</div>
                                 </div>
 
                             </ng-container>
@@ -89,7 +102,8 @@
                         </div>
 
                         <a class="btn btn-primary px-4 mx-auto mb-4 text-light"
-                            (click)="onSelectApp(sessionFormations) ">Liste Apprenants</a>
+                            (click)="onSelectApp(sessionFormations) ">Liste
+                            Apprenants</a>
                         <a class="btn btn-info px-4 mx-auto mb-4 text-light"
                             (click)="onSelect(sessionFormations) ">Liste Séances</a>
                         <ng-container *ngIf="sessionFormations.endOf==false ">

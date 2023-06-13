@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Actualite } from 'src/app/entities/actualite.model';
 import { Apprenant } from 'src/app/entities/apprenant.model';

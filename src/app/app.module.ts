@@ -78,7 +78,7 @@ import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
 import { ApprenantArchComponent } from './pages/admin-pages/apprenant-arch/apprenant-arch.component';
 
 import { DashAppComponent } from './pages/apprenant-pages/dash-app/dash-app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 import { EditProfilAdminComponent } from './pages/admin-pages/edit-profil-admin/edit-profil-admin.component';
 
@@ -161,7 +161,7 @@ registerLocaleData(localeFr);
     providers: [BsModalService,AuthGuard,DatePipe,{ provide: LOCALE_ID, useValue: 'fr' }],
     bootstrap: [AppComponent],
     imports: [
-        FontAwesomeModule,
+        
         CommonModule,
         MatSidenavModule,
         MatToolbarModule,
@@ -179,7 +179,7 @@ registerLocaleData(localeFr);
         CollapseModule.forRoot(),
         NgxPaginationModule,
         CDBFreeModule,
-        FontAwesomeModule
+        
     ]
 })
 export class AppModule { }
