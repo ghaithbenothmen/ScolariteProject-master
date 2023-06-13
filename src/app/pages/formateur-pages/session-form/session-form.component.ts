@@ -22,7 +22,10 @@ import { seance } from 'src/app/entities/seance.model';
   styleUrls: ['./session-form.component.css','../../auth-pages/affichagesession-de-formation/affichagesession-de-formation.component.css']
 })
 export class SessionFormComponent {
-  noDataAvailable!: boolean;
+   noDataAvailable!: boolean;
+  tes!: seance[];
+  
+  idss!: number;
   
   constructor( private seanceService:SeanceService  ,private modalService: BsModalService,  private datePipe: DatePipe,  private router:Router, private fb: FormBuilder, public formateurService: formateurService, public SessionFormationService: SessionFormationService, public ThemeDeFormationService: ThemeDeFormationService, private authService: AuthService) { }
  public modalRef!: BsModalRef;
@@ -66,8 +69,14 @@ export class SessionFormComponent {
   
 
   getSessionFormation() {
-      this.seanceService.getSeance().subscribe(response => {
-      console.log(response);
+    this.seanceService.getSeance().subscribe(response => {
+      //this.tes=response.filter(se=>se.sessionFormation.idSessionFormation==)
+  response.forEach((item) => {
+    this.idss= item.sessionFormation.idSessionFormation;
+        
+       
+       });
+      console.log("aaaa",this.idss);
 
       this.seances = response;
       //this.numberOfSession = response.length;
@@ -194,3 +203,4 @@ openDelete(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) 
   }
 
 }
+

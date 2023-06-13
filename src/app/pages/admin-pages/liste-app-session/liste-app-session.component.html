@@ -30,14 +30,13 @@
 
             <div class="cardHeader">
                 <h2>List des apprenants</h2>
-                <ng-container *ngFor=" let inscription of Inscriptions">
-                    <ng-container
-                        *ngIf="inscription.sessionFormation.idSessionFormation==idSession &&inscription.sessionFormation.endOf==false">
-                        <button (click)="openDetails(contentDetails,this.idSession)" class="btn btn-success "
-                            data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter
-                                Inscription</span></button>
-                    </ng-container>
+
+                <ng-container>
+                    <button (click)="openDetails(contentDetails,this.idSession)" class="btn btn-success "
+                        data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter
+                            Inscription</span></button>
                 </ng-container>
+
             </div>
 
             <table *ngIf="!noDataAvailable">
@@ -52,7 +51,7 @@
                     </tr>
                 </thead>
 
-                <tbody>l
+                <tbody>
                     <tr *ngFor=" let inscription of Inscriptions">
 
                         <ng-container
