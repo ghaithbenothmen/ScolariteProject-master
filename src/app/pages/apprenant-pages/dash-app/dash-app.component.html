@@ -3,7 +3,7 @@
 <h1 class="p-relative">Dashboard</h1>
 <div class="wrapper d-grid gap-20">
   <!-- Start Welcome Widget -->
-  <div class="welcome bg-white rad-10 txt-c-mobile block-mobile">
+  <div class="welcome bg-white rad-10 txt-c-mobile block-mobile" *ngIf="apprenant">
     <div class="intro p-20 d-flex space-between bg-eee">
       <div>
         <h2 class="m-0">Bienvenue</h2>
@@ -11,7 +11,8 @@
       </div>
       <img class="hide-mobile" src="../../../../assets/imgs/welcome.png" alt="" />
     </div>
-    <img src="../../../../assets/imgs/avatar.png" alt="" class="avatar" />
+   <!--  <img *ngIf="apprenant.sexeApprenant=='femme'" src="../../../../assets/imgs/avatarF.png" alt="" class="avatar" /> -->
+    <img  src="../../../../assets/img/user.png" alt="" class="avatar" />
     <div class="body txt-c d-flex p-20 mt-20 mb-20 block-mobile" *ngIf="apprenant">
       <div>{{this.user.nom}} {{this.user.prenom}} <span class="d-block c-grey fs-14 mt-10">{{this.user.role}}</span></div>
       <div >{{apprenant.qualiteApprenant}}<span class="d-block c-grey fs-14 mt-10">{{apprenant.niveauApprenant}}</span></div>

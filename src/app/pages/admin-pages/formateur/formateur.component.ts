@@ -204,7 +204,7 @@ openDelete(modalTemplate: TemplateRef<any>, formateur:Formateur) {
  onArchive(Formateur: Formateur) {
    this.formateurService.ArcheverFormateur(this.deleteId).subscribe(response => {
     console.log(response);
-     //this.ngOnInit()
+     this.ngOnInit()
        ;
    })
  
