@@ -203,6 +203,7 @@ console.log("id",this.editForm.value.id);
         // Do any additional actions here if needed
         this.errorMessage = '';
         this.successMessage = 'Apprenant bien modifié .';
+        this.ngOnInit();
       },
       (error) => {
         // Error occurred
@@ -210,7 +211,7 @@ console.log("id",this.editForm.value.id);
         this.errorMessage = 'Apprenant non modifié veuillez verifier votre formulaire.';
         this.successMessage = '';
       })
-this.ngOnInit();
+
     this.modalService.hide(); //dismiss the modal
   }
 
@@ -252,7 +253,7 @@ this.ngOnInit();
       password:apprenant.password,
 
       email: apprenant.email,
-verified:apprenant.verified,
+      verified:apprenant.verified,
       qualiteApprenant: apprenant.qualiteApprenant,
       niveauApprenant: apprenant.niveauApprenant,
 

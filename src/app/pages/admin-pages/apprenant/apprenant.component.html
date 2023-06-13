@@ -73,8 +73,7 @@
 								<span *ngIf="!apprenant.verified" class="status return">Non vérifier</span>
 							</td>
 							<td>
-								<a type="button" (click)="openDetails(ajoutCompte, apprenant)" data-toggle="modal"><i
-										class="material-icons">&#xE147;</i></a>
+								
 								<a type="button" (click)="openDetails(contentDetails, apprenant)" class="edit"
 									data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
 										title="Edit">&#xE254;</i></a>
@@ -370,12 +369,22 @@
 
 
 						</div>
-
 						<div class="form-group">
 							<label>Niveau d'etude:</label>
-							<input type="text" formControlName="niveauApprenant" class="form-control" required>
+							<select class="form-select" formControlName="niveauApprenant" required>
+								<option *ngFor="let item of itemsNiveau" [value]="item">
+
+
+
+									{{ item }}
+
+
+								</option>
+							</select>
+
 
 						</div>
+					
 
 						<!-- <div class="form-group">
 							<label>Archive</label><br>

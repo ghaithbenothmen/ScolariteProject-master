@@ -20,13 +20,13 @@ export class SeanceAppComponent {
   public modalRef!: BsModalRef;
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
-  
+
   public seances!: seance[];
   public seance!: seance;
 
   public idFormation!: number;
   public codeFormateur!: number;
-  public f !:NgForm;
+  public f !: NgForm;
   public editForm!: FormGroup;
   // public editForm2!: FormGroup;
   private deleteId !: number;
@@ -37,43 +37,50 @@ export class SeanceAppComponent {
   dbimage: any;
   idFormateur: any;
   idTh: any;
- public Inscriptions!: Inscription[];
+  public Inscriptions!: Inscription[];
   public Inscription!: Inscription;
   apprenant: any;
   selectedCheckboxes: any[] = [];
 
-   public UserId!:  string | null;
- public idUser!: number;
+  public UserId!: string | null;
+  public idUser!: number;
   idSession: any;
-public lengthInscri!:number;
-public noDataAvailable !: boolean;
+  public lengthInscri!: number;
+  public noDataAvailable !: boolean;
 
-  constructor(private route:ActivatedRoute , private InscriptionService :  InscriptionService, 
-    private seanceService :SeanceService ,private modalService: BsModalService,  private fb: FormBuilder,
-     public SessionFormationService: SessionFormationService,  private authService: AuthService) { }
- 
- 
- 
+  constructor(private route: ActivatedRoute, private InscriptionService: InscriptionService,
+    private seanceService: SeanceService, private modalService: BsModalService, private fb: FormBuilder,
+    public SessionFormationService: SessionFormationService, private authService: AuthService) { }
+
+
+
   public onFileChanged(event: any) {
 
     this.selectedFile = event.target.files[0];
 
 
   }
- 
- 
-  
 
 
-   //Pagination//
-   page:number=1;
-   count:number=0;
-   tableSize:number=3;
-   onTableChange(event:any){
-     this.page=event;
-   //  this.getSessionFormation();
 
-   }
+
+
+  //Pagination//
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 3;
+  onTableChange(event: any) {
+    this.page = event;
+    //  this.getSessionFormation();
+
+  }
+
+  isPresent(seance: seance): boolean {
+    
+    // return true l awel element trouve dans tableau(some), apprenant's ID exists in the seance's inscription list
+    return seance.inscription.some((inscription) => inscription.apprenant.id === this.idUser);
+
+  }
 
   getSeance() {
 
@@ -86,75 +93,75 @@ public noDataAvailable !: boolean;
       //console.log(response);
       this.lengthInscri = 0;
       //this.seances = response;
-    
-      this.seances = response.filter(sea=>sea.sessionFormation.idSessionFormation==this.idSession);//filter html
-   
-      console.log("coucou",this.seances);
-      
-      for(let seance of response){
-       
-        if(seance.sessionFormation.idSessionFormation == this.idSession){
+
+      this.seances = response.filter(sea => sea.sessionFormation.idSessionFormation == this.idSession);//filter html
+
+      console.log("coucou", this.seances);
+
+      for (let seance of response) {
+
+        if (seance.sessionFormation.idSessionFormation == this.idSession) {
           this.lengthInscri++;
           seance.inscription.forEach(inscription => {
             console.log(inscription.codeInscription); // Access the inscription ID
             console.log(inscription.apprenant); // Access other properties of the apprenant object
-          
+
           });
-          
+
+        }
       }
-    }
-    
-    if (this.lengthInscri === 0) {
-      this.noDataAvailable = true;
-    } else {
-      this.noDataAvailable = false;
-    }
-    console.log(this.lengthInscri)
+
+      if (this.lengthInscri === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
+      console.log(this.lengthInscri)
     });
-    
+
     this.InscriptionService.getInscription().subscribe((response: any[]) => {
 
       //console.log("llll",response);
       this.Inscriptions = response;
-     
-      
-   /*    for(let inscri of this.Inscriptions){
-        if(inscri.sessionFormation.idSessionFormation == this.idSession){
-          this.lengthInscri=response.length;
-          console.log("longhey",inscri.sessionFormation.idSessionFormation);
-      }
-    } */
+
+
+      /*    for(let inscri of this.Inscriptions){
+           if(inscri.sessionFormation.idSessionFormation == this.idSession){
+             this.lengthInscri=response.length;
+             console.log("longhey",inscri.sessionFormation.idSessionFormation);
+         }
+       } */
       this.setInitialCheckboxValues();
 
     })
   }
-  
+
   setInitialCheckboxValues() {//initialiser id 
     for (let inscription of this.Inscriptions) {
-      inscription.apprenant.id = 0; 
-      console.log('null or not',inscription.apprenant.id)
+      inscription.apprenant.id = 0;
+      console.log('null or not', inscription.apprenant.id)
     }
   }
 
- onCheckboxChange() {
+  onCheckboxChange() {
     const selectedOptions = this.Inscriptions.filter(Inscription => Inscription.apprenant.id);
-     this.selectedCheckboxes =selectedOptions.filter(Inscription=> Inscription.apprenant.id);
+    this.selectedCheckboxes = selectedOptions.filter(Inscription => Inscription.apprenant.id);
     console.log(this.selectedCheckboxes);
-    
+
   }
 
   onSubmit(f: NgForm) {
 
     this.ngOnInit();
-    f.value.sessionFormation= this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.idSession);
+    f.value.sessionFormation = this.sessionFormations.find(sessionFormation => sessionFormation.idSessionFormation == this.idSession);
     //f.value.formateur = this.formateurs.find(formateur => formateur.id == this.idFormateur);
-    
 
-console.log("hhhhh", this.selectedCheckboxes);
+
+    console.log("hhhhh", this.selectedCheckboxes);
     this.seanceService.addSeance(f.value, this.selectedFile).subscribe(response => {
 
       console.log(response);
-      
+
       this.ngOnInit();
 
     })
@@ -164,9 +171,11 @@ console.log("hhhhh", this.selectedCheckboxes);
 
 
   ngOnInit(): void {
-    
+
     this.idSession = this.route.snapshot.params["id"];
-    console.log('ddd',this.idSession);
+    console.log('ddd', this.idSession);
+    this.UserId = localStorage.getItem('UserId');
+    this.idUser = Number(this.UserId)
 
     this.getSeance();
     console.log(this.authService.getToken());
@@ -174,13 +183,13 @@ console.log("hhhhh", this.selectedCheckboxes);
     this.editForm = this.fb.group({
 
 
-idSeanceFormation:[''],
+      idSeanceFormation: [''],
       idSessionFormation: [''],
       contenu: [''],
       date: [''],
       heuresDebut: [''],
       local: [''],
-    nbrHeures:[''],
+      nbrHeures: [''],
 
 
 
@@ -199,8 +208,8 @@ idSeanceFormation:[''],
         });
 
       });
-      
-  
+
+
 
     });
 
@@ -220,30 +229,30 @@ idSeanceFormation:[''],
     );
 
     this.editForm.patchValue({
-    idSeanceFormation:seance.idSeanceFormation,
+      idSeanceFormation: seance.idSeanceFormation,
       idSessionFormation: seance.sessionFormation.idSessionFormation,
       contenu: seance.contenu,
       date: seance.date,
       heuresDebut: seance.heureDebut,
       local: seance.local,
       nbrHeures: seance.nbrHeures,
-      
-      
+
+
     });
 
   }
 
   onSave() {
 
-   
-    this.seanceService.updateSeance( this.editForm.value, this.selectedFile).subscribe(response => {
+
+    this.seanceService.updateSeance(this.editForm.value, this.selectedFile).subscribe(response => {
       //console.log(response);
 
       window.location.reload();
 
 
       /* this.ngOnInit(); */
-})
+    })
 
 
 
@@ -262,7 +271,7 @@ idSeanceFormation:[''],
   }
 
 
-/***************************contoller ************** */
+  /***************************contoller ************** */
 
   onControl(f: NgForm) {
     if (f.valid) {

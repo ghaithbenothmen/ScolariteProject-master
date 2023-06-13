@@ -60,7 +60,8 @@
                                     download="{{seance.data}}" width="200px" height="200px">Télécharger Cours </a></td>
 
 								<td>
-									
+									<span *ngIf="isPresent(seance)" style="color: green;">Présent</span>
+									<span *ngIf="!isPresent(seance)" style="color: red;">Absent</span>
 	
 								</td>
 							</ng-container>
