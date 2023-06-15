@@ -49,8 +49,8 @@
 
                 <tbody>
                     <ng-container *ngFor="let seance of seances">
-                    <tr >
-                        
+                        <tr>
+
                             <td>{{seance.idSeanceFormation}}</td>
 
                             <td>{{seance.date}}</td>
@@ -68,10 +68,10 @@
                                 <a type="button" (click)="showSeanceDetails(seance.idSeanceFormation)" class="show"
                                     data-toggle="modal"><span class="material-symbols-outlined">
                                         visibility
-                                        </span></a>
+                                    </span></a>
 
 
-                                        <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
+                                <a type="button" (click)="openDetails(contentDetails, seance)" class="edit"
                                     data-toggle="modal"><i class="material-icons" data-toggle="tooltip" disabled
                                         title="Show">&#xE254;</i></a>
                                 <a type="button" (click)="openDelete(contentDelete, seance)" class="delete"
@@ -79,9 +79,9 @@
                                         title="Delete">&#xE872;</i></a>
 
                             </td>
-                   
-                    </tr>
-                </ng-container>
+
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
 
@@ -194,7 +194,7 @@
                         <div class="form-group">
                             <label>Cours(PDF) :</label>
                             <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
-                                (change)="onFileChanged($event)">
+                                accept=".pdf" (change)="onFileChanged($event)">
                             <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrerle cours
                                 la seance</span>
                         </div>
@@ -265,8 +265,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Affiche :</label>
-                            <input type="file" name="file" class="form-control" required
+                            <label>Cours(PDF):</label>
+                            <input type="file" accept=".pdf" name="file" class="form-control" required
                                 (change)="onFileChanged($event)">
 
                         </div>

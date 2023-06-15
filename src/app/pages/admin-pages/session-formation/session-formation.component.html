@@ -204,9 +204,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Affiche :</label>
+                                <label>Affiche(.jpg,.jpeg,.png) :</label>
                                 <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
-                                    (change)="onFileChanged($event)">
+                                    accept=".jpg, .jpeg, .png" (change)="onFileChanged($event)">
                                 <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
                                     Actualite</span>
                             </div>
@@ -297,8 +297,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Affiche</label>
-                                <input type="file" class="form-control" (change)="onFileChanged($event)" required>
+                                <label>Affiche(.jpg, .jpeg, .png)</label>
+                                <input type="file" class="form-control" accept=".jpg, .jpeg, .png"
+                                    (change)="onFileChanged($event)" required>
                             </div>
 
                             <div class="modal-footer">

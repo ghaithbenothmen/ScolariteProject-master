@@ -75,7 +75,7 @@
                                     <div class="form-group">
                                         <label for="phone">Téléphone</label>
 
-                                        <input type="tel" class="form-control" formControlName="tel" name="tel"
+                                        <input type="tel" pattern="[0-9]{8}"placeholder="23 456 891" class="form-control" formControlName="tel" name="tel"
                                             [ngModel]="app.tel" placeholder="Votre téléphone" required>
                                     </div>
                                 </div>

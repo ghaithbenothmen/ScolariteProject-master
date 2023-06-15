@@ -117,7 +117,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Tel</label>
-                                <input type="tel" formControlName="telEtablissement" class="form-control" required>
+                                <input type="tel"  pattern="[0-9]{8}"placeholder="23 456 891"formControlName="telEtablissement" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Email </label>
@@ -129,9 +129,9 @@
                                     required>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Image(.jpg, .jpeg, .png)</label>
                                 <input type="file" formControlName="file" class="form-control"
-                                    (change)="onFileChanged($event)" required>
+                                    accept=".jpg, .jpeg, .png" (change)="onFileChanged($event)" required>
                             </div>
 
                             <div class="modal-footer">
