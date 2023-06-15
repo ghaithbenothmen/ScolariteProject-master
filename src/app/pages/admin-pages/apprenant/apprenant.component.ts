@@ -34,6 +34,7 @@ export class ApprenantComponent {
   public message2!: string;
   public ajoutForm!: FormGroup;  //variable peut etre null on ajoute 
   selectedValue: any = null;
+   selectedValuee: any = null;
   public numberOfApprenants!: number;
   numberOfApprenantsArch!: number;
   errorMessage!: string;

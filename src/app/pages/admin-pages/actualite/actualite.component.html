@@ -98,7 +98,7 @@
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
                             <div class="form-group">
-                                <label>Titre Actualite :</label>
+                                <label>Titre Actualité :</label>
                                 <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
                                     required ngModel>
                                 <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
@@ -143,8 +143,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
-                            <input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
+                            <input type="button" class="btn btn-default" value="Fermer" (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajouter">
                         </div>
                     </form>
                 </div>
