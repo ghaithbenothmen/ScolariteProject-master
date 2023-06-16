@@ -3,7 +3,8 @@ export class Contact{
         public idContact: number,
         public email: String,
         public numTel: number,
-        public nomPrenom :String,
+        public nom :String,
+        public prenom :String,
         public message : String
 
     ){}

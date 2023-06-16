@@ -27,6 +27,7 @@ export class ListeAppSessionComponent {
   public sessionFormations!: SessionFormation[];
   public sessionFormation!: SessionFormation;
    public apprenants!: Apprenant[];
+   public apprenantsNonArch!: Apprenant[];
   public apprenant!: Apprenant;
     public Inscriptions!: Inscription[];
   public Inscription!: Inscription;
@@ -49,7 +50,7 @@ successMessage!:string;
       this.lengthApp=0;
 
       console.log(response);
-      this.apprenants = response;
+      this.apprenants = response.filter(app=>app.archive==false );
 
   
     });
@@ -120,7 +121,7 @@ this.appService.getApprenants().subscribe(response => {
       this.Inscriptions = response;
      
       for (let inscri of this.Inscriptions) {
-        if (inscri.sessionFormation.idSessionFormation== this.idSession) {
+        if (inscri.sessionFormation.idSessionFormation== this.idSession && inscri.apprenant.archive==false) {
       
         this.lengthApp++;
      
