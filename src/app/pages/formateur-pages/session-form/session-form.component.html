@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <span>Filtrer avec Thémes :</span>
+            Filtrer avec Thémes :
             <select class="select" [(ngModel)]="selectedTheme" (change)="filterSessions()">
                 <option value="null" [selected]="!selectedTheme" disabled>Sélectionnez théme</option>
                 <option value="" [selected]="!selectedTheme"> Tous les thémes</option>

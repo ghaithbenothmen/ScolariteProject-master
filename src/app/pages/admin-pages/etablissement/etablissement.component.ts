@@ -143,13 +143,13 @@ onSave() {
       // Inscription saved successfully
       // Do any additional actions here if needed
       this.errorMessage = '';
-      this.successMessage = 'Les informations de etablissement sont bien à jour .';
+      this.successMessage = 'Les informations de établissement sont bien à jour .';
       this.ngOnInit();
     },
     (error) => {
       // Error occurred
       console.error('Error saving apprenant:', error);
-      this.errorMessage = 'Les informations de etablissement non modifier veuillez verifier votre formulaire.';
+      this.errorMessage = 'Les informations de établissement non modifier veuillez verifier votre formulaire.';
       this.successMessage = '';
     })
 

@@ -62,7 +62,7 @@
                         <td>{{SessionFormation.themeDeFormation.nomFormation}}</td>
 
 
-                        <td>{{SessionFormation.formateur.nom}}</td>
+                        <td>{{SessionFormation.formateur.nom}} {{SessionFormation.formateur.prenom}}</td>
                         <td>{{SessionFormation.dateDebut}}</td>
                         <td>{{SessionFormation.nbrHeures}}H</td>
                         <td>{{SessionFormation.localFormation}}</td>
@@ -135,7 +135,7 @@
                                     #codeFormateur="ngModel" [(ngModel)]="idFormateur" required ngModel>
                                     <option [value]="null" disabled>Selectionner formateur de formation</option>
                                     <option *ngFor="let formateur  of formateurs " [value]="formateur.id">
-                                        {{formateur.nom}}
+                                        {{formateur.nom}} {{formateur.prenom}}
                                     </option>
 
                                 </select>
@@ -204,9 +204,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Affiche :</label>
+                                <label>Affiche(.jpg,.jpeg,.png) :</label>
                                 <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
-                                    (change)="onFileChanged($event)">
+                                    accept=".jpg, .jpeg, .png" (change)="onFileChanged($event)">
                                 <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
                                     Actualite</span>
                             </div>
@@ -231,7 +231,7 @@
                 <div class="modal-content">
                     <form [formGroup]="editForm">
                         <div class="modal-header">
-                            <h4 class="modal-title">Edit Session :</h4>
+                            <h4 class="modal-title">Modifier Session :</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
 
@@ -254,7 +254,7 @@
                                 <select class="form-control" formControlName="codeFormateur" required>
                                     <option [value]="null">Selectionner un formateur</option>
                                     <option *ngFor="let formateur  of formateurs " [value]="formateur.id">
-                                        {{formateur.nom}}
+                                        {{formateur.nom}} {{formateur.prenom}}
                                     </option>
 
                                 </select>
@@ -297,8 +297,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Affiche</label>
-                                <input type="file" class="form-control" (change)="onFileChanged($event)" required>
+                                <label>Affiche(.jpg, .jpeg, .png)</label>
+                                <input type="file" class="form-control" accept=".jpg, .jpeg, .png"
+                                    (change)="onFileChanged($event)" required>
                             </div>
 
                             <div class="modal-footer">
@@ -321,7 +322,7 @@
                 <div class="modal-content">
                     <div>
                         <div class="modal-header">
-                            <h4 class="modal-title">Delete Apprenant</h4>
+                            <h4 class="modal-title">Supprimer Apprenant</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
                         </div>

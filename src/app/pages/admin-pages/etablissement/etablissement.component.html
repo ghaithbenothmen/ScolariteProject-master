@@ -1,19 +1,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <div class="container">
-	
-		
+
+
     <!-- ======================= Cards ================== -->
     <div class="cardBox">
         <div class="card">
             <div>
-                <div class="numbers" ><small><small><small><small>Etablissement</small></small></small></small><span ><i class="bi bi-house-door-fill"></i></span></div>
-                
+                <div class="numbers"><small><small><small><small>Etablissement</small></small></small></small><span><i
+                            class="bi bi-house-door-fill"></i></span></div>
+
             </div>
-            
-            
+
+
         </div>
 
-        
+
     </div>
 
     <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -22,121 +23,126 @@
     <div class="alert alert-success" role="alert" *ngIf="successMessage">
         {{successMessage}}
     </div>
-    
+
     <!-- ================ Order Details List ================= -->
-    <div class="details" >
-        <div class="recentOrders" >
-            <div class="cardHeader" >
-                <h2>Notre etablissement</h2>
-                
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Notre établissement</h2>
+
             </div>
 
-        <table >
-            <thead>
-                <tr>
+            <table>
+                <thead>
+                    <tr>
 
-                    <th>Code Etabliseement</th>
-                    <th>Logo</th>
-                    <th>Nom </th>
-                    <th>Abreviation </th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                    <th>Remarque</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                	<tr *ngFor="let etablissement of etablissements">
-						<!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
-					
-						
-						<td>{{etablissement.codeEtablissement}}</td>
-	                    <td><img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px" height="200px"  /></td>
-						<td>{{etablissement.nomEtablissement}}</td>
-						<td>{{etablissement.abreviationEtablissement}}</td>
-						<td>{{etablissement.telEtablissement}}</td>
-						<td>{{etablissement.emailEtablissement}}</td>
-						<td>{{etablissement.remarqueEtablissement}}</td>
-                        
-						<td>
-							<a type="button" (click)="openDetails(contentDetails, etablissement)" class="edit" data-toggle="modal">
+                        <th>Code Etabliseement</th>
+                        <th>Logo</th>
+                        <th>Nom </th>
+                        <th>Abreviation </th>
+                        <th>Tel</th>
+                        <th>Email</th>
+                        <th>Remarque</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let etablissement of etablissements">
+                        <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
+
+
+                        <td>{{etablissement.codeEtablissement}}</td>
+                        <td><img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px"
+                                height="200px" /></td>
+                        <td>{{etablissement.nomEtablissement}}</td>
+                        <td>{{etablissement.abreviationEtablissement}}</td>
+                        <td>{{etablissement.telEtablissement}}</td>
+                        <td>{{etablissement.emailEtablissement}}</td>
+                        <td>{{etablissement.remarqueEtablissement}}</td>
+
+                        <td>
+                            <a type="button" (click)="openDetails(contentDetails, etablissement)" class="edit"
+                                data-toggle="modal">
                                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<!-- <a type="button"  class="delete" data-toggle="modal"><i
+                            <!-- <a type="button"  class="delete" data-toggle="modal"><i
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a> -->
-						</td>
-					<!-- </ng-container> -->
-					</tr>
+                        </td>
+                        <!-- </ng-container> -->
+                    </tr>
 
-				</tbody>
-			</table>
+                </tbody>
+            </table>
 
-     <div *ngFor="let etablissement of etablissements">Logo Etablissement:
-    <img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px"
-                    height="200px" /></div>
-       
+            <div *ngFor="let etablissement of etablissements">Logo Etablissement:
+                <img src="{{'data:'+etablissement.fileType+';base64,' + etablissement.data}}" width="200px"
+                    height="200px" />
+            </div>
+
+        </div>
+
     </div>
-    
-</div>
 
 
 
-<!-- detail Modal HTML -->
+    <!-- detail Modal HTML -->
 
-<!-- detail Modal HTML -->
-<ng-template #contentDetails>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form [formGroup]="editForm">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit etablissemant </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            (click)="modalRef.hide()">&times;</button>
-
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Code </label>
-                            <input readonly type="text" formControlName="codeEtablissement" class="form-control"
-                                required>
+    <!-- detail Modal HTML -->
+    <ng-template #contentDetails>
+        <div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form [formGroup]="editForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modifier établissemant </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                (click)="modalRef.hide()">&times;</button>
 
                         </div>
-                        <div class="form-group">
-                            <label>Nom </label>
-                            <input type="text" formControlName="nomEtablissement" class="form-control" required>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Code </label>
+                                <input readonly type="text" formControlName="codeEtablissement" class="form-control"
+                                    required>
 
-                        </div>
-                        <div class="form-group">
-                            <label>Abreviation </label>
-                            <input type="text" formControlName="abreviationEtablissement" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Tel</label>
-                            <input type="tel" formControlName="telEtablissement" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email </label>
-                            <input type="email" formControlName="emailEtablissement" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Remarque </label>
-                            <input type="email" formControlName="remarqueEtablissement" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" formControlName="file" class="form-control"
-                                (change)="onFileChanged($event)" required>
-                        </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Nom </label>
+                                <input type="text" formControlName="nomEtablissement" class="form-control" required>
 
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" (click)="modalRef.hide()"
-                                value="Fermer">
-                            <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                            </div>
+                            <div class="form-group">
+                                <label>Abreviation </label>
+                                <input type="text" formControlName="abreviationEtablissement" class="form-control"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tel</label>
+                                <input type="tel"  pattern="[0-9]{8}"placeholder="23 456 891"formControlName="telEtablissement" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email </label>
+                                <input type="email" formControlName="emailEtablissement" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Remarque </label>
+                                <input type="email" formControlName="remarqueEtablissement" class="form-control"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>Image(.jpg, .jpeg, .png)</label>
+                                <input type="file" formControlName="file" class="form-control"
+                                    accept=".jpg, .jpeg, .png" (change)="onFileChanged($event)" required>
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal"
+                                    (click)="modalRef.hide()" value="Fermer">
+                                <input type="submit" class="btn btn-info" value="Enregistrer" (click)="onSave()">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</ng-template>
-<!-- Delete Modal HTML -->
+    </ng-template>
+    <!-- Delete Modal HTML -->

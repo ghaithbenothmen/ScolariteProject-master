@@ -59,7 +59,7 @@ export class SideNavComponent implements OnInit{
     this.toggleSidebarForMe.emit();
   }
 
-   onLogout() {
+    onLogout() {
     this.authService.logout();
   }
 

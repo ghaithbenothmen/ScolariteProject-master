@@ -16,10 +16,12 @@
 
     </div>
 
-    <div class="alert alert-success" role="alert" *ngIf="message">
-        {{message}}
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
     </div>
-
+    <div class="alert alert-success" role="alert" *ngIf="successMessage">
+        {{successMessage}}
+    </div>
     <!-- ================ Order Details List ================= -->
     <div class="details">
         <div class="recentOrders">
@@ -98,7 +100,7 @@
 							<span *ngIf="codeEtablissement.invalid && codeEtablissement.touched" class="error">Vous devez entrer le code de l'etablissemant</span>
 						</div> -->
                             <div class="form-group">
-                                <label>Titre Actualite :</label>
+                                <label>Titre Actualité :</label>
                                 <input type="text" name="titreActualite" #titreActualite="ngModel" class="form-control"
                                     required ngModel>
                                 <span *ngIf="titreActualite.invalid && titreActualite.touched" class="error">Vous devez
@@ -133,9 +135,9 @@
 
 
                             <div class="form-group">
-                                <label>Image :</label>
+                                <label>Image(.jpg, .jpeg, .png) :</label>
                                 <input type="file" name="file" #file="ngModel" class="form-control" required ngModel
-                                    (change)="onFileChanged($event)">
+                                    (change)="onFileChanged($event)" accept=".jpg, .jpeg, .png">
                                 <span *ngIf="file.invalid && file.touched" class="error">Vous devez entrer l image de
                                     Actualite</span>
                             </div>
@@ -143,8 +145,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" value="Cancel" (click)="modalRef.hide()">
-                            <input type="submit" class="btn btn-success" data-dismiss="modal" value="Add">
+                            <input type="button" class="btn btn-default" value="Fermer" (click)="modalRef.hide()">
+                            <input type="submit" class="btn btn-success" data-dismiss="modal" value="Ajouter">
                         </div>
                     </form>
                 </div>
@@ -195,9 +197,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Image(.jpg, .jpeg, .png)</label>
                                 <input type="file" formControlName="file" class="form-control"
-                                    (change)="onFileChanged($event)" required>
+                                    (change)="onFileChanged($event)" accept=".jpg, .jpeg, .png" required>
                             </div>
 
                             <div class="modal-footer">
@@ -220,13 +222,13 @@
                 <div class="modal-content">
                     <div>
                         <div class="modal-header">
-                            <h4 class="modal-title">Delete Apprenant</h4>
+                            <h4 class="modal-title">Supprimer Apprenant</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Voulez-vous archiver ce formateur?</p>
+                            <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
                         </div>
                         <form class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"

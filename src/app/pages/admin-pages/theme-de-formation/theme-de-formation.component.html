@@ -70,11 +70,11 @@
 
                 </tbody>
             </table>
-                    <div *ngIf="noDataAvailable" class="no-data-container">
-                        <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
-                            alt="No data available">
-                    </div>
-                    <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
+            <div *ngIf="noDataAvailable" class="no-data-container">
+                <img class="no-data-image" src="../../../../assets/img/no-data-empty-data-concept-vector-41830413.jpg"
+                    alt="No data available">
+            </div>
+            <h2 *ngIf="noDataAvailable" style="text-align: center;">Aucune données disponibles !</h2>
 
             <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="onTableChange($event)">
 
@@ -149,7 +149,7 @@
                 <div class="modal-content">
                     <form [formGroup]="editForm">
                         <div class="modal-header">
-                            <h4 class="modal-title">Edit theme de formation </h4>
+                            <h4 class="modal-title">Modifier theme de formation </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
 

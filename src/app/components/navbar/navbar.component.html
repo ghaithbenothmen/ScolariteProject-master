@@ -22,26 +22,35 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item "><a class="nav-link" href="accueil" >Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="presentation">Presentation</a></li>
-                        <li class="nav-item"><a class="nav-link" href="actu">Actualités</a></li>
+                        <li class="nav-item " routerLinkActive="active"><a class="nav-link"
+                                routerLink="accueil">Accueil</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active"><a class="nav-link"
+                                routerLink="presentation">Presentation</a></li>
+                        <li class="nav-item" routerLinkActive="active"><a class="nav-link"
+                                routerLink="actu">Actualités</a></li>
 
-                        
 
-                        <li class="nav-item submenu dropdown">
+
+                        <li class="nav-item submenu dropdown" routerLinkActive="active">
+
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Formations</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="AffichagethemeFormation">Thémes de
+                                <li class="nav-item" routerLinkActive="active"><a class="nav-link"
+                                        routerLink="AffichagethemeFormation">Thémes de
                                         formation</a>
-                                <li class="nav-item"><a class="nav-link" href="AffichagesessionFormation">Sessions de
+                                <li class="nav-item" routerLinkActive="active"><a class="nav-link"
+                                        routerLink="AffichagesessionFormation">Sessions de
                                         formation</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+                        <li class="nav-item" routerLinkActive="active"><a class="nav-link"
+                                routerLink="contact">Contact</a>
+                        </li>
 
 
-                        <li class="nav-item submenu dropdown">
+                        <li class="nav-item submenu dropdown" routerLinkActive="active">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false"
                                 *ngIf="!authService.isLoggedIn()">Connexion</a>
@@ -49,23 +58,23 @@
                                 aria-haspopup="true" aria-expanded="false"
                                 *ngIf="authService.isLoggedIn()">{{authService.loggedUser}}</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="login"
+                                <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="login"
                                         *ngIf="!authService.isLoggedIn()">Se connecter</a></li>
 
-                                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn()"
+                                <li class="nav-item" routerLinkActive="active"><a class="nav-link" *ngIf="authService.isLoggedIn()"
+
                                         (click)="onLogout()">Se déconnecter</a></li>
                                 <li class="nav-item"> <a class="nav-link" routerLink="user-dashboard/dash-app"
                                         type="button" *ngIf="authService.isLoggedIn()&&authService.isApp()">Dashboard
-                                            Apprenant</a></li>
+                                        Apprenant</a></li>
                                 <li class="nav-item"> <a class=" nav-link" routerLink="admin-dashboard/admin-dash"
-                                        type="button"
-                                        *ngIf="authService.isLoggedIn()&&authService.isAdmin()">Dashboard
-                                            Admin</a></li>
+                                        type="button" *ngIf="authService.isLoggedIn()&&authService.isAdmin()">Dashboard
+                                        Admin</a></li>
                                 <li class="nav-item"> <a class=" nav-link" routerLink="formateur-dashboard/dash-for"
                                         type="button"
                                         *ngIf="authService.isLoggedIn()&&authService.isFormateur()">Dashboard
-                                            Formateur</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="register"
+                                        Formateur</a></li>
+                                <li class="nav-item" routerLinkActive="active"> <a class="nav-link" routerLink="register"
                                         *ngIf="!authService.isLoggedIn()">S'inscrire</a></li>
 
                             </ul>

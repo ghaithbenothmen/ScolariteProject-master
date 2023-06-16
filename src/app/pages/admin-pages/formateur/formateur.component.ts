@@ -83,11 +83,12 @@ export class FormateurComponent {
   onSubmit (f: NgForm) {
   
     
-  this.formateurService .addformateur ( this.selectedFile , f.value ).subscribe(response => {
+  this.formateurService.addformateur ( this.selectedFile , f.value ).subscribe(response => {
     console.log(response);
     this.successMessage = "Formateur ajouté avec succès";
     this.ngOnInit();  
-  }, error => {
+  },
+    error => {
     this.errorMessage = "Erreur lors de l'ajout du formateur, vérifier votre formulaire";
     this.ngOnInit();  
 

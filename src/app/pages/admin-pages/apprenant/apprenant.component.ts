@@ -34,6 +34,7 @@ export class ApprenantComponent {
   public message2!: string;
   public ajoutForm!: FormGroup;  //variable peut etre null on ajoute 
   selectedValue: any = null;
+   selectedValuee: any = null;
   public numberOfApprenants!: number;
   numberOfApprenantsArch!: number;
   errorMessage!: string;
@@ -147,14 +148,16 @@ export class ApprenantComponent {
         // Do any additional actions here if needed
         this.errorMessage = '';
         this.successMessage = 'Apprenant bien ajouté .';
+            this.ngOnInit();
       },
       (error) => {
         // Error occurred
         console.error('Error saving apprenant:', error);
         this.errorMessage = 'Apprenant non ajouté veuillez verifier votre formulaire.';
         this.successMessage = '';
+            this.ngOnInit();
       })
-
+    this.ngOnInit();
     this.modalService.hide(); //dismiss the modal
   }
 
@@ -211,7 +214,7 @@ console.log("id",this.editForm.value.id);
         this.errorMessage = 'Apprenant non modifié veuillez verifier votre formulaire.';
         this.successMessage = '';
       })
-
+  
     this.modalService.hide(); //dismiss the modal
   }
 

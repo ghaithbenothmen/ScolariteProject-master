@@ -124,7 +124,7 @@ export class SessionFormComponent {
       this.legthInscr=this.sessionFormations.length;
        console.log("dddd", this.legthInscr);
        
-      if (response.length === 0) {
+      if (this.filteredSessions.length === 0) {
         this.noDataAvailable = true;
       } else {
         this.noDataAvailable = false;

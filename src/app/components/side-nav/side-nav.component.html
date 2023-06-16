@@ -18,40 +18,40 @@
 
         <CDBSidebarContent>
             <CDBSidebarMenu class="sidebar-content">
-                <CDBSidebarMenuItem link='admin-dash' icon="columns">
+                <CDBSidebarMenuItem link='/admin-dashboard/admin-dash' icon="columns">
                     Dashboard
                 </CDBSidebarMenuItem>
-                <CDBSidebarMenuItem icon="users" link='apprenant'>
+                <CDBSidebarMenuItem icon="users" link='/admin-dashboard/apprenant'>
                     Liste des apprenants
                 </CDBSidebarMenuItem>
-                <CDBSidebarMenuItem icon="users" link='formateur' (click)="reload()">
+                <CDBSidebarMenuItem icon="users" link='/admin-dashboard/formateur'>
                     Liste des Formateurs
                 </CDBSidebarMenuItem>
 
 
-                <CDBSidebarMenuItem link="sessionDeFormation" icon="table">
+                <CDBSidebarMenuItem link="/admin-dashboard/sessionDeFormation" icon="table">
                     Sessions de formation
                 </CDBSidebarMenuItem>
-                <CDBSidebarMenuItem link="themeDeFormation" icon="table">
+                <CDBSidebarMenuItem link="/admin-dashboard/themeDeFormation" icon="table">
                     Thémes de formation
                 </CDBSidebarMenuItem>
 
-                <CDBSidebarMenuItem link="app-liste-app-by-session" icon="th-large">
+                <CDBSidebarMenuItem link="/admin-dashboard/app-liste-app-by-session" icon="th-large">
                     Les inscriptions
                 </CDBSidebarMenuItem>
 
 
-                <CDBSidebarMenuItem link='actualiteDash' icon="sticky-note">
+                <CDBSidebarMenuItem link='/admin-dashboard/actualiteDash' icon="sticky-note">
                     Les Actualités
                 </CDBSidebarMenuItem>
 
-                <CDBSidebarMenuItem link="messages" icon="book">
+                <CDBSidebarMenuItem link="/admin-dashboard/messages" icon="book">
                     Les Messages
                 </CDBSidebarMenuItem>
 
 
 
-                <CDBSidebarMenuItem link="etablissement" icon="home">
+                <CDBSidebarMenuItem link="/admin-dashboard/etablissement" icon="home">
                     <span style="margin-left: 5px;">Etablissement</span>
                 </CDBSidebarMenuItem>
             </CDBSidebarMenu>
@@ -63,8 +63,8 @@
                     <span style="margin-left: 5px;">Profil</span>
                 </CDBSidebarMenuItem>
 
-                <CDBSidebarMenuItem href='/404'><i class="bi mx-2 bi-box-arrow-right"></i>
-                    <span style="margin-left: 5px;">Déconnexion</span>
+                <CDBSidebarMenuItem><i class="bi mx-2 bi-box-arrow-right"></i>
+                    <span style="margin-left: 5px;" (click)="onLogout()">Déconnexion</span>
                 </CDBSidebarMenuItem>
 
 
