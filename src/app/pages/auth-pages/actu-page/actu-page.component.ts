@@ -18,12 +18,16 @@ export class ActuPageComponent {
   public actualite!: Actualite;
 public dateActualite !: string;
   editForm: any;
-  
+  showFullDescription: boolean = false;
 public isCollapsed = true;
   noDataAvailable!: boolean;
+  expandedIndexes: number[] = [];
 
   constructor(private modalService: BsModalService, private datePipe: DatePipe,  private fb: FormBuilder,public actualiteService  : ActualiteService,private authService:AuthService) { }
- 
+  
+  
+  
+
  
   page:number=1;
   count:number=0;
@@ -34,6 +38,26 @@ public isCollapsed = true;
 
   }
 
+  truncateText(text: string, maxLength: number): string {
+    if (text.length > maxLength) {
+      return text.substr(0, maxLength) + '...';
+    }
+    return text;
+  }
+
+  toggleDescription(index: number): void {
+    if (this.isExpanded(index)) {
+      this.expandedIndexes = this.expandedIndexes.filter(i => i !== index);
+    } else {
+      this.expandedIndexes.push(index);
+    }
+  }
+
+  isExpanded(index: number): boolean {
+    return this.expandedIndexes.includes(index);
+  }
+
+  
 
   getActualite() {
     this.actualiteService.getActualite().subscribe((response:any[]) => {
