@@ -116,7 +116,7 @@ textarea:focus {
 }
 
 a:hover {
-	color: #d82a4e;
+	color: #2ad88d;
 }
 
 a:hover,
@@ -201,7 +201,7 @@ ol {
 	position: relative;
 	color: #fff;
 	cursor: pointer;
-	background: #d82a4e;
+	background: #70cc4f;
 }
 
 .site-btn:hover {
