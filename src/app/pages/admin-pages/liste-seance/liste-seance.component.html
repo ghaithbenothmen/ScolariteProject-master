@@ -54,8 +54,17 @@
                             <td>{{seance.local}}</td>
                             <td>{{seance.contenu}}</td>
 
-                            <td><a href="{{'data:'+seance.fileType+';base64,' + seance.data}}"
-                                    download="{{seance.data}}" width="200px" height="200px">Télécharger Cours </a></td>
+                            <td>
+
+
+                                <a href="{{'data:'+seance.fileType+';base64,' + seance.data}}"
+                                    download="{{seance.data}}" width="200px" height="200px">Télécharger Cours </a>
+
+                                <a type="button" (click)="showSeanceDetails(seance.idSeanceFormation)" class="show"
+                                    data-toggle="modal"><span class="material-symbols-outlined">
+                                        visibility
+                                    </span></a>
+                            </td>
 
                             <td>
 
