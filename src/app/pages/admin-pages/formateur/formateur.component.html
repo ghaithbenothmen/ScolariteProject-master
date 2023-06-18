@@ -75,11 +75,17 @@
                             <td>{{Formateur.tel}}</td>
                             <td>{{Formateur.adresse}}</td>
 
+
                             <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
                                     (click)="download('data:'+Formateur.fileType+';base64,' + Formateur.data)"  type="button" width="200px"
                                     height="200px" target="_blank">Telecharger Cv </a></td>
 
+<!-- 
 
+                            <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}" target="_blank"
+                                    download="{{Formateur.nom}} {{Formateur.prenom}} Cv" width="200px"
+                                    height="200px">Telecharger Cv </a></td>
+ -->
                             <td><span *ngIf="Formateur.verified" class="status delivered m-lg-2">Vérifier</span>
 
                                 <span *ngIf="!Formateur.verified" class="status return">Non vérifier</span>
@@ -162,8 +168,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Telephone</label>
-                                <input type="tel" name="tel" pattern="[0-9]{8}"placeholder="23 456 891" #telFormateur="ngModel"
-                                    class="form-control" required ngModel>
+                                <input type="tel" name="tel" pattern="[0-9]{8}" placeholder="23 456 891"
+                                    #telFormateur="ngModel" class="form-control" required ngModel>
                                 <span *ngIf="telFormateur.invalid && telFormateur.touched" class="error">Vous devez
                                     entrer le telephone de Formateur</span>
                             </div>
@@ -226,8 +232,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Tel</label>
-                                <input pattern="[0-9]{8}"placeholder="23 456 891" type="tel" formControlName="tel" class="form-control"
-                                    required>
+                                <input pattern="[0-9]{8}" placeholder="23 456 891" type="tel" formControlName="tel"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Email </label>

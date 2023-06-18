@@ -17,6 +17,7 @@ import { FormateurArchiveComponent } from 'src/app/pages/admin-pages/formateur-a
 import { EditProfilAdminComponent } from 'src/app/pages/admin-pages/edit-profil-admin/edit-profil-admin.component';
 import { SeanceComponent } from 'src/app/pages/formateur-pages/seance/seance.component';
 import { ListeSeanceComponent } from 'src/app/pages/admin-pages/liste-seance/liste-seance.component';
+import { PresanceAppComponent } from 'src/app/pages/admin-pages/presance-app/presance-app.component';
 
 
 
@@ -37,7 +38,7 @@ const routes: Routes = [
   { path: 'edit_profil', component:EditProfilAdminComponent},
  {path: 'liste-seance-by-session/:id',component: ListeSeanceComponent},
   { path: 'ListeAppSession/:id', component: ListeAppSessionComponent },
-  
+  {path:'Presance/:id', component:PresanceAppComponent},
 
   { path: 'admin-dash', component: AdminDashComponent },
   

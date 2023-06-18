@@ -84,6 +84,7 @@ import { EditProfilAdminComponent } from './pages/admin-pages/edit-profil-admin/
 
 import { ListeSeanceComponent } from './pages/admin-pages/liste-seance/liste-seance.component';
 import { SeanceDetailsComponent } from './pages/formateur-pages/seance-details/seance-details.component';
+import { PresanceAppComponent } from './pages/admin-pages/presance-app/presance-app.component';
 
 
 
@@ -150,6 +151,7 @@ registerLocaleData(localeFr);
    
           ListeSeanceComponent,
                SeanceDetailsComponent,
+               PresanceAppComponent,
 
 
       

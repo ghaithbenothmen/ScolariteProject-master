@@ -198,7 +198,11 @@ idSeanceFormation:[''],
   }
 
 
+  showSeanceDetails(seanceId: number): void {
+   
+    this.router.navigate(['admin-dashboard/Presance', seanceId]);
 
+  }
   /************************ pop up****************** */
   openDetails(modalTemplate: TemplateRef<any>, seance: seance) {
     this.modalRef = this.modalService.show(modalTemplate,

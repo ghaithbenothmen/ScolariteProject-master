@@ -75,7 +75,7 @@ export class EtablissementComponent {
   ngOnInit(): void {
     this.getEtablissement()
     console.log(this.authService.getToken())
-    
+        this.ngOnInit();
     this.editForm = this.fb.group({
     
       codeEtablissement: [''],
