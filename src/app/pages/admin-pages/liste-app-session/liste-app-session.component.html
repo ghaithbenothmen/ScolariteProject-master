@@ -145,7 +145,7 @@
                         <select class="form-select" formControlName="apprenant" [(ngModel)]="selectedTheme" required>
                             <option [value]="null" disabled>Séléctionner apprenant </option>
                             <option *ngFor="let app  of apprenants " [value]="app.id">
-                                {{app.nom}}
+                                {{app.nom}} {{app.prenom}}
                             </option>
 
                         </select>

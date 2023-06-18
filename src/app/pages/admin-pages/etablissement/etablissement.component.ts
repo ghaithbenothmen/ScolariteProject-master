@@ -75,7 +75,7 @@ export class EtablissementComponent {
   ngOnInit(): void {
     this.getEtablissement()
     console.log(this.authService.getToken())
-        this.ngOnInit();
+ 
     this.editForm = this.fb.group({
     
       codeEtablissement: [''],
@@ -151,6 +151,7 @@ onSave() {
       console.error('Error saving apprenant:', error);
       this.errorMessage = 'Les informations de établissement non modifier veuillez verifier votre formulaire.';
       this.successMessage = '';
+       this.ngOnInit();
     })
 
   this.modalService.hide(); 

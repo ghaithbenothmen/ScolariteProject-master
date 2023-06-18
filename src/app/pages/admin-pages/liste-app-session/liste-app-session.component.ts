@@ -235,19 +235,20 @@ this.appService.getApprenants().subscribe(response => {
          // Inscription saved successfully
          // Do any additional actions here if needed
          this.errorMessage = '';
+          this.ngOnInit();
          this.successMessage = 'Apprenant bien inscri .';
        },
        (error) => {
          // Error occurred
          console.error('Error saving inscription:', error);
-
+ this.ngOnInit();
          this.errorMessage = 'apprenant deja inscri .';
          this.successMessage = '';
        }
      );
  
      
-    this.ngOnInit();
+  
    
     this.modalService.hide(); //dismiss the modal
     
