@@ -11,7 +11,7 @@ import { Etablissement } from '../entities/etablissement.model';
   providedIn: 'root'
 })
 export class EtablissementService {
-  apiURL: string = "http://localhost:8080/apprenant/api/Etablissement/";
+  apiURL: string = "http://192.168.1.180:8080/apprenant/api/Etablissement/";
 
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 

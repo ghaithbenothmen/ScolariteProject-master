@@ -10,7 +10,7 @@ import { Formateur } from '../entities/formateur.model';
   providedIn: 'root'
 })
 export class formateurService  {
-  apiURL: string = "http://localhost:8080/apprenant/api/Formateur/";
+  apiURL: string = "http://192.168.1.180:8080/apprenant/api/Formateur/";
 
   constructor(private httpClient: HttpClient, private authService : AuthService,private modalService: BsModalService) { }
 

@@ -28,7 +28,7 @@
             <div class="cardHeader">
                 <h2>Liste des Actualités</h2>
                 <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
-                        class="material-icons">&#xE147;</i> <span>Ajouter Actualités</span></button>
+                        class="material-icons">&#xE147;</i> <span>Ajouter Actualité</span></button>
             </div>
 
             <table *ngIf="!noDataAvailable">
@@ -162,7 +162,7 @@
                 <div class="modal-content">
                     <form [formGroup]="editForm">
                         <div class="modal-header">
-                            <h4 class="modal-title">Edit Actualite </h4>
+                            <h4 class="modal-title">Modifier Actualite </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
 
@@ -222,12 +222,12 @@
                 <div class="modal-content">
                     <div>
                         <div class="modal-header">
-                            <h4 class="modal-title">Supprimer Apprenant</h4>
+                            <h4 class="modal-title">Supprimer actualité</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <p>Voulez-vous archiver ce formateur?</p>
+                            <p>Voulez-vous supprimer cet actualité?</p>
                             <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
                         </div>
                         <form class="modal-footer">

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AdminService {
-apiURL: string = "http://localhost:8080/apprenant/api/admin";
+apiURL: string = "http://192.168.1.180:8080/apprenant/api/admin";
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
   

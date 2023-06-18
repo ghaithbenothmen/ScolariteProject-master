@@ -29,7 +29,7 @@
             <div class="cardHeader">
                 <h2>Liste des thémes formations </h2>
                 <button (click)="openModal(modalTemplate)" class="btn btn-success " data-toggle="modal"><i
-                        class="material-icons">&#xE147;</i> <span>Ajouter Session</span></button>
+                        class="material-icons">&#xE147;</i> <span>Ajouter Théme</span></button>
             </div>
 
             <table *ngIf="!noDataAvailable">
@@ -116,8 +116,8 @@
                                     entrer l'abrivation de la formation </span>
                             </div>
                             <div class="form-group">
-                                <!-- <label>Description de formation :</label> -->
-                                <textarea name="description" #description="ngModel" class="form-control" required
+                                <label>Description de formation :</label>
+                                <textarea name="description" #description="ngModel" class="form-control" required  rows="5" cols="33"
                                     ngModel>Description de la formation :</textarea>
                                 <!-- <input type="text" name="description" #description="ngModel"
                                 class="form-control" required ngModel> -->
@@ -149,7 +149,7 @@
                 <div class="modal-content">
                     <form [formGroup]="editForm">
                         <div class="modal-header">
-                            <h4 class="modal-title">Modifier theme de formation </h4>
+                            <h4 class="modal-title">Modifier théme de formation </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
 
@@ -201,13 +201,13 @@
                 <div class="modal-content">
                     <div>
                         <div class="modal-header">
-                            <h4 class="modal-title">Delete Apprenant</h4>
+                            <h4 class="modal-title">Supprimer Théme </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Voulez-vous supprimer ce théme?</p>
+                            <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
                         </div>
                         <form class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
