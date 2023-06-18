@@ -17,7 +17,7 @@ interface AuthResponse {
 })
 export class AuthService {
   
-  public apiURL: string = 'http://localhost:8080/apprenant/api';
+  public apiURL: string = 'http://192.168.1.180:8080/apprenant/api';
   public token!: string;
   public role!: any;
   public id!: number;

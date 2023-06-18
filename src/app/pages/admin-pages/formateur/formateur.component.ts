@@ -189,7 +189,10 @@ onSave() {
 
 }
 
-
+download(url:string)
+{
+  window.open(url, '_blank');
+}
 
 /**********************Template delete ******************* */
 openDelete(modalTemplate: TemplateRef<any>, formateur:Formateur) {

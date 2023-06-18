@@ -236,6 +236,7 @@ this.appService.getApprenants().subscribe(response => {
          // Do any additional actions here if needed
          this.errorMessage = '';
          this.successMessage = 'Apprenant bien inscri .';
+         this.ngOnInit();
        },
        (error) => {
          // Error occurred
@@ -243,6 +244,7 @@ this.appService.getApprenants().subscribe(response => {
 
          this.errorMessage = 'apprenant deja inscri .';
          this.successMessage = '';
+         this.ngOnInit();
        }
      );
  

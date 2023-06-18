@@ -11,7 +11,7 @@ export class ForgotService {
   submitForgotPasswordForm() {
     const email = 'ghaithbenothmen8@gmail.com'; // Replace with the actual email value
   
-    this.http.post('http://localhost:8080/apprenant/api/Password/forgot_password', { email }).subscribe(
+    this.http.post('http://192.168.1.180:8080/apprenant/api/Password/forgot_password', { email }).subscribe(
       (response) => {
         // Success response
         console.log('Password reset request successful:', response);

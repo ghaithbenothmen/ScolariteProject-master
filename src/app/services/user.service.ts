@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserService {
-  apiURL: string = "http://localhost:8080/apprenant/api/v1/auth";
+  apiURL: string = "http://192.168.1.180:8080/apprenant/api/v1/auth";
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 
@@ -28,11 +28,11 @@ export class UserService {
 
   getUser() {
 
-    return this.httpClient.get<User[]>("http://localhost:8080/apprenant/api/v1/auth/get");
+    return this.httpClient.get<User[]>("http://192.168.1.180:8080/apprenant/api/v1/auth/get");
   }
 
   getOneUser(email: String) {
-    const api = "http://localhost:8080/apprenant/api/v1/auth/getEmail/";
+    const api = "http://192.168.1.180:8080/apprenant/api/v1/auth/getEmail/";
     return this.httpClient.get<User[]>(`${api}/${email}`);
   }
 

@@ -13,7 +13,7 @@ export class SeanceService {
 
 
   public SessionFormationr!:SessionFormation;
-  apiURL: string = "http://localhost:8080/apprenant/api/SeanceFormation/";
+  apiURL: string = "http://192.168.1.180:8080/apprenant/api/SeanceFormation/";
  
   
   public seance: seance[] = [];
