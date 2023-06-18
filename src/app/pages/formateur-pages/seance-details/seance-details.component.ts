@@ -44,7 +44,12 @@ export class SeanceDetailsComponent implements OnInit {
 
       this.Inscriptions=this.seance.inscription;
       this.lengthInscri=this.Inscriptions.length;
-      console.log('inscr',this.Inscriptions)
+      console.log('inscr', this.Inscriptions)
+       if (this.lengthInscri === 0) {
+      this.noDataAvailable = true;
+    } else {
+      this.noDataAvailable = false;
+    }
       /*this.seance.inscription.forEach(inscription => {
             //console.log(inscription.codeInscription); // Access the inscription ID
             console.log(inscription.apprenant); // Access other properties of the apprenant object

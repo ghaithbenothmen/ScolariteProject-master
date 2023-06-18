@@ -50,7 +50,13 @@ export class PresanceAppComponent {
             console.log(inscription.apprenant); // Access other properties of the apprenant object
             this.apprenant=inscription.apprenant;
             console.log("app",this.apprenant)
+
     });*/
+         if (this.lengthInscri === 0) {
+      this.noDataAvailable = true;
+    } else {
+      this.noDataAvailable = false;
+    }
   });
   }
   formatTime(timeString: string): string {
