@@ -78,14 +78,16 @@ export class ThemeDeFormationComponent {
       // Do any additional actions here if needed
       this.errorMessage = '';
       this.successMessage = 'Théme bien ajouté .';
+      this.ngOnInit();
     },
     (error) => {
       // Error occurred
       console.error('Error saving apprenant:', error);
       this.errorMessage = 'Théme non ajouté veuillez verifier votre formulaire.';
       this.successMessage = '';
+      this.ngOnInit();
     })
-
+    
   this.modalService.hide(); 
 
   }
