@@ -45,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ThemeDeFormation  of ThemeDeFormation">
+                    <tr *ngFor="let ThemeDeFormation  of ThemeDeFormation | paginate:{ itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
 

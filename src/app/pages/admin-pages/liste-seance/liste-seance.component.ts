@@ -58,7 +58,12 @@ public noDataAvailable !: boolean;
 
 
   }
- 
+  formatTime(timeString: string): string {
+    const [hours, minutes] = timeString.split(':');
+    const formattedHours = hours.padStart(2, '0');
+    const formattedMinutes = minutes.padStart(2, '0');
+    return `${formattedHours}:${formattedMinutes}`;
+  }
  
   
 

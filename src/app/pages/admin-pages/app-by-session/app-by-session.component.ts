@@ -127,12 +127,9 @@ noDataAvailable!: boolean;
 
       this.legthInscr=this.sessionFormations.length;
        console.log("dddd", this.legthInscr);
+
        
-      if (response.length === 0) {
-        this.noDataAvailable = true;
-      } else {
-        this.noDataAvailable = false;
-      }
+      
 
     });
     this.formateurService.getFormateur().subscribe(response => {
@@ -199,10 +196,19 @@ openDelete(modalTemplate: TemplateRef<any>, SessionFormation: SessionFormation) 
   filterSessions() {
     if (!this.selectedTheme) {
       this.filteredSessions = this.sessionFormations; // No theme selected, show all sessions
-      console.log('filter',this.filteredSessions);
+      console.log('filterK',this.filteredSessions);
+      
+      
     } else {
       this.filteredSessions = this.sessionFormations.filter(session => session.themeDeFormation.idFormation == this.selectedTheme);
-      console.log('filter',this.filteredSessions);
+      console.log('filterK',this.filteredSessions);
+      console.log('filterLen',this.filteredSessions.length);
+      if (this.filteredSessions.length === 0) {
+        this.noDataAvailable = true;
+      } else {
+        this.noDataAvailable = false;
+      }
+
     }
   }
 

@@ -25,7 +25,7 @@ email!: string;
     
     formData.append('email', this.email);
   
-    this.http.post<any>('http://localhost:8080/apprenant/api/Password/forgot_password', formData)
+    this.http.post<any>('http://192.168.1.180:8080/apprenant/api/Password/forgot_password', formData)
       .subscribe(
         response => {
           console.log(response);

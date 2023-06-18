@@ -76,16 +76,16 @@
                             <td>{{Formateur.adresse}}</td>
 
 
-                            <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
+                          <!--   <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
                                     (click)="download('data:'+Formateur.fileType+';base64,' + Formateur.data)"  type="button" width="200px"
-                                    height="200px" target="_blank">Telecharger Cv </a></td>
+                                    height="200px" target="_blank">Telecharger Cv </a></td> -->
 
-<!-- 
+
 
                             <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}" target="_blank"
                                     download="{{Formateur.nom}} {{Formateur.prenom}} Cv" width="200px"
                                     height="200px">Telecharger Cv </a></td>
- -->
+
                             <td><span *ngIf="Formateur.verified" class="status delivered m-lg-2">Vérifier</span>
 
                                 <span *ngIf="!Formateur.verified" class="status return">Non vérifier</span>
