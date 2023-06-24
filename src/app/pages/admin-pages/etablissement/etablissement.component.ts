@@ -144,7 +144,7 @@ onSave() {
       // Do any additional actions here if needed
       this.errorMessage = '';
       this.successMessage = 'Les informations de établissement sont bien à jour .';
-      this.ngOnInit();
+      window.location.reload()
     },
     (error) => {
       // Error occurred

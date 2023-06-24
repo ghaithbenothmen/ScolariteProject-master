@@ -112,7 +112,7 @@
           <div class="block-23 mb-3">
             <ng-container *ngFor="let etablissement of etablissements">
             <ul>
-              <li><span class="icon fa fa-map"></span><span class="text">Adresse</span></li>
+              <li><span class="icon fa fa-map"></span><span class="text">{{etablissement.abreviationEtablissement}}</span></li>
               <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+216 {{etablissement.telEtablissement}}</span></a></li>
               <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">{{etablissement.emailEtablissement}}</span></a></li>
             </ul>
