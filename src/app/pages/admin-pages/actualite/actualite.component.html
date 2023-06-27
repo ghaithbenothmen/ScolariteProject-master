@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let actualite of Actualites">
+                    <tr *ngFor="let actualite of Actualites | paginate:{ itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
                         <!-- <ng-container *ngIf="!etablissement.archiveEtablissement"> -->
 
 

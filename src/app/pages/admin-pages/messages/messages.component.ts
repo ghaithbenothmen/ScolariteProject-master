@@ -21,7 +21,7 @@ public noDataAvailable !: boolean;
    //Pagination//
    page:number=1;
    count:number=0;
-   tableSize:number=3;
+   tableSize:number=6;
    onTableChange(event:any){
      this.page=event;
      this.getContact();

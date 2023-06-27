@@ -163,10 +163,12 @@ public seanceID!:number;
         this.seanceService.addInscriptionsToSeance(seanceId, this.selectedCheckboxes).subscribe(
           inscriptionsResponse => {
             console.log("Inscriptions added successfully:", inscriptionsResponse);
+            this.modalService.hide(); 
             this.ngOnInit();
-            this.modalService.hide(); // Dismiss the modal
+            
           },
           inscriptionsError => {
+            
             console.log("Error adding inscriptions:", inscriptionsError);
             // Handle error scenario for adding inscriptions
           }

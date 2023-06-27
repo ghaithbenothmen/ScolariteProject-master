@@ -76,16 +76,16 @@
                             <td>{{Formateur.adresse}}</td>
 
 
-                            <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
+                          <!--   <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}"
                                     (click)="download('data:'+Formateur.fileType+';base64,' + Formateur.data)"  type="button" width="200px"
-                                    height="200px" target="_blank">Telecharger Cv </a></td>
+                                    height="200px" target="_blank">Telecharger Cv </a></td> -->
 
-<!-- 
+
 
                             <td><a href="{{'data:'+Formateur.fileType+';base64,' + Formateur.data}}" target="_blank"
                                     download="{{Formateur.nom}} {{Formateur.prenom}} Cv" width="200px"
                                     height="200px">Telecharger Cv </a></td>
- -->
+
                             <td><span *ngIf="Formateur.verified" class="status delivered m-lg-2">Vérifier</span>
 
                                 <span *ngIf="!Formateur.verified" class="status return">Non vérifier</span>
@@ -280,7 +280,7 @@
                 <div class="modal-content">
                     <div>
                         <div class="modal-header">
-                            <h4 class="modal-title">Desarchiver formateur</h4>
+                            <h4 class="modal-title">Archiver formateur</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 (click)="modalRef.hide()">&times;</button>
                         </div>
@@ -291,7 +291,7 @@
                         <form class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer"
                                 (click)="modalRef.hide()">
-                            <input type="submit" class="btn btn-danger" value="Desarchiver"
+                            <input type="submit" class="btn btn-danger" value="Archiver"
                                 (click)="onArchive(Formateur)">
 
                         </form>

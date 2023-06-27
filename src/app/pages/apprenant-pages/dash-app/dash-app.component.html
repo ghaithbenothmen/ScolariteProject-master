@@ -11,8 +11,9 @@
       </div>
       <img class="hide-mobile" src="../../../../assets/imgs/welcome.png" alt="" />
     </div>
-   <!--  <img *ngIf="apprenant.sexeApprenant=='femme'" src="../../../../assets/imgs/avatarF.png" alt="" class="avatar" /> -->
-    <img  src="../../../../assets/img/user.png" alt="" class="avatar" />
+    <img *ngIf="apprenant.sexeApprenant=='femme'" src="../../../../assets/imgs/avatarF.png" alt="" class="avatar" />
+    <img *ngIf="apprenant.sexeApprenant=='homme'" src="../../../../assets/imgs/avatar.png" alt="" class="avatar" />
+    <!-- <img  src="../../../../assets/img/user.png" alt="" class="avatar" /> -->
     <div class="body txt-c d-flex p-20 mt-20 mb-20 block-mobile" *ngIf="apprenant">
       <div>{{this.user.nom}} {{this.user.prenom}} <span class="d-block c-grey fs-14 mt-10">{{this.user.role}}</span></div>
       <div >{{apprenant.qualiteApprenant}}<span class="d-block c-grey fs-14 mt-10">{{apprenant.niveauApprenant}}</span></div>

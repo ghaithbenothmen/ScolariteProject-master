@@ -42,7 +42,7 @@ export class ActualiteComponent {
   //Pagination//
   page:number=1;
   count:number=0;
-  tableSize:number=3;
+  tableSize:number=4;
   onTableChange(event:any){
     this.page=event;
     this.getActualite();
