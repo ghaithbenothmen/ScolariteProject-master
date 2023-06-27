@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ActualiteService {
-  apiURL: string = "http://192.168.1.180:8080/apprenant/api/actualite/";
+  apiURL: string = "http://localhost:8080/apprenant/api/actualite/";
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 

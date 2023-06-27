@@ -22,7 +22,7 @@ export class InscriptionService {
  public apprenants!:Apprenant[];
  public id!:number;
   public inscription!: Inscription;
-  apiURL: string = "http://192.168.1.180:8080/apprenant/api/inscription/";
+  apiURL: string = "http://localhost:8080/apprenant/api/inscription/";
 
   
 

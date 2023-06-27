@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 })
 export class ContactService {
 
-  apiURL: string = "http://192.168.1.180:8080/apprenant/api/contact";
+  apiURL: string = "http://localhost:8080/apprenant/api/contact";
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private modalService: BsModalService) { }
 

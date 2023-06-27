@@ -9,7 +9,7 @@ import { Etablissement } from '../entities/etablissement.model';
 export class ImageService {
 
   constructor(private httpClient : HttpClient,private authService:AuthService) { }
-  apiURL: string = "http://192.168.1.180:8080/apprenant/api/Etablissement/etab";
+  apiURL: string = "http://localhost:8080/apprenant/api/Etablissement/etab";
 
 getImage(){
  
